@@ -122,7 +122,7 @@ BOOL OGLWindow::InitWindow(HINSTANCE hInstance, int width, int height)
 
 	//Instantiate a Renderable as OGLRectangle
 	m_rect = new OGLArc(Vec2(0, 0), Color("#ffffff"), 0.f, 20.f, 100.f);
-	m_rec2 = new OGLCircle(Vec2(0, 0), Color("#ff0000"), 100.f);
+	m_rec2 = new OGLArc(Vec2(0, 0), Color("#ff0044"), 20.f, 45.f, 100.f);
 
 	return TRUE;
 }

@@ -1,46 +1,8 @@
-﻿Build started 16/10/2014 21:36:34.
+﻿Build started 16/10/2014 21:40:36.
      1>Project "C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\OGLWin32\OGLWin32.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Color.cpp CSVParser.cpp FileOpen.cpp MathHelper.cpp Matrix.cpp OGLApplication.cpp OGLArc.cpp OGLRectangle.cpp OGLShape.cpp OGLWin32.cpp OGLWindow.cpp OGLCircle.cpp Vec2.cpp Vec3.cpp
-         Vec3.cpp
-         Vec2.cpp
-         OGLCircle.cpp
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt OGLWindow.cpp
          OGLWindow.cpp
-         OGLWin32.cpp
-         OGLShape.cpp
-     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\matrix.cpp(130): warning C4018: '<' : signed/unsigned mismatch
-                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\matrix.cpp(119) : while compiling class template member function 'const Matrix<float> Matrix<float>::operator *(const Matrix<float> &) const'
-                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\matrix.cpp(159) : see reference to function template instantiation 'const Matrix<float> Matrix<float>::operator *(const Matrix<float> &) const' being compiled
-                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\matrix.cpp(23) : while compiling class template member function 'Matrix<float>::~Matrix(void)'
-                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglshape.cpp(7) : see reference to function template instantiation 'Matrix<float>::~Matrix(void)' being compiled
-                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglshape.cpp(7) : see reference to class template instantiation 'Matrix<float>' being compiled
-         OGLRectangle.cpp
-     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglrectangle.cpp(40): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglrectangle.cpp(41): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglrectangle.cpp(48): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglrectangle.cpp(49): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-         OGLArc.cpp
-     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglarc.cpp(8): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\matrix.cpp(130): warning C4018: '<' : signed/unsigned mismatch
-                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\matrix.cpp(119) : while compiling class template member function 'const Matrix<float> Matrix<float>::operator *(const Matrix<float> &) const'
-                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\matrix.cpp(159) : see reference to function template instantiation 'const Matrix<float> Matrix<float>::operator *(const Matrix<float> &) const' being compiled
-                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\matrix.cpp(23) : while compiling class template member function 'Matrix<float>::~Matrix(void)'
-                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglarc.cpp(23) : see reference to function template instantiation 'Matrix<float>::~Matrix(void)' being compiled
-                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglarc.cpp(23) : see reference to class template instantiation 'Matrix<float>' being compiled
-         OGLApplication.cpp
-     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglapplication.cpp(122): warning C4101: 'wmId' : unreferenced local variable
-     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglapplication.cpp(122): warning C4101: 'wmEvent' : unreferenced local variable
-         Matrix.cpp
-         MathHelper.cpp
-         FileOpen.cpp
-     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\fileopen.cpp(41): warning C4996: '_wfopen': This function or variable may be unsafe. Consider using _wfopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 d:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(590) : see declaration of '_wfopen'
-         CSVParser.cpp
-     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\csvparser.cpp(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-         Color.cpp
-         Generating Code...
-       ResourceCompile:
-         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Debug\OGLWin32.res" OGLWin32.rc 
        Link:
          D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\Debug\OGLWin32.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\Debug\OGLWin32.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"_tWinMain" /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\Debug\OGLWin32.lib" /MACHINE:X86 Debug\OGLWin32.res
          Debug\Color.obj
@@ -57,20 +19,9 @@
          Debug\OGLCircle.obj
          Debug\Vec2.obj
          Debug\Vec3.obj
-     1>Color.obj : warning LNK4210: .CRT section exists; there may be unhandled static initializers or terminators
-     1>CSVParser.obj : warning LNK4210: .CRT section exists; there may be unhandled static initializers or terminators
-     1>FileOpen.obj : warning LNK4210: .CRT section exists; there may be unhandled static initializers or terminators
-     1>MathHelper.obj : warning LNK4210: .CRT section exists; there may be unhandled static initializers or terminators
-     1>Matrix.obj : warning LNK4210: .CRT section exists; there may be unhandled static initializers or terminators
-     1>OGLApplication.obj : warning LNK4210: .CRT section exists; there may be unhandled static initializers or terminators
-     1>OGLArc.obj : warning LNK4210: .CRT section exists; there may be unhandled static initializers or terminators
-     1>OGLRectangle.obj : warning LNK4210: .CRT section exists; there may be unhandled static initializers or terminators
-     1>OGLShape.obj : warning LNK4210: .CRT section exists; there may be unhandled static initializers or terminators
-     1>OGLWindow.obj : warning LNK4210: .CRT section exists; there may be unhandled static initializers or terminators
-     1>MSVCRTD.lib(atonexit.obj) : warning LNK4210: .CRT section exists; there may be unhandled static initializers or terminators
          OGLWin32.vcxproj -> C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\Debug\OGLWin32.exe
      1>Done Building Project "C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\OGLWin32\OGLWin32.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:07.74
+Time Elapsed 00:00:00.98
