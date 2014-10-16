@@ -10,7 +10,6 @@ public:
 	~OGLArc();
 
 	void			Render();
-	void			CenterRotate(float deg);
 	bool			MouseMove(int x, int y);
 	bool			MouseLBUp(int x, int y);
 	bool			MouseLBDown(int x, int y);

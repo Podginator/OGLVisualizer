@@ -50,12 +50,12 @@ template <typename Type> Type& Matrix<Type>::operator()(int row, int col)
 	return data[_cols * row + col];
 }
 
-template <typename Type> const int Matrix<Type>::getCols() const
+template <typename Type> const size_t Matrix<Type>::getCols() const
 {
 	return _cols;
 }
 
-template <typename Type> const int Matrix<Type>::getRows() const
+template <typename Type> const size_t Matrix<Type>::getRows() const
 {
 	return _rows;
 }

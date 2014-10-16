@@ -20,12 +20,7 @@ OGLRectangle::~OGLRectangle()
 void OGLRectangle::Render()
 {
 	glBegin(GL_QUADS);							
-		glColor3f(rgb.red, rgb.green, rgb.blue);
-		for (int i = 0; i < _size; i++)
-		{
-			glVertex2f(vertexs[i].X(), vertexs[i].Y());
-		}
-		glPopMatrix();
+	RenderVertexs();
 	glEnd();
 }
 

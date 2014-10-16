@@ -53,8 +53,8 @@ public:
 	//Const set.
 	const Type operator()(int rows, int cols) const;
 
-	const int getRows() const;
-	const int getCols() const;
+	const size_t getRows() const;
+	const size_t getCols() const;
 };
 
 #include "Matrix.cpp"

@@ -17,6 +17,7 @@ protected:
 	Color rgb;
 	Vec2* vertexs;
 	int _size;
+	void RenderVertexs();
 
 public: 
 	OGLShape(Vec2 position, std::string hexColor, int size) : _position(position), rgb(hexColor), _size(size)
