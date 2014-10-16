@@ -27,9 +27,6 @@ void OGLRectangle::Render()
 		}
 		glPopMatrix();
 	glEnd();
-
-	CenterRotate(1.0f);
-
 }
 
 

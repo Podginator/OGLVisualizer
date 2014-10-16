@@ -19,7 +19,7 @@ class OGLWindow
 		
 		//This is not an ideal place to hold geometry data
 		OGLShape   *m_rect;
-		OGLShape *m_rec2;
+		OGLShape   *m_rec2;
 
 protected:
 

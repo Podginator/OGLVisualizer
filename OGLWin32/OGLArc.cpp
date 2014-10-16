@@ -14,17 +14,12 @@ OGLArc::OGLArc(Vec2 position, Color color, float startTheta, float endTheta, flo
 
 void OGLArc::CreateArc()
 {
-	int i;
 	vertexs[0] = _position;
 	vertexs[1] = Vec2(_position.X(), _position.Y() + _radius);
-	for (i = 0; i <= _endTheta; i++)
+	for (int i = 0; i <= _endTheta; i++)
 	{
-		printf("%d\n", i);
 		vertexs[2+i] = MathHelper<float>::Matrix2Dtransform(-(float)i) * vertexs[1];
 	}
-
-	CenterRotate(-_startTheta);
-
 }
 
 void OGLArc::Render()
@@ -37,15 +32,8 @@ void OGLArc::Render()
 		}
 	glPopMatrix();
 	glEnd();
-
-	//Admire.
-	CenterRotate(-1.0f);
 }
 
-void OGLArc::CenterRotate(float deg)
-{
-	OGLShape::CenterRotate(deg);
-}
 bool OGLArc::MouseMove(int x, int y)
 {
 	return true;

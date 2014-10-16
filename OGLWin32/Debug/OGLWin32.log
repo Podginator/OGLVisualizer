@@ -1,8 +1,15 @@
-﻿Build started 16/10/2014 21:40:36.
+﻿Build started 16/10/2014 21:59:18.
      1>Project "C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\OGLWin32\OGLWin32.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt OGLWindow.cpp
-         OGLWindow.cpp
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt OGLArc.cpp
+         OGLArc.cpp
+     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglarc.cpp(8): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\matrix.cpp(130): warning C4018: '<' : signed/unsigned mismatch
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\matrix.cpp(119) : while compiling class template member function 'const Matrix<float> Matrix<float>::operator *(const Matrix<float> &) const'
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\matrix.cpp(159) : see reference to function template instantiation 'const Matrix<float> Matrix<float>::operator *(const Matrix<float> &) const' being compiled
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\matrix.cpp(23) : while compiling class template member function 'Matrix<float>::~Matrix(void)'
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglarc.cpp(21) : see reference to function template instantiation 'Matrix<float>::~Matrix(void)' being compiled
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglarc.cpp(21) : see reference to class template instantiation 'Matrix<float>' being compiled
        Link:
          D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\Debug\OGLWin32.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\Debug\OGLWin32.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"_tWinMain" /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\Debug\OGLWin32.lib" /MACHINE:X86 Debug\OGLWin32.res
          Debug\Color.obj
@@ -16,7 +23,6 @@
          Debug\OGLShape.obj
          Debug\OGLWin32.obj
          Debug\OGLWindow.obj
-         Debug\OGLCircle.obj
          Debug\Vec2.obj
          Debug\Vec3.obj
          OGLWin32.vcxproj -> C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\Debug\OGLWin32.exe
@@ -24,4 +30,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.98
+Time Elapsed 00:00:00.95
