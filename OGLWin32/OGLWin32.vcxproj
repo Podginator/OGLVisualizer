@@ -114,7 +114,6 @@
     <ClCompile Include="OGLShape.cpp" />
     <ClCompile Include="OGLWin32.cpp" />
     <ClCompile Include="OGLWindow.cpp" />
-    <ClCompile Include="OGLCircle.cpp" />
     <ClCompile Include="Vec2.cpp" />
     <ClCompile Include="Vec3.cpp" />
   </ItemGroup>
