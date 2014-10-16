@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Parser">
+      <UniqueIdentifier>{5f297e52-c144-4b95-a83e-df21c2b33ef2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Math">
+      <UniqueIdentifier>{d5bd57dc-1e50-462b-b54d-67785752e594}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGL Window">
+      <UniqueIdentifier>{587d3e00-0c80-4593-a505-59e30a11b3da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGL Primitives">
+      <UniqueIdentifier>{87b71cc1-c9c5-4d44-99f3-59f16457daf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Misc">
+      <UniqueIdentifier>{cb538a24-811a-45f7-af05-531c3a3c0800}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math">
+      <UniqueIdentifier>{449b9e11-9145-46bb-9f2b-ffd53d3a276b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Parser">
+      <UniqueIdentifier>{70ae131e-83cc-4462-a2f7-e71dfbc59df5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OpenGL Primitives">
+      <UniqueIdentifier>{31f42cef-6f1f-4f68-95b0-1473fa539437}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OpenGL Window">
+      <UniqueIdentifier>{ea97457e-aa1a-4ed3-aa39-6c5d4eb672bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="small.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="OGLWin32.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CSVParser.h">
+      <Filter>Header Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec2.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLWin32.h">
+      <Filter>Header Files\OpenGL Window</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLWindow.h">
+      <Filter>Header Files\OpenGL Window</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLApplication.h">
+      <Filter>Header Files\OpenGL Window</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLRectangle.h">
+      <Filter>Header Files\OpenGL Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderable.h">
+      <Filter>Header Files\OpenGL Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Listener.h">
+      <Filter>Header Files\OpenGL Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="FileOpen.h">
+      <Filter>Header Files\OpenGL Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Proxy.h">
+      <Filter>Header Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec3.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="MathHelper.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLShape.h">
+      <Filter>Header Files\OpenGL Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Header Files\OpenGL Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLArc.h">
+      <Filter>Header Files\OpenGL Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLCircle.h">
+      <Filter>Header Files\OpenGL Primitives</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="OGLApplication.cpp">
+      <Filter>Source Files\OpenGL Window</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLWin32.cpp">
+      <Filter>Source Files\OpenGL Window</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLWindow.cpp">
+      <Filter>Source Files\OpenGL Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Vec2.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLRectangle.cpp">
+      <Filter>Source Files\OpenGL Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="CSVParser.cpp">
+      <Filter>Source Files\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="FileOpen.cpp">
+      <Filter>Source Files\OpenGL Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Vec3.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="MathHelper.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Source Files\OpenGL Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLShape.cpp">
+      <Filter>Source Files\OpenGL Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLArc.cpp">
+      <Filter>Source Files\OpenGL Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLCircle.cpp">
+      <Filter>Source Files\OpenGL Primitives</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="OGLWin32.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
