@@ -129,11 +129,13 @@ template <typename Type> const Matrix<Type> Matrix<Type>::operator*(const Matrix
 		//We have to multiply the first row by colums, so iterate through right colums
 		for (size_t j = 0; j < right.getCols(); j++)
 		{
-			//Then we get each element in the array and dot product them together.
+			//Store as temp variable to avoid lots of memory writes.
+			Type temp = 0; 
 			for (size_t k = 0; k < _cols; k++)
 			{
-				res(i, j) += data[_cols* i + k] * right(k, j);
+				temp += data[_cols* i + k] * right(k, j);
 			}
+			res(i, j)
 		}
 	}
 
