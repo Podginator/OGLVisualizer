@@ -117,17 +117,19 @@ template <typename Type> Matrix<Type>& Matrix<Type>::operator-=(const Matrix<Typ
 
 template <typename Type> const Matrix<Type> Matrix<Type>::operator*(const Matrix<Type>& right) const
 {
-	if (_cols != right.getRows())
+	if (_cols != right._rows)
 	{
 		throw std::invalid_argument("Matrix A Rows not equal to Matrix Bs Rows.");
 	}
 
-	Matrix<Type> res = Matrix<Type>(right.getRows(), right.getCols(), 0.f);
+	Matrix<Type> res = Matrix<Type>(right._rows, right._cols, 0.f);
 	//Iterate first through the columns of our Matrix
-	for (size_t i = 0; i < _rows; i++)
+	//Use Parallel for to increase speed gains
+	concurrency::parallel_for(size_t(0), _rows, [&](size_t i)
 	{
 		//We have to multiply the first row by colums, so iterate through right colums
-		for (size_t j = 0; j < right.getCols(); j++)
+		
+		for (size_t j = 0; j < right._cols; j++)
 		{
 			//Store as temp variable to avoid lots of memory writes.
 			Type temp = 0.f; 
@@ -137,7 +139,8 @@ template <typename Type> const Matrix<Type> Matrix<Type>::operator*(const Matrix
 			}
 			res(i, j) = temp;
 		}
-	}
+	});
+
 
 	return res;
 }

@@ -4,7 +4,7 @@
 
 
 OGLArc::OGLArc(Vec2 position, Color color, float startTheta, float endTheta, float radius)
-:OGLShape(position, color, endTheta+3)
+:OGLShape(position, color, endTheta+1)
 {
 	_startTheta = startTheta;
 	_endTheta = endTheta;
@@ -14,14 +14,15 @@ OGLArc::OGLArc(Vec2 position, Color color, float startTheta, float endTheta, flo
 
 void OGLArc::CreateArc()
 {
+	//An Arc will have it's first vertex in the center of the circle.
 	vertexs[0] = _position; 
-	vertexs[1] = MathHelper<float>::Matrix2Dtransform((-_startTheta)) * Vec2(0, _radius);
-	vertexs[1] += _position;
-
-	for (int i = 0; i <= _endTheta; i++)
+	//Vertex one will be Radius away from the first point, so we assume it's 0deg away,
+	//Which is the same as moving the Y _Radius away
+	for (int i = 0; i < _endTheta; i++)
 	{
-		vertexs[2 + i] = MathHelper<float>::Matrix2Dtransform(-(float)(_startTheta + i)) * Vec2(0, _radius);
-		vertexs[2 + i] += _position;
+		//We then repeat this process 
+		vertexs[1 + i] = MathHelper<float>::Matrix2Dtransform(-(float)(_startTheta + i)) * Vec2(0, _radius);
+		vertexs[1 + i] += _position;
 	}
 
 

@@ -2,6 +2,7 @@
 
 #include <stdexcept>
 #include "Vec2.h"
+#include <ppl.h>
 
 template <typename Type> class Matrix
 {
