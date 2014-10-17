@@ -4,6 +4,7 @@
 #include "Vec2.h"
 #include "Matrix.h"
 #include "OGLCircle.h"
+#include "OGLLine.h"
 
 
 OGLWindow::OGLWindow()
@@ -122,7 +123,7 @@ BOOL OGLWindow::InitWindow(HINSTANCE hInstance, int width, int height)
 
 	//Instantiate a Renderable as OGLRectangle
 	m_rect = new OGLRectangle(Vec2(0, 0), Color("#ffffff"), 120.f, 120.f);
-	m_rec2 = new OGLArc(Vec2(0, 0), Color("#992345"), 20.f, 210.f, 250.f);
+	m_rec2 = new OGLLine(Vec2(0, 0), Color("#fff354"), Vec2(200, 0));
 
 	return TRUE;
 }

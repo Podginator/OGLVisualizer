@@ -152,6 +152,9 @@
     <ClCompile Include="OGLArc.cpp">
       <Filter>Source Files\OpenGL Primitives</Filter>
     </ClCompile>
+    <ClCompile Include="OGLLine.cpp">
+      <Filter>Source Files\OpenGL Primitives</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OGLWin32.rc">
