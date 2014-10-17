@@ -215,6 +215,5 @@ template <typename Type> const void Matrix<Type>::CheckCompatibility(const Matri
 	{
 		throw std::invalid_argument("Matrix not same length");
 	}
-
 }
 #endif
