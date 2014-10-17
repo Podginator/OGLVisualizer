@@ -102,7 +102,6 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="Vec3.h" />
-    <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Color.cpp" />

@@ -1,7 +1,7 @@
 #include "OGLRectangle.h"
 
 OGLRectangle::OGLRectangle(Vec2 position, Color color, float height, float width)
-:OGLShape(position, color, 4)
+:OGLShape(position, color, 4, GL_QUADS)
 {
 	//init the OGLRectangle to a fixed size
 	vertexs[0] = Vec2(position);
@@ -16,14 +16,6 @@ OGLRectangle::~OGLRectangle()
 {
 
 }
-
-void OGLRectangle::Render()
-{
-	glBegin(GL_QUADS);							
-	RenderVertexs();
-	glEnd();
-}
-
 
 void OGLRectangle::CenterRotate(float deg)
 {

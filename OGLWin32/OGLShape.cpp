@@ -24,6 +24,18 @@ void OGLShape::CenterRotate(float deg)
 		vertexs[i] += _position;
 	}	
 }
+
+void OGLShape::Render()
+{
+
+	//GLBegin basically just takes a Unsigned int Macro
+	//So can pass it in as a variable
+	glBegin(_renderType);
+		RenderVertexs();
+	glEnd();
+
+	CenterRotate(1.f);
+}
 void OGLShape::RenderVertexs()
 {
 	glColor3f(rgb.red, rgb.green, rgb.blue);

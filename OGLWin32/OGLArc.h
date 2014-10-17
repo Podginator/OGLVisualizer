@@ -9,7 +9,6 @@ public:
 	OGLArc(Vec2 position, std::string hexColor, float startTheta, float endTheta, float radius);
 	~OGLArc();
 
-	void			Render();
 	bool			MouseMove(int x, int y);
 	bool			MouseLBUp(int x, int y);
 	bool			MouseLBDown(int x, int y);

@@ -1,9 +1,27 @@
-﻿Build started 17/10/2014 20:32:32.
-     1>Project "\\ctstudent2\studentusers\100265937\Desktop\GitHub\OGLVisualizer\OGLWin32\OGLWin32.vcxproj" on node 2 (Build target(s)).
-     1>Link:
-         OGLWin32.vcxproj -> \\ctstudent2\studentusers\100265937\Desktop\GitHub\OGLVisualizer\Debug\OGLWin32.exe
-     1>Done Building Project "\\ctstudent2\studentusers\100265937\Desktop\GitHub\OGLVisualizer\OGLWin32\OGLWin32.vcxproj" (Build target(s)).
+﻿Build started 17/10/2014 21:41:57.
+     1>Project "C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\OGLWin32\OGLWin32.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt OGLShape.cpp
+         OGLShape.cpp
+       Link:
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\Debug\OGLWin32.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\Debug\OGLWin32.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"_tWinMain" /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\Debug\OGLWin32.lib" /MACHINE:X86 Debug\OGLWin32.res
+         Debug\Color.obj
+         Debug\CSVParser.obj
+         Debug\FileOpen.obj
+         Debug\MathHelper.obj
+         Debug\Matrix.obj
+         Debug\OGLApplication.obj
+         Debug\OGLArc.obj
+         Debug\OGLLine.obj
+         Debug\OGLRectangle.obj
+         Debug\OGLShape.obj
+         Debug\OGLWin32.obj
+         Debug\OGLWindow.obj
+         Debug\Vec2.obj
+         Debug\Vec3.obj
+         OGLWin32.vcxproj -> C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\Debug\OGLWin32.exe
+     1>Done Building Project "C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\OGLWin32\OGLWin32.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.37
+Time Elapsed 00:00:01.23

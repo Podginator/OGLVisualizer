@@ -11,7 +11,6 @@ class OGLRectangle : public OGLShape
 						OGLRectangle(Vec2 position, std::string hexColor, float height, float width);
 						~OGLRectangle();
 
-		void			Render();
 		void			CenterRotate(float deg);
 		bool			MouseMove( int x, int y );
 		bool			MouseLBUp( int x, int y );

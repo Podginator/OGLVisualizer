@@ -123,7 +123,7 @@ BOOL OGLWindow::InitWindow(HINSTANCE hInstance, int width, int height)
 
 	//Instantiate a Renderable as OGLRectangle
 	
-	m_rect = new OGLLine(Vec2(100, 100), Color("#fff331"), Vec2(100, 0));
+	m_rect = new OGLRectangle(Vec2(100, 100), Color("#fff331"), 50.f, 150.f);
 	m_rec2 = new OGLArc(Vec2(300, 100), Color("#f93482"), 120.f, 90.f, 250);
 
 	return TRUE;
@@ -143,7 +143,7 @@ void OGLWindow::Render()
 
 	glLoadIdentity();
 
-	//prenderable->Render();
+	prenderable->Render();
 	prenderable2->Render();
 
 	glFlush();

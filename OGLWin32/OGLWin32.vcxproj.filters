@@ -111,9 +111,6 @@
     <ClInclude Include="OGLLine.h">
       <Filter>Header Files\OpenGL Primitives</Filter>
     </ClInclude>
-    <ClInclude Include="Vector.h">
-      <Filter>Header Files\Math</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OGLApplication.cpp">

@@ -11,7 +11,6 @@ public:
 	OGLLine(Vec2 position, std::string hexColor, Vec2 endPos);
 	~OGLLine();
 
-	void			Render();
 	bool			MouseMove(int x, int y);
 	bool			MouseLBUp(int x, int y);
 	bool			MouseLBDown(int x, int y);

@@ -4,7 +4,7 @@
 
 
 OGLArc::OGLArc(Vec2 position, Color color, float startTheta, float endTheta, float radius)
-:OGLShape(position, color, endTheta+1)
+:OGLShape(position, color, endTheta+1, GL_TRIANGLE_FAN)
 {
 	_startTheta = startTheta;
 	_endTheta = endTheta;
@@ -25,14 +25,6 @@ void OGLArc::CreateArc()
 		vertexs[1 + i] += _position;
 	}
 
-
-}
-
-void OGLArc::Render()
-{
-	glBegin(GL_TRIANGLE_FAN);
-	RenderVertexs();
-	glEnd();
 }
 
 bool OGLArc::MouseMove(int x, int y)
