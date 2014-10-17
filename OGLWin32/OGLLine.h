@@ -7,8 +7,8 @@ class OGLLine : public OGLShape
 protected:
 	Vec2 _endPosition;
 public:
-	OGLLine(Vec2 position, Color color, Vec2 endPos) :_endPosition(endPos), OGLShape(position, color, 2){ vertexs[0] = _position, vertexs[1] = endPos; };
-	OGLLine(Vec2 position, std::string hexColor, Vec2 endPos) :_endPosition(endPos), OGLShape(position, hexColor, 2){ vertexs[0] = _position, vertexs[1] = endPos; };
+	OGLLine(Vec2 position, Color color, Vec2 endPos);
+	OGLLine(Vec2 position, std::string hexColor, Vec2 endPos);
 	~OGLLine();
 
 	void			Render();

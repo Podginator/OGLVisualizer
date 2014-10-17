@@ -17,7 +17,7 @@ OGLWindow::~OGLWindow()
 	DestroyOGLWindow();
 	
 	//Clean up the renderable
-	delete m_rect;
+	//delete m_rect;
 	delete m_rec2;
 }
 
@@ -122,8 +122,8 @@ BOOL OGLWindow::InitWindow(HINSTANCE hInstance, int width, int height)
 	m_height = clientRect.bottom;
 
 	//Instantiate a Renderable as OGLRectangle
-	m_rect = new OGLRectangle(Vec2(0, 0), Color("#ffffff"), 120.f, 120.f);
-	m_rec2 = new OGLLine(Vec2(0, 0), Color("#fff354"), Vec2(200, 0));
+	//m_rect = new OGLRectangle(Vec2(0, 0), Color("#ffffff"), 120.f, 120.f);
+	m_rec2 = new OGLLine(Vec2(0, 0), Color("#fff331"), Vec2(100, 100));
 
 	return TRUE;
 }
@@ -135,14 +135,13 @@ void OGLWindow::SetVisible ( BOOL visible )
 
 void OGLWindow::Render()
 {
-	Renderable* prenderable = static_cast<Renderable*>(m_rect);
+	//Renderable* prenderable = static_cast<Renderable*>(m_rect);
 	Renderable* prenderable2 = static_cast<Renderable*>(m_rec2);
 
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glLoadIdentity();
-	
-	prenderable->Render();
+
 	prenderable2->Render();
 
 	glFlush();
