@@ -14,12 +14,17 @@ OGLArc::OGLArc(Vec2 position, Color color, float startTheta, float endTheta, flo
 
 void OGLArc::CreateArc()
 {
-	vertexs[0] = _position;
-	vertexs[1] = MathHelper<float>::Matrix2Dtransform((-_startTheta)) * Vec2(_position.X(), _position.Y() + _radius);
+	vertexs[0] = _position; 
+	vertexs[1] = MathHelper<float>::Matrix2Dtransform((-_startTheta)) * Vec2(0, _radius);
+	vertexs[1] += _position;
+
 	for (int i = 0; i <= _endTheta; i++)
 	{
-		vertexs[2+i] = MathHelper<float>::Matrix2Dtransform(-(float)i) * vertexs[1];
+		vertexs[2 + i] = MathHelper<float>::Matrix2Dtransform(-(float)(_startTheta + i)) * Vec2(0, _radius);
+		vertexs[2 + i] += _position;
 	}
+
+
 }
 
 void OGLArc::Render()
