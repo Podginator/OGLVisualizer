@@ -108,6 +108,9 @@
     <ClInclude Include="OGLCircle.h">
       <Filter>Header Files\OpenGL Primitives</Filter>
     </ClInclude>
+    <ClInclude Include="OGLLine.h">
+      <Filter>Header Files\OpenGL Primitives</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OGLApplication.cpp">

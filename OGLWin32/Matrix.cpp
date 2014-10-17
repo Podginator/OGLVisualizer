@@ -130,12 +130,12 @@ template <typename Type> const Matrix<Type> Matrix<Type>::operator*(const Matrix
 		for (size_t j = 0; j < right.getCols(); j++)
 		{
 			//Store as temp variable to avoid lots of memory writes.
-			Type temp = 0; 
+			Type temp = 0.f; 
 			for (size_t k = 0; k < _cols; k++)
 			{
 				temp += data[_cols* i + k] * right(k, j);
 			}
-			res(i, j)
+			res(i, j) = temp;
 		}
 	}
 

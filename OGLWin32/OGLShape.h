@@ -1,8 +1,5 @@
 #pragma once
 
-#include <Windows.h>
-#include <gl/GL.h>
-#include <stdio.h>
 #include "Renderable.h"
 #include "Listener.h"
 #include "Vec2.h"

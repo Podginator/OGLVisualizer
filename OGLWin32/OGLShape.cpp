@@ -1,13 +1,13 @@
 #pragma once
 #include "OGLShape.h"
 
-
 void OGLShape::Rotate(float deg)
 {
 	Matrix<float> rotMat = MathHelper<float>::Matrix2Dtransform(deg);
 
 	for (int i = 0; i < _size; i++)
 	{
+		//Just rotates from center as origin. 
 		vertexs[i] = rotMat * vertexs[i];
 	}
 }
@@ -16,8 +16,11 @@ void OGLShape::CenterRotate(float deg)
 	Matrix<float> rotMat = MathHelper<float>::Matrix2Dtransform(deg);
 	for (int i = 0; i < _size; i++)
 	{
+		//Move it to the center.
 		vertexs[i] -= _position;
+		//Then rotate.
 		vertexs[i] = rotMat * vertexs[i];
+		//Then move back.
 		vertexs[i] += _position;
 	}	
 }
