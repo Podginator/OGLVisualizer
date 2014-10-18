@@ -45,8 +45,6 @@ bool FileOpen::ShowDialog()
 	return false;
 }
 
-
-
 std::FILE* FileOpen::getFile()
 {
 	return openedFile;

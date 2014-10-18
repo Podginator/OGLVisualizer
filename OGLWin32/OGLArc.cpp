@@ -4,7 +4,7 @@
 
 
 OGLArc::OGLArc(Vec2 position, Color color, float startTheta, float endTheta, float radius)
-:OGLShape(position, color, endTheta+2, GL_TRIANGLE_FAN)
+:OGLShape(position, color, (int)endTheta+2, GL_TRIANGLE_FAN)
 {
 	_startTheta = startTheta;
 	_endTheta = endTheta;

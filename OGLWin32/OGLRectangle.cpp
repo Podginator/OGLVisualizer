@@ -22,14 +22,14 @@ void OGLRectangle::CenterRotate(float deg)
 	//Move them towards the center. 
 	for (int i = 0; i < _size; i++)
 	{
-		vertexs[i] -= Vec2((_width*0.5), (_height*0.5));
+		vertexs[i] -= Vec2((_width*0.5f), (_height*0.5f));
 	}
 
 	OGLShape::CenterRotate(deg);
 
 	for (int i = 0; i < _size; i++)
 	{
-		vertexs[i] += Vec2((_width*0.5), (_height*0.5));
+		vertexs[i] += Vec2((_width*0.5f), (_height*0.5f));
 	}
 
 }
@@ -46,4 +46,3 @@ bool OGLRectangle::MouseLBDown( int x, int y )
 	CenterRotate(1.0f);
 	return true;
 }
-

@@ -4,7 +4,8 @@
 #include "Vec2.h"
 #include <ppl.h>
 
-template <typename Type> class Matrix
+template <typename Type>
+class Matrix
 {
 private:
 	//use size_T for performant reasons.
