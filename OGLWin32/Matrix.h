@@ -46,6 +46,7 @@ public:
 	const bool operator!=(const Matrix& right);
 	const bool operator==(const Matrix& right);
 
+	Matrix<Type>& transpose();
 	const float Determinant() const;
 	Matrix<Type>& inverse();
 

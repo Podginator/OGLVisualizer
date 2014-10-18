@@ -6,7 +6,8 @@
 
 
 //Constructor, Destructor.
-template <typename Type> Matrix<Type>::Matrix(size_t rows, size_t col, const Type& init)
+template <typename Type>
+Matrix<Type>::Matrix(size_t rows, size_t col, const Type& init)
 {
 	_rows = rows;
 	_cols = col;
@@ -19,17 +20,20 @@ template <typename Type> Matrix<Type>::Matrix(size_t rows, size_t col, const Typ
 	}
 }
 
-template <typename Type> Matrix<Type>::~Matrix()
+template <typename Type>
+Matrix<Type>::~Matrix()
 {
 	delete[] data;
 }
 
-template <typename Type> Matrix<Type>::Matrix(const Matrix<Type>& copy)
+template <typename Type>
+Matrix<Type>::Matrix(const Matrix<Type>& copy)
 {
 	HardCopy(copy);
 }
 
-template <typename Type> Matrix<Type>& Matrix<Type>::operator=(const Matrix<Type>& right)
+template <typename Type>
+Matrix<Type>& Matrix<Type>::operator=(const Matrix<Type>& right)
 {
 	if (this != &right)
 	{
@@ -40,27 +44,32 @@ template <typename Type> Matrix<Type>& Matrix<Type>::operator=(const Matrix<Type
 }
 
 //Get-Set. Individual members.
-template <typename Type> const Type Matrix<Type>::operator()(int row, int col) const
+template <typename Type>
+const Type Matrix<Type>::operator()(int row, int col) const
 {
 	return data[_cols* row + col];
 }
 
-template <typename Type> Type& Matrix<Type>::operator()(int row, int col)
+template <typename Type>
+Type& Matrix<Type>::operator()(int row, int col)
 {
 	return data[_cols * row + col];
 }
 
-template <typename Type> const size_t Matrix<Type>::getCols() const
+template <typename Type>
+const size_t Matrix<Type>::getCols() const
 {
 	return _cols;
 }
 
-template <typename Type> const size_t Matrix<Type>::getRows() const
+template <typename Type>
+const size_t Matrix<Type>::getRows() const
 {
 	return _rows;
 }
 
-template <typename Type> const Matrix<Type> Matrix<Type>::operator+(const Matrix<Type>& right) const
+template <typename Type>
+const Matrix<Type> Matrix<Type>::operator+(const Matrix<Type>& right) const
 {
 	//First check the two are compatible (N.length == N1.length)
 	CheckCompatibility(right);
@@ -75,7 +84,8 @@ template <typename Type> const Matrix<Type> Matrix<Type>::operator+(const Matrix
 	return res;
 }
 
-template <typename Type> Matrix<Type>& Matrix<Type>::operator+=(const Matrix<Type>& right)
+template <typename Type>
+Matrix<Type>& Matrix<Type>::operator+=(const Matrix<Type>& right)
 {
 
 	CheckCompatibility(right);
@@ -88,7 +98,8 @@ template <typename Type> Matrix<Type>& Matrix<Type>::operator+=(const Matrix<Typ
 	return *this;
 }
 
-template <typename Type> const Matrix<Type> Matrix<Type>::operator-(const Matrix<Type>& right) const
+template <typename Type>
+const Matrix<Type> Matrix<Type>::operator-(const Matrix<Type>& right) const
 {
 	CheckCompatibility(right);
 
@@ -102,7 +113,8 @@ template <typename Type> const Matrix<Type> Matrix<Type>::operator-(const Matrix
 	return res;
 }
 
-template <typename Type> Matrix<Type>& Matrix<Type>::operator-=(const Matrix<Type>& right)
+template <typename Type>
+Matrix<Type>& Matrix<Type>::operator-=(const Matrix<Type>& right)
 {
 
 	CheckCompatibility(right);
@@ -115,7 +127,8 @@ template <typename Type> Matrix<Type>& Matrix<Type>::operator-=(const Matrix<Typ
 	return *this;
 }
 
-template <typename Type> const Matrix<Type> Matrix<Type>::operator*(const Matrix<Type>& right) const
+template <typename Type>
+const Matrix<Type> Matrix<Type>::operator*(const Matrix<Type>& right) const
 {
 	if (_cols != right._rows)
 	{
@@ -145,7 +158,8 @@ template <typename Type> const Matrix<Type> Matrix<Type>::operator*(const Matrix
 	return res;
 }
 
-template <typename Type> Matrix<Type>& Matrix<Type>::operator*=(const Matrix<Type>& right)
+template <typename Type>
+Matrix<Type>& Matrix<Type>::operator*=(const Matrix<Type>& right)
 {
 	Matrix result = *this * right;
 	*this = result;
@@ -153,7 +167,8 @@ template <typename Type> Matrix<Type>& Matrix<Type>::operator*=(const Matrix<Typ
 	return *this;
 }
 
-template <typename Type> const Vec2 Matrix<Type>::operator*(const Vec2& right) const
+template <typename Type>
+const Vec2 Matrix<Type>::operator*(const Vec2& right) const
 {
 	//Model the Vector as a Matrix (We already deal with these)
 	//Column Vector
@@ -165,7 +180,8 @@ template <typename Type> const Vec2 Matrix<Type>::operator*(const Vec2& right) c
 	return Vec2(vec(0, 0), vec(1, 0));
 }
 
-template <typename Type> const Matrix<Type> Matrix<Type>::operator*(Type right) const
+template <typename Type>
+const Matrix<Type> Matrix<Type>::operator*(Type right) const
 {
 	Matrix res(_rows, _cols, 0);
 
@@ -176,7 +192,8 @@ template <typename Type> const Matrix<Type> Matrix<Type>::operator*(Type right) 
 	return res;
 }
 
-template <typename Type> Matrix<Type>& Matrix<Type>::operator*=(Type right)
+template <typename Type>
+Matrix<Type>& Matrix<Type>::operator*=(Type right)
 {
 	for (size_t i = 0; i < _rows; i++){
 		data[i] *= right;
@@ -188,18 +205,35 @@ template <typename Type> Matrix<Type>& Matrix<Type>::operator*=(Type right)
 //Calculate the Determinant
 //So, this is kind of difficult for a number of reasons
 //You need 
-template <typename Type> const float Matrix<Type>::Determinant() const
+template <typename Type>
+const float Matrix<Type>::Determinant() const
 {
 	return 0.0f;
 }
 
-template <typename Type> Matrix<Type>& Matrix<Type>::inverse()
+template <typename Type>
+Matrix<Type>& Matrix<Type>::inverse()
 {
 
 	return *this;
 }
 
-template <typename Type> void Matrix<Type>::HardCopy(const Matrix<Type>& copy)
+template <typename Type>
+Matrix<Type>& Matrix<Type>::transpose()
+{ 
+	for (int i = 0; i < _rows; i++)
+	{
+		for (int j = 0; j < _cols; j++)
+		{
+			data[_cols * row + col] = data[_rows * row + col];
+		}
+	}
+
+	return *this;
+}
+
+template <typename Type>
+void Matrix<Type>::HardCopy(const Matrix<Type>& copy)
 {
 	this->_cols = copy._cols;
 	this->_rows = copy._rows;
@@ -212,7 +246,8 @@ template <typename Type> void Matrix<Type>::HardCopy(const Matrix<Type>& copy)
 	}
 }
 
-template <typename Type> const void Matrix<Type>::CheckCompatibility(const Matrix& check) const
+template <typename Type>
+const void Matrix<Type>::CheckCompatibility(const Matrix& check) const
 {
 	if ((this->_rows != check.getRows()) && (this->_cols != check.getCols()))
 	{

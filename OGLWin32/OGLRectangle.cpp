@@ -19,18 +19,17 @@ OGLRectangle::~OGLRectangle()
 
 void OGLRectangle::CenterRotate(float deg)
 {
+	//Move them towards the center. 
 	for (int i = 0; i < _size; i++)
 	{
-		vertexs[i] -= Vec2((_width*0.5), 0);
-		vertexs[i] -= Vec2(0, (_height*0.5));
+		vertexs[i] -= Vec2((_width*0.5), (_height*0.5));
 	}
 
 	OGLShape::CenterRotate(deg);
 
 	for (int i = 0; i < _size; i++)
 	{
-		vertexs[i] += Vec2((_width*0.5), 0);
-		vertexs[i] += Vec2(0, (_height*0.5));
+		vertexs[i] += Vec2((_width*0.5), (_height*0.5));
 	}
 
 }
