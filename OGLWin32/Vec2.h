@@ -1,7 +1,6 @@
 #pragma once
 
 #include <math.h>
-
 class Vec2
 {
 protected:
@@ -37,6 +36,5 @@ public:
 
 	const float Modulus() const;
 	const float DotProduct(const Vec2& right) const;
-protected:
 
 };

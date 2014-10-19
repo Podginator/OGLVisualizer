@@ -20,7 +20,6 @@ Vec2::Vec2()
 Vec2::Vec2(const Vec2& copy)
 {
 	Copy(copy);
-
 }
 
 Vec2::~Vec2(){}

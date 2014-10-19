@@ -119,6 +119,7 @@
     <ClCompile Include="OGLWindow.cpp" />
     <ClCompile Include="Vec2.cpp" />
     <ClCompile Include="Vec3.cpp" />
+    <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OGLWin32.rc" />

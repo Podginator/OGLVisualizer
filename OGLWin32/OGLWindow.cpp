@@ -5,6 +5,7 @@
 #include "Matrix.h"
 #include "OGLCircle.h"
 #include "OGLLine.h"
+#include "Vector.h"
 
 
 OGLWindow::OGLWindow()
@@ -201,6 +202,12 @@ BOOL OGLWindow::MouseLBUp ( int x, int y )
 BOOL OGLWindow::MouseMove ( int x, int y )
 {
 	Listener *plistener = static_cast<Listener*>(m_rect);
+
+	Vector<2, float> z(2, 3);
+
+
+	printf("%f", z[1]);
+
 	printf("X: %d, Y:%d\n", x - (m_width >> 1), (-y) - (-m_height >> 1));
 	//plistener->MouseMove(mouseCoord.X(), mouseCoord.Y());
 

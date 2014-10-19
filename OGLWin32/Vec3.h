@@ -47,7 +47,7 @@ public:
 	const bool operator!=(const Vec3& right);
 
 	const float Modulus() const;
-	const float DotProduct(const Vec3& right) const;
+	const Vec3 CrossProduct(const Vec3& right) const;
 protected:
 
 };

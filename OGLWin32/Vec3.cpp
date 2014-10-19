@@ -132,9 +132,10 @@ const float Vec3::Modulus() const
 	return sqrt(_x*_x + _y*_y + _z*_z);
 }
 
-const float Vec3::DotProduct(const Vec3& right) const
+const Vec3 Vec3::CrossProduct(const Vec3& right) const
 {
-	return _x * right._x + _y + right._y;
+	//Later.
+	return Vec3(0, 0, 0);
 }
 
 void Vec3::Copy(const Vec3& copy)
