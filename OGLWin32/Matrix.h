@@ -18,7 +18,7 @@ private:
 	Type* data;
 
 	void HardCopy(const Matrix& copy);
-	const void CheckCompatibility(const Matrix& check) const;
+	void CheckCompatibility(const Matrix& check) const;
 
 public:
 	//Assume matrix is more than 2x2, for now. 
@@ -32,35 +32,34 @@ public:
 	Matrix<Type>& operator=(const Matrix& right);
 	//The operations on them should be performed with operator overloads rather than individual functions
 	//Matrix -> Matrix
-	const Matrix<Type> operator+(const Matrix& right) const;
+	Matrix<Type> operator+(const Matrix& right) const;
 	Matrix<Type>& operator+=(const Matrix& right);
-	const Matrix<Type> operator-(const Matrix& right) const;
+	Matrix<Type> operator-(const Matrix& right) const;
 	Matrix<Type>& operator-=(const Matrix& right);
-	const Matrix<Type> operator*(const Matrix& right) const;
+	Matrix<Type> operator*(const Matrix& right) const;
 	Matrix<Type>& operator*=(const Matrix& right);
 
 	//Matrix -> Scalar
-	const Matrix<Type> operator*(Type right) const;
+	Matrix<Type> operator*(Type right) const;
 	Matrix<Type>& operator*=(Type right);
 	//Matrix -> Vector
-	const Vec2 operator*(const Vec2& right) const;
-	const Vector<2, Type> operator*(const Vector<2, Type> right) const;
-	const Vector<3, Type> operator*(const Vector<3, Type> right) const;
+	Vec2 operator*(const Vec2& right) const;
+	Vector<2, Type> operator*(const Vector<2, Type> right) const;
 	//bool operator
-	const bool operator!=(const Matrix& right);
-	const bool operator==(const Matrix& right);
+	bool operator!=(const Matrix& right);
+	bool operator==(const Matrix& right);
 
 	Matrix<Type>& transpose();
-	const float Determinant() const;
+	float Determinant() const;
 	Matrix<Type>& inverse();
 
 	//Get and Set individual setters.
 	Type& operator()(int rows, int cols);
 	//Const set.
-	const Type operator()(int rows, int cols) const;
+	Type operator()(int rows, int cols) const;
 
-	const size_t getRows() const;
-	const size_t getCols() const;
+	size_t getRows() const;
+	size_t getCols() const;
 };
 
 #include "Matrix.cpp"

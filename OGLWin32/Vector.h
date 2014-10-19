@@ -20,23 +20,25 @@ public:
 	Vector(const Vector& copy){ Copy(copy); }
 
 	T& operator [](std::size_t const& index){return data[index];}
+	const T& operator [](std::size_t const& index) const { return data[index]; }
+
 	Vector& operator= (const Vector& right) { Copy(copy) };
 	//Basic Operators.
-	const Vector operator+(const Vector& right) const;
-	const Vector operator-(const Vector& right) const;
-	const Vector operator*(const Vector& right) const;
+	Vector operator+(const Vector& right) const;
+	Vector operator-(const Vector& right) const;
+	Vector operator*(const Vector& right) const;
 	Vector& operator+=(const Vector& right);
 	Vector& operator-=(const Vector& right);
 	Vector& operator*=(const Vector& right);
 	//Scalar
-	const Vector operator*(const float right) const;
-	const Vector operator/(const float right) const;
+	Vector operator*(const float right) const;
+	Vector operator/(const float right) const;
 	//Bool
-	const bool operator==(const Vector& right);
-	const bool operator!=(const Vector& right);
+	bool operator==(const Vector& right);
+	bool operator!=(const Vector& right);
 
-	const float Modulus() const;
-	const float DotProduct(const Vector& right) const;
+	float Modulus() const;
+	float DotProduct(const Vector& right) const;
 };
 
 

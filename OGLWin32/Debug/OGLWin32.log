@@ -1,24 +1,13 @@
-﻿Build started 19/10/2014 22:07:32.
+﻿Build started 19/10/2014 23:08:35.
      1>Project "C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\OGLWin32\OGLWin32.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Matrix.cpp OGLApplication.cpp OGLArc.cpp OGLLine.cpp OGLRectangle.cpp OGLShape.cpp OGLWindow.cpp
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt OGLWindow.cpp
          OGLWindow.cpp
-     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\vector.h(40): warning C4520: 'Vector<2,float>' : multiple default constructors specified
+     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\vector.h(42): warning C4520: 'Vector<2,float>' : multiple default constructors specified
                  c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglwindow.cpp(207) : see reference to class template instantiation 'Vector<2,float>' being compiled
-     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\vector.h(40): warning C4520: 'Vector<3,float>' : multiple default constructors specified
-                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglwindow.cpp(209) : see reference to class template instantiation 'Vector<3,float>' being compiled
      1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\vector.h(16): warning C4244: 'initializing' : conversion from 'const int' to 'float', possible loss of data
                  c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglwindow.cpp(207) : see reference to function template instantiation 'Vector<2,float>::Vector<int,int>(const int &&,const int &&)' being compiled
                  c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglwindow.cpp(207) : see reference to function template instantiation 'Vector<2,float>::Vector<int,int>(const int &&,const int &&)' being compiled
-     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\matrix.cpp(187): error C2678: binary '[' : no operator found which takes a left-hand operand of type 'const Vector<2,float>' (or there is no acceptable conversion)
-                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\vector.h(22): could be 'float &Vector<2,float>::operator [](const size_t &)'
-                 while trying to match the argument list '(const Vector<2,float>, int)'
-                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\matrix.cpp(185) : while compiling class template member function 'const Vector<2,float> Matrix<float>::operator *(const Vector<2,float>) const'
-                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglwindow.cpp(209) : see reference to function template instantiation 'const Vector<2,float> Matrix<float>::operator *(const Vector<2,float>) const' being compiled
-                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglwindow.cpp(209) : see reference to class template instantiation 'Matrix<float>' being compiled
-     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\matrix.cpp(188): error C2678: binary '[' : no operator found which takes a left-hand operand of type 'const Vector<2,float>' (or there is no acceptable conversion)
-                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\vector.h(22): could be 'float &Vector<2,float>::operator [](const size_t &)'
-                 while trying to match the argument list '(const Vector<2,float>, int)'
      1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\matrix.cpp(192): error C2665: 'Vector<2,float>::Vector' : none of the 3 overloads could convert all the argument types
                  c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\vector.h(15): could be 'Vector<2,float>::Vector<Type,Type>(const Type &&,const Type &&)'
                  with
@@ -26,16 +15,11 @@
                      Type=float
                  ]
                  while trying to match the argument list '(float, float)'
-         Matrix.cpp
-         Generating Code...
-         Skipping... (no relevant changes detected)
-         OGLShape.cpp
-         OGLRectangle.cpp
-         OGLLine.cpp
-         OGLArc.cpp
-         OGLApplication.cpp
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\matrix.cpp(185) : while compiling class template member function 'Vector<2,float> Matrix<float>::operator *(const Vector<2,float>) const'
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglwindow.cpp(209) : see reference to function template instantiation 'Vector<2,float> Matrix<float>::operator *(const Vector<2,float>) const' being compiled
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\oglwindow.cpp(209) : see reference to class template instantiation 'Matrix<float>' being compiled
      1>Done Building Project "C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\OGLWin32\OGLWin32.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:01.58
+Time Elapsed 00:00:01.03

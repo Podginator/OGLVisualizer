@@ -45,7 +45,7 @@ Matrix<Type>& Matrix<Type>::operator=(const Matrix<Type>& right)
 
 //Get-Set. Individual members.
 template <typename Type>
-const Type Matrix<Type>::operator()(int row, int col) const
+Type Matrix<Type>::operator()(int row, int col) const
 {
 	return data[_cols* row + col];
 }
@@ -57,19 +57,19 @@ Type& Matrix<Type>::operator()(int row, int col)
 }
 
 template <typename Type>
-const size_t Matrix<Type>::getCols() const
+size_t Matrix<Type>::getCols() const
 {
 	return _cols;
 }
 
 template <typename Type>
-const size_t Matrix<Type>::getRows() const
+size_t Matrix<Type>::getRows() const
 {
 	return _rows;
 }
 
 template <typename Type>
-const Matrix<Type> Matrix<Type>::operator+(const Matrix<Type>& right) const
+Matrix<Type> Matrix<Type>::operator+(const Matrix<Type>& right) const
 {
 	//First check the two are compatible (N.length == N1.length)
 	CheckCompatibility(right);
@@ -99,7 +99,7 @@ Matrix<Type>& Matrix<Type>::operator+=(const Matrix<Type>& right)
 }
 
 template <typename Type>
-const Matrix<Type> Matrix<Type>::operator-(const Matrix<Type>& right) const
+Matrix<Type> Matrix<Type>::operator-(const Matrix<Type>& right) const
 {
 	CheckCompatibility(right);
 
@@ -128,7 +128,7 @@ Matrix<Type>& Matrix<Type>::operator-=(const Matrix<Type>& right)
 }
 
 template <typename Type>
-const Matrix<Type> Matrix<Type>::operator*(const Matrix<Type>& right) const
+Matrix<Type> Matrix<Type>::operator*(const Matrix<Type>& right) const
 {
 	if (_cols != right._rows)
 	{
@@ -168,7 +168,7 @@ Matrix<Type>& Matrix<Type>::operator*=(const Matrix<Type>& right)
 }
 
 template <typename Type>
-const Vec2 Matrix<Type>::operator*(const Vec2& right) const
+Vec2 Matrix<Type>::operator*(const Vec2& right) const
 {
 	//Model the Vector as a Matrix (We already deal with these)
 	//Column Vector
@@ -181,7 +181,7 @@ const Vec2 Matrix<Type>::operator*(const Vec2& right) const
 }
 
 template <typename Type>
-const Vector<2, Type> Matrix<Type>::operator*(const Vector<2, Type> right) const
+Vector<2, Type> Matrix<Type>::operator*(const Vector<2, Type> right) const
 {
 	Matrix vec(2, 1, 0);
 	vec(0, 0) = right[0];
@@ -193,7 +193,7 @@ const Vector<2, Type> Matrix<Type>::operator*(const Vector<2, Type> right) const
 }
 
 template <typename Type>
-const Matrix<Type> Matrix<Type>::operator*(Type right) const
+Matrix<Type> Matrix<Type>::operator*(Type right) const
 {
 	Matrix res(_rows, _cols, 0);
 
@@ -218,7 +218,7 @@ Matrix<Type>& Matrix<Type>::operator*=(Type right)
 //So, this is kind of difficult for a number of reasons
 //You need 
 template <typename Type>
-const float Matrix<Type>::Determinant() const
+float Matrix<Type>::Determinant() const
 {
 	return 0.0f;
 }
@@ -259,7 +259,7 @@ void Matrix<Type>::HardCopy(const Matrix<Type>& copy)
 }
 
 template <typename Type>
-const void Matrix<Type>::CheckCompatibility(const Matrix& check) const
+void Matrix<Type>::CheckCompatibility(const Matrix& check) const
 {
 	if ((this->_rows != check.getRows()) && (this->_cols != check.getCols()))
 	{

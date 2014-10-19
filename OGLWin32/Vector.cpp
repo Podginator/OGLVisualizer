@@ -5,7 +5,7 @@
 
 
 template<size_t size, typename T>
-const Vector<size, T> Vector<size, T>::operator+(const Vector<size,T>& right) const
+Vector<size, T> Vector<size, T>::operator+(const Vector<size,T>& right) const
 {
 	Vector<size, T> res;
 	for (size_t i = 0; i < size; i++)
@@ -16,7 +16,7 @@ const Vector<size, T> Vector<size, T>::operator+(const Vector<size,T>& right) co
 
 
 template<size_t size, typename T>
-const Vector<size, T> Vector<size, T>::operator-(const Vector<size, T>& right) const
+Vector<size, T> Vector<size, T>::operator-(const Vector<size, T>& right) const
 {
 	Vector<size, T> res;
 	for (size_t i = 0; i < size; i++)
@@ -26,7 +26,7 @@ const Vector<size, T> Vector<size, T>::operator-(const Vector<size, T>& right) c
 }
 
 template<size_t size, typename T>
-const Vector<size, T> Vector<size, T>::operator*(const Vector<size, T>& right) const
+Vector<size, T> Vector<size, T>::operator*(const Vector<size, T>& right) const
 {
 	Vector<size, T> res;
 	for (size_t i = 0; i < size; i++)
@@ -70,7 +70,7 @@ Vector<size, T>& Vector<size, T>::operator*=(const Vector<size, T>& right)
 
 
 template<size_t size, typename T>
-const Vector<size, T> Vector<size, T>::operator*(const float right) const
+Vector<size, T> Vector<size, T>::operator*(const float right) const
 {
 	Vector<size, T> res;
 	for (size_t i = 0; i < size; i++)
@@ -82,7 +82,7 @@ const Vector<size, T> Vector<size, T>::operator*(const float right) const
 
 
 template<size_t size, typename T>
-const Vector<size, T> Vector<size, T>::operator/(const float right) const
+Vector<size, T> Vector<size, T>::operator/(const float right) const
 {
 	Vector<size, T> res;
 	for (size_t i = 0; i < size; i++)
@@ -93,7 +93,7 @@ const Vector<size, T> Vector<size, T>::operator/(const float right) const
 }
 
 template<size_t size, typename T>
-const float Vector<size, T>::Modulus() const
+float Vector<size, T>::Modulus() const
 {
 	float res = 0; 
 
@@ -106,7 +106,7 @@ const float Vector<size, T>::Modulus() const
 }
 
 template < size_t size, typename T>
-const float Vector<size, T>::DotProduct(const Vector<size,T>& right) const
+float Vector<size, T>::DotProduct(const Vector<size,T>& right) const
 {
 	float res = 0;
 

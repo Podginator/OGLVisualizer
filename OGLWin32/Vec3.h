@@ -24,30 +24,30 @@ public:
 	Vec3(const Vec3& copy);
 
 	//Accessors Mutators
-	const float X() const;
+	float X() const;
 	void X(float x);
-	const float Y() const;
+	float Y() const;
 	void Y(float y);
-	const float Z() const;
+	float Z() const;
 	void Z(float z);
 
 	Vec3& operator= (const Vec3& right);
 	//Basic Operators.
-	const Vec3 operator+(const Vec3& right) const;
-	const Vec3 operator-(const Vec3& right) const;
-	const Vec3 operator*(const Vec3& right) const;
+	Vec3 operator+(const Vec3& right) const;
+	Vec3 operator-(const Vec3& right) const;
+	Vec3 operator*(const Vec3& right) const;
 	Vec3& operator+=(const Vec3& right);
 	Vec3& operator-=(const Vec3& right);
 	Vec3& operator*=(const Vec3& right);
 	//Scalar
-	const Vec3 operator*(float right) const;
-	const Vec3 operator/(float right) const;
+	Vec3 operator*(float right) const;
+	Vec3 operator/(float right) const;
 	//Bool
-	const bool operator==(const Vec3& right);
-	const bool operator!=(const Vec3& right);
+	bool operator==(const Vec3& right);
+	bool operator!=(const Vec3& right);
 
-	const float Modulus() const;
-	const Vec3 CrossProduct(const Vec3& right) const;
+	float Modulus() const;
+	Vec3 CrossProduct(const Vec3& right) const;
 protected:
 
 };
