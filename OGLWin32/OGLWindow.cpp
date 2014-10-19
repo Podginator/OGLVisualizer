@@ -6,6 +6,7 @@
 #include "OGLCircle.h"
 #include "OGLLine.h"
 #include "Vector.h"
+#include "MathHelper.h"
 
 
 OGLWindow::OGLWindow()
@@ -205,8 +206,11 @@ BOOL OGLWindow::MouseMove ( int x, int y )
 
 	Vector<2, float> z(2, 3);
 
+	Vector<2, float> w = MathHelper<float>::Matrix2Dtransform(15.0f) * z;
 
-	printf("%f", z[1]);
+
+	printf("%f", w[0]);
+
 
 	printf("X: %d, Y:%d\n", x - (m_width >> 1), (-y) - (-m_height >> 1));
 	//plistener->MouseMove(mouseCoord.X(), mouseCoord.Y());

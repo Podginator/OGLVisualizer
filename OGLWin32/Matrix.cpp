@@ -181,6 +181,18 @@ const Vec2 Matrix<Type>::operator*(const Vec2& right) const
 }
 
 template <typename Type>
+const Vector<2, Type> Matrix<Type>::operator*(const Vector<2, Type> right) const
+{
+	Matrix vec(2, 1, 0);
+	vec(0, 0) = right[0];
+	vec(1, 0) = right[1];
+
+	vec = (*this) * vec;
+
+	return Vector<2,Type>(vec(0, 0), vec(1, 0));
+}
+
+template <typename Type>
 const Matrix<Type> Matrix<Type>::operator*(Type right) const
 {
 	Matrix res(_rows, _cols, 0);

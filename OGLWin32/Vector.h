@@ -10,21 +10,16 @@ private:
 	std::array<T, size> data;
 	void Copy(const Vector& copied);
 public:
-	//Making this header only, because it's complicated 
+
 	template<typename... Args>
 	Vector(Args const&&... args) : data({ args... })
 	{
 	}
 
 	Vector();
-	Vector(const Vector& copy){ Copy(copy) }
+	Vector(const Vector& copy){ Copy(copy); }
 
-
-	T& operator [](std::size_t const& index)
-	{
-		return data[index];
-	}
-
+	T& operator [](std::size_t const& index){return data[index];}
 	Vector& operator= (const Vector& right) { Copy(copy) };
 	//Basic Operators.
 	const Vector operator+(const Vector& right) const;

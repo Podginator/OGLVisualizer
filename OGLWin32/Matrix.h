@@ -2,6 +2,7 @@
 
 #include <stdexcept>
 #include "Vec2.h"
+#include "Vector.h"
 #include <ppl.h>
 
 template <typename Type>
@@ -43,6 +44,8 @@ public:
 	Matrix<Type>& operator*=(Type right);
 	//Matrix -> Vector
 	const Vec2 operator*(const Vec2& right) const;
+	const Vector<2, Type> operator*(const Vector<2, Type> right) const;
+	const Vector<3, Type> operator*(const Vector<3, Type> right) const;
 	//bool operator
 	const bool operator!=(const Matrix& right);
 	const bool operator==(const Matrix& right);
