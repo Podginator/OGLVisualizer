@@ -3,40 +3,221 @@
 #include <math.h>
 #include <array>
 
-template<size_t size, typename T>
-class Vector
+template<class CRTP,typename T, size_t size>
+class VectBase
 {
-private:
-	std::array<T, size> data;
-	void Copy(const Vector& copied);
-public:
-
-	template<typename... Args>
-	Vector(Args const&... args) : data({ args... })
+protected:
+	T data[size];
+	void Copy(const VectBase& copied)
 	{
+		for (int i = 0; i < size; i++)
+		{
+			data[i] = copied.data[i];
+		}
 	}
 
-	Vector();
-	Vector(const Vector& copy){ Copy(copy); }
+public:
+	template<typename... Args>
+	VectBase(Args const&... args)
+	{
+		std::array<T, size> holder = { args... };
+		//Ugly as hell, got to be a better way......
+		for (size_t t = 0; t < size; t++)
+		{
+			data[t] = holder[t];
+		}
+	}
+
+	VectBase()
+	{
+		for (size_t i = 0; i < size; i++)
+		{
+			data[i] = 0;
+		}
+	};
+	VectBase(const VectBase& copy){ Copy(copy); }
 
 	T& operator [](std::size_t const& index){return data[index];}
 	const T& operator [](std::size_t const& index) const { return data[index]; }
 
-	Vector& operator= (const Vector& right) { Copy(copy) };
-	//Basic Operators.
-	Vector operator+(const Vector& right) const;
-	Vector operator-(const Vector& right) const;
-	Vector operator*(const Vector& right) const;
-	Vector& operator+=(const Vector& right);
-	Vector& operator-=(const Vector& right);
-	Vector& operator*=(const Vector& right);
-	//Scalar
-	Vector operator*(const float right) const;
-	Vector operator/(const float right) const;
-	//Bool
-	bool operator==(const Vector& right);
-	bool operator!=(const Vector& right);
 
-	float Modulus() const;
-	float DotProduct(const Vector& right) const;
+	VectBase& operator= (const VectBase& right) { Copy(copy) };
+	//Basic Operators.
+
+
+	VectBase operator+(const VectBase& right) const
+	{
+		VectBase<CRTP,T,size> res;
+		for (size_t i = 0; i < size; i++)
+		{
+			res.data[i] = data[i] + right.data[i];
+		}
+
+		return res;
+	}
+
+	VectBase operator-(const VectBase& right) const
+	{
+		VectBase<CRTP, T, size> res;
+		for (size_t i = 0; i < size; i++)
+		{
+			res.data[i] = data[i] - right.data[i];
+		}
+
+		return res;
+
+	}
+	VectBase operator*(const VectBase& right) const
+	{
+		VectBase<CRTP, T, size> res;
+		for (size_t i = 0; i < size; i++)
+		{
+			res.data[i] = data[i] * right.data[i];
+		}
+
+		return res;
+
+	}
+	VectBase& operator+=(const VectBase& right)
+	{
+		for (size_t i = 0; i < size; i++)
+		{
+			data[i] += right.data[i];
+		}
+
+		return *this;
+	}
+	VectBase& operator-=(const VectBase& right)
+	{
+		for (size_t i = 0; i < size; i++)
+		{
+			data[i] -= right.data[i];
+		}
+
+		return *this;
+	}
+	VectBase& operator*=(const VectBase& right)
+	{
+		for (size_t i = 0; i < size; i++)
+		{
+			data[i] *= right.data[i];
+		}
+
+		return *this;
+	}
+
+	//Scalar
+	VectBase operator*(const float right) const
+	{
+		VectBase<CRTP, T, size> res;
+
+		for (size_t i = 0; i < size; i++)
+		{
+			res.data[i] = data[i] * right;
+		}
+
+		return res;
+	}
+	VectBase operator/(const float right) const
+	{
+		VectBase<CRTP, T, size> res;
+
+		for (size_t i = 0; i < size; i++)
+		{
+			res.data[i] = data[i] * right;
+		}
+
+		return res;
+	}
+	//Bool
+	bool operator==(const VectBase& right){
+		return true;
+	}
+	bool operator!=(const VectBase& right)
+	{
+		return false;
+	}
+
+	float Modulus() const
+	{
+		float res = 0;
+
+		for (size_t i = 0; i < size; i++)
+		{
+			res += data[i] * data[i];
+		}
+
+		return sqrt(res);
+	}
+	float DotProduct(const VectBase& right) const
+	{
+		float res = 0;
+
+		for (size_t i = 0; i < size; i++)
+		{
+			res += data[i] + right.data[i];
+		}
+
+		return res;
+	}
 };
+
+
+template<typename T, size_t size> 
+class Vector : public VectBase<Vector<T, size>, T, size>
+{
+public:
+	template<typename... Args>
+	Vector(Args const&... args) :VectBase(args...)
+	{
+	}
+
+	union 
+	{
+		T data[size];
+		struct {
+			T x, y, z, w;
+		};
+	};
+};
+
+
+template<typename T>
+class Vector<T, 2> : public VectBase<Vector<T, 2>, T, 2>
+{
+public:
+	template<typename... Args>
+	Vector(Args const&... args) :VectBase(args...)
+	{
+	}
+
+	union
+	{
+		T data[2];
+		struct {
+			T x, y;
+		};
+	};
+};
+
+template<typename T>
+class Vector<T, 3> : public VectBase<Vector<T, 3>, T, 3>
+{
+public:
+	template<typename... Args>
+	Vector(Args const&... args) :VectBase(args...)
+	{
+	}
+
+	union
+	{
+		T data[3];
+		struct {
+			T x, y, w;
+		};
+	};
+};
+
+
+
+

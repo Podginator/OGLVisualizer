@@ -203,17 +203,13 @@ BOOL OGLWindow::MouseLBUp ( int x, int y )
 BOOL OGLWindow::MouseMove ( int x, int y )
 {
 	Listener *plistener = static_cast<Listener*>(m_rect);
-
-	Vector<2, float> z(2, 3);
-
-	Vector<2, float> w = MathHelper<float>::Matrix2Dtransform(15.0f) * z;
-
-
-	printf("%f", w[0]);
-	printf("%f", z[0]);
-
 	printf("X: %d, Y:%d\n", x - (m_width >> 1), (-y) - (-m_height >> 1));
 	//plistener->MouseMove(mouseCoord.X(), mouseCoord.Y());
+
+	Vector<float, 2> floatVec(2, 4);
+
+	printf("\nINDEX:0::: %f   \n", floatVec[0]);
+	printf("X::: %f   \n\n", floatVec.x);
 
 	return TRUE;
 }
