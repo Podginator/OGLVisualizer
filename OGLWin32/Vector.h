@@ -7,14 +7,17 @@ template<class CRTP,typename T, size_t size>
 class VectBase
 {
 protected:
-	T data[size];
 	void Copy(const VectBase& copied)
 	{
 		for (int i = 0; i < size; i++)
 		{
-			data[i] = copied.data[i];
+			crtp().crtp().data[i] = copied[i];
 		}
 	}
+
+	CRTP& crtp() { return static_cast<CRTP&>(*this); }
+	const CRTP& crtp() const { return static_cast<const CRTP&>(*this); }
+
 
 public:
 	template<typename... Args>
@@ -22,9 +25,9 @@ public:
 	{
 		std::array<T, size> holder = { args... };
 		//Ugly as hell, got to be a better way......
-		for (size_t t = 0; t < size; t++)
+		for (size_t i = 0; i< size; i++)
 		{
-			data[t] = holder[t];
+			crtp().data[i] = holder[i];
 		}
 	}
 
@@ -32,13 +35,13 @@ public:
 	{
 		for (size_t i = 0; i < size; i++)
 		{
-			data[i] = 0;
+			crtp().crtp().data[i] = 0;
 		}
 	};
 	VectBase(const VectBase& copy){ Copy(copy); }
 
-	T& operator [](std::size_t const& index){return data[index];}
-	const T& operator [](std::size_t const& index) const { return data[index]; }
+	T& operator [](std::size_t const& index){return crtp().data[index];}
+	const T& operator [](std::size_t const& index) const { return crtp().data[index]; }
 
 
 	VectBase& operator= (const VectBase& right) { Copy(copy) };
@@ -50,7 +53,7 @@ public:
 		VectBase<CRTP,T,size> res;
 		for (size_t i = 0; i < size; i++)
 		{
-			res.data[i] = data[i] + right.data[i];
+			res[i] = crtp().data[i] + right[i];
 		}
 
 		return res;
@@ -61,7 +64,7 @@ public:
 		VectBase<CRTP, T, size> res;
 		for (size_t i = 0; i < size; i++)
 		{
-			res.data[i] = data[i] - right.data[i];
+			res[i] = crtp().data[i] - right[i];
 		}
 
 		return res;
@@ -72,7 +75,7 @@ public:
 		VectBase<CRTP, T, size> res;
 		for (size_t i = 0; i < size; i++)
 		{
-			res.data[i] = data[i] * right.data[i];
+			res[i] = crtp().data[i] * right[i];
 		}
 
 		return res;
@@ -82,7 +85,7 @@ public:
 	{
 		for (size_t i = 0; i < size; i++)
 		{
-			data[i] += right.data[i];
+			crtp().crtp().data[i] += right[i];
 		}
 
 		return *this;
@@ -91,7 +94,7 @@ public:
 	{
 		for (size_t i = 0; i < size; i++)
 		{
-			data[i] -= right.data[i];
+			crtp().crtp().data[i] -= right[i];
 		}
 
 		return *this;
@@ -100,7 +103,7 @@ public:
 	{
 		for (size_t i = 0; i < size; i++)
 		{
-			data[i] *= right.data[i];
+			crtp().crtp().data[i] *= right[i];
 		}
 
 		return *this;
@@ -113,7 +116,7 @@ public:
 
 		for (size_t i = 0; i < size; i++)
 		{
-			res.data[i] = data[i] * right;
+			res[i] = crtp().data[i] * right;
 		}
 
 		return res;
@@ -124,7 +127,7 @@ public:
 
 		for (size_t i = 0; i < size; i++)
 		{
-			res.data[i] = data[i] * right;
+			res[i] = crtp().data[i] * right;
 		}
 
 		return res;
@@ -144,7 +147,7 @@ public:
 
 		for (size_t i = 0; i < size; i++)
 		{
-			res += data[i] * data[i];
+			res += crtp().data[i] * crtp().data[i];
 		}
 
 		return sqrt(res);
@@ -155,7 +158,7 @@ public:
 
 		for (size_t i = 0; i < size; i++)
 		{
-			res += data[i] + right.data[i];
+			res += crtp().data[i] + right[i];
 		}
 
 		return res;
@@ -167,18 +170,31 @@ template<typename T, size_t size>
 class Vector : public VectBase<Vector<T, size>, T, size>
 {
 public:
+	T data[size];
+
 	template<typename... Args>
 	Vector(Args const&... args) :VectBase(args...)
 	{
 	}
 
-	union 
+	float X() const
 	{
-		T data[size];
-		struct {
-			T x, y, z, w;
-		};
-	};
+		return data[0];
+	}
+	float Y() const
+	{
+		return data[1];
+	}
+	float Z() const
+	{
+		return data[2];
+	}
+	float W() const
+	{
+		return data[3];
+	}
+
+
 };
 
 
@@ -186,36 +202,53 @@ template<typename T>
 class Vector<T, 2> : public VectBase<Vector<T, 2>, T, 2>
 {
 public:
+	T data[2];
+
+
 	template<typename... Args>
 	Vector(Args const&... args) :VectBase(args...)
 	{
 	}
 
-	union
+
+	float X() const
 	{
-		T data[2];
-		struct {
-			T x, y;
-		};
-	};
+		return data[0];
+	}
+
+	float Y() const
+	{
+		return data[1];
+	}
+
 };
 
 template<typename T>
 class Vector<T, 3> : public VectBase<Vector<T, 3>, T, 3>
 {
 public:
-	template<typename... Args>
-	Vector(Args const&... args) :VectBase(args...)
+	T data[3];
+
+
+	float X() const
 	{
+		return data[0];
+	}
+	void X(float x)
+	{
+		data[0] = x;
+	}
+	float Y() const
+	{
+		return data[1];
+	}
+	float Z() const
+	{
+		return data[2];
 	}
 
-	union
-	{
-		T data[3];
-		struct {
-			T x, y, w;
-		};
-	};
+
+
 };
 
 

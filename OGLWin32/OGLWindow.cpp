@@ -206,10 +206,10 @@ BOOL OGLWindow::MouseMove ( int x, int y )
 	printf("X: %d, Y:%d\n", x - (m_width >> 1), (-y) - (-m_height >> 1));
 	//plistener->MouseMove(mouseCoord.X(), mouseCoord.Y());
 
-	Vector<float, 2> floatVec(2, 4);
+	Vector<float, 5> floatVec(2,4,5,6,7);
+	
 
-	printf("\nINDEX:0::: %f   \n", floatVec[0]);
-	printf("X::: %f   \n\n", floatVec.x);
+	printf("%f",floatVec.W());
 
 	return TRUE;
 }
