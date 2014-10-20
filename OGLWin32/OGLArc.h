@@ -5,8 +5,8 @@
 class OGLArc : public OGLShape
 {
 public:
-	OGLArc(Vec2 position, Color color, float startTheta, float endTheta, float radius);
-	OGLArc(Vec2 position, std::string hexColor, float startTheta, float endTheta, float radius);
+	OGLArc(Vec2f position, Color color, float startTheta, float endTheta, float radius);
+	OGLArc(Vec2f position, std::string hexColor, float startTheta, float endTheta, float radius);
 	~OGLArc();
 
 	bool			MouseMove(int x, int y);

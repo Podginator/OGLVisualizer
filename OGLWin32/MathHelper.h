@@ -1,8 +1,6 @@
 #pragma once
 
 //Include all the Math Functions
-#include "Vec2.h"
-#include "Vec3.h"
 #include "Matrix.h"
 #define PI 3.1415926535897932384626433832795f
 

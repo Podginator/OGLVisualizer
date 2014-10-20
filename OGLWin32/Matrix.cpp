@@ -168,7 +168,7 @@ Matrix<Type>& Matrix<Type>::operator*=(const Matrix<Type>& right)
 }
 
 template <typename Type>
-Vec2 Matrix<Type>::operator*(const Vec2& right) const
+Vector<Type, 2> Matrix<Type>::operator*(const Vector<Type, 2>& right) const
 {
 	//Model the Vector as a Matrix (We already deal with these)
 	//Column Vector
@@ -177,8 +177,9 @@ Vec2 Matrix<Type>::operator*(const Vec2& right) const
 	vec(1, 0) = right.Y();
 	//Then multiply it as you would a normal Matrix
 	vec = (*this) * vec;
-	return Vec2(vec(0, 0), vec(1, 0));
+	return Vector<float,2>(vec(0, 0), vec(1, 0));
 }
+
 
 template <typename Type>
 Matrix<Type> Matrix<Type>::operator*(Type right) const

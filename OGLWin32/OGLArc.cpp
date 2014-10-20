@@ -3,7 +3,7 @@
 #include "OGLArc.h"
 
 
-OGLArc::OGLArc(Vec2 position, Color color, float startTheta, float endTheta, float radius)
+OGLArc::OGLArc(Vec2f position, Color color, float startTheta, float endTheta, float radius)
 :OGLShape(position, color, (int)endTheta+2, GL_TRIANGLE_FAN)
 {
 	_startTheta = startTheta;
@@ -21,7 +21,7 @@ void OGLArc::CreateArc()
 	for (int i = 0; i <= _endTheta; i++)
 	{
 		//We then repeat this process 
-		vertexs[1 + i] = MathHelper<float>::Matrix2Dtransform(-(float)(_startTheta + i)) * Vec2(0, _radius);
+		vertexs[1 + i] = MathHelper<float>::Matrix2Dtransform(-(float)(_startTheta + i)) * Vec2f(0, _radius);
 		vertexs[1 + i] += _position;
 	}
 

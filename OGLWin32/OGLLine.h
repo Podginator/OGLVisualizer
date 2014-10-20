@@ -5,10 +5,10 @@
 class OGLLine : public OGLShape
 {
 protected:
-	Vec2 _endPosition;
+	Vec2f _endPosition;
 public:
-	OGLLine(Vec2 position, Color color, Vec2 endPos);
-	OGLLine(Vec2 position, std::string hexColor, Vec2 endPos);
+	OGLLine(Vec2f position, Color color, Vec2f endPos);
+	OGLLine(Vec2f position, std::string hexColor, Vec2f endPos);
 	~OGLLine();
 
 	bool			MouseMove(int x, int y);

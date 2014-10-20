@@ -1,7 +1,6 @@
 #pragma once 
 
 #include <stdexcept>
-#include "Vec2.h"
 #include "Vector.h"
 #include <ppl.h>
 
@@ -42,8 +41,9 @@ public:
 	//Matrix -> Scalar
 	Matrix<Type> operator*(Type right) const;
 	Matrix<Type>& operator*=(Type right);
-	//Matrix -> Vector
-	Vec2 operator*(const Vec2& right) const;
+	//Matrix -> Vector#
+	//Vec2 operator*(const Vec2& right) const;
+	Vector<Type,2> operator*(const Vector<Type,2>& right) const;
 	//bool operator
 	bool operator!=(const Matrix& right);
 	bool operator==(const Matrix& right);

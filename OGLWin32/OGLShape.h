@@ -2,7 +2,7 @@
 
 #include "Renderable.h"
 #include "Listener.h"
-#include "Vec2.h"
+#include "Vector.h"
 #include "Matrix.h"
 #include "MathHelper.h"
 #include "Color.h"
@@ -10,22 +10,22 @@
 class OGLShape : public Renderable, public Listener
 {
 protected:
-	Vec2 _position;
+	Vec2f _position;
 	Color rgb;
-	Vec2* vertexs;
+	Vec2f* vertexs;
 	int _size;
 	unsigned int _renderType;
 	void RenderVertexs();
 	
 public: 
-	OGLShape(Vec2 position, std::string hexColor, int size, unsigned int renderType) : _position(position), rgb(hexColor), _size(size), _renderType(renderType)
+	OGLShape(Vec2f position, std::string hexColor, int size, unsigned int renderType) : _position(position), rgb(hexColor), _size(size), _renderType(renderType)
 	{
-		vertexs = new Vec2[size];
+		vertexs = new Vec2f[size];
 	};
 
-	OGLShape(Vec2 position, Color color, int size, unsigned int renderType) : _position(position), rgb(color), _size(size), _renderType(renderType)
+	OGLShape(Vec2f position, Color color, int size, unsigned int renderType) : _position(position), rgb(color), _size(size), _renderType(renderType)
 	{
-		vertexs = new Vec2[size];
+		vertexs = new Vec2f[size];
 	};
 
 	~OGLShape()

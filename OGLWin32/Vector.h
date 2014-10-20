@@ -3,31 +3,37 @@
 #include <math.h>
 #include <array>
 
-template<class CRTP,typename T, size_t size>
+//Using Curiously Recurring Base Type (CRBT) to enable some base and derived behaviour, can also
+//use this to template specify the vector class using a VectBase class.
+template<class Base,typename T, size_t size>
 class VectBase
 {
 protected:
+
+	std::array<T, size> data;
+
 	void Copy(const VectBase& copied)
 	{
 		for (int i = 0; i < size; i++)
 		{
-			crtp().crtp().data[i] = copied[i];
+			data[i] = copied[i];
 		}
 	}
-
-	CRTP& crtp() { return static_cast<CRTP&>(*this); }
-	const CRTP& crtp() const { return static_cast<const CRTP&>(*this); }
-
 
 public:
 	template<typename... Args>
 	VectBase(Args const&... args)
 	{
-		std::array<T, size> holder = { args... };
-		//Ugly as hell, got to be a better way......
-		for (size_t i = 0; i< size; i++)
+		if (sizeof...(args) > 0)
 		{
-			crtp().data[i] = holder[i];
+			data = { args... };
+		}
+		else
+		{
+			for (size_t i = 0; i < size; i++)
+			{
+				data[i] = 0;
+			}
 		}
 	}
 
@@ -35,16 +41,16 @@ public:
 	{
 		for (size_t i = 0; i < size; i++)
 		{
-			crtp().crtp().data[i] = 0;
+			data[i] = 0;
 		}
 	};
 	VectBase(const VectBase& copy){ Copy(copy); }
 
-	T& operator [](std::size_t const& index){return crtp().data[index];}
-	const T& operator [](std::size_t const& index) const { return crtp().data[index]; }
+	T& operator [](std::size_t const& index){return data[index];}
+	const T& operator [](std::size_t const& index) const { return data[index]; }
 
 
-	VectBase& operator= (const VectBase& right) { Copy(copy) };
+	VectBase& operator= (const VectBase& right) { Copy(right); return *this; };
 	//Basic Operators.
 
 
@@ -53,7 +59,7 @@ public:
 		VectBase<CRTP,T,size> res;
 		for (size_t i = 0; i < size; i++)
 		{
-			res[i] = crtp().data[i] + right[i];
+			res[i] = data[i] + right[i];
 		}
 
 		return res;
@@ -64,7 +70,7 @@ public:
 		VectBase<CRTP, T, size> res;
 		for (size_t i = 0; i < size; i++)
 		{
-			res[i] = crtp().data[i] - right[i];
+			res[i] = data[i] - right[i];
 		}
 
 		return res;
@@ -75,7 +81,7 @@ public:
 		VectBase<CRTP, T, size> res;
 		for (size_t i = 0; i < size; i++)
 		{
-			res[i] = crtp().data[i] * right[i];
+			res[i] = data[i] * right[i];
 		}
 
 		return res;
@@ -85,7 +91,7 @@ public:
 	{
 		for (size_t i = 0; i < size; i++)
 		{
-			crtp().crtp().data[i] += right[i];
+			data[i] += right[i];
 		}
 
 		return *this;
@@ -94,7 +100,7 @@ public:
 	{
 		for (size_t i = 0; i < size; i++)
 		{
-			crtp().crtp().data[i] -= right[i];
+			data[i] -= right[i];
 		}
 
 		return *this;
@@ -103,7 +109,7 @@ public:
 	{
 		for (size_t i = 0; i < size; i++)
 		{
-			crtp().crtp().data[i] *= right[i];
+			data[i] *= right[i];
 		}
 
 		return *this;
@@ -116,7 +122,7 @@ public:
 
 		for (size_t i = 0; i < size; i++)
 		{
-			res[i] = crtp().data[i] * right;
+			res[i] = data[i] * right;
 		}
 
 		return res;
@@ -127,18 +133,25 @@ public:
 
 		for (size_t i = 0; i < size; i++)
 		{
-			res[i] = crtp().data[i] * right;
+			res[i] = data[i] * right;
 		}
 
 		return res;
 	}
 	//Bool
 	bool operator==(const VectBase& right){
+		for (size_t i = 0; i < size; i++)
+		{
+			if (data[i] != right[0])
+			{
+				return false;
+			}
+		}
 		return true;
 	}
 	bool operator!=(const VectBase& right)
 	{
-		return false;
+		return !(operator==(right));
 	}
 
 	float Modulus() const
@@ -147,7 +160,7 @@ public:
 
 		for (size_t i = 0; i < size; i++)
 		{
-			res += crtp().data[i] * crtp().data[i];
+			res += data[i] * data[i];
 		}
 
 		return sqrt(res);
@@ -158,7 +171,7 @@ public:
 
 		for (size_t i = 0; i < size; i++)
 		{
-			res += crtp().data[i] + right[i];
+			res += data[i] + right[i];
 		}
 
 		return res;
@@ -170,87 +183,141 @@ template<typename T, size_t size>
 class Vector : public VectBase<Vector<T, size>, T, size>
 {
 public:
-	T data[size];
-
 	template<typename... Args>
 	Vector(Args const&... args) :VectBase(args...)
 	{
 	}
 
-	float X() const
+	Vector() : VectBase()
 	{
-		return data[0];
 	}
-	float Y() const
-	{
-		return data[1];
-	}
-	float Z() const
-	{
-		return data[2];
-	}
-	float W() const
-	{
-		return data[3];
-	}
-
-
 };
 
 
+//There is currently an ICE for variadic constructors and Arrays. This means I've created an Initializer for each
+//Implementation. This is piss poor.
+//TODO: Look for a work around?
 template<typename T>
 class Vector<T, 2> : public VectBase<Vector<T, 2>, T, 2>
 {
 public:
-	T data[2];
-
-
-	template<typename... Args>
-	Vector(Args const&... args) :VectBase(args...)
+	Vector(T x, T y) :VectBase(x,y)
 	{
 	}
 
+	Vector() :VectBase(){}
 
 	float X() const
 	{
-		return data[0];
+		return VectBase::data[0];
 	}
-
+	void X(T x)
+	{
+		VectBase::data[0] = x
+	}
 	float Y() const
 	{
-		return data[1];
+		return VectBase::data[1];
 	}
-
+	void Y(T y)
+	{
+		VectBase::data[1] = y
+	}
 };
 
 template<typename T>
 class Vector<T, 3> : public VectBase<Vector<T, 3>, T, 3>
 {
 public:
-	T data[3];
+	Vector(T x, T y, T z) :VectBase(x, y, z)
+	{
+	}
 
+	Vector() :VectBase(){}
 
 	float X() const
 	{
-		return data[0];
+		return VectBase::data[0];
 	}
-	void X(float x)
+	void X(T x)
 	{
-		data[0] = x;
+		VectBase::data[0] = x
 	}
 	float Y() const
 	{
-		return data[1];
+		return VectBase::data[1];
+	}
+	void Y(T y)
+	{
+		VectBase::data[1] = y
 	}
 	float Z() const
 	{
-		return data[2];
+		return VectBase::data[2];
+	}
+	void Z(T z)
+	{
+		VectBase::data[2] = z
 	}
 
+	Vector<T, 3> CrossProduct(const Vector<T, 3>& right)
+	{
+		Vector<T, 3> res;
 
+		res.X(data[1] * right[2] - right[1] * data[2]);
+		res.Y(right[0] * data[2] - data[0] * right[2]);
+		res.Z(data[0] * right[1] - data[1] * right[0]);
 
+		return res;
+	}
+};
+
+template<typename T>
+class Vector<T, 4> : public VectBase<Vector<T, 4>, T, 4>
+{
+public:
+	Vector(T x, T y, T z, T w) :VectBase(x, y, z, w)
+	{
+	}
+
+	Vector() :VectBase(){}
+
+	float X() const
+	{
+		return VectBase::data[0];
+	}
+	void X(T x)
+	{
+		VectBase::data[0] = x
+	}
+	float Y() const
+	{
+		return VectBase::data[1];
+	}
+	void Y(T y)
+	{
+		VectBase::data[1] = y
+	}
+	float Z() const
+	{
+		return VectBase::data[2];
+	}
+	void Z(T z)
+	{
+		VectBase::data[2] = z
+	}
+	float W() const
+	{
+		return VectBase::data[3];
+	}
+	void W(T w)
+	{
+		VectBase::data[3] = w;
+	}
 };
 
 
 
-
+typedef Vector<float, 2> Vec2f;
+typedef Vector<float, 3> Vec3f;
+typedef Vector<float, 4> Vec4f;

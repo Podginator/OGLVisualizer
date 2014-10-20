@@ -1,7 +1,6 @@
 #include "OGLWindow.h"
 #include "Resource.h"
 #include <gl/GL.h>
-#include "Vec2.h"
 #include "Matrix.h"
 #include "OGLCircle.h"
 #include "OGLLine.h"
@@ -125,8 +124,8 @@ BOOL OGLWindow::InitWindow(HINSTANCE hInstance, int width, int height)
 
 	//Instantiate a Renderable as OGLRectangle
 	
-	m_rect = new OGLCircle(Vec2(0, 100), Color("#fff3f3"), 150.f);
-	m_rec2 = new OGLArc(Vec2(300, 100), Color("#f93482"), 120.f, 90.f, 250);
+	m_rect = new OGLCircle(Vec2f(0, 100), Color("#fff3f3"), 150.f);
+	m_rec2 = new OGLArc(Vec2f(300, 100), Color("#f93482"), 120.f, 90.f, 250);
 
 	return TRUE;
 }
@@ -206,10 +205,7 @@ BOOL OGLWindow::MouseMove ( int x, int y )
 	printf("X: %d, Y:%d\n", x - (m_width >> 1), (-y) - (-m_height >> 1));
 	//plistener->MouseMove(mouseCoord.X(), mouseCoord.Y());
 
-	Vector<float, 5> floatVec(2,4,5,6,7);
-	
-
-	printf("%f",floatVec.W());
-
+	//Vector<float, 2> floatVec(2,3);
+	Vector<float, 2> floatrr[10];
 	return TRUE;
 }
