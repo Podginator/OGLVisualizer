@@ -181,7 +181,7 @@ Vec2 Matrix<Type>::operator*(const Vec2& right) const
 }
 
 template <typename Type>
-Vector<2, Type> Matrix<Type>::operator*(const Vector<2, Type> right) const
+Vector<2, Type> Matrix<Type>::operator*(const Vector<2, Type>& right) const
 {
 	Matrix vec(2, 1, 0);
 	vec(0, 0) = right[0];
@@ -189,7 +189,7 @@ Vector<2, Type> Matrix<Type>::operator*(const Vector<2, Type> right) const
 
 	vec = (*this) * vec;
 
-	return Vector<2,Type>(vec(0, 0), vec(1, 0));
+	return Vector<2,Type>(vec(0,0), vec(1,0));
 }
 
 template <typename Type>

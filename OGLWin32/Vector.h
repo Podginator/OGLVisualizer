@@ -12,7 +12,7 @@ private:
 public:
 
 	template<typename... Args>
-	Vector(Args const&&... args) : data({ args... })
+	Vector(Args const&... args) : data({ args... })
 	{
 	}
 
@@ -40,12 +40,3 @@ public:
 	float Modulus() const;
 	float DotProduct(const Vector& right) const;
 };
-
-
-typedef Vector<2, float> Vec2f;
-typedef Vector<3, float> Vec3f;
-typedef Vector<4, float> Vec4f;
-typedef Vector<2, double> Vec2d;
-typedef Vector<3, double> Vec3d;
-typedef Vector<4, float> Vec4d;
-

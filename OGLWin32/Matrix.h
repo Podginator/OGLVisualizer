@@ -44,7 +44,7 @@ public:
 	Matrix<Type>& operator*=(Type right);
 	//Matrix -> Vector
 	Vec2 operator*(const Vec2& right) const;
-	Vector<2, Type> operator*(const Vector<2, Type> right) const;
+	Vector<2, Type> operator*(const Vector<2, Type>& right) const;
 	//bool operator
 	bool operator!=(const Matrix& right);
 	bool operator==(const Matrix& right);

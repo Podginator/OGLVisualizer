@@ -210,7 +210,7 @@ BOOL OGLWindow::MouseMove ( int x, int y )
 
 
 	printf("%f", w[0]);
-
+	printf("%f", z[0]);
 
 	printf("X: %d, Y:%d\n", x - (m_width >> 1), (-y) - (-m_height >> 1));
 	//plistener->MouseMove(mouseCoord.X(), mouseCoord.Y());
