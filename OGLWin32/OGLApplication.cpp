@@ -151,6 +151,7 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
 					if (openfile.ShowDialog())
 					{
 						std::vector<std::vector<Proxy>> res = CSVParser::Parse(openfile.getFile());
+						printf("done");
 					}
 				break;
 			}

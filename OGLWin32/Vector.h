@@ -5,7 +5,7 @@
 
 //Using Curiously Recurring Base Type (CRBT) to enable some base and derived behaviour, can also
 //use this to template specify the vector class using a VectBase class.
-template<class Base,typename T, size_t size>
+template<typename T, size_t size>
 class VectBase
 {
 protected:
@@ -180,7 +180,7 @@ public:
 
 
 template<typename T, size_t size> 
-class Vector : public VectBase<Vector<T, size>, T, size>
+class Vector : public VectBase<T, size>
 {
 public:
 	template<typename... Args>
@@ -191,6 +191,7 @@ public:
 	Vector() : VectBase()
 	{
 	}
+
 };
 
 
@@ -198,7 +199,7 @@ public:
 //Implementation. This is piss poor.
 //TODO: Look for a work around?
 template<typename T>
-class Vector<T, 2> : public VectBase<Vector<T, 2>, T, 2>
+class Vector<T, 2> : public VectBase<T, 2>
 {
 public:
 	Vector(T x, T y) :VectBase(x,y)
@@ -226,7 +227,7 @@ public:
 };
 
 template<typename T>
-class Vector<T, 3> : public VectBase<Vector<T, 3>, T, 3>
+class Vector<T, 3> : public VectBase<T, 3>
 {
 public:
 	Vector(T x, T y, T z) :VectBase(x, y, z)
@@ -273,7 +274,7 @@ public:
 };
 
 template<typename T>
-class Vector<T, 4> : public VectBase<Vector<T, 4>, T, 4>
+class Vector<T, 4> : public VectBase<T, 4>
 {
 public:
 	Vector(T x, T y, T z, T w) :VectBase(x, y, z, w)
