@@ -25,7 +25,7 @@ public:
 		m_font = new GLFont();
 		m_font->Create(_fontLoc);
 	}
-	OGLText(Vec2f position, const Color& color, const char*  text, const char* fontLoc, float size) :_position(position), m_text(text), _fontLoc(fontLoc), _size((size / 1.75)), _color(color)
+	OGLText(Vec2f position, const Color& color,const char*  text, const char* fontLoc, float size) :_position(position), m_text(text), _fontLoc(fontLoc), _size((size / 1.75)), _color(color)
 	{
 		m_font = new GLFont();
 		m_font->Create(_fontLoc);

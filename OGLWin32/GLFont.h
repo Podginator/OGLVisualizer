@@ -24,6 +24,7 @@ namespace GLFontError {
 
 class GLFontBase {
 public:
+	friend class OGLText;
 	GLFontBase();
 	void Begin();
 	virtual ~GLFontBase();
