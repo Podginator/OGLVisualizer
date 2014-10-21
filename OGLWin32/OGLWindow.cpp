@@ -4,6 +4,7 @@
 #include "Matrix.h"
 #include "OGLCircle.h"
 #include "OGLLine.h"
+#include "OGLText.h"
 #include "Vector.h"
 #include "MathHelper.h"
 
@@ -124,8 +125,8 @@ BOOL OGLWindow::InitWindow(HINSTANCE hInstance, int width, int height)
 
 	//Instantiate a Renderable as OGLRectangle
 	
-	m_rect = new OGLCircle(Vec2f(0, 100), Color("#fff3f3"), 150.f);
-	m_rec2 = new OGLArc(Vec2f(300, 100), Color("#f93482"), 120.f, 90.f, 250);
+	m_rec2 = new OGLCircle(Vec2f(0, 100), Color("#fff3f3"), 150.f);
+	m_rect = new OGLText(Vec2f(120, 310), Color("#333444"), "Windows", "calibri.glf", 12);
 
 	return TRUE;
 }
@@ -192,16 +193,16 @@ BOOL OGLWindow::MouseLBDown ( int x, int y )
 
 BOOL OGLWindow::MouseLBUp ( int x, int y )
 {
-	Listener *plistener = static_cast<Listener*>(m_rec2);
+	//Listener *plistener = static_cast<Listener*>(m_rec2);
 
-	plistener->MouseLBDown(x,y);
+	//plistener->MouseLBDown(x,y);
 
 	return TRUE;
 }
 
 BOOL OGLWindow::MouseMove ( int x, int y )
 {
-	Listener *plistener = static_cast<Listener*>(m_rect);
+	//Listener *plistener = static_cast<Listener*>(m_rect);
 	printf("X: %d, Y:%d\n", x - (m_width >> 1), (-y) - (-m_height >> 1));
 
 	return TRUE;

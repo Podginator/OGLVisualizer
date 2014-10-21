@@ -77,8 +77,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="arial.glf" />
+    <None Include="calibri.glf" />
+    <None Include="consolas.glf" />
+    <None Include="franklin_gothic.glf" />
     <None Include="OGLWin32.ico" />
     <None Include="ReadMe.txt" />
+    <None Include="sansserif.glf" />
     <None Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +121,7 @@
     <ClCompile Include="OGLLine.cpp" />
     <ClCompile Include="OGLRectangle.cpp" />
     <ClCompile Include="OGLShape.cpp" />
+    <ClCompile Include="OGLText.cpp" />
     <ClCompile Include="OGLWin32.cpp" />
     <ClCompile Include="OGLWindow.cpp" />
     <ClCompile Include="Vector.cpp" />

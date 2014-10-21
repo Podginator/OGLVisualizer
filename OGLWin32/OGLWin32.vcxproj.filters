@@ -49,6 +49,18 @@
     <Filter Include="Header Files\OpenGL Primitives\Text">
       <UniqueIdentifier>{3deca2db-2ba2-45cf-b166-1696a48f9311}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\OpenGL Primitives\Shapes">
+      <UniqueIdentifier>{3e6f69ba-2302-4d63-9953-edb482554628}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OpenGL Primitives\Font">
+      <UniqueIdentifier>{1e5e2fa9-4e5f-41a0-b3ae-573e578d3c7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OpenGL Primitives\Interfaces">
+      <UniqueIdentifier>{9514eccd-2ba9-4628-b29e-d1c1a625cb08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Fonts">
+      <UniqueIdentifier>{fcf2986d-c3c8-4a3a-bbbc-099a81b3ad02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -57,6 +69,21 @@
     </None>
     <None Include="OGLWin32.ico">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sansserif.glf">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="arial.glf">
+      <Filter>Resource Files\Fonts</Filter>
+    </None>
+    <None Include="calibri.glf">
+      <Filter>Resource Files\Fonts</Filter>
+    </None>
+    <None Include="consolas.glf">
+      <Filter>Resource Files\Fonts</Filter>
+    </None>
+    <None Include="franklin_gothic.glf">
+      <Filter>Resource Files\Fonts</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -137,9 +164,6 @@
     <ClCompile Include="Matrix.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
-    <ClCompile Include="OGLRectangle.cpp">
-      <Filter>Source Files\OpenGL Primitives</Filter>
-    </ClCompile>
     <ClCompile Include="CSVParser.cpp">
       <Filter>Source Files\Parser</Filter>
     </ClCompile>
@@ -149,23 +173,29 @@
     <ClCompile Include="MathHelper.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Color.cpp">
-      <Filter>Source Files\OpenGL Primitives</Filter>
-    </ClCompile>
-    <ClCompile Include="OGLShape.cpp">
-      <Filter>Source Files\OpenGL Primitives</Filter>
-    </ClCompile>
-    <ClCompile Include="OGLArc.cpp">
-      <Filter>Source Files\OpenGL Primitives</Filter>
-    </ClCompile>
-    <ClCompile Include="OGLLine.cpp">
-      <Filter>Source Files\OpenGL Primitives</Filter>
-    </ClCompile>
     <ClCompile Include="Vector.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
+    <ClCompile Include="OGLArc.cpp">
+      <Filter>Source Files\OpenGL Primitives\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLLine.cpp">
+      <Filter>Source Files\OpenGL Primitives\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLRectangle.cpp">
+      <Filter>Source Files\OpenGL Primitives\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLShape.cpp">
+      <Filter>Source Files\OpenGL Primitives\Shapes</Filter>
+    </ClCompile>
     <ClCompile Include="GLFont.cpp">
-      <Filter>Source Files\OpenGL Primitives</Filter>
+      <Filter>Source Files\OpenGL Primitives\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Source Files\OpenGL Primitives\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLText.cpp">
+      <Filter>Source Files\OpenGL Primitives\Font</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
