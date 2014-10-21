@@ -7,7 +7,7 @@ class OGLLine : public OGLShape
 protected:
 	Vec2f _endPosition;
 public:
-	OGLLine(Vec2f position, Color color, Vec2f endPos);
+	OGLLine(const Vec2f& position, const Color& color, const Vec2f& endPos);
 	~OGLLine();
 
 	bool			MouseMove(int x, int y);

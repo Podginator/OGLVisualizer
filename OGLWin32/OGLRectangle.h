@@ -7,7 +7,7 @@ class OGLRectangle : public OGLShape
 		float _height;
 
 	public:
-						OGLRectangle(Vec2f position, Color color, float height, float width);
+						OGLRectangle(const Vec2f& position, const Color& color, float height, float width);
 						~OGLRectangle();
 
 		void			CenterRotate(float deg);

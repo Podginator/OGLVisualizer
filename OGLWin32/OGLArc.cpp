@@ -3,7 +3,7 @@
 #include "OGLArc.h"
 
 
-OGLArc::OGLArc(Vec2f position, Color color, float startTheta, float endTheta, float radius)
+OGLArc::OGLArc(const Vec2f& position, const Color& color, float startTheta, float endTheta, float radius)
 :OGLShape(position, color, (int)endTheta+2, GL_TRIANGLE_FAN)
 {
 	_startTheta = startTheta;

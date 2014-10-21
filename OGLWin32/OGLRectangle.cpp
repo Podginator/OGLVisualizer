@@ -1,6 +1,6 @@
 #include "OGLRectangle.h"
 
-OGLRectangle::OGLRectangle(Vec2f position, Color color, float height, float width)
+OGLRectangle::OGLRectangle(const Vec2f& position, const Color& color, float height, float width)
 :OGLShape(position, color, 4, GL_QUADS)
 {
 	//init the OGLRectangle to a fixed size

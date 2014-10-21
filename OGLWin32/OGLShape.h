@@ -16,7 +16,7 @@ protected:
 	void RenderVertexs();
 	
 public: 
-	OGLShape(Vec2f position, Color color, int size, unsigned int renderType) : _position(position), rgb(color), _size(size), _renderType(renderType)
+	OGLShape(const Vec2f& position, const Color& color, int size, unsigned int renderType) : _position(position), rgb(color), _size(size), _renderType(renderType)
 	{
 		vertexs = new Vec2f[size];
 	};

@@ -40,6 +40,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\OpenGL Primitives\Shapes">
+      <UniqueIdentifier>{2f4b0947-8ad2-4272-ac62-5234b24a9c46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGL Primitives\Interfaces">
+      <UniqueIdentifier>{cf47ff76-27c6-4f62-ade8-93b6d6723299}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGL Primitives\Text">
+      <UniqueIdentifier>{3deca2db-2ba2-45cf-b166-1696a48f9311}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -66,15 +75,6 @@
     <ClInclude Include="OGLApplication.h">
       <Filter>Header Files\OpenGL Window</Filter>
     </ClInclude>
-    <ClInclude Include="OGLRectangle.h">
-      <Filter>Header Files\OpenGL Primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderable.h">
-      <Filter>Header Files\OpenGL Primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="Listener.h">
-      <Filter>Header Files\OpenGL Primitives</Filter>
-    </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>Header Files\Misc</Filter>
     </ClInclude>
@@ -90,29 +90,38 @@
     <ClInclude Include="MathHelper.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
-    <ClInclude Include="OGLShape.h">
-      <Filter>Header Files\OpenGL Primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="Color.h">
-      <Filter>Header Files\OpenGL Primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="OGLArc.h">
-      <Filter>Header Files\OpenGL Primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="OGLCircle.h">
-      <Filter>Header Files\OpenGL Primitives</Filter>
-    </ClInclude>
-    <ClInclude Include="OGLLine.h">
-      <Filter>Header Files\OpenGL Primitives</Filter>
-    </ClInclude>
     <ClInclude Include="Vector.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
+    <ClInclude Include="OGLArc.h">
+      <Filter>Header Files\OpenGL Primitives\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLCircle.h">
+      <Filter>Header Files\OpenGL Primitives\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLLine.h">
+      <Filter>Header Files\OpenGL Primitives\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLRectangle.h">
+      <Filter>Header Files\OpenGL Primitives\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLShape.h">
+      <Filter>Header Files\OpenGL Primitives\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Listener.h">
+      <Filter>Header Files\OpenGL Primitives\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderable.h">
+      <Filter>Header Files\OpenGL Primitives\Interfaces</Filter>
+    </ClInclude>
     <ClInclude Include="GLFont.h">
-      <Filter>Header Files\OpenGL Primitives</Filter>
+      <Filter>Header Files\OpenGL Primitives\Text</Filter>
     </ClInclude>
     <ClInclude Include="OGLText.h">
-      <Filter>Header Files\OpenGL Primitives</Filter>
+      <Filter>Header Files\OpenGL Primitives\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Header Files\OpenGL Primitives\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

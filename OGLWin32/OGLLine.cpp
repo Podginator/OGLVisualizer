@@ -2,7 +2,7 @@
 
 #include "OGLLine.h"
 
-OGLLine::OGLLine(Vec2f position, Color color, Vec2f endPos) :_endPosition(endPos), OGLShape(position, color, 3, GL_LINES)
+OGLLine::OGLLine(const Vec2f& position, const Color& color, const Vec2f& endPos) :_endPosition(endPos), OGLShape(position, color, 3, GL_LINES)
 {
 	vertexs[0] = _position;
 	vertexs[1] = _endPosition;
