@@ -82,6 +82,7 @@
     <None Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GLFont.h" />
     <ClInclude Include="OGLCircle.h" />
     <ClInclude Include="CSVParser.h" />
     <ClInclude Include="FileOpen.h" />
@@ -106,6 +107,7 @@
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="CSVParser.cpp" />
     <ClCompile Include="FileOpen.cpp" />
+    <ClCompile Include="GLFont.cpp" />
     <ClCompile Include="MathHelper.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="OGLApplication.cpp" />

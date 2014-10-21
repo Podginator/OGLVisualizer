@@ -108,6 +108,9 @@
     <ClInclude Include="Vector.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
+    <ClInclude Include="GLFont.h">
+      <Filter>Header Files\OpenGL Primitives</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OGLApplication.cpp">
@@ -148,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="Vector.cpp">
       <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="GLFont.cpp">
+      <Filter>Source Files\OpenGL Primitives</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

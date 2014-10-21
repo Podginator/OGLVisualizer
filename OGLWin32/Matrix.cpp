@@ -227,7 +227,7 @@ float Matrix<Type>::Determinant() const
 	}
 	else
 	{
-		//create indexes for new array.
+		//create indexes for new matrix.
 		int recI, recj;
 		//Set up a new Matrix for recursion.
 		Matrix<Type> rec(_rows - 1, _cols - 1, 0);
