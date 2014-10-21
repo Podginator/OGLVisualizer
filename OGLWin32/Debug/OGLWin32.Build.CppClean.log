@@ -3,6 +3,7 @@ c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\vc120.idb
 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\color.obj
 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\csvparser.obj
 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\fileopen.obj
+c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\glfont.obj
 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\mathhelper.obj
 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\matrix.obj
 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\oglapplication.obj
@@ -10,6 +11,7 @@ c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\oglarc.obj
 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\oglline.obj
 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\oglrectangle.obj
 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\oglshape.obj
+c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\ogltext.obj
 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\oglwin32.obj
 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\oglwindow.obj
 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\vector.obj

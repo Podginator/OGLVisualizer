@@ -1,0 +1,135 @@
+﻿Build started 21/10/2014 22:02:46.
+     1>Project "C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\OGLWin32\OGLWin32.vcxproj" on node 2 (Rebuild target(s)).
+     1>ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Color.cpp CSVParser.cpp FileOpen.cpp GLFont.cpp MathHelper.cpp Matrix.cpp OGLApplication.cpp OGLArc.cpp OGLLine.cpp OGLRectangle.cpp OGLShape.cpp OGLText.cpp OGLWin32.cpp OGLWindow.cpp Vector.cpp
+         Color.cpp
+         CSVParser.cpp
+         FileOpen.cpp
+     1>FileOpen.cpp(41): warning C4996: '_wfopen': This function or variable may be unsafe. Consider using _wfopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(590) : see declaration of '_wfopen'
+         GLFont.cpp
+     1>GLFont.cpp(42): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : see declaration of 'fopen'
+         MathHelper.cpp
+         Matrix.cpp
+         OGLApplication.cpp
+     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\Vector.h(179): warning C4520: 'VectBase<T,2>' : multiple default constructors specified
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\Vector.h(203) : see reference to class template instantiation 'VectBase<T,2>' being compiled
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\OGLShape.h(11) : see reference to class template instantiation 'Vector<float,2>' being compiled
+     1>OGLApplication.cpp(122): warning C4101: 'wmId' : unreferenced local variable
+     1>OGLApplication.cpp(122): warning C4101: 'wmEvent' : unreferenced local variable
+         OGLArc.cpp
+     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\Vector.h(179): warning C4520: 'VectBase<T,2>' : multiple default constructors specified
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\Vector.h(203) : see reference to class template instantiation 'VectBase<T,2>' being compiled
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\OGLShape.h(11) : see reference to class template instantiation 'Vector<float,2>' being compiled
+         OGLLine.cpp
+     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\Vector.h(179): warning C4520: 'VectBase<T,2>' : multiple default constructors specified
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\Vector.h(203) : see reference to class template instantiation 'VectBase<T,2>' being compiled
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\OGLShape.h(11) : see reference to class template instantiation 'Vector<float,2>' being compiled
+         OGLRectangle.cpp
+     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\Vector.h(179): warning C4520: 'VectBase<T,2>' : multiple default constructors specified
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\Vector.h(203) : see reference to class template instantiation 'VectBase<T,2>' being compiled
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\OGLShape.h(11) : see reference to class template instantiation 'Vector<float,2>' being compiled
+         OGLShape.cpp
+     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\Vector.h(179): warning C4520: 'VectBase<T,2>' : multiple default constructors specified
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\Vector.h(203) : see reference to class template instantiation 'VectBase<T,2>' being compiled
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\OGLShape.h(11) : see reference to class template instantiation 'Vector<float,2>' being compiled
+         OGLText.cpp
+     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\Vector.h(179): warning C4520: 'VectBase<T,2>' : multiple default constructors specified
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\Vector.h(203) : see reference to class template instantiation 'VectBase<T,2>' being compiled
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\OGLText.h(13) : see reference to class template instantiation 'Vector<float,2>' being compiled
+     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\OGLText.h(28): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\OGLText.h(34): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+         OGLWin32.cpp
+         OGLWindow.cpp
+     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\Vector.h(179): warning C4520: 'VectBase<T,2>' : multiple default constructors specified
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\Vector.h(203) : see reference to class template instantiation 'VectBase<T,2>' being compiled
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\OGLShape.h(11) : see reference to class template instantiation 'Vector<float,2>' being compiled
+     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\OGLText.h(28): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\OGLText.h(34): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+         Vector.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Release\OGLWin32.res" OGLWin32.rc 
+       Link:
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\Release\OGLWin32.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\Release\OGLWin32.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /ENTRY:"_tWinMain" /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\Release\OGLWin32.lib" /MACHINE:X86 /SAFESEH Release\OGLWin32.res
+         Release\Color.obj
+         Release\CSVParser.obj
+         Release\FileOpen.obj
+         Release\GLFont.obj
+         Release\MathHelper.obj
+         Release\Matrix.obj
+         Release\OGLApplication.obj
+         Release\OGLArc.obj
+         Release\OGLLine.obj
+         Release\OGLRectangle.obj
+         Release\OGLShape.obj
+         Release\OGLText.obj
+         Release\OGLWin32.obj
+         Release\OGLWindow.obj
+         Release\Vector.obj
+         Generating code
+         Finished generating code
+     1>Color.obj : warning LNK4210: .CRT section exists; there may be unhandled static initializers or terminators
+     1>MSVCRT.lib(atonexit.obj) : warning LNK4210: .CRT section exists; there may be unhandled static initializers or terminators
+         OGLWin32.vcxproj -> C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\Release\OGLWin32.exe
+     1>Done Building Project "C:\Users\podgi_000\Documents\GitHub\OGLVisualizer\OGLWin32\OGLWin32.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:09.77

@@ -198,6 +198,7 @@ GLFont::GLFont()
 void GLFont::Create(const char* Filename)
 {
 	GLFontBase::CreateImpl(Filename, FALSE);
+	m_height = Font.Char[0].dy;
 }
 //*********************************************************
 void GLFont::TextOut (const char* String, float x, float y, float z)

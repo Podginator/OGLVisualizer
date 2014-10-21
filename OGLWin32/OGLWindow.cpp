@@ -146,7 +146,7 @@ void OGLWindow::Render()
 	glLoadIdentity();
 
 	prenderable->Render();
-	prenderable2->Render();
+	//prenderable2->Render();
 
 	glFlush();
 
