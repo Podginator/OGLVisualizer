@@ -33,8 +33,6 @@ void OGLShape::Render()
 	glBegin(_renderType);
 		RenderVertexs();
 	glEnd();
-
-	CenterRotate(1.f);
 }
 void OGLShape::RenderVertexs()
 {

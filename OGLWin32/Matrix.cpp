@@ -203,13 +203,53 @@ Matrix<Type>& Matrix<Type>::operator*=(Type right)
 	return *this;
 }
 
-//Calculate the Determinant
-//So, this is kind of difficult for a number of reasons
-//You need 
 template <typename Type>
 float Matrix<Type>::Determinant() const
 {
-	return 0.0f;
+	//First check if it's a square matrix, if not then it can't work.
+	if (_rows != _cols)
+	{
+		throw std::invalid_argument("Cannot determine Determinant of Non-square Matrix");
+	}
+
+	//Store result
+	float result = 0.f;
+
+	if (_rows == 1)
+	{
+		return (*this)(0, 0);
+	}
+	else if (_rows == 2)
+	{
+		return (*this)(0, 0)*(*this)(1, 1) - (*this)(0, 1)*(*this)(1, 0);
+	}
+	else
+	{
+		//create indexes for new array.
+		int recI, recj;
+		//Set up a new Matrix for recursion.
+		Matrix<Type> rec(_rows - 1, _cols - 1, 0);
+		for (int c = 0; c < _rows; c++)
+		{
+			reci = 0;
+			for (int i = 1; i < _rows; i++)
+			{
+				recj = 0;
+				for (int j = 0; j < _rows; j++)
+				{
+					if (j == c)
+					{
+						continue;
+					}
+					rec(subi, subj) = (*this)(i, j);
+					recj++;
+				}
+				reci++;
+			}
+			result =  result + (pow(-1, c) * (*this)(0, c) * rec.Determinant());
+		}
+	}
+	return result;
 }
 
 template <typename Type>
@@ -254,5 +294,8 @@ void Matrix<Type>::CheckCompatibility(const Matrix& check) const
 	{
 		throw std::invalid_argument("Matrix not same length");
 	}
+
+
+
 }
 #endif

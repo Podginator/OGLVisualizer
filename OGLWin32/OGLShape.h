@@ -32,4 +32,17 @@ public:
 	virtual void Rotate(float deg);
 	virtual void CenterRotate(float deg);
 
+	bool MouseMove(int x, int y)
+	{
+		return true;
+	}
+	bool MouseLBUp(int x, int y)
+	{
+		return true;
+	}
+	bool MouseLBDown(int x, int y)
+	{
+		return true;
+	}
+
 };

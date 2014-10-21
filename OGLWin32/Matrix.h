@@ -19,6 +19,8 @@ private:
 	void HardCopy(const Matrix& copy);
 	void CheckCompatibility(const Matrix& check) const;
 
+
+
 public:
 	//Assume matrix is more than 2x2, for now. 
 	Matrix<Type>(size_t rows, size_t cols, const Type& init);

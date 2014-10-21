@@ -12,6 +12,7 @@ OGLArc::OGLArc(Vec2f position, Color color, float startTheta, float endTheta, fl
 	CreateArc();
 }
 
+
 OGLArc::~OGLArc()
 {
 	OGLShape::~OGLShape();

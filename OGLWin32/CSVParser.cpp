@@ -6,7 +6,7 @@ CSVParser::CSVParser()
 
 std::vector<std::vector<Proxy>> CSVParser::Parse(FILE* opened)
 {
-	std::cout << "Start" << "\n";
+	std::cout << "Parsing..." << "\n";
 	std::vector<std::vector<Proxy>> res;
 
 	std::string line;

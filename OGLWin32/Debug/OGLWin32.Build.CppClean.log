@@ -11,12 +11,12 @@ c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\oglline.obj
 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\oglrectangle.obj
 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\oglshape.obj
 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\oglwin32.obj
-c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\vec2.obj
-c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\vec3.obj
-c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\vector.obj
 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\oglwindow.obj
-c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\oglwin32.res
+c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\vector.obj
+c:\users\podgi_000\documents\github\oglvisualizer\debug\oglwin32.ilk
 c:\users\podgi_000\documents\github\oglvisualizer\debug\oglwin32.exe
+c:\users\podgi_000\documents\github\oglvisualizer\debug\oglwin32.pdb
+c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\oglwin32.res
 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\oglwin32.tlog\cl.command.1.tlog
 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\oglwin32.tlog\cl.read.1.tlog
 c:\users\podgi_000\documents\github\oglvisualizer\oglwin32\debug\oglwin32.tlog\cl.write.1.tlog
