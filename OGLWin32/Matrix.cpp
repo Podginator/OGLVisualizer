@@ -203,6 +203,8 @@ Matrix<Type>& Matrix<Type>::operator*=(Type right)
 	return *this;
 }
 
+//Inspired by the algorithm posted here 
+//http://paulbourke.net/miscellaneous/determinant/
 template <typename Type>
 float Matrix<Type>::Determinant() const
 {
