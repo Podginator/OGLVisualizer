@@ -4,6 +4,8 @@
 #include <Windows.h>
 #include <gl/GL.h>
 #include <stdio.h>
+#include "Vector.h"
+#include "Matrix.h"
 //This is an abstract class
 //It cannot be instantiated without being inherited by a concrete class
 class Renderable

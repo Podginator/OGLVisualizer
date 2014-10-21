@@ -111,6 +111,9 @@
     <ClInclude Include="GLFont.h">
       <Filter>Header Files\OpenGL Primitives</Filter>
     </ClInclude>
+    <ClInclude Include="OGLText.h">
+      <Filter>Header Files\OpenGL Primitives</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OGLApplication.cpp">

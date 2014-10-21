@@ -91,6 +91,7 @@
     <ClInclude Include="OGLArc.h" />
     <ClInclude Include="OGLLine.h" />
     <ClInclude Include="OGLShape.h" />
+    <ClInclude Include="OGLText.h" />
     <ClInclude Include="Proxy.h" />
     <ClInclude Include="Listener.h" />
     <ClInclude Include="Matrix.h" />

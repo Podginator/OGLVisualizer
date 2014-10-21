@@ -2,8 +2,6 @@
 
 #include "Renderable.h"
 #include "Listener.h"
-#include "Vector.h"
-#include "Matrix.h"
 #include "MathHelper.h"
 #include "Color.h"
 
