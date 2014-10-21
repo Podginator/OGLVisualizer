@@ -205,7 +205,5 @@ BOOL OGLWindow::MouseMove ( int x, int y )
 	printf("X: %d, Y:%d\n", x - (m_width >> 1), (-y) - (-m_height >> 1));
 	//plistener->MouseMove(mouseCoord.X(), mouseCoord.Y());
 
-	//Vector<float, 2> floatVec(2,3);
-	Vector<float, 2> floatrr[10];
 	return TRUE;
 }

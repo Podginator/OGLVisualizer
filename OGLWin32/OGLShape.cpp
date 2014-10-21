@@ -34,6 +34,7 @@ void OGLShape::Render()
 		RenderVertexs();
 	glEnd();
 
+
 }
 void OGLShape::RenderVertexs()
 {

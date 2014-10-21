@@ -12,6 +12,11 @@ OGLArc::OGLArc(Vec2f position, Color color, float startTheta, float endTheta, fl
 	CreateArc();
 }
 
+OGLArc::~OGLArc()
+{
+	OGLShape::~OGLShape();
+}
+
 void OGLArc::CreateArc()
 {
 	//An Arc will have it's first vertex in the center of the circle.

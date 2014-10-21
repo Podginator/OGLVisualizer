@@ -1,4 +1,4 @@
-#include "CSVParser.h";
+#include "CSVParser.h"
 
 CSVParser::CSVParser()
 {
@@ -6,6 +6,7 @@ CSVParser::CSVParser()
 
 std::vector<std::vector<Proxy>> CSVParser::Parse(FILE* opened)
 {
+	std::cout << "Start" << "\n";
 	std::vector<std::vector<Proxy>> res;
 
 	std::string line;
@@ -15,6 +16,7 @@ std::vector<std::vector<Proxy>> CSVParser::Parse(FILE* opened)
 		res.push_back(NewLine(line));
 	}
 
+	std::cout << "Done" << "\n";
 	return res;
 }
 
@@ -29,10 +31,11 @@ std::vector<Proxy> CSVParser::NewLine(const std::string& newline)
 	std::string val;
 
 	//Convert Objects to Proxy values and push to the back.
-	while (std::getline(stream, val, ','))
+	while (std::getline(stream, val, ';'))
 	{
 		res.push_back(Proxy(val));
 	}
+
 
 	return res;
 }

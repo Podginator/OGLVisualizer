@@ -8,7 +8,6 @@ class OGLRectangle : public OGLShape
 
 	public:
 						OGLRectangle(Vec2f position, Color color, float height, float width);
-						OGLRectangle(Vec2f position, std::string hexColor, float height, float width);
 						~OGLRectangle();
 
 		void			CenterRotate(float deg);
