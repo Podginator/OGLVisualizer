@@ -125,8 +125,8 @@ BOOL OGLWindow::InitWindow(HINSTANCE hInstance, int width, int height)
 
 	//Instantiate a Renderable as OGLRectangle
 	
-	m_rec2 = new OGLCircle(Vec2f(0, 100), Color("#fff3f3"), 150.f);
-	m_rect = new OGLText(Vec2f(120, 310), Color("#333444"), "Windows", "calibri.glf", 12);
+	m_rect = new OGLArc(Vec2f(0, 100), Color("#fff3f3"), 30.f, 250.f, 120);
+	m_rec2 = new OGLText(Vec2f(0,-20), Color("#ffffff"), "Consolas sucks at lower res", "calibri.glf", 14);
 
 	return TRUE;
 }
@@ -146,7 +146,7 @@ void OGLWindow::Render()
 	glLoadIdentity();
 
 	prenderable->Render();
-	//prenderable2->Render();
+	prenderable2->Render();
 
 	glFlush();
 

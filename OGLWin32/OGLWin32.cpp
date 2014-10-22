@@ -40,6 +40,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	//Free the console window
 	FreeConsole();
 
+
 	ExitProcess(0);
 
 	return exitcode;

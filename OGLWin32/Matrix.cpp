@@ -248,6 +248,7 @@ float Matrix<Type>::Determinant() const
 				}
 				reci++;
 			}
+			//Do this recursively until Determinant is found.
 			result =  result + (pow(-1, c) * (*this)(0, c) * rec.Determinant());
 		}
 	}
