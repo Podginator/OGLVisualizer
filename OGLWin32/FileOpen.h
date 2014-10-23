@@ -14,6 +14,7 @@ public:
 	FileOpen(char* Dir, std::map<LPWSTR, LPWSTR> filters);
 	FileOpen();
 
+	~FileOpen();
 	std::map<char*, char*> FileFilter;
 	char* InitialDir;
 	COMDLG_FILTERSPEC* Filefilters;

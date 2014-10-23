@@ -39,6 +39,11 @@ FileOpen::FileOpen(char* dir, std::map<LPWSTR, LPWSTR> filters)
 	InitialDir = dir;
 }
 
+FileOpen::~FileOpen()
+{
+	delete[] Filefilters;
+}
+
 bool FileOpen::ShowDialog() {
 	CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 	IFileOpenDialog* FileOpen;
