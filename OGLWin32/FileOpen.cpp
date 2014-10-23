@@ -2,20 +2,40 @@
 
 FileOpen::FileOpen()
 {
-	FileFilter = "All Files (*.*)\0*.*\0";
+
+	Filefilters = new COMDLG_FILTERSPEC[1]{
+		{ L"All Files", L"*.*" }
+	};
+	filterSize = 1;
 	InitialDir = "../";
 }
 
-FileOpen::FileOpen(char* filter)
+
+FileOpen::FileOpen(std::map<LPWSTR,LPWSTR> filters)
 {
-	FileFilter = filter;
+	Filefilters = new COMDLG_FILTERSPEC[filters.size()+1];
+	size_t i = 0;
+	for (std::map<LPWSTR, LPWSTR>::iterator iterator = filters.begin(); iterator != filters.end(); iterator++)
+	{
+		Filefilters[i] = { LPWSTR(iterator->first), LPWSTR(iterator->second) };
+		i++;
+	}
+	filterSize = i;
 	InitialDir = "../";
 
 }
 
-FileOpen::FileOpen(char* dir, char* filter)
+FileOpen::FileOpen(char* dir, std::map<LPWSTR, LPWSTR> filters)
 {
-	FileFilter = filter; 
+	Filefilters = new COMDLG_FILTERSPEC[filters.size() + 1];
+	size_t i = 0;
+	for (std::map<LPWSTR, LPWSTR>::iterator iterator = filters.begin(); iterator != filters.end(); iterator++)
+	{
+		Filefilters[i] = { LPWSTR(iterator->first), LPWSTR(iterator->second) };
+		i++;
+	}
+	filterSize = i;
+
 	InitialDir = dir;
 }
 
@@ -24,12 +44,7 @@ bool FileOpen::ShowDialog() {
 	IFileOpenDialog* FileOpen;
 	CoCreateInstance(CLSID_FileOpenDialog, NULL, CLSCTX_ALL, IID_IFileOpenDialog, reinterpret_cast<void**>(&FileOpen));
 
-	COMDLG_FILTERSPEC rgSpec[] = {
-		{ L"Comma separated values", L"*.csv" },
-		// Add more here as they become available/necessary
-	};
-
-	FileOpen->SetFileTypes(ARRAYSIZE(rgSpec), rgSpec);
+	FileOpen->SetFileTypes(filterSize, Filefilters);
 	switch (FileOpen->Show(NULL)) {
 	case S_OK: {
 				   IShellItem* Item{};

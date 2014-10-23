@@ -10,7 +10,7 @@ std::vector<std::vector<Proxy>> CSVParser::Parse(std::tr2::sys::wpath opened)
 	std::ifstream stream(opened);
 
 	//Iterate through the stream, counting each occurance of a newline.
-	//Seems expensive, but if you think about what PushBack is doing 
+	//Seems expensive, but if you think about what vector.pushback is doing 
 	//Then it's not so much.
 	std::vector<std::vector<Proxy>> res(
 		std::count(
