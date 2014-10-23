@@ -3,16 +3,34 @@
 
 struct Proxy
 {
-	Proxy(std::string const& str)
+	Proxy() 
+	{
+	}
+
+	Proxy(std::string const& str) 
 	{
 		val = str;
 	}
 
-	template<typename T>
-	operator T()
+	Proxy(Proxy const& other)
 	{
-		T ret;
-		return std::istringstream(val) >> ret ? ret : T();
+		val = other.val;
+	}
+
+	Proxy(Proxy&& other) 
+	{
+		std::swap(val, other.val);
+	}
+
+	Proxy& operator =(Proxy const& other)
+	{
+		val = other.val;
+		return *this;
+	}
+
+	Proxy& operator =(Proxy&& other) {
+		std::swap(val, other.val);
+		return *this;
 	}
 
 private:
