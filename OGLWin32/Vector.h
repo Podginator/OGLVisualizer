@@ -3,8 +3,6 @@
 #include <math.h>
 #include <array>
 
-//Using Curiously Recurring Base Type (CRBT) to enable some base and derived behaviour, can also
-//use this to template specify the vector class using a VectBase class.
 template<typename T, size_t size>
 class VectBase
 {
@@ -185,10 +183,6 @@ class Vector : public VectBase<T, size>
 public:
 	template<typename... Args>
 	Vector(Args const&... args) :VectBase(args...)
-	{
-	}
-
-	Vector() : VectBase()
 	{
 	}
 

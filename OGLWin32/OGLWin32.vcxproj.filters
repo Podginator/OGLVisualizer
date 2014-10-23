@@ -161,9 +161,6 @@
     <ClCompile Include="OGLWindow.cpp">
       <Filter>Source Files\OpenGL Window</Filter>
     </ClCompile>
-    <ClCompile Include="Matrix.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
     <ClCompile Include="CSVParser.cpp">
       <Filter>Source Files\Parser</Filter>
     </ClCompile>
@@ -171,9 +168,6 @@
       <Filter>Source Files\OpenGL Window</Filter>
     </ClCompile>
     <ClCompile Include="MathHelper.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector.cpp">
       <Filter>Source Files\Math</Filter>
     </ClCompile>
     <ClCompile Include="OGLArc.cpp">

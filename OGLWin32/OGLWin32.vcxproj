@@ -115,7 +115,6 @@
     <ClCompile Include="FileOpen.cpp" />
     <ClCompile Include="GLFont.cpp" />
     <ClCompile Include="MathHelper.cpp" />
-    <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="OGLApplication.cpp" />
     <ClCompile Include="OGLArc.cpp" />
     <ClCompile Include="OGLLine.cpp" />
@@ -124,7 +123,6 @@
     <ClCompile Include="OGLText.cpp" />
     <ClCompile Include="OGLWin32.cpp" />
     <ClCompile Include="OGLWindow.cpp" />
-    <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OGLWin32.rc" />
