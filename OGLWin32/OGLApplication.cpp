@@ -147,7 +147,7 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
 			switch (LOWORD(wparam))
 			{
 				case ID_CREATE_FILE:
-					FileOpen openfile(L"CSV Files (*.csv)\0*.csv\0All Files\0*.*\0");
+					FileOpen openfile("CSV Files (*.csv)\0*.csv\0All Files\0*.*\0");
 					if (openfile.ShowDialog())
 					{
 						std::vector<std::vector<Proxy>> res = CSVParser::Parse(openfile.getFile());

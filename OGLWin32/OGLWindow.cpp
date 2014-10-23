@@ -126,7 +126,7 @@ BOOL OGLWindow::InitWindow(HINSTANCE hInstance, int width, int height)
 	//Instantiate a Renderable as OGLRectangle
 	
 	m_rect = new OGLArc(Vec2f(0, 100), Color("#fff3f3"), 30.f, 250.f, 120);
-	m_rec2 = new OGLText(Vec2f(0,-20), Color("#ffffff"), "Consolas sucks at lower res", "calibri.glf", 14);
+	m_rec2 = new OGLText(Vec2f(0,-20), Color("#ffffff"), "Windows", "calibri.glf", 14);
 
 	return TRUE;
 }

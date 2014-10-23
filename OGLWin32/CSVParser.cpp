@@ -4,13 +4,13 @@ CSVParser::CSVParser()
 {
 }
 
-std::vector<std::vector<Proxy>> CSVParser::Parse(FILE* opened)
+std::vector<std::vector<Proxy>> CSVParser::Parse(std::tr2::sys::wpath opened)
 {
 	std::cout << "Parsing..." << "\n";
 	std::vector<std::vector<Proxy>> res;
-
+	std::ifstream stream(opened);
 	std::string line;
-	std::istringstream stream(ConvertToString(opened));
+	//std::istringstream stream();
 	while (std::getline(stream, line))
 	{
 		res.push_back(NewLine(line));
@@ -38,15 +38,4 @@ std::vector<Proxy> CSVParser::NewLine(const std::string& newline)
 
 
 	return res;
-}
-
-std::string CSVParser::ConvertToString(FILE* file)
-{
-	std::string contents;
-	std::fseek(file, 0, SEEK_END);
-	contents.resize(std::ftell(file));
-	std::rewind(file);
-	std::fread(&contents[0], 1, contents.size(), file);
-	std::fclose(file);
-	return(contents);
 }

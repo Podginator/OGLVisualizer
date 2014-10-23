@@ -1,6 +1,7 @@
 #pragma once 
 
 #include <Windows.h>
+#include "shobjidl.h"
 #include <filesystem>
 #include <string>
 #include <fstream>
@@ -16,9 +17,9 @@ public:
 	char* InitialDir;
 
 	bool ShowDialog();
-	std::tr2::sys::path getFile();
+	std::tr2::sys::wpath getFile();
 
 private:
-	std::tr2::sys::path openedFile;
+	std::tr2::sys::wpath openedFile;
 	//std::string ConvertToString(FILE* file);
 };
