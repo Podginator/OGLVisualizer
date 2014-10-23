@@ -1,23 +1,24 @@
 #pragma once 
 
 #include <Windows.h>
+#include <filesystem>
 #include <string>
 #include <fstream>
 
 class FileOpen
 {
 public:
-	FileOpen(LPWSTR type);
-	FileOpen(LPCTSTR Dir, LPWSTR type);
+	FileOpen(char* type);
+	FileOpen(char* Dir, char* type);
 	FileOpen();
 
-	LPWSTR FileFilter;
-	LPCTSTR InitialDir;
+	char* FileFilter;
+	char* InitialDir;
 
 	bool ShowDialog();
-	std::FILE* getFile();
+	std::tr2::sys::path getFile();
 
 private:
-	std::FILE* openedFile;
+	std::tr2::sys::path openedFile;
 	//std::string ConvertToString(FILE* file);
 };

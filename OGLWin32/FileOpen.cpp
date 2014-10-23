@@ -2,18 +2,18 @@
 
 FileOpen::FileOpen()
 {
-	FileFilter = L"All Files (*.*)\0*.*\0";
-	InitialDir = L"../";
+	FileFilter = "All Files (*.*)\0*.*\0";
+	InitialDir = "../";
 }
 
-FileOpen::FileOpen(LPWSTR filter)
+FileOpen::FileOpen(char* filter)
 {
 	FileFilter = filter;
-	InitialDir = L"../";
+	InitialDir = "../";
 
 }
 
-FileOpen::FileOpen(LPCTSTR dir, LPWSTR filter)
+FileOpen::FileOpen(char* dir, char* filter)
 {
 	FileFilter = filter; 
 	InitialDir = dir;
@@ -21,31 +21,31 @@ FileOpen::FileOpen(LPCTSTR dir, LPWSTR filter)
 
 bool FileOpen::ShowDialog()
 {
-	OPENFILENAME filename;
+	OPENFILENAMEA filename;
 	char szName[MAX_PATH] = "";
 
 	ZeroMemory(&filename, sizeof(filename));
 
 	filename.lStructSize = sizeof(filename);
 	filename.hwndOwner = 0;
-	filename.lpstrFile = (LPWSTR)szName;
+	filename.lpstrFile = szName;
 	filename.lpstrFile[0] = '\0';
-	filename.lpstrFilter = FileFilter;
+	filename.lpstrFilter = "../";
 	filename.nMaxFile = MAX_PATH;
 	filename.Flags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_HIDEREADONLY;
 	filename.lpstrInitialDir = InitialDir;
-	filename.lpstrDefExt = L"txt";
+	filename.lpstrDefExt = "txt";
 
-	if (GetOpenFileName(&filename))
+	if (GetOpenFileNameA(&filename))
 	{
-		openedFile = _wfopen(filename.lpstrFile, L"r");
+		openedFile = std::tr2::sys::path(std::string(filename.lpstrFile));
 		return true;
 	}
 
 	return false;
 }
 
-std::FILE* FileOpen::getFile()
+std::tr2::sys::path FileOpen::getFile()
 {
 	return openedFile;
 }
