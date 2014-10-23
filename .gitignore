@@ -2,3 +2,5 @@
 *.sdf
 OGLWin32.sdf
 OGLWin32.opensdf
+*.suo
+bin/
