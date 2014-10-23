@@ -4,6 +4,7 @@
 #include <Windowsx.h>
 #include "CSVParser.h"
 #include "Color.h"
+#include <chrono>
 
 OGLApplication* OGLApplication::s_oglapp = NULL;
 
@@ -147,12 +148,20 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
 			switch (LOWORD(wparam))
 			{
 				case ID_CREATE_FILE:
-					FileOpen openfile("CSV Files (*.csv)\0*.csv\0All Files\0*.*\0");
+					FileOpen openfile(L"CSV Files (*.csv)\0*.csv\0All Files\0*.*\0");
+					auto now = std::chrono::steady_clock::now();
 					if (openfile.ShowDialog())
 					{
 						std::vector<std::vector<Proxy>> res = CSVParser::Parse(openfile.getFile());
-						printf("done");
+						auto parsed = std::chrono::steady_clock::now();
+
+						std::cout << "Elapsed time (parse): " << std::chrono::duration_cast<std::chrono::seconds>(parsed - now).count() << std::endl;
+
+						now = parsed;
 					}
+					auto dtor = std::chrono::steady_clock::now();
+					std::cout << "Elapsed time (destruction): " << std::chrono::duration_cast<std::chrono::seconds>(dtor - now).count() << std::endl;
+
 				break;
 			}
 			break;
