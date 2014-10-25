@@ -17,6 +17,7 @@ struct Proxy
 		val = other.val;
 	}
 
+	//Move instead of copy.
 	Proxy(Proxy&& other) 
 	{
 		std::swap(val, other.val);

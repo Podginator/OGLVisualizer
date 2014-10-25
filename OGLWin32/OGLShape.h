@@ -11,15 +11,25 @@ protected:
 	Vec2f _position;
 	Color rgb;
 	Vec2f* vertexs;
-	int _size;
+	size_t _size;
 	unsigned int _renderType;
 	void RenderVertexs();
 	
 public: 
-	OGLShape(const Vec2f& position, const Color& color, int size, unsigned int renderType) : _position(position), rgb(color), _size(size), _renderType(renderType)
+	OGLShape(const Vec2f& position, const Color& color, size_t size, unsigned int renderType) : _position(position), rgb(color), _size(size), _renderType(renderType)
 	{
 		vertexs = new Vec2f[size];
 	};
+
+	OGLShape(const Vec2f& position, const Color& color, size_t size, unsigned int renderType, Vec2f positions[]) : _position(position), _size(size), rgb(color), _renderType(renderType)
+	{
+		vertexs = new Vec2f[size+1];
+		vertexs[0] = position;
+		for (size_t i = 1; i < size; i++)
+		{
+			vertexs[i] = positions[i - 1];
+		}
+	}
 
 	~OGLShape()
 	{

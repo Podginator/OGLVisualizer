@@ -125,7 +125,8 @@ BOOL OGLWindow::InitWindow(HINSTANCE hInstance, int width, int height)
 
 	//Instantiate a Renderable as OGLRectangle
 	
-	m_rect = new OGLArc(Vec2f(0, 100), Color("#fff3f3"), 30.f, 250.f, 120);
+	Vec2f points[4] = { Vec2f(200, 300), Vec2f(300, 400), Vec2f(120, 50), Vec2f(250, 460) };
+	m_rect = new OGLShape(Vec2f(0, 20), Color("#ffffff"), 4, GL_POLYGON, points);
 	m_rec2 = new OGLText(Vec2f(0,-20), Color("#ffffff"), "Windows", "calibri.glf", 14);
 
 	return TRUE;
