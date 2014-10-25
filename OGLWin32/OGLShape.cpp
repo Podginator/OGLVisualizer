@@ -3,7 +3,7 @@
 
 void OGLShape::Rotate(float deg)
 {
-	Matrix<float> rotMat = MathHelper<float>::Matrix2Dtransform(deg);
+	Matrix<float> rotMat = MathHelper::Matrix2Dtransform(deg);
 
 	for (int i = 0; i < _size; i++)
 	{
@@ -13,7 +13,7 @@ void OGLShape::Rotate(float deg)
 }
 void OGLShape::CenterRotate(float deg)
 {
-	Matrix<float> rotMat = MathHelper<float>::Matrix2Dtransform(deg);
+	Matrix<float> rotMat = MathHelper::Matrix2Dtransform(deg);
 	for (int i = 0; i < _size; i++)
 	{
 		//Move it to the center.

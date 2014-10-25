@@ -6,7 +6,7 @@
 
 
 //Declare as Static Class
-template <typename Type> class MathHelper
+class MathHelper
 {
 public:
 	MathHelper();
@@ -21,9 +21,5 @@ public:
 	static Matrix<float>Matrix4DtransformY(float degree);
 	static Matrix<float>Matrix4DtransformZ(float degree);
 
-	//Scaling Matrices
-	static Matrix<Type> Matrix2DScale(Type x, Type y);
-	static Matrix<Type> Matrix3DScale(Type x, Type y);
-	static Matrix<Type> Matrix4DScale(Type x, Type y);
 
 };

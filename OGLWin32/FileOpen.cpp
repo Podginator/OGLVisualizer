@@ -52,13 +52,13 @@ bool FileOpen::ShowDialog() {
 	FileOpen->SetFileTypes(filterSize, Filefilters);
 	switch (FileOpen->Show(NULL)) {
 	case S_OK: {
-				   IShellItem* Item{};
-				   FileOpen->GetResult(&Item);
-				   PWSTR FileCString;
-				   Item->GetDisplayName(SIGDN_FILESYSPATH, &FileCString);
-				   std::wstring FileWString{ FileCString };
-				   openedFile = { FileWString.begin(), FileWString.end() };
-				   return true;
+		IShellItem* Item{};
+		FileOpen->GetResult(&Item);
+		PWSTR FileCString;
+		Item->GetDisplayName(SIGDN_FILESYSPATH, &FileCString);
+		std::wstring FileWString{ FileCString };
+		openedFile = { FileWString.begin(), FileWString.end() };
+		return true;
 	}
 	case (ERROR_CANCELLED & 0x0000FFFF) | (FACILITY_WIN32 << 16) | 0x80000000:
 		return false;

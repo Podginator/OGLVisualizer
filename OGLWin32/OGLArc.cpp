@@ -27,7 +27,7 @@ void OGLArc::CreateArc()
 	for (int i = 0; i <= _endTheta; i++)
 	{
 		//We then repeat this process 
-		vertexs[1 + i] = MathHelper<float>::Matrix2Dtransform(-(float)(_startTheta + i)) * Vec2f(0, _radius);
+		vertexs[1 + i] = MathHelper::Matrix2Dtransform(-(float)(_startTheta + i)) * Vec2f(0, _radius);
 		vertexs[1 + i] += _position;
 	}
 

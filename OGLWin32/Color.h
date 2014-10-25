@@ -7,7 +7,11 @@ struct Color
 	float green;
 	float blue;
 
-	Color(std::string const& str);
+	Color(std::string const& str)
+	{
+		convString(str);
+	}
+
 	Color(float _red, float _green, float _blue) : red(_red), blue(_blue), green(_green){};
 private:
 	bool convString(std::string const& str);

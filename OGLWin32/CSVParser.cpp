@@ -1,9 +1,5 @@
 #include "CSVParser.h"
 
-CSVParser::CSVParser()
-{
-}
-
 std::vector<std::vector<Proxy>> CSVParser::Parse(std::tr2::sys::wpath opened)
 {
 	std::cout << "Parsing..." << std::endl;
@@ -36,8 +32,7 @@ std::vector<Proxy> CSVParser::NewLine(const std::string& newline)
 {
 	//Preallocate size.
 	static std::size_t const Size = std::count(newline.begin(), newline.end(), ',');
-	
-	std::cout << Size << std::endl;
+
 	std::vector<Proxy> res(Size+1); 
 
 	std::string line;
@@ -51,7 +46,6 @@ std::vector<Proxy> CSVParser::NewLine(const std::string& newline)
 	{
 		res[i] = Proxy(val);
 	}
-
 
 	return res;
 }

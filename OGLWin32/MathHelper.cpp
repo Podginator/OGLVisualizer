@@ -1,11 +1,7 @@
 #include "MathHelper.h"
 
 
-MathHelper<float>::MathHelper()
-{
-
-}
-Matrix<float> MathHelper<float>::Matrix2Dtransform(float degrees)
+Matrix<float> MathHelper::Matrix2Dtransform(float degrees)
 {
 	float radians = degrees * PI / 180.0f;
 	Matrix<float> res(2, 2, 0.0f);
@@ -18,7 +14,7 @@ Matrix<float> MathHelper<float>::Matrix2Dtransform(float degrees)
 }
 
 
-Matrix<float> MathHelper<float>::Matrix3DtransformX(float degrees)
+Matrix<float> MathHelper::Matrix3DtransformX(float degrees)
 {
 	float radians = degrees * PI / 180.0f;
 	Matrix<float> res(3, 3, 0.0f);
@@ -32,7 +28,7 @@ Matrix<float> MathHelper<float>::Matrix3DtransformX(float degrees)
 	return res;
 }
 
-Matrix<float> MathHelper<float>::Matrix3DtransformY(float degrees)
+Matrix<float> MathHelper::Matrix3DtransformY(float degrees)
 {
 	float radians = degrees * PI / 180.0f;
 	Matrix<float> res(3, 3, 0.0f);
@@ -46,7 +42,7 @@ Matrix<float> MathHelper<float>::Matrix3DtransformY(float degrees)
 	return res;
 }
 
-Matrix<float> MathHelper<float>::Matrix3DtransformZ(float degrees)
+Matrix<float> MathHelper::Matrix3DtransformZ(float degrees)
 {
 	float radians = degrees * PI / 180.0f;
 	Matrix<float> res(3, 3, 0.0f);
@@ -61,7 +57,7 @@ Matrix<float> MathHelper<float>::Matrix3DtransformZ(float degrees)
 }
 
 
-Matrix<float> MathHelper<float>::Matrix4DtransformZ(float degrees)
+Matrix<float> MathHelper::Matrix4DtransformZ(float degrees)
 {
 
 	float radians = degrees * PI / 180.0f;
@@ -72,7 +68,7 @@ Matrix<float> MathHelper<float>::Matrix4DtransformZ(float degrees)
 	return res;
 }
 
-Matrix<float> MathHelper<float>::Matrix4DtransformX(float degrees)
+Matrix<float> MathHelper::Matrix4DtransformX(float degrees)
 {
 	float radians = degrees * PI / 180.0f;
 	Matrix<float> res(4, 4, 0.0f);
@@ -82,7 +78,7 @@ Matrix<float> MathHelper<float>::Matrix4DtransformX(float degrees)
 	return res;
 }
 
-Matrix<float> MathHelper<float>::Matrix4DtransformY(float degrees)
+Matrix<float> MathHelper::Matrix4DtransformY(float degrees)
 {
 	float radians = degrees * PI / 180.0f;
 	Matrix<float> res(4, 4, 0.0f);

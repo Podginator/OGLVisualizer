@@ -35,13 +35,6 @@ public:
 		}
 	}
 
-	VectBase()
-	{
-		for (size_t i = 0; i < size; i++)
-		{
-			data[i] = 0;
-		}
-	};
 	VectBase(const VectBase& copy){ Copy(copy); }
 
 	T& operator [](std::size_t const& index){return data[index];}

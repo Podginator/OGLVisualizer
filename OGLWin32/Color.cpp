@@ -1,11 +1,6 @@
 #pragma once
 #include "Color.h"
 
-Color::Color(std::string const& str)
-{
-	convString(str);
-	
-}
 
 bool Color::convString(std::string const& str)
 {
