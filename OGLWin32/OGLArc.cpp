@@ -10,6 +10,7 @@ OGLArc::OGLArc(const Vec2f& position, const Color& color, float startTheta, floa
 	_endTheta = endTheta;
 	_radius = radius;
 	CreateArc();
+	GetBoundingBox();
 }
 
 
@@ -33,12 +34,43 @@ void OGLArc::CreateArc()
 
 }
 
+
+bool OGLArc::MouseInside(int x, int y)
+{
+	if (x < xMin || x > xMax || y < yMin || y > yMax) {
+		printf("False");
+		return false;
+	}
+
+	if (((x - _position.X())*(x - _position.X()) +
+		(y - _position.Y()) * (y - _position.Y()) <=
+		(_radius*_radius)))
+	{
+		//So now we need to determine where the angle is from the center point.
+		float angle = atan2f(_radius, 0) - atan2f(y - _position.Y(), x - _position.X());
+		angle *= 360 / (2 * MathHelper::Pi());
+		angle = angle < 0 ? angle + 360 : angle;
+		//Then we can return true of false
+		if (angle >= _startTheta && angle <= _endTheta)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 bool OGLArc::MouseMove(int x, int y)
 {
+	if (MouseInside(x, y))
+	{
+		rgb = Color(0.5, 0.5, 0);
+	}
 	return true;
 }
 bool OGLArc::MouseLBUp(int x, int y)
 {
+
 	return true;
 }
 bool OGLArc::MouseLBDown(int x, int y)

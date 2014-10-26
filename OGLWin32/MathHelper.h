@@ -11,6 +11,9 @@ class MathHelper
 public:
 	MathHelper();
 	//Rotations
+
+	static float Pi(){ return 3.1415926535897932384626433832795f; }
+	
 	static Matrix<float>Matrix2Dtransform(float degree);
 	//3D
 	static Matrix<float>Matrix3DtransformX(float degree);

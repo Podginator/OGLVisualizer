@@ -1,6 +1,8 @@
 #include "MathHelper.h"
 
 
+
+
 Matrix<float> MathHelper::Matrix2Dtransform(float degrees)
 {
 	float radians = degrees * PI / 180.0f;

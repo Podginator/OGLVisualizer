@@ -18,8 +18,8 @@ class OGLWindow
 		int			m_height;
 		
 		//This is not an ideal place to hold geometry data
-		Renderable   *m_rect;
-		Renderable  *m_rec2;
+		OGLShape   *m_rect;
+		OGLShape  *m_rec2;
 
 protected:
 

@@ -125,9 +125,8 @@ BOOL OGLWindow::InitWindow(HINSTANCE hInstance, int width, int height)
 
 	//Instantiate a Renderable as OGLRectangle
 	
-	Vec2f points[4] = { Vec2f(200, 300), Vec2f(300, 400), Vec2f(120, 50), Vec2f(250, 460) };
-	m_rect = new OGLShape(Vec2f(0, 20), Color("#ffffff"), 4, GL_POLYGON, points);
-	m_rec2 = new OGLText(Vec2f(0,-20), Color("#ffffff"), "Windows", "calibri.glf", 14);
+	m_rect = new OGLArc(Vec2f(10, 200), Color(0, 0, 1), 0, 90, 150);
+	m_rec2 = new OGLCircle(Vec2f(0, 0), Color(0.5, 0.5, 1), 200);
 
 	return TRUE;
 }
@@ -203,8 +202,7 @@ BOOL OGLWindow::MouseLBUp ( int x, int y )
 
 BOOL OGLWindow::MouseMove ( int x, int y )
 {
-	//Listener *plistener = static_cast<Listener*>(m_rect);
-	printf("X: %d, Y:%d\n", x - (m_width >> 1), (-y) - (-m_height >> 1));
-
+	Listener *plistener = static_cast<Listener*>(m_rect);
+	plistener->MouseMove(x - (m_width >> 1), (-y) - (-m_height >> 1));
 	return TRUE;
 }

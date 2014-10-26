@@ -5,16 +5,17 @@ void OGLShape::Rotate(float deg)
 {
 	Matrix<float> rotMat = MathHelper::Matrix2Dtransform(deg);
 
-	for (int i = 0; i < _size; i++)
+	for (size_t i = 0; i < _size; i++)
 	{
 		//Just rotates from center as origin. 
 		vertexs[i] = rotMat * vertexs[i];
 	}
 }
+
 void OGLShape::CenterRotate(float deg)
 {
 	Matrix<float> rotMat = MathHelper::Matrix2Dtransform(deg);
-	for (int i = 0; i < _size; i++)
+	for (size_t i = 0; i < _size; i++)
 	{
 		//Move it to the center.
 		vertexs[i] -= _position;
@@ -24,6 +25,7 @@ void OGLShape::CenterRotate(float deg)
 		vertexs[i] += _position;
 	}	
 }
+
 
 void OGLShape::Render()
 {
@@ -37,7 +39,7 @@ void OGLShape::Render()
 void OGLShape::RenderVertexs()
 {
 	glColor3f(rgb.red, rgb.green, rgb.blue);
-	for (int i = 0; i < _size; i++)
+	for (size_t i = 0; i < _size; i++)
 	{
 		glVertex2f(vertexs[i].X(), vertexs[i].Y());
 	}
