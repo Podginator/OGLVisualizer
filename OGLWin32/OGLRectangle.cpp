@@ -10,7 +10,6 @@ OGLShape(position, color, 4, GL_QUADS)
 	vertexs[3] = Vec2f(position.X(), position.Y() + height);	
 
 	GetBoundingBox();
-	CenterRotate(40.f);
 }
 
 
@@ -28,5 +27,8 @@ void OGLRectangle::CenterRotate(float deg)
 	{
 		vertexs[i] += Vec2f((_width*0.5f), (_height*0.5f));
 	}
+
+	//We've changed the shape, so we have to reget the binding box.
+	GetBoundingBox();
 
 }

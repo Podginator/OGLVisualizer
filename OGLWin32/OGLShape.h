@@ -22,6 +22,8 @@ protected:
 	float yBot;
 	float yTop;
 
+	bool InsideBounding(int x, int y);
+
 	void GetBoundingBox()
 	{
 		for (size_t i = 0; i < _size; i++)
@@ -56,7 +58,6 @@ public:
 	{
 		vertexs = new Vec2f[size+1];
 		vertexs[0] = position;
-
 		xBot = xBot = _position.X();
 		yBot = yTop = _position.Y();
 
@@ -76,48 +77,12 @@ public:
 	virtual void Render();
 	virtual void Rotate(float deg);
 	virtual void CenterRotate(float deg);
-	
-
-
-	bool MouseInside(int x, int y)
-	{
-		//First we test the bounding box cast around the object, this is a very
-		//mathematically unintensive process, meaning when we loop through shapes
-		//later we won't have problems.
-		if (x < xBot || x > xTop || y < yBot || y > yTop) 
-		{
-			return false;
-		}
-
-		int in = 0;
-		//We start at point vertexs[_size] connecting to vertexs[0]
-		size_t  k = _size - 1;
-		//Then we have to loop through all the Vertexs we have
-		//Based on the lecture from 20/10/2014
-		for (size_t i = 0; i < _size; i++)
-		{
-			//First we check whether it is between the vertexs Y locations, if not, no point of continuing.
-			if (((vertexs[i].Y() > y) && (vertexs[k].Y() < y)) || ((vertexs[i].Y() < y) && (vertexs[k].Y() > y)))
-			{
-				//Then we check if the X location is less than the X location of the point between Vec[i] and Vec[k], if it is, it will eventually intersect.
-				//calculating where that would be based on the Y position. Based on
-				// http://gamedev.stackexchange.com/a/57746
-				if (x < vertexs[i].X() + (vertexs[k].X() - vertexs[i].X()) * (y - vertexs[i].Y()) / (vertexs[k].Y() - vertexs[i].Y()))
-				{
-					in++;
-				}
-			}
-			//Then we make sure that for the next cycle K is the one before the previous. ie the vector that i was this time.
-			k = i;
-		}
-
-		return (in%2);
-	}
+	bool MouseInside(int x, int y);
 
 	bool MouseMove(int x, int y)
 	{
-		//printf("%d, %d", x, y);
-		//MouseInside(x, y);
+		//printf("%d", MouseInside(x,y));
+		MouseInside(x, y);
 		return true;
 	}
 	bool MouseLBUp(int x, int y)
@@ -131,7 +96,7 @@ public:
 		
 		if (MouseInside(x, y))
 		{
-			rgb = Color(1, 0, 0);
+			rgb >> 1;
 		}
 		return true;
 	}

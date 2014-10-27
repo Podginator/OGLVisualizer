@@ -37,8 +37,8 @@ void OGLArc::CreateArc()
 
 bool OGLArc::MouseInside(int x, int y)
 {
-	if (x < xBot || x > xTop || y < yBot|| y > yTop) {
-		printf("False");
+	if (!OGLShape::InsideBounding(x, y))
+	{
 		return false;
 	}
 
