@@ -90,10 +90,7 @@ public:
 		return true;
 	}
 	bool MouseLBDown(int x, int y)
-	{
-		printf("%d,%d\n",x, y);
-		printf("%d", MouseInside(x, y));
-		
+	{		
 		if (MouseInside(x, y))
 		{
 			rgb >> 1;
