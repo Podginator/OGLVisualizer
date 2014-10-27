@@ -199,8 +199,22 @@ public:
 	}
 
 	//bool operator
-	bool operator!=(const Matrix& right);
-	bool operator==(const Matrix& right);
+	bool operator!=(const Matrix& right)
+	{
+		return !(right == *this);
+	}
+
+	bool operator==(const Matrix& right)
+	{
+		for (size_t i = 0; size < _cols*_rows; i++)
+		{
+			if (data[i] != right.data[i])
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 
 	Matrix<Type>& transpose()
 	{
