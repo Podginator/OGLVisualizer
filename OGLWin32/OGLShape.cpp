@@ -63,14 +63,15 @@ bool OGLShape::MouseInside(int x, int y)
 	//First we test the bounding box cast around the object, this is a very
 	//mathematically unintensive process, meaning when we loop through shapes
 	//later we won't have problems.
-	if (x < xBot || x > xTop || y < yBot || y > yTop)
+	if (!InsideBounding(x,y))
 	{
-		printf("Terminating here");
 		return false;
 	}
 
-	int in = 0;
-	//We start at point vertexs[_size] connecting to vertexs[0]
+	//Otherwise we have to do a line intersection test.
+	//How many times do we hit an edge of the poly?
+	int edgeHit = 0;
+	//We start at point vertexs[_size] connecting to vertexs[0], hence K = size-1;
 	size_t  k = _size - 1;
 	//Then we have to loop through all the Vertexs we have
 	//Based on the lecture from 20/10/2014
@@ -84,13 +85,12 @@ bool OGLShape::MouseInside(int x, int y)
 			// http://gamedev.stackexchange.com/a/57746
 			if (x < vertexs[i].X() + (vertexs[k].X() - vertexs[i].X()) * (y - vertexs[i].Y()) / (vertexs[k].Y() - vertexs[i].Y()))
 			{
-				in++;
-				printf("%d\n", in);
+				edgeHit++;
 			}
 		}
 		//Then we make sure that for the next cycle K is the one before the previous. ie the vector that i was this time.
 		k = i;
 	}
 
-	return (in % 2);
+	return (edgeHit % 2);
 }
