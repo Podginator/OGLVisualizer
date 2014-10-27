@@ -37,7 +37,7 @@ void OGLArc::CreateArc()
 
 bool OGLArc::MouseInside(int x, int y)
 {
-	if (x < xMin || x > xMax || y < yMin || y > yMax) {
+	if (x < xBot || x > xTop || y < yBot|| y > yTop) {
 		printf("False");
 		return false;
 	}

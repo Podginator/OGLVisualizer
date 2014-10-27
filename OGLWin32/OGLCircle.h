@@ -15,6 +15,7 @@ public:
 			(_radius*_radius)))
 		{
 			//Reduce to this instead because if we're inside a circle the angle is irrelevant
+			//And the other is very intensive.
 			return true;
 		}
 		return false;
