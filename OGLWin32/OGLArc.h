@@ -11,7 +11,6 @@ public:
 
 	bool MouseMove(int x, int y);
 	bool MouseLBUp(int x, int y);
-	bool MouseLBDown(int x, int y);
 
 protected:
 	bool MouseInside(int x, int y);

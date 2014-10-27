@@ -126,8 +126,7 @@ BOOL OGLWindow::InitWindow(HINSTANCE hInstance, int width, int height)
 	//Instantiate a Renderable as OGLRectangle
 	
 	m_rect = new OGLRectangle(Vec2f(0, 0), Color(1, 0.2, 0.5), 200, 304);
-	m_rec2 = new OGLCircle(Vec2f(0, 0), Color(0.5, 0.5, 1), 200);
-
+	m_rec2 = new OGLArc(Vec2f(200, 300), Color(0.5, 0.5, 0.5), 30, 200, 100);
 	return TRUE;
 }
 
@@ -146,7 +145,7 @@ void OGLWindow::Render()
 	glLoadIdentity();
 
 	prenderable->Render();
-	//prenderable2->Render();
+	prenderable2->Render();
 
 	glFlush();
 
@@ -193,7 +192,7 @@ BOOL OGLWindow::MouseLBDown ( int x, int y )
 
 BOOL OGLWindow::MouseLBUp ( int x, int y )
 {
-	Listener *plistener = static_cast<Listener*>(m_rect);
+	Listener *plistener = static_cast<Listener*>(m_rec2);
 
 	plistener->MouseLBDown(x - (m_width >> 1), (-y) - (-m_height >> 1));
 

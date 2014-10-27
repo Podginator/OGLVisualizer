@@ -73,7 +73,3 @@ bool OGLArc::MouseLBUp(int x, int y)
 
 	return true;
 }
-bool OGLArc::MouseLBDown(int x, int y)
-{
-	return true;
-}

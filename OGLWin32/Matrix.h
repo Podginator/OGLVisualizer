@@ -184,6 +184,20 @@ public:
 		vec = (*this) * vec;
 		return Vector<float, 2>(vec(0, 0), vec(1, 0));
 	}
+
+	Vector<Type, 3> operator*(const Vector<Type, 3>& right) const
+	{
+		//Model the Vector as a Matrix (We already deal with these)
+		//Column Vector
+		Matrix vec = Matrix(2, 1, 0);
+		vec(0, 0) = right.X();
+		vec(1, 0) = right.Y();
+		vec(2, 0) = right.Z();
+		//Then multiply it as you would a normal Matrix
+		vec = (*this) * vec;
+		return Vector<float, 3>(vec(0, 0), vec(1, 0), vec(2,0));
+	}
+
 	//bool operator
 	bool operator!=(const Matrix& right);
 	bool operator==(const Matrix& right);
