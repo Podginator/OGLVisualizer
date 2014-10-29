@@ -121,7 +121,7 @@ std::vector<CSVColumn> CSVParser::Parse(std::tr2::sys::wpath opened)
     {
         AddToCols(line, cols);
     }
-    std::cout << "Done" << "\n";
+    std::cout << "Done" << "\n"; 
     return cols;
 }
 
