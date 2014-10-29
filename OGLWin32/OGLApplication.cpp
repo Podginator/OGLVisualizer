@@ -149,7 +149,7 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
 			DrawMenuBar(hwnd);
 			FileOpen openfile(std::map < LPWSTR, LPWSTR > {{ L"CSV files", L"*.csv" }, { L"ALL FILES", L"WHAFGs" }});
 			if (openfile.ShowDialog()) {
-				std::vector<std::vector<std::string>> res = CSVParser::Parse(openfile.getFile());
+				std::vector<CSVColumn> res = CSVParser::Parse(openfile.getFile());
 			}
 			EnableMenuItem(menu, FileMenu, MF_ENABLED);
 			EnableMenuItem(menu, ChartMenu, MF_ENABLED);

@@ -11,11 +11,11 @@ class CSVParser
 {
 public:
 	CSVParser();
-	static std::vector<std::vector<std::string>> Parse(std::tr2::sys::wpath opened);
+	static std::vector<CSVColumn> Parse(std::tr2::sys::wpath opened);
 private:
 
-	static std::vector<CSVColBase*> GetCols(std::ifstream& stream, size_t size);
+	static void AddToCols(const std::string& newline, std::vector<CSVColumn>& cols);
+	static void ResetStream(std::ifstream& stream);
+	static std::vector<CSVColumn> GetCols(std::ifstream& stream);
 	static std::vector<std::string> SplitLine(const std::string& opened);
-
-	static void AddToCols(const std::string& opened, std::vector<CSVColBase*> cols);
 };

@@ -91,9 +91,9 @@
     <None Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CSVCell.h" />
     <ClInclude Include="GLFont.h" />
     <ClInclude Include="CSVColumn.h" />
-    <ClInclude Include="CSVCell.h" />
     <ClInclude Include="OGLData.h" />
     <ClInclude Include="OGLChart.h" />
     <ClInclude Include="OGLCircle.h" />
