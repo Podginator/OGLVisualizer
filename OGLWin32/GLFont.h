@@ -10,75 +10,75 @@
 //*********************************************************
 
 #ifndef TRUE
-#define TRUE	1
+#define TRUE    1
 #endif
 
 #ifndef FALSE
-#define FALSE	0
+#define FALSE    0
 #endif
 
 namespace GLFontError {
-	struct InvalidFile{};
-	struct InvalidFont{};
+    struct InvalidFile{};
+    struct InvalidFont{};
 }
 
 class GLFontBase {
 public:
-	GLFontBase();
-	void Begin();
-	virtual ~GLFontBase();
-	float m_height;
-	virtual void Create(const char* Filename) {;}
-	virtual void TextOut(const char* String, float x, float y, float z) {;}
-	virtual void TextOut(const char* String, int x, int y, int z) {;}
-	void End();
+    GLFontBase();
+    void Begin();
+    virtual ~GLFontBase();
+    float m_height;
+    virtual void Create(const char* Filename) {;}
+    virtual void TextOut(const char* String, float x, float y, float z) {;}
+    virtual void TextOut(const char* String, int x, int y, int z) {;}
+    void End();
 
 protected:
 
-	void CreateImpl(const char *FileName, bool PixelPerfect = FALSE);
+    void CreateImpl(const char *FileName, bool PixelPerfect = FALSE);
 
-	typedef struct
-	{
-	union {
-		float dx;
-		int width;
-	};
-	union {
-		float dy;
-		int height;
-	};
-	float tx1, ty1;
-	float tx2, ty2;
-	} GLFONTCHAR;
+    typedef struct
+    {
+    union {
+        float dx;
+        int width;
+    };
+    union {
+        float dy;
+        int height;
+    };
+    float tx1, ty1;
+    float tx2, ty2;
+    } GLFONTCHAR;
 
-	typedef struct
-	{
-	unsigned int Tex;
-	int TexWidth, TexHeight;
-	int IntStart, IntEnd;
-	GLFONTCHAR *Char;
-	} GLFONT;
+    typedef struct
+    {
+    unsigned int Tex;
+    int TexWidth, TexHeight;
+    int IntStart, IntEnd;
+    GLFONTCHAR *Char;
+    } GLFONT;
 
-	GLFONT Font;
-	bool ok;
+    GLFONT Font;
+    bool ok;
 private:
-	void FreeResources();
+    void FreeResources();
 };
 
 class GLFont : public GLFontBase {
 public:
-	GLFont();
-	virtual ~GLFont(){;}
-	virtual void Create(const char* FileName);
-	virtual void TextOut (const char* String, float x, float y, float z);
+    GLFont();
+    virtual ~GLFont(){;}
+    virtual void Create(const char* FileName);
+    virtual void TextOut (const char* String, float x, float y, float z);
 };
 
 class PixelPerfectGLFont : public GLFontBase {
 public:
-	PixelPerfectGLFont();
-	virtual ~PixelPerfectGLFont(){;}
-	virtual void Create(const char *FileName);
-	virtual void TextOut (const char* String, int x, int y, int z);
+    PixelPerfectGLFont();
+    virtual ~PixelPerfectGLFont(){;}
+    virtual void Create(const char *FileName);
+    virtual void TextOut (const char* String, int x, int y, int z);
 };
 
 #endif

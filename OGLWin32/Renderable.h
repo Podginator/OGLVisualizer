@@ -12,8 +12,8 @@
 //It cannot be instantiated without being inherited by a concrete class
 class Renderable
 {
-	public:
+    public:
 
-		//this is a pure virtual function
-		virtual void			Render() = 0;
+        //this is a pure virtual function
+        virtual void            Render() = 0;
 };
