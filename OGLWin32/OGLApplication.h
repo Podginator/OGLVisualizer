@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Windows.h>
-
+#include <thread>
 class OGLWindow;
 
 //Define OGLApplication as a singleton
@@ -17,7 +17,8 @@ class OGLApplication
 		virtual						~OGLApplication();
 		void						CreateApplicationWindow(int width, int height );
 		BOOL						MyRegisterClass(HINSTANCE hinst);
-
+		std::thread                 RenderThread;
+		bool                        Running;
 	public:
 
 		HINSTANCE					m_hInst;

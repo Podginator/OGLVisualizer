@@ -33,7 +33,7 @@ protected:
 					OGLWindow(HINSTANCE hInstance, int width, int height);
 					~OGLWindow();
 
-		void		Render();
+		void		Render(bool thread = false);
 		void		Resize( int width, int height );
 		void		SetVisible( BOOL visible );
 		void		DestroyOGLWindow();

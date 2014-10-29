@@ -11,7 +11,7 @@
 #include <gl/GLU.h>
 
 #include "OGLApplication.h"
-
+#include "Utility.h"
 #pragma comment (lib, "opengl32.lib")
 #pragma comment (lib, "glu32.lib")
 

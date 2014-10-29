@@ -61,6 +61,18 @@
     <Filter Include="Resource Files\Fonts">
       <UniqueIdentifier>{fcf2986d-c3c8-4a3a-bbbc-099a81b3ad02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\OGLData">
+      <UniqueIdentifier>{085398bd-1b70-4abd-be2f-dfa5fca9ea5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OGLData">
+      <UniqueIdentifier>{b8049b0a-f3a2-461b-a954-bb653a36be45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\OGLChart">
+      <UniqueIdentifier>{4f67008d-0f35-4a8b-b95b-c4a68f232e06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OGLCharts">
+      <UniqueIdentifier>{c160e36a-9f5b-4268-a27b-2882b4654f68}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -111,9 +123,6 @@
     <ClInclude Include="FileOpen.h">
       <Filter>Header Files\OpenGL Window</Filter>
     </ClInclude>
-    <ClInclude Include="Proxy.h">
-      <Filter>Header Files\Parser</Filter>
-    </ClInclude>
     <ClInclude Include="MathHelper.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
@@ -149,6 +158,21 @@
     </ClInclude>
     <ClInclude Include="Color.h">
       <Filter>Header Files\OpenGL Primitives\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLChart.h">
+      <Filter>Header Files\OGLCharts</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLData.h">
+      <Filter>Header Files\OGLData</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="CSVColumn.h">
+      <Filter>Header Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="CSVCell.h">
+      <Filter>Header Files\Parser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

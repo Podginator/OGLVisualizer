@@ -7,6 +7,7 @@
 #include "OGLText.h"
 #include "Vector.h"
 #include "MathHelper.h"
+#include "Utility.h"
 
 
 OGLWindow::OGLWindow()
@@ -135,8 +136,11 @@ void OGLWindow::SetVisible ( BOOL visible )
 	ShowWindow ( m_hwnd, visible? SW_SHOW : SW_HIDE );
 }
 
-void OGLWindow::Render()
+void OGLWindow::Render(bool thread)
 {
+
+	//Debug(thread ? "Thread" : "Normal");
+
 	Renderable* prenderable = static_cast<Renderable*>(m_rect);
 	Renderable* prenderable2 = static_cast<Renderable*>(m_rec2);
 

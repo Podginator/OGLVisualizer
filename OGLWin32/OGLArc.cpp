@@ -25,7 +25,7 @@ void OGLArc::CreateArc()
 	vertexs[0] = _position; 
 	//Vertex one will be Radius away from the first point, so we assume it's 0deg away,
 	//Which is the same as moving the Y _Radius away
-	for (int i = 0; i <= (_endTheta-_startTheta); i++)
+	for (int i = 0; i <= _endTheta; i++)
 	{
 		//We then repeat this process 
 		vertexs[1 + i] = MathHelper::Matrix2Dtransform(-(float)(_startTheta + i)) * Vec2f(0, _radius);
@@ -54,7 +54,7 @@ bool OGLArc::MouseInside(int x, int y)
 
 		printf("-----%f-----", angle);
 		//Then we can return true of false
-		if (angle >= _startTheta && angle <= _endTheta)
+		if (angle >= _startTheta && angle <= (_endTheta+_startTheta))
 		{
 			return true;
 		}
