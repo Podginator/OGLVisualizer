@@ -6,7 +6,7 @@ void CSVParser::ResetStream(std::ifstream& stream)
     stream.seekg(0, std::ios::beg);
 }
 
-std::vector<CSVColumn> CSVParser::GetCols(std::ifstream& stream)
+DataTable CSVParser::GetCols(std::ifstream& stream)
 {
     size_t size = std::count(
         std::istreambuf_iterator<char>(stream),
@@ -24,7 +24,7 @@ std::vector<CSVColumn> CSVParser::GetCols(std::ifstream& stream)
 
     bool hasHeader = false;
 
-    std::vector<CSVColumn> cols(header.size());
+    DataTable cols(header.size());
 
     //Here we loop through and determine the types we'll use AND if there's a header.
     for (size_t i = 0; i < header.size(); i++)
@@ -39,25 +39,24 @@ std::vector<CSVColumn> CSVParser::GetCols(std::ifstream& stream)
         {
             //A string
             //so
-            cols[i] = CSVColumn(size, CSVColumn::Type::String);//Of string;
-
+            cols.Add(new DataColumnString(size));
         }
         else if (*h || *line)
         {
             hasHeader = true;
-            cols[i] = CSVColumn(size, CSVColumn::Type::Numerical);//Of int;
+            cols.Add(new DataColumnFloat(size));
 
         }
         else
         {
-            cols[i] = CSVColumn(size,  CSVColumn::Type::Numerical);//Of int;
+            cols.Add(new DataColumnFloat(size));
         }
     }
 
     for (size_t i = 0; i < header.size(); i++)
     {
         //Then loop again adding names to the columns
-        cols[i].Name(hasHeader ? header[i] : "Value" + std::to_string(i));
+        cols[i]->Name(hasHeader ? header[i] : "Value" + std::to_string(i));
     }
 
     //Reset the strream
@@ -71,13 +70,13 @@ std::vector<CSVColumn> CSVParser::GetCols(std::ifstream& stream)
     return cols;
 }
 
-std::vector<CSVColumn> CSVParser::Parse(std::tr2::sys::wpath opened)
+DataTable CSVParser::Parse(std::tr2::sys::wpath opened)
 {
     std::cout << "Parsing..." << std::endl;
     std::ifstream stream(opened);
         
     
-    std::vector<CSVColumn> cols = GetCols(stream);
+    DataTable cols = GetCols(stream);
     
     std::string line;
     
@@ -104,14 +103,13 @@ std::vector<std::string> CSVParser::SplitLine(const std::string& newline)
 
     for (std::size_t i = 0; std::getline(stream, val, ','); ++i)
     {
-        std::cout << val << std::endl;
         res[i] = val;
     }
 
     return res;
 }
 
-void CSVParser::AddToCols(const std::string& newline, std::vector<CSVColumn>& cols)
+void CSVParser::AddToCols(const std::string& newline, DataTable& cols)
 {
     std::string line;
     std::getline(std::istringstream(newline), line);
@@ -122,6 +120,6 @@ void CSVParser::AddToCols(const std::string& newline, std::vector<CSVColumn>& co
     for (std::size_t i = 0; std::getline(stream, val, ','); ++i)
     {
         std::cout << val << std::endl;
-        cols[i].Add(val);
+        cols[i]->Add(val);
     }
 }

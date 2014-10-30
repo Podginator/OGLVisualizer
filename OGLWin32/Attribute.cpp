@@ -1,8 +1,8 @@
 #include "Atrribute.h"
 
-void Attribute::PopulateMaps(const CSVColumn& col)
+void Attribute::PopulateMaps(const DataColumn& col)
 {
-    for (size_t i = 0; i < col.size; ++i)
+    /*for (size_t i = 0; i < col.size; ++i)
     {
         bool contains = false;
         std::map<float, std::string>::iterator mapIt = defined.begin();
@@ -51,10 +51,10 @@ void Attribute::PopulateMaps(const CSVColumn& col)
             }
             totalUnique++;
         }
-    }
+    }*/
 }
 
-Attribute::Attribute(const CSVColumn& col)
+Attribute::Attribute(const DataColumn& col)
 {
     totalUnique = 0;
     name = col.Name();

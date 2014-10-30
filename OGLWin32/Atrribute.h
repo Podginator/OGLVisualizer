@@ -1,11 +1,11 @@
 #pragma once
 #include <map>
-#include "CSVColumn.h"
+#include "DataColumn.h"
 #include <iterator>
 class Attribute
 {
 public:
-    Attribute(const CSVColumn& col);
+    Attribute(const DataColumn& col);
     Attribute(){}
     float GetMean(){ return 0; }
     float GetMode(){ return 0; }
@@ -24,7 +24,7 @@ private:
 
     std::string name; 
 
-    void PopulateMaps(const CSVColumn& col);
+    void PopulateMaps(const DataColumn& col);
 
     std::map<float, size_t> occuranceMap;
     std::map<float, std::string> defined;

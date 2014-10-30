@@ -92,8 +92,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Atrribute.h" />
+    <ClInclude Include="DataTable.h" />
     <ClInclude Include="GLFont.h" />
-    <ClInclude Include="CSVColumn.h" />
+    <ClInclude Include="DataColumn.h" />
     <ClInclude Include="OGLBarChart.h" />
     <ClInclude Include="OGLData.h" />
     <ClInclude Include="OGLChart.h" />

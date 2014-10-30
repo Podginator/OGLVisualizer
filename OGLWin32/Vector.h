@@ -183,7 +183,7 @@ public:
 
 
 //There is currently an ICE for variadic constructors and Arrays. This means I've created an Initializer for each
-//Implementation. This is piss poor.
+//Implementation.
 //TODO: Look for a work around?
 template<typename T>
 class Vector<T, 2> : public VectBase<T, 2>

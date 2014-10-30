@@ -168,14 +168,17 @@
     <ClInclude Include="Utility.h">
       <Filter>Header Files\Misc</Filter>
     </ClInclude>
-    <ClInclude Include="CSVColumn.h">
-      <Filter>Header Files\Parser</Filter>
-    </ClInclude>
     <ClInclude Include="Atrribute.h">
       <Filter>Header Files\OGLData</Filter>
     </ClInclude>
     <ClInclude Include="OGLBarChart.h">
       <Filter>Header Files\OGLCharts</Filter>
+    </ClInclude>
+    <ClInclude Include="DataColumn.h">
+      <Filter>Header Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="DataTable.h">
+      <Filter>Header Files\Parser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
