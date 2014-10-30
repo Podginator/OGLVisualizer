@@ -8,13 +8,10 @@ void CSVParser::ResetStream(std::ifstream& stream)
 
 std::vector<CSVColumn> CSVParser::GetCols(std::ifstream& stream)
 {
-
-
     size_t size = std::count(
         std::istreambuf_iterator<char>(stream),
         std::istreambuf_iterator<char>{},
         '\n');
-
     ResetStream(stream);
 
     std::string first, second;
@@ -42,38 +39,20 @@ std::vector<CSVColumn> CSVParser::GetCols(std::ifstream& stream)
         {
             //A string
             //so
-            cols[i] = CSVColumn(size);//Of string;
+            cols[i] = CSVColumn(size, CSVColumn::Type::String);//Of string;
 
         }
         else if (*h || *line)
         {
             hasHeader = true;
-            //Do check
-            if ((float)std::stoi(def[i]) == std::stof(def[i]))
-            {
-                //int
-                cols[i] = CSVColumn(size);//Of int;
-            }
-            else
-            {
-                cols[i] = CSVColumn(size);//Of float
-            }
+            cols[i] = CSVColumn(size, CSVColumn::Type::Numerical);//Of int;
 
         }
         else
         {
-            if ((float)std::stoi(def[i]) == std::stof(def[i]))
-            {
-                //int
-                cols[i] = CSVColumn(size);//Of int;
-            }
-            else
-            {
-                cols[i] = CSVColumn(size);//Of float
-            }
+            cols[i] = CSVColumn(size,  CSVColumn::Type::Numerical);//Of int;
         }
     }
-
 
     for (size_t i = 0; i < header.size(); i++)
     {
@@ -86,11 +65,9 @@ std::vector<CSVColumn> CSVParser::GetCols(std::ifstream& stream)
     //And move the pointer to the second line if there's a header.
     if (hasHeader)
     {
-        std::getline(stream, first);
+        std::getline(stream, first);                                                                                                                                   
     }
 
-
-    //Don't necessarily need to have the bool here.
     return cols;
 }
 
@@ -101,19 +78,6 @@ std::vector<CSVColumn> CSVParser::Parse(std::tr2::sys::wpath opened)
         
     
     std::vector<CSVColumn> cols = GetCols(stream);
-
-    /*stream.clear();
-    stream.seekg(0, std::ios::beg);
-
-    std::vector<std::vector<std::string>> res(
-        std::count(
-            std::istreambuf_iterator<char>(stream),
-            std::istreambuf_iterator<char>{},
-            '\n')+1
-        );
-
-    stream.clear();
-    stream.seekg(0, std::ios::beg);*/
     
     std::string line;
     
@@ -140,6 +104,7 @@ std::vector<std::string> CSVParser::SplitLine(const std::string& newline)
 
     for (std::size_t i = 0; std::getline(stream, val, ','); ++i)
     {
+        std::cout << val << std::endl;
         res[i] = val;
     }
 
@@ -156,6 +121,7 @@ void CSVParser::AddToCols(const std::string& newline, std::vector<CSVColumn>& co
 
     for (std::size_t i = 0; std::getline(stream, val, ','); ++i)
     {
+        std::cout << val << std::endl;
         cols[i].Add(val);
     }
 }

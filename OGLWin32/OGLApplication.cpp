@@ -4,6 +4,7 @@
 #include <Windowsx.h>
 #include "CSVParser.h"
 #include <thread>
+#include "OGLData.h"
 
 OGLApplication* OGLApplication::s_oglapp = NULL;
 
@@ -149,7 +150,7 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
             DrawMenuBar(hwnd);
             FileOpen openfile(std::map < LPWSTR, LPWSTR > {{ L"CSV files", L"*.csv" }, { L"ALL FILES", L"WHAFGs" }});
             if (openfile.ShowDialog()) {
-                std::vector<CSVColumn> res = CSVParser::Parse(openfile.getFile());
+                OGLData(CSVParser::Parse(openfile.getFile()));
             }
             EnableMenuItem(menu, FileMenu, MF_ENABLED);
             EnableMenuItem(menu, ChartMenu, MF_ENABLED);

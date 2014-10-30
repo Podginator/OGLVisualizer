@@ -91,9 +91,10 @@
     <None Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CSVCell.h" />
+    <ClInclude Include="Atrribute.h" />
     <ClInclude Include="GLFont.h" />
     <ClInclude Include="CSVColumn.h" />
+    <ClInclude Include="OGLBarChart.h" />
     <ClInclude Include="OGLData.h" />
     <ClInclude Include="OGLChart.h" />
     <ClInclude Include="OGLCircle.h" />
@@ -118,6 +119,7 @@
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Attribute.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="CSVParser.cpp" />
     <ClCompile Include="FileOpen.cpp" />

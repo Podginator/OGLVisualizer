@@ -14,7 +14,7 @@ protected:
     OGLShape* shapes; 
     OGLText* text;
     OGLRectangle _border;
-    OGLData _data;
+    std::vector<CSVColumn> data;
     size_t _elemSize;
     void RenderAxis();
     void RenderMisc();
@@ -23,7 +23,9 @@ protected:
     void InitElements();
 
 public:
-    OGLChart(OGLData data) : _data(data){};
+    template<typename... Args>
+    OGLChart(Args const&... args) :data{args...}{}
+
     void Render();
 
     bool MouseMove(int x, int y)
