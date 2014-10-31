@@ -69,9 +69,11 @@ public:
         GetBoundingBox();
     }
 
+    OGLShape() :rgb(Color(1.0, 1.0, 1.0)){ vertexs = new Vec2f[1]; }
+
     ~OGLShape()
     {
-        delete[] vertexs;
+        //delete[] vertexs;
     }
 
     virtual void Render();

@@ -1,6 +1,7 @@
 #include "OGLWindow.h"
 #include "Resource.h"
 #include <gl/GL.h>
+#include "CSVParser.h"
 
 
 
@@ -119,7 +120,8 @@ BOOL OGLWindow::InitWindow(HINSTANCE hInstance, int width, int height)
 
     //Instantiate a Renderable as OGLRectangle
     
-    m_chart = new OGLPieChart(new DataColumnString(20));
+    m_chart = new OGLPieChart(CSVParser::Parse(std::tr2::sys::wpath(L"C:/Users/podgi_000/Google Drive/dataset/csv.csv"))[0]);
+
     return TRUE;
 }
 

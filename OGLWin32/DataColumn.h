@@ -53,7 +53,6 @@ public:
         while (mapIt != res.end())
         {
             mapIt->second /= size;
-            mapIt->second *= 100;
             mapIt++;
         }
 
@@ -103,7 +102,7 @@ public:
         while (mapIt != res.end())
         {
             mapIt->second /= size;
-            mapIt->second *= 100;
+
             mapIt++;
         }
 
