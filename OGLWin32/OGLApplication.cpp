@@ -3,6 +3,7 @@
 #include "Resource.h"
 #include <Windowsx.h>
 #include "CSVParser.h"
+#include "DataTable.h"
 #include <thread>
 
 
@@ -150,7 +151,9 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
             DrawMenuBar(hwnd);
             FileOpen openfile(std::map < LPWSTR, LPWSTR > {{ L"CSV files", L"*.csv" }, { L"ALL FILES", L"WHAFGs" }});
             if (openfile.ShowDialog()) {
-                CSVParser::Parse(openfile.getFile());
+                DataTable table= CSVParser::Parse(openfile.getFile());
+
+                table[2]->GetDistribution();
             }
             EnableMenuItem(menu, FileMenu, MF_ENABLED);
             EnableMenuItem(menu, ChartMenu, MF_ENABLED);

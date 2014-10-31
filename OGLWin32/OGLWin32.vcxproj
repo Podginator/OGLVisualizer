@@ -103,6 +103,7 @@
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="OGLArc.h" />
     <ClInclude Include="OGLLine.h" />
+    <ClInclude Include="OGLPieChart.h" />
     <ClInclude Include="OGLShape.h" />
     <ClInclude Include="OGLText.h" />
     <ClInclude Include="Listener.h" />
@@ -118,7 +119,6 @@
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Attribute.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="CSVParser.cpp" />
     <ClCompile Include="FileOpen.cpp" />

@@ -3,9 +3,12 @@
 #include <Windows.h>
 #include <string>
 #include "FileOpen.h"
-#include "OGLRectangle.h"
-#include "OGLShape.h"
-#include "OGLArc.h"
+#include "OGLChart.h"
+#include "Matrix.h"
+#include "Vector.h"
+#include "MathHelper.h"
+#include "Utility.h"
+#include "OGLPieChart.h"
 
 class OGLWindow
 {
@@ -18,8 +21,7 @@ class OGLWindow
         int            m_height;
         
         //This is not an ideal place to hold geometry data
-        OGLShape   *m_rect;
-        OGLShape  *m_rec2;
+        OGLChart   *m_chart;
 
 protected:
 
