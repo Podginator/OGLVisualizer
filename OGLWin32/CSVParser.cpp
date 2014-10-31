@@ -57,6 +57,7 @@ DataTable CSVParser::GetCols(std::ifstream& stream)
     {
         //Then loop again adding names to the columns
         cols[i]->Name(hasHeader ? header[i] : "Value" + std::to_string(i));
+        cols[i]->size = hasHeader ? size - 1 : size;
     }
 
     //Reset the strream
