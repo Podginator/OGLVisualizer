@@ -9,7 +9,6 @@
 #include "DataColumn.h"
 #include <vector>
 
-
 //Initial Base class where Chart will be founded. 
 class OGLChart : public Listener, public Renderable
 {
@@ -29,20 +28,8 @@ protected:
     bool MouseInside(int x, int y){ return true; }
 
 public:
-    OGLChart()
-    {
-        _border = new OGLRectangle(Vec2f(-375, -250), Color(1.0, 1.0, 1.0), 500, 750);
-        _elemSize = 0;
-    }
-
-    void Render()
-    {
-        _border->Render();
-        for (size_t i = 0; i < _elemSize; i++)
-        {
-            shapes[i].Render();
-        }
-    }
+    OGLChart();
+    void Render();
 
     bool MouseMove(int x, int y)
     {

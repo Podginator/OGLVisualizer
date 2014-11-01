@@ -119,7 +119,6 @@ void CSVParser::AddToCols(const std::string& newline, DataTable& cols)
 
     for (std::size_t i = 0; std::getline(stream, val, ','); ++i)
     {
-        std::cout << val << std::endl;
         cols[i]->Add(val);
     }
 }

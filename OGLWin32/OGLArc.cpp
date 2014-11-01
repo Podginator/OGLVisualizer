@@ -4,7 +4,7 @@
 
 
 OGLArc::OGLArc(const Vec2f& position, const Color& color, float startTheta, float endTheta, float radius)
-:OGLShape(position, color, (int)endTheta+2, GL_TRIANGLE_FAN)
+:OGLShape(position, color, (int)(endTheta-startTheta)+3, GL_TRIANGLE_FAN)
 {
     _startTheta = startTheta;
     _endTheta = endTheta;
@@ -25,12 +25,16 @@ void OGLArc::CreateArc()
     vertexs[0] = _position; 
     //Vertex one will be Radius away from the first point, so we assume it's 0deg away,
     //Which is the same as moving the Y _Radius away
-    for (int i = 0; i <= _endTheta; i++)
+    int i;
+    for (i = 0; i <= (_endTheta-_startTheta)-1.0f; i++)
     {
         //We then repeat this process 
-        vertexs[1 + i] = MathHelper::Matrix2Dtransform(-(float)(_startTheta + i)) * Vec2f(0, _radius);
+        vertexs[1 + i] = MathHelper::Matrix2Dtransform(-(_startTheta + i)) * Vec2f(0, _radius);
         vertexs[1 + i] += _position;
     }
+
+    vertexs[1+i] = MathHelper::Matrix2Dtransform(-_endTheta) * Vec2f(0, _radius);
+    vertexs[1+i] += _position;
 
 }
 
@@ -50,9 +54,6 @@ bool OGLArc::MouseInside(int x, int y)
         float angle = atan2f(_radius, 0) - atan2f(y - _position.Y(), x - _position.X());
         angle *= 360 / (2 * MathHelper::Pi());
         angle = angle < 0 ? angle + 360 : angle;
-
-
-        printf("-----%f-----", angle);
         //Then we can return true of false
         if (angle >= _startTheta && angle <= (_endTheta+_startTheta))
         {

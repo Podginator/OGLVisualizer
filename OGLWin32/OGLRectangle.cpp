@@ -12,6 +12,7 @@ OGLShape(position, color, 4, GL_QUADS)
     GetBoundingBox();
 }
 
+OGLRectangle::~OGLRectangle(){}
 
 void OGLRectangle::CenterRotate(float deg)
 {

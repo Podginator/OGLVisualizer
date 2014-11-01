@@ -218,6 +218,12 @@
     <ClCompile Include="OGLText.cpp">
       <Filter>Source Files\OpenGL Primitives\Font</Filter>
     </ClCompile>
+    <ClCompile Include="OGLChart.cpp">
+      <Filter>Source Files\OGLChart</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLPieChart.cpp">
+      <Filter>Source Files\OGLChart</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OGLWin32.rc">
