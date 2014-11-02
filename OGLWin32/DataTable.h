@@ -6,10 +6,11 @@ class DataTable
 public:
     DataTable(size_t _size);
     ~DataTable();
-    std::size_t size;
-    DataColumn* operator[](size_t index){ return cols[index]; }
-    DataColumn* operator[](size_t index) const{ return cols[index]; }
-private:
-    std::vector<DataColumn*> cols;
 
+    void Add(DataColumn* col);
+    std::size_t size;
+    DataColumn* operator[](size_t index);
+    DataColumn* operator[](size_t index) const;
+protected:
+    std::vector<DataColumn*> cols;
 };

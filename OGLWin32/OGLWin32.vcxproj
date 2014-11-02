@@ -121,6 +121,8 @@
   <ItemGroup>
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="CSVParser.cpp" />
+    <ClCompile Include="DataColumn.cpp" />
+    <ClCompile Include="DataTable.cpp" />
     <ClCompile Include="FileOpen.cpp" />
     <ClCompile Include="GLFont.cpp" />
     <ClCompile Include="MathHelper.cpp" />
