@@ -61,9 +61,6 @@
     <Filter Include="Resource Files\Fonts">
       <UniqueIdentifier>{fcf2986d-c3c8-4a3a-bbbc-099a81b3ad02}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\OGLData">
-      <UniqueIdentifier>{b8049b0a-f3a2-461b-a954-bb653a36be45}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\OGLChart">
       <UniqueIdentifier>{4f67008d-0f35-4a8b-b95b-c4a68f232e06}</UniqueIdentifier>
     </Filter>
@@ -173,6 +170,9 @@
     </ClInclude>
     <ClInclude Include="OGLPieChart.h">
       <Filter>Header Files\OGLCharts</Filter>
+    </ClInclude>
+    <ClInclude Include="DataCell.h">
+      <Filter>Header Files\Parser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

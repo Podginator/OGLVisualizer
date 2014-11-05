@@ -91,6 +91,7 @@
     <None Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DataCell.h" />
     <ClInclude Include="DataTable.h" />
     <ClInclude Include="GLFont.h" />
     <ClInclude Include="DataColumn.h" />

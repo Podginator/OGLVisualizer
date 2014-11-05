@@ -25,5 +25,4 @@ public:
 private:
     std::tr2::sys::wpath openedFile;
     size_t filterSize;
-    //std::string ConvertToString(FILE* file);
 };

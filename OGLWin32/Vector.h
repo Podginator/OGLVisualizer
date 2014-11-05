@@ -3,7 +3,7 @@
 #include <math.h>
 #include <array>
 
-template<typename T, size_t size>
+template<typename T, size_t size, typename CRTP>
 class VectBase
 {
 protected:
@@ -40,14 +40,19 @@ public:
     T& operator [](std::size_t const& index){return data[index];}
     const T& operator [](std::size_t const& index) const { return data[index]; }
 
-
-    VectBase& operator= (const VectBase& right) { Copy(right); return *this; };
-    //Basic Operators.
-
-
-    VectBase operator+(const VectBase& right) const
+    VectBase& operator=(const VectBase& right)
     {
-        VectBase<CRTP,T,size> res;
+        if (this != &right)
+        {
+            Copy(right);
+        }
+
+        return *this;
+    }
+
+    CRTP operator+(const VectBase& right) const
+    {
+        CRTP res;
         for (size_t i = 0; i < size; i++)
         {
             res[i] = data[i] + right[i];
@@ -56,9 +61,9 @@ public:
         return res;
     }
 
-    VectBase operator-(const VectBase& right) const
+    CRTP operator-(const VectBase& right) const
     {
-        VectBase<CRTP, T, size> res;
+        CRTP res;
         for (size_t i = 0; i < size; i++)
         {
             res[i] = data[i] - right[i];
@@ -67,9 +72,9 @@ public:
         return res;
 
     }
-    VectBase operator*(const VectBase& right) const
+    CRTP operator*(const VectBase& right) const
     {
-        VectBase<CRTP, T, size> res;
+        VectBase<T, size, CRTP> res;
         for (size_t i = 0; i < size; i++)
         {
             res[i] = data[i] * right[i];
@@ -78,38 +83,25 @@ public:
         return res;
 
     }
-    VectBase& operator+=(const VectBase& right)
+    void operator+=(const VectBase& right)
     {
         for (size_t i = 0; i < size; i++)
         {
             data[i] += right[i];
         }
-
-        return *this;
     }
-    VectBase& operator-=(const VectBase& right)
+    void operator-=(const VectBase& right)
     {
         for (size_t i = 0; i < size; i++)
         {
             data[i] -= right[i];
         }
-
-        return *this;
-    }
-    VectBase& operator*=(const VectBase& right)
-    {
-        for (size_t i = 0; i < size; i++)
-        {
-            data[i] *= right[i];
-        }
-
-        return *this;
     }
 
     //Scalar
-    VectBase operator*(const float right) const
+    CRTP operator*(const float right) const
     {
-        VectBase<CRTP, T, size> res;
+        CRTP res;
 
         for (size_t i = 0; i < size; i++)
         {
@@ -118,9 +110,10 @@ public:
 
         return res;
     }
-    VectBase operator/(const float right) const
+
+    CRTP operator/(const float right) const
     {
-        VectBase<CRTP, T, size> res;
+        CRTP res;
 
         for (size_t i = 0; i < size; i++)
         {
@@ -171,14 +164,13 @@ public:
 
 
 template<typename T, size_t size> 
-class Vector : public VectBase<T, size>
+class Vector : public VectBase<T, size, Vector<T,size>>
 {
 public:
     template<typename... Args>
     Vector(Args const&... args) :VectBase(args...)
     {
     }
-
 };
 
 
@@ -186,7 +178,7 @@ public:
 //Implementation.
 //TODO: Look for a work around?
 template<typename T>
-class Vector<T, 2> : public VectBase<T, 2>
+class Vector<T, 2> : public VectBase<T, 2, Vector<T,2>>
 {
 public:
     Vector(T x, T y) :VectBase(x,y)
@@ -214,7 +206,7 @@ public:
 };
 
 template<typename T>
-class Vector<T, 3> : public VectBase<T, 3>
+class Vector<T, 3> : public VectBase<T, 3, Vector<T, 3>>
 {
 public:
     Vector(T x, T y, T z) :VectBase(x, y, z)
@@ -261,7 +253,7 @@ public:
 };
 
 template<typename T>
-class Vector<T, 4> : public VectBase<T, 4>
+class Vector<T, 4> : public VectBase<T, 4, Vector<T, 4>>
 {
 public:
     Vector(T x, T y, T z, T w) :VectBase(x, y, z, w)

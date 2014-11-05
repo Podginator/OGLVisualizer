@@ -31,5 +31,19 @@ void OGLRectangle::CenterRotate(float deg)
 
     //We've changed the shape, so we have to reget the binding box.
     GetBoundingBox();
+}
 
+void OGLRectangle::Scale(float scale)
+{
+    for (size_t i = 0; i < _size; i++)
+    {
+        vertexs[i] -= Vec2f((_width*0.5f), (_height*0.5f));
+    }
+
+    OGLShape::Scale(scale);
+
+    for (size_t i = 0; i < _size; i++)
+    {
+        vertexs[i] += Vec2f((_width*0.5f), (_height*0.5f)) * scale;
+    }
 }

@@ -26,7 +26,7 @@ void OGLArc::CreateArc()
     //Vertex one will be Radius away from the first point, so we assume it's 0deg away,
     //Which is the same as moving the Y _Radius away
     int i;
-    for (i = 0; i <= (_endTheta-_startTheta)-1.0f; i++)
+    for (i = 0; i <= (_endTheta-_startTheta); i++)
     {
         //We then repeat this process 
         vertexs[1 + i] = MathHelper::Matrix2Dtransform(-(_startTheta + i)) * Vec2f(0, _radius);

@@ -30,6 +30,18 @@ void OGLShape::CenterRotate(float deg)
     GetBoundingBox();
 }
 
+void OGLShape::Scale(float scale)
+{
+    for (size_t i = 0; i < _size; i++)
+    {
+        vertexs[i] -= _position;
+        //Then scale.
+        vertexs[i] = vertexs[i] * scale;
+        //Then move back.
+        vertexs[i] += _position * scale;
+    }
+}
+
 void OGLShape::Render()
 {
 

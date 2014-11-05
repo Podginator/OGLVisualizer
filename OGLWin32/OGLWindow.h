@@ -8,21 +8,20 @@
 #include "Vector.h"
 #include "MathHelper.h"
 #include "Utility.h"
+#include "CSVParser.h"
+#include "OGLChart.h"
 #include "OGLPieChart.h"
 
 class OGLWindow
 {
     private:
-        HWND        m_hwnd;                //handle to a window
-        HDC            m_hdc;                //handle to a device context
-        HGLRC        m_hglrc;            //handle to a gl rendering context
+        HWND m_hwnd;                //handle to a window
+        HDC m_hdc;                //handle to a device context
+        HGLRC m_hglrc;            //handle to a gl rendering context
 
-        int            m_width;
-        int            m_height;
-        
-        //This is not an ideal place to hold geometry data
-        OGLChart   *m_chart;
-
+        int m_width;
+        int m_height;
+     
 protected:
 
         HGLRC CreateOGLContext (HDC hdc);
@@ -30,18 +29,22 @@ protected:
         void InitOGLState();
         void SetClientSize();
 
-    public:
-                    OGLWindow();
-                    OGLWindow(HINSTANCE hInstance, int width, int height);
-                    ~OGLWindow();
+public:
+        OGLWindow();
+        OGLWindow(HINSTANCE hInstance, int width, int height);
+        ~OGLWindow();
 
-        void        Render(bool thread = false);
-        void        Resize( int width, int height );
-        void        SetVisible( BOOL visible );
-        void        DestroyOGLWindow();
+        void Render(bool thread = false);
+        void Resize( int width, int height );
+        void SetVisible( BOOL visible );
+        void DestroyOGLWindow();
         //Necessary for Windows 8.
-        BOOL        InitWindow(HINSTANCE hInstance, int width, int height);
-        BOOL        MouseLBDown ( int x, int y );
-        BOOL        MouseLBUp ( int x, int y );
-        BOOL        MouseMove ( int x, int y );
+
+        std::vector<OGLChart*> charts;
+        DataTable data;
+
+        BOOL InitWindow(HINSTANCE hInstance, int width, int height);
+        BOOL MouseLBDown ( int x, int y );
+        BOOL MouseLBUp ( int x, int y );
+        BOOL MouseMove ( int x, int y );
 };

@@ -122,16 +122,17 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
 
     static UINT FileMenu = 0;
     static UINT ChartMenu = 0;
+    static UINT DataMenu = 0;
 
     switch (msg) {
         //Create Menus.
     case WM_CREATE:
         menu = CreateMenu();
-
         popmenu = CreatePopupMenu();
+
         FileMenu = UINT(popmenu);
-        AppendMenu(popmenu, MF_STRING, ID_CREATE_FILE, L"Open CSV File");
-        AppendMenu(menu, MF_STRING | MF_POPUP, FileMenu, L"&File");
+        InsertMenu(popmenu, 1, MF_STRING, ID_CREATE_FILE, L"OpenCSV");
+        InsertMenu(menu, 1, MF_STRING | MF_POPUP, FileMenu, L"&File");
 
         popmenu = CreatePopupMenu();
         ChartMenu = UINT(popmenu);
@@ -140,27 +141,50 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
         AppendMenu(popmenu, MF_STRING, ID_SCATTERPLOT3D, L"Scatterplot 3d View");
         AppendMenu(popmenu, MF_STRING, ID_PIECHART, L"Pie Chart View");
         AppendMenu(menu, MF_STRING | MF_POPUP, ChartMenu, L"&Chart Views");
-
         SetMenu(hwnd, menu);
+        MENUINFO mi;
+        memset(&mi, 0, sizeof(mi));
+        mi.cbSize = sizeof(mi);
+        mi.fMask = MIM_STYLE;
+        mi.dwStyle = MNS_NOTIFYBYPOS;
+        SetMenuInfo(menu, &mi);
         break;
-    case WM_COMMAND:
-        switch (LOWORD(wparam)) {
-        case ID_CREATE_FILE:
-            EnableMenuItem(menu, FileMenu, MF_GRAYED);
-            EnableMenuItem(menu, ChartMenu, MF_GRAYED);
-            DrawMenuBar(hwnd);
-            FileOpen openfile(std::map < LPWSTR, LPWSTR > {{ L"CSV files", L"*.csv" }, { L"ALL FILES", L"WHAFGs" }});
-            if (openfile.ShowDialog()) {
-                DataTable table= CSVParser::Parse(openfile.getFile());
+    case WM_MENUCOMMAND:
+            if (lparam == FileMenu)
+            {
+                EnableMenuItem(menu, FileMenu, MF_GRAYED);
+                EnableMenuItem(menu, ChartMenu, MF_GRAYED);
+                DrawMenuBar(hwnd);
 
-                table[2]->GetDistribution();
+                if (s_oglapp->GetApplicationWindow()->data.size != 0)
+                {
+                    s_oglapp->GetApplicationWindow()->data.Destroy();
+                    RemoveMenu(menu, DataMenu, MF_BYCOMMAND);
+                }
+
+                FileOpen openfile(std::map < LPWSTR, LPWSTR > {{ L"CSV files", L"*.csv" }, { L"ALL FILES", L"WHAFGs" }});
+                if (openfile.ShowDialog())
+                {
+                    s_oglapp->GetApplicationWindow()->data = CSVParser::Parse(openfile.getFile());
+
+                    popmenu = CreatePopupMenu();
+                    DataMenu = (UINT)popmenu;
+                    for (int i = 0; i < s_oglapp->GetApplicationWindow()->data.size; i++)
+                    {
+                        InsertMenuA(popmenu, i, MF_BYPOSITION, 9003, s_oglapp->GetApplicationWindow()->data[i].Name().c_str());
+                    }
+                }
+                AppendMenu(menu, MF_STRING | MF_POPUP, DataMenu, L"&Add DataSource");
+                EnableMenuItem(menu, FileMenu, MF_ENABLED);
+                EnableMenuItem(menu, ChartMenu, MF_ENABLED);
+                DrawMenuBar(hwnd);
             }
-            EnableMenuItem(menu, FileMenu, MF_ENABLED);
-            EnableMenuItem(menu, ChartMenu, MF_ENABLED);
-            DrawMenuBar(hwnd);
 
-            break;
-        }
+            if (lparam == DataMenu)
+            {
+                s_oglapp->GetApplicationWindow()->charts[0]->AddDataSource(&s_oglapp->GetApplicationWindow()->data[wparam]);
+            }
+
         break;
 
         case WM_SIZE:

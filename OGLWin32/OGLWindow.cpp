@@ -1,9 +1,6 @@
 #include "OGLWindow.h"
 #include "Resource.h"
 #include <gl/GL.h>
-#include "CSVParser.h"
-
-
 
 OGLWindow::OGLWindow()
 {
@@ -13,9 +10,7 @@ OGLWindow::OGLWindow()
 OGLWindow::~OGLWindow()
 {
     DestroyOGLWindow();
-    
-    //Clean up the renderable
-    delete m_chart;
+    //delete m_chart;
 }
 
 OGLWindow::OGLWindow(HINSTANCE hInstance, int width, int height)
@@ -118,9 +113,7 @@ BOOL OGLWindow::InitWindow(HINSTANCE hInstance, int width, int height)
     m_width = clientRect.right;
     m_height = clientRect.bottom;
 
-    //Instantiate a Renderable as OGLRectangle
-    
-    m_chart = new OGLPieChart(CSVParser::Parse(std::tr2::sys::wpath(L"C:/Users/podgi_000/Google Drive/dataset/csv.csv"))[0]);
+    charts.push_back(new OGLPieChart());
 
     return TRUE;
 }
@@ -133,15 +126,11 @@ void OGLWindow::SetVisible ( BOOL visible )
 void OGLWindow::Render(bool thread)
 {
 
-    //Debug(thread ? "Thread" : "Normal");
-
-    Renderable* prenderable = static_cast<Renderable*>(m_chart);
-
     glClear(GL_COLOR_BUFFER_BIT);
 
     glLoadIdentity();
 
-    prenderable->Render();
+    charts[0]->Render();
 
     glFlush();
 
@@ -188,16 +177,16 @@ BOOL OGLWindow::MouseLBDown ( int x, int y )
 
 BOOL OGLWindow::MouseLBUp ( int x, int y )
 {
-    Listener *plistener = static_cast<Listener*>(m_chart);
+    //Listener *plistener = static_cast<Listener*>(charts[0]);
 
-    plistener->MouseLBDown(x - (m_width >> 1), (-y) - (-m_height >> 1));
+    //plistener->MouseLBDown(x - (m_width >> 1), (-y) - (-m_height >> 1));
 
     return TRUE;
 }
 
 BOOL OGLWindow::MouseMove ( int x, int y )
 {
-    Listener *plistener = static_cast<Listener*>(m_chart);
-    plistener->MouseMove(x - (m_width >> 1), (-y) - (-m_height >> 1));
+    //Listener *plistener = static_cast<Listener*>(charts[0]);
+    //plistener->MouseMove(x - (m_width >> 1), (-y) - (-m_height >> 1));
     return TRUE;
 }

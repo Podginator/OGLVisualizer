@@ -1,11 +1,11 @@
 #pragma once
 #include "OGLChart.h"
-#include <array>
 
 class OGLPieChart : public OGLChart
 {
 public:
     OGLPieChart(DataColumn* col);
+    OGLPieChart();
     void AddDataSource(DataColumn* col);
     void InitElements();
 

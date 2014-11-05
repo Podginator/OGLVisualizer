@@ -27,6 +27,8 @@ DataTable CSVParser::GetCols(std::ifstream& stream)
     DataTable cols(header.size());
 
     //Here we loop through and determine the types we'll use AND if there's a header.
+    size = hasHeader ? size - 1 : size;
+
     for (size_t i = 0; i < header.size(); i++)
     {
         char * h;
@@ -35,28 +37,18 @@ DataTable CSVParser::GetCols(std::ifstream& stream)
         float convH = std::strtof(header[i].c_str(), &h);
         float convL = std::strtof(def[i].c_str(), &line);
 
-        if (*h && *line)
-        {
-            //A string
-            //so
-            cols.Add(new DataColumnString(size));
-        }
-        else if (*h || *line)
+        if (*h || *line)
         {
             hasHeader = true;
-            cols.Add(new DataColumnFloat(size));
-
         }
-        else
-        {
-            cols.Add(new DataColumnFloat(size));
-        }
+        
+        cols.Add(DataColumn(size));
     }
 
     for (size_t i = 0; i < header.size(); i++)
     {
         //Then loop again adding names to the columns
-        cols[i]->Name(hasHeader ? header[i] : "Value" + std::to_string(i));
+        cols[i].Name(hasHeader ? header[i] : "Value" + std::to_string(i));
     }
 
     //Reset the strream
@@ -91,7 +83,7 @@ DataTable CSVParser::Parse(std::tr2::sys::wpath opened)
 std::vector<std::string> CSVParser::SplitLine(const std::string& newline)
 {
     //Preallocate size.
-    static std::size_t const Size = std::count(newline.begin(), newline.end(), ',');
+    std::size_t const Size = std::count(newline.begin(), newline.end(), ',');
 
     std::vector<std::string> res(Size+1); 
 
@@ -119,6 +111,6 @@ void CSVParser::AddToCols(const std::string& newline, DataTable& cols)
 
     for (std::size_t i = 0; std::getline(stream, val, ','); ++i)
     {
-        cols[i]->Add(val);
+        cols[i].Add(val);
     }
 }

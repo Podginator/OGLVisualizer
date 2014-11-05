@@ -11,4 +11,5 @@ class OGLRectangle : public OGLShape
                         ~OGLRectangle();
 
         void            CenterRotate(float deg);
+        void            Scale(float scale);
 };

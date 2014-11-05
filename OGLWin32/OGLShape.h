@@ -79,6 +79,7 @@ public:
     virtual void Render();
     virtual void Rotate(float deg);
     virtual void CenterRotate(float deg);
+    virtual void Scale(float deg);
     bool MouseInside(int x, int y);
 
     bool MouseMove(int x, int y)

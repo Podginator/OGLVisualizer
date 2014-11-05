@@ -11,24 +11,59 @@ void DataColumn::Name(std::string name)
     header = name;
 }
 
-DataColumnString::DataColumnString(size_t _size) :DataColumn(_size)
+DataColumn::DataColumn(size_t _size) :size(_size), index(0)
 {
-    data = std::vector<std::string>(_size);
+    data = std::vector<DataCell>(_size);
 }
 
-std::map<std::string, float> DataColumnString::GetDistribution()
+void DataColumn::Add(std::string cell)
 {
-    std::map<std::string, float> res;
+    char * line;
+    float convL = std::strtof(cell.c_str(), &line);
 
-    for (size_t i = 0; i < size; i++)
+    if (*line)
     {
-        if (res.count(data[i]) == 1)
+        data[index++] = DataCell(cell);
+    }
+    else
+    {
+        if (float(int(convL)) == convL)
         {
-            res[data[i]]++;
+            data[index++] = DataCell((int(convL)));
         }
         else
         {
-            res[data[i]] = 1;
+            data[index++] = DataCell((float(convL)));
+        }
+    }
+}
+
+std::map<std::string, float> DataColumn::GetDistribution()
+{
+    std::map<std::string, float> res;
+    std::string identifier;
+    for (size_t i = 0; i < size; i++)
+    {
+        if (data[i].null()){ break; }
+
+        if ((data[i].is<std::string>()))
+        {
+            identifier = data[i].as<std::string>();
+        }
+        else if (data[i].is<float>())
+        {
+            identifier = std::to_string(data[i].as<float>());
+        }
+        else{
+            identifier = std::to_string(data[i].as<int>());
+        }
+        if (res.count(identifier) == 1)
+        {
+            res[identifier]++;
+        }
+        else
+        {
+            res[identifier] = 1;
         }
     }
 
@@ -42,82 +77,3 @@ std::map<std::string, float> DataColumnString::GetDistribution()
     return res;
 }
 
-void DataColumnString::Add(std::string cell)
-{
-    data[index++] = cell;
-}
-
-
-DataColumnFloat::DataColumnFloat(size_t _size) :DataColumn(_size)
-{
-    data = std::vector<float>(_size);
-}
-
-void DataColumnFloat::Add(std::string cell)
-{
-    data[index++] = std::stof(cell);
-}
-
-std::map<std::string, float> DataColumnFloat::GetDistribution()
-{
-    std::map<std::string, float> res;
-
-    for (size_t i = 0; i < size; i++)
-    {
-        if (res.count(std::to_string(data[i])) == 1)
-        {
-            res[std::to_string(data[i])]++;
-        }
-        else
-        {
-            res[std::to_string(data[i])] = 1;
-        }
-    }
-
-    std::map<std::string, float>::iterator mapIt = res.begin();
-    while (mapIt != res.end())
-    {
-        mapIt->second /= size;
-
-        mapIt++;
-    }
-
-    return res;
-}
-
-DataColumnInt::DataColumnInt(size_t _size) :DataColumn(_size)
-{
-    data = std::vector<int>(_size);
-}
-
-void DataColumnInt::Add(std::string cell)
-{
-    data[index++] = std::stoi(cell);
-}
-
-std::map<std::string, float> DataColumnInt::GetDistribution()
-{
-    std::map<std::string, float> res;
-
-    for (size_t i = 0; i < size; i++)
-    {
-        if (res.count(std::to_string(data[i])) == 1)
-        {
-            res[std::to_string(data[i])]++;
-        }
-        else
-        {
-            res[std::to_string(data[i])] = 1;
-        }
-    }
-
-    std::map<std::string, float>::iterator mapIt = res.begin();
-    while (mapIt != res.end())
-    {
-        mapIt->second /= size;
-        mapIt++;
-    }
-
-    return res;
-
-}

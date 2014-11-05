@@ -8,6 +8,7 @@
 #include "OGLCircle.h"
 #include "DataColumn.h"
 #include <vector>
+#include <array>
 
 //Initial Base class where Chart will be founded. 
 class OGLChart : public Listener, public Renderable
@@ -15,21 +16,22 @@ class OGLChart : public Listener, public Renderable
 protected:
     //We need to define an entry point for all the charts.
     OGLShape* shapes; 
-    OGLText* text;
-    OGLRectangle* _border;
+    OGLRectangle _border;
+    std::vector<OGLText> text;
     std::vector<DataColumn*> data;
     size_t _elemSize;
-    void RenderAxis();
-    void RenderMisc();
-    void RenderShapes();
-    void RenderText();
     void InitElements();
-    void AddDataSource(DataColumn* _data){ data.push_back(_data); }
+   
     bool MouseInside(int x, int y){ return true; }
 
 public:
     OGLChart();
-    void Render();
+    virtual void Render();
+    virtual void AddDataSource(DataColumn* _data){ data.push_back(_data); }
+
+    void CenterRotate(float deg);
+    void Rotate(float deg);
+    void Scale(float scale);
 
     bool MouseMove(int x, int y)
     {
