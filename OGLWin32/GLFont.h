@@ -28,6 +28,7 @@ public:
     void Begin();
     virtual ~GLFontBase();
     float m_height;
+    float m_width;
     virtual void Create(const char* Filename) {;}
     virtual void TextOut(const char* String, float x, float y, float z) {;}
     virtual void TextOut(const char* String, int x, int y, int z) {;}

@@ -47,4 +47,5 @@ public:
         BOOL MouseLBDown ( int x, int y );
         BOOL MouseLBUp ( int x, int y );
         BOOL MouseMove ( int x, int y );
+        BOOL MouseWheel(float delta);
 };

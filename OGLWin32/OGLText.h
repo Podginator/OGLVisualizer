@@ -20,9 +20,11 @@ public:
     OGLText(const Vec2f& position, const Color& color, const std::string& text, float size);
     OGLText(Vec2f position, const Color& color, const std::string& text, const char* fontLoc, float size);
     ~OGLText();
+    float _width;
     void SetText(const char* text);
     void Render();
     void CenterRotate(float deg);
     void Rotate(float deg);
     void Scale(float scale);
+    void Move(float x, float y);
 };

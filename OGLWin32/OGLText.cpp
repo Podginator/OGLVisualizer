@@ -2,7 +2,6 @@
 
 #include "OGLText.h"
 
-
 void OGLText::SetText(const char* text)
 {
     m_text = text;
@@ -28,6 +27,7 @@ OGLText::OGLText() :_position(Vec2f(0, 0)), m_text(""), _fontLoc("calibri.glf"),
 {
     m_font = new GLFont();
     m_font->Create(_fontLoc);
+    _width = m_font->m_width * 0;
     _rot = 0.f;
 };
 
@@ -37,6 +37,7 @@ OGLText::OGLText(const Vec2f& position, const Color& color, const std::string& t
     m_font->Create(_fontLoc);
     //Approximation of size based on 12px 24px 22px
     _size = size * (1 - (1 / m_font->m_height));
+    _width = m_font->m_width * text.size();
     _rot = 0.f;
 }
 
@@ -46,6 +47,7 @@ OGLText::OGLText(Vec2f position, const Color& color, const std::string& text, co
     m_font->Create(_fontLoc);
     //Create an approximation of how normal fontsizes work (Not 1:1, but close)
     _size = size * (1 - (1 / m_font->m_height));
+    _width = _size * text.size();
     _rot = 0.f;
 }
 
@@ -58,6 +60,11 @@ void OGLText::Scale(float scale)
 {
     _size *= scale;
     _position = _position * scale;
+}
+
+void OGLText::Move(float x, float y)
+{
+    _position += Vec2f(x, y);
 }
 
 void OGLText::Rotate(float deg)

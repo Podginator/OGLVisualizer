@@ -182,7 +182,7 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
 
             if (lparam == DataMenu)
             {
-                s_oglapp->GetApplicationWindow()->charts[0]->AddDataSource(&s_oglapp->GetApplicationWindow()->data[wparam]);
+                s_oglapp->GetApplicationWindow()->charts[0]->AddDataSource(s_oglapp->GetApplicationWindow()->data[wparam]);
             }
 
         break;
@@ -200,7 +200,9 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
             //inform the cursor position to OGLWindow
             s_oglapp->GetApplicationWindow()->MouseMove( GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam) );
             break;
-
+        case WM_MOUSEWHEEL:
+            s_oglapp->GetApplicationWindow()->MouseWheel(HIWORD(wparam));
+            break;
         case WM_LBUTTONUP:
             s_oglapp->GetApplicationWindow()->MouseLBUp( GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam) );
             break;

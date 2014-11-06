@@ -4,7 +4,6 @@
 #include <utility>
 #include <typeinfo>
 #include <string>
-#include <cassert>
 
 
 template<class T>

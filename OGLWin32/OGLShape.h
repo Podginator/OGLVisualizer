@@ -80,14 +80,18 @@ public:
     virtual void Rotate(float deg);
     virtual void CenterRotate(float deg);
     virtual void Scale(float deg);
+    void Move(float x, float y);
     bool MouseInside(int x, int y);
 
     bool MouseMove(int x, int y)
     {
         //printf("%d", MouseInside(x,y));
-        MouseInside(x, y);
+        //MouseInside(x, y);
         return true;
     }
+
+    bool MouseWheel(float deg){ return true; }
+
     bool MouseLBUp(int x, int y)
     {
         return true;

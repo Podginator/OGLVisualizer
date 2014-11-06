@@ -35,6 +35,21 @@ void OGLChart::Scale(float scale)
     }
 }
 
+void OGLChart::Move(float x, float y)
+{
+    _border.Move(x, y);
+    for (size_t i = 0; i < _elemSize; i++)
+    {
+        shapes[i].Move(x, y);
+    }
+
+    for (size_t k = 0; k < text.size(); k++)
+    {
+        text[k].Move(x, y);
+    }
+}
+
+
 void OGLChart::Rotate(float deg)
 {
     _border.Rotate(deg);

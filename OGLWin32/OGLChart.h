@@ -18,7 +18,7 @@ protected:
     OGLShape* shapes; 
     OGLRectangle _border;
     std::vector<OGLText> text;
-    std::vector<DataColumn*> data;
+    std::vector<DataColumn> data;
     size_t _elemSize;
     void InitElements();
    
@@ -27,24 +27,50 @@ protected:
 public:
     OGLChart();
     virtual void Render();
-    virtual void AddDataSource(DataColumn* _data){ data.push_back(_data); }
+    virtual void AddDataSource(DataColumn _data){ data.push_back(_data); }
 
     void CenterRotate(float deg);
     void Rotate(float deg);
     void Scale(float scale);
+    void Move(float x, float y);
 
     bool MouseMove(int x, int y)
     {
+        if (MouseDown&_border.MouseInside(x,y))
+        {
+            float displaceX = x - Listener::x ;
+            float displaceY = y - Listener::y;
+            Move(displaceX, displaceY);
+        }
+        Listener::x = x;
+        Listener::y = y;
         return true;
     }
     bool MouseLBDown(int x, int y)
-    {
+    {   
+        MouseDown = true;
+        Listener::x = x;
+        Listener::y = y;
         return true;
     }
     bool MouseLBUp(int x, int y)
     {
+        MouseDown = false;
         return true;
     };
+
+    bool MouseWheel(float deg)
+    {
+        if (deg > 0)
+        {
+            Scale(1.1);
+        }
+        else
+        {
+            Scale(0.9);
+        }
+        return true;
+    }
 
 
 };

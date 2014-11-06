@@ -171,22 +171,30 @@ void OGLWindow::InitOGLState()
 
 BOOL OGLWindow::MouseLBDown ( int x, int y )
 {
-
+    Listener *plistener = static_cast<Listener*>(charts[0]);
+    plistener->MouseLBDown(x - (m_width >> 1), (-y) - (-m_height >> 1));
     return TRUE;
 }
 
 BOOL OGLWindow::MouseLBUp ( int x, int y )
 {
-    //Listener *plistener = static_cast<Listener*>(charts[0]);
-
-    //plistener->MouseLBDown(x - (m_width >> 1), (-y) - (-m_height >> 1));
+    Listener *plistener = static_cast<Listener*>(charts[0]);
+    plistener->MouseLBUp(x - (m_width >> 1), (-y) - (-m_height >> 1));
 
     return TRUE;
 }
 
 BOOL OGLWindow::MouseMove ( int x, int y )
 {
-    //Listener *plistener = static_cast<Listener*>(charts[0]);
-    //plistener->MouseMove(x - (m_width >> 1), (-y) - (-m_height >> 1));
+    Listener *plistener = static_cast<Listener*>(charts[0]);
+    plistener->MouseMove(x - (m_width >> 1), (-y) - (-m_height >> 1));
+    return TRUE;
+}
+
+BOOL OGLWindow::MouseWheel(float delta)
+{
+    Listener *plistener = static_cast<Listener*>(charts[0]);
+    float scale = delta > 120.f ? -1 : 1;
+    plistener->MouseWheel(scale);
     return TRUE;
 }
