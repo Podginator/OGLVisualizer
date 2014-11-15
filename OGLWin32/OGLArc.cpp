@@ -14,11 +14,6 @@ OGLArc::OGLArc(const Vec2f& position, const Color& color, float startTheta, floa
 }
 
 
-OGLArc::~OGLArc()
-{
-    OGLShape::~OGLShape();
-}
-
 void OGLArc::CreateArc()
 {
     //An Arc will have it's first vertex in the center of the circle.

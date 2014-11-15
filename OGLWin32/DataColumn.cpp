@@ -16,6 +16,24 @@ DataColumn::DataColumn(size_t _size) :size(_size), index(0)
     data = std::vector<DataCell>(_size);
 }
 
+template<class Type> 
+void DataColumn::AddElement(DataCell& cell)
+{
+    std::map<DataCell*, size_t>::iterator mapIt = dataDist.begin();
+
+    while (mapIt != dataDist.end())
+    {
+        if (mapIt->first->equals<Type>(cell))
+        {
+            mapIt->second++;
+            return;
+        }
+        mapIt++;
+    }
+
+    dataDist[new DataCell(cell)] = 1; 
+}
+
 void DataColumn::Add(std::string cell)
 {
     char * line;
@@ -24,16 +42,21 @@ void DataColumn::Add(std::string cell)
     if (*line)
     {
         data[index++] = DataCell(cell);
+        AddElement<std::string>(DataCell(cell));
+
     }
     else
     {
         if (float(int(convL)) == convL)
         {
             data[index++] = DataCell((int(convL)));
+            AddElement<int>(DataCell((int(convL))));
+
         }
         else
         {
             data[index++] = DataCell((float(convL)));
+            AddElement<float>(DataCell((float(convL))));
         }
     }
 }
@@ -44,18 +67,18 @@ std::map<std::string, float> DataColumn::GetDistribution()
     std::string identifier;
     for (size_t i = 0; i < size; i++)
     {
-        if (data[i].null()){ break; }
+        if (data[i].isNull()){ break; }
 
-        if ((data[i].is<std::string>()))
+        if ((data[i].isA<std::string>()))
         {
-            identifier = data[i].as<std::string>();
+            identifier = data[i].asA<std::string>();
         }
-        else if (data[i].is<float>())
+        else if (data[i].isA<float>())
         {
-            identifier = std::to_string(data[i].as<float>());
+            identifier = std::to_string(data[i].asA<float>());
         }
         else{
-            identifier = std::to_string(data[i].as<int>());
+            identifier = std::to_string(data[i].asA<int>());
         }
         if (res.count(identifier) == 1)
         {

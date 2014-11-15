@@ -56,7 +56,7 @@ DataTable CSVParser::GetCols(std::ifstream& stream)
     //And move the pointer to the second line if there's a header.
     if (hasHeader)
     {
-        std::getline(stream, first);                                                                                                                                   
+        std::getline(stream, first);
     }
 
     return cols;

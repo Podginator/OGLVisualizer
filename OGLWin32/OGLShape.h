@@ -22,6 +22,22 @@ protected:
     float yBot;
     float yTop;
 
+
+    void Copy(const OGLShape& copy)
+    {
+        vertexs = new Vec2f[copy._size];
+        for (size_t i = 0; i < copy._size; i++)
+        {
+            vertexs[i] = copy.vertexs[i];
+        }
+        rgb = copy.rgb;
+        _position = copy._position;
+        _renderType = copy._renderType;
+        _size = copy._size;
+
+        GetBoundingBox();
+    }
+
     bool InsideBounding(int x, int y);
 
     void GetBoundingBox()
@@ -73,7 +89,22 @@ public:
 
     ~OGLShape()
     {
-        //delete[] vertexs;
+        delete[] vertexs;
+    }
+
+    OGLShape(const OGLShape& copy)
+    {
+        Copy(copy);
+    }
+
+    OGLShape& operator=(const OGLShape& right)
+    {
+        if (this != &right)
+        {
+            Copy(right);
+        }
+
+        return *this;
     }
 
     virtual void Render();

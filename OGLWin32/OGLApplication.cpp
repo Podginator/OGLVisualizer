@@ -169,7 +169,7 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
 
                     popmenu = CreatePopupMenu();
                     DataMenu = (UINT)popmenu;
-                    for (int i = 0; i < s_oglapp->GetApplicationWindow()->data.size; i++)
+                    for (size_t i = 0; i < s_oglapp->GetApplicationWindow()->data.size; i++)
                     {
                         InsertMenuA(popmenu, i, MF_BYPOSITION, 9003, s_oglapp->GetApplicationWindow()->data[i].Name().c_str());
                     }
@@ -182,7 +182,16 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
 
             if (lparam == DataMenu)
             {
-                s_oglapp->GetApplicationWindow()->charts[0]->AddDataSource(s_oglapp->GetApplicationWindow()->data[wparam]);
+                s_oglapp->GetApplicationWindow()->charts[s_oglapp->GetApplicationWindow()->charts.size()-1]->AddDataSource(s_oglapp->GetApplicationWindow()->data[wparam]);
+            }
+
+            if (lparam == ChartMenu)
+            {
+                switch (wparam)
+                {
+                case 0:
+                    s_oglapp->GetApplicationWindow()->charts.push_back(new OGLPieChart());
+                }
             }
 
         break;

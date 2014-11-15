@@ -11,25 +11,36 @@ using StorageType = typename std::decay<typename std::remove_reference<T>::type>
 
 struct DataCell
 {
-    bool null() const { return !ptr; }
-
-    template<typename T> DataCell(T&& value) : ptr(new Derived<StorageType<T>>(std::forward<T>(value))){}
-
-    template<class Type> bool is() const
+    bool isNull() const
     {
-        typedef StorageType<Type> T;
+        return !ptr;
+    }
 
-        auto derived = dynamic_cast<Derived<T>*> (ptr);
+    template<class Type>
+    bool equals(const DataCell& cell) const
+    {
+        if (!(cell.isA<Type>())){ return false; }
 
+        auto derived = dynamic_cast<Derived<StorageType<Type>>*> (ptr);
+        auto comp = dynamic_cast<Derived<StorageType<Type>>*> (cell.ptr);
+        
+        return derived->value == comp->value;
+    }
+
+    template<typename T>
+    DataCell(T&& val) : ptr(new Derived<StorageType<T>>(std::forward<T>(val))){}
+
+    template<class Type>
+    bool isA() const
+    {
+        auto derived = dynamic_cast<Derived<StorageType<Type>>*> (ptr);
         return derived;
     }
 
     template<class Type>
-    StorageType<Type>& as()
+    StorageType<Type>& asA()
     {
-        typedef StorageType<Type> T;
-
-        auto derived = dynamic_cast<Derived<T>*> (ptr);
+        auto derived = dynamic_cast<Derived<StorageType<Type>>*> (ptr);
 
         if (!derived)
         {
@@ -42,61 +53,40 @@ struct DataCell
     template<class Type>
     operator Type()
     {
-        return as<StorageType<Type>>();
+        return asA<StorageType<Type>>();
     }
 
-    DataCell()
-        : ptr(nullptr)
-    {
+    DataCell() :ptr(nullptr){}
 
-    }
+    DataCell(const DataCell& copy) : ptr(copy.clone()){}
 
-    DataCell(DataCell& that)
-        : ptr(that.clone())
-    {
+    DataCell(const DataCell&& move) : ptr(move.clone()){}
+    
+    DataCell(DataCell& copy) : ptr(copy.clone()){}
 
-    }
-
-    DataCell(DataCell&& that)
-        : ptr(that.ptr)
-    {
-        that.ptr = nullptr;
-    }
-
-    DataCell(const DataCell& that)
-        : ptr(that.clone())
-    {
-
-    }
-
-    DataCell(const DataCell&& that)
-        : ptr(that.clone())
-    {
-
-    }
+    DataCell(DataCell&& move) : ptr(move.clone()){}
 
     DataCell& operator=(const DataCell& a)
-    {
-        if (ptr == a.ptr)
-            return *this;
-
-        auto old_ptr = ptr;
-
-        ptr = a.clone();
-
-        if (old_ptr)
-            delete old_ptr;
-
-        return *this;
-    }
-
-    DataCell& operator=(DataCell&& a)
     {
         if (ptr == a.ptr)
         {
             return *this;
         }
-        std::swap(ptr, a.ptr);
+        auto old_ptr = ptr;
+        ptr = a.clone();
+        if (old_ptr){ delete old_ptr; }
+        return *this;
+    }
+
+    DataCell& operator= (DataCell& a)
+    {
+        if (ptr == a.ptr)
+        {
+            return *this;
+        }
+        auto old_ptr = ptr;
+        ptr = a.clone();
+        if (old_ptr){ delete old_ptr; }
         return *this;
     }
 
@@ -136,3 +126,4 @@ private:
 
     Base* ptr;
 };
+

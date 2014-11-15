@@ -53,7 +53,8 @@ OGLText::OGLText(Vec2f position, const Color& color, const std::string& text, co
 
 OGLText::~OGLText()
 {
-    //delete[] m_font;
+    //printf("Destructor called\n");
+    delete[] m_font;
 }
 
 void OGLText::Scale(float scale)

@@ -10,8 +10,9 @@ public:
     size_t size;
     std::string Name() const;
     void Name(std::string name);
-    virtual void Add(std::string cell);
-    virtual std::map<std::string, float> GetDistribution();
+    void Add(std::string cell);
+    template<class Type> void AddElement(DataCell& cell);
+    std::map<std::string, float> GetDistribution();
     DataColumn(){};
     DataColumn(size_t size);
     ~DataColumn(){};
@@ -19,4 +20,5 @@ protected:
     std::string header;
     std::size_t index;
     std::vector<DataCell> data;
+    std::map<DataCell*, size_t> dataDist;
 };

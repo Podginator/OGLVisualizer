@@ -130,7 +130,10 @@ void OGLWindow::Render(bool thread)
 
     glLoadIdentity();
 
-    charts[0]->Render();
+    for (size_t i = 0; i < charts.size(); i++)
+    {
+        charts[i]->Render();
+    }
 
     glFlush();
 
@@ -171,14 +174,24 @@ void OGLWindow::InitOGLState()
 
 BOOL OGLWindow::MouseLBDown ( int x, int y )
 {
-    Listener *plistener = static_cast<Listener*>(charts[0]);
-    plistener->MouseLBDown(x - (m_width >> 1), (-y) - (-m_height >> 1));
+
+    for (int i = charts.size()-1; i>=0; --i)
+    {
+        if (charts[i]->MouseLBDown(x - (m_width >> 1), (-y) - (-m_height >> 1)))
+        {
+            if (i != charts.size()-1)
+            {
+                std::swap(charts[charts.size() - 1], charts[i]);
+            }
+            break;
+        }
+    }
     return TRUE;
 }
 
 BOOL OGLWindow::MouseLBUp ( int x, int y )
 {
-    Listener *plistener = static_cast<Listener*>(charts[0]);
+    Listener *plistener = static_cast<Listener*>(charts[charts.size() - 1]);
     plistener->MouseLBUp(x - (m_width >> 1), (-y) - (-m_height >> 1));
 
     return TRUE;
@@ -186,15 +199,15 @@ BOOL OGLWindow::MouseLBUp ( int x, int y )
 
 BOOL OGLWindow::MouseMove ( int x, int y )
 {
-    Listener *plistener = static_cast<Listener*>(charts[0]);
+    Listener *plistener = static_cast<Listener*>(charts[charts.size()-1]);
     plistener->MouseMove(x - (m_width >> 1), (-y) - (-m_height >> 1));
     return TRUE;
 }
 
 BOOL OGLWindow::MouseWheel(float delta)
 {
-    Listener *plistener = static_cast<Listener*>(charts[0]);
-    float scale = delta > 120.f ? -1 : 1;
+    Listener *plistener = static_cast<Listener*>(charts[charts.size() - 1]);
+    int scale = delta > 120.f ? -1 : 1;
     plistener->MouseWheel(scale);
     return TRUE;
 }

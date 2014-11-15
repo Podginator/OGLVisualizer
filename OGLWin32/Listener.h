@@ -12,4 +12,5 @@ protected:
     bool MouseDown = false;
     float x = 0;
     float y = 0;
+    float scale = 1;
 };

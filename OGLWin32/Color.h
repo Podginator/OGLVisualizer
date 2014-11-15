@@ -11,6 +11,25 @@ struct Color
     Color(){}
     Color(float _red, float _green, float _blue) : red(_red), blue(_blue), green(_green){};
 
+    Color(const Color& copy)
+    {
+        red = copy.red;
+        blue = copy.blue;
+        green = copy.green;
+    }
+
+    Color& operator=(const Color& copy)
+    {
+        if (this != &copy)
+        {
+            red = copy.red;
+            blue = copy.blue;
+            green = copy.green;
+        }
+
+        return *this;
+    }
+
     Color& operator<< (unsigned int shift);
     Color& operator>> (unsigned int shift);
 

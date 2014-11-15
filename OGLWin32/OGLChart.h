@@ -15,12 +15,14 @@ class OGLChart : public Listener, public Renderable
 {
 protected:
     //We need to define an entry point for all the charts.
-    OGLShape* shapes; 
+    OGLShape* shapes;
+    OGLText* text;
     OGLRectangle _border;
-    std::vector<OGLText> text;
     std::vector<DataColumn> data;
-    size_t _elemSize;
+    Vec2f _relativePos = Vec2f(0, 0);
     void InitElements();
+    size_t elemSize;
+    size_t textSize;
    
     bool MouseInside(int x, int y){ return true; }
 
@@ -40,18 +42,19 @@ public:
         {
             float displaceX = x - Listener::x ;
             float displaceY = y - Listener::y;
+            _relativePos -= Vec2f(displaceX, displaceY);
             Move(displaceX, displaceY);
         }
-        Listener::x = x;
-        Listener::y = y;
+        Listener::x = float(x);
+        Listener::y = float(y);
         return true;
     }
     bool MouseLBDown(int x, int y)
     {   
         MouseDown = true;
-        Listener::x = x;
-        Listener::y = y;
-        return true;
+        Listener::x = float(x);
+        Listener::y = float(y);
+        return _border.MouseInside(x,y);
     }
     bool MouseLBUp(int x, int y)
     {
@@ -63,11 +66,13 @@ public:
     {
         if (deg > 0)
         {
-            Scale(1.1);
+            Scale(1.1f);
+            scale *= 1.1f;
         }
         else
         {
-            Scale(0.9);
+            Scale(0.9f);
+            scale *= 0.9f;
         }
         return true;
     }
