@@ -5,14 +5,19 @@ OGLChart::OGLChart() : _border(OGLRectangle(Vec2f(-375, -250), Color(1.0, 1.0, 1
 {
     textSize = 0;
     elemSize = 0;
+    highlightText = nullptr;
 }
 
 void OGLChart::Render()
 {
     _border.Render();
-    for (size_t i = 0; i < elemSize; i++)
+
+    std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
+
+    while (mapIt != dataDist.end())
     {
-        shapes[i].Render();
+        mapIt->first->Render();
+        mapIt++;
     }
 
     for (size_t k = 0; k < textSize; k++)
@@ -20,16 +25,26 @@ void OGLChart::Render()
         text[k].Render();
     }
 
+    if (highlightText)
+    {
+        highlightText->Render();
+    }
+
 }
 
 void OGLChart::Scale(float scale)
 {
-    _border.Scale(scale);
-    for (size_t i = 0; i < elemSize; i++)
-    {
-        shapes[i].Scale(scale);
-    }
 
+
+    _border.Scale(scale);
+    
+    std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
+
+    while (mapIt != dataDist.end())
+    {
+        mapIt->first->Scale(scale);
+        mapIt++;
+    }
     for (size_t k = 0; k < textSize; k++)
     {
         text[k].Scale(scale);
@@ -39,10 +54,16 @@ void OGLChart::Scale(float scale)
 void OGLChart::Move(float x, float y)
 {
     _border.Move(x, y);
-    for (size_t i = 0; i < elemSize; i++)
+
+
+    std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
+
+    while (mapIt != dataDist.end())
     {
-        shapes[i].Move(x, y);
+        mapIt->first->Move(x, y);
+        mapIt++;
     }
+
 
     for (size_t k = 0; k < textSize; k++)
     {
@@ -54,10 +75,6 @@ void OGLChart::Move(float x, float y)
 void OGLChart::Rotate(float deg)
 {
     _border.Rotate(deg);
-    for (size_t i = 0; i < elemSize; i++)
-    {
-        shapes[i].Rotate(deg);
-    }
 
     for (size_t k = 0; k < textSize; k++)
     {
@@ -68,11 +85,6 @@ void OGLChart::Rotate(float deg)
 void OGLChart::CenterRotate(float deg)
 {
     _border.CenterRotate(deg);
-    for (size_t i = 0; i < elemSize; i++)
-    {
-        shapes[i].CenterRotate(deg);
-    }
-
     for (size_t k = 0; k < textSize; k++)
     {
         text[k].CenterRotate(deg);

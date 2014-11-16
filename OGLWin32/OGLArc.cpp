@@ -34,6 +34,12 @@ void OGLArc::CreateArc()
 }
 
 
+void OGLArc::Scale(float scale)
+{
+    OGLShape::Scale(scale);
+    _radius *= scale;
+}
+
 bool OGLArc::MouseInside(int x, int y)
 {
     if (!OGLShape::InsideBounding(x, y))
@@ -50,8 +56,9 @@ bool OGLArc::MouseInside(int x, int y)
         angle *= 360 / (2 * MathHelper::Pi());
         angle = angle < 0 ? angle + 360 : angle;
         //Then we can return true of false
-        if (angle >= _startTheta && angle <= (_endTheta+_startTheta))
+        if (angle >= _startTheta && angle <= (_endTheta))
         {
+            printf("%f SF:%f EF:%f\n", angle,_startTheta, _endTheta);
             return true;
         }
     }

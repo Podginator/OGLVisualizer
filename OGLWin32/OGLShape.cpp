@@ -32,6 +32,8 @@ void OGLShape::CenterRotate(float deg)
 
 void OGLShape::Move(float x, float y)
 {
+    _position += Vec2f(x, y);
+
     for (size_t i = 0; i < _size; i++)
     {
         vertexs[i] += Vec2f(x, y);
@@ -42,6 +44,8 @@ void OGLShape::Move(float x, float y)
 
 void OGLShape::Scale(float scale)
 {
+    _position = _position*scale;
+
     for (size_t i = 0; i < _size; i++)
     {
         vertexs[i] -= _position;

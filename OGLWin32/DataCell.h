@@ -1,6 +1,7 @@
 #pragma once
 
 #include <type_traits>
+#include <typeinfo>
 #include <utility>
 #include <typeinfo>
 #include <string>
@@ -11,6 +12,7 @@ using StorageType = typename std::decay<typename std::remove_reference<T>::type>
 
 struct DataCell
 {
+
     bool isNull() const
     {
         return !ptr;
@@ -37,6 +39,26 @@ struct DataCell
         return derived;
     }
 
+    std::string getString()
+    {
+        if (isA<std::string>())
+        {
+            return this->asA<std::string>();
+        }
+        else if (isA<float>())
+        {
+            return std::to_string(this->asA<float>());
+        }
+        else if (isA<int>())
+        {
+            return std::to_string(this->asA<int>());
+        }
+
+        else
+        {
+            return "Incompatible Type";
+        }
+    }
     template<class Type>
     StorageType<Type>& asA()
     {

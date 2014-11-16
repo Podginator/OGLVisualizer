@@ -9,7 +9,7 @@ public:
     ~OGLArc(){}
     bool MouseMove(int x, int y);
     bool MouseLBUp(int x, int y);
-
+    void Scale(float scale);
 protected:
     bool MouseInside(int x, int y);
     float _startTheta;

@@ -15,8 +15,9 @@ class OGLChart : public Listener, public Renderable
 {
 protected:
     //We need to define an entry point for all the charts.
-    OGLShape* shapes;
+    std::map<OGLShape*, DataCell*> dataDist;
     OGLText* text;
+    OGLText* highlightText;
     OGLRectangle _border;
     std::vector<DataColumn> data;
     Vec2f _relativePos = Vec2f(0, 0);
@@ -38,6 +39,23 @@ public:
 
     bool MouseMove(int x, int y)
     {
+        if (highlightText){ delete highlightText; }
+        std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
+        while (mapIt != dataDist.end())
+        {
+            if (mapIt->first->MouseInside(x, y))
+            {
+                if (mapIt->second != nullptr)
+                {
+                    float percent = ((data[0][mapIt->second]) / float(data[0].size)) * 100;
+                    highlightText = new OGLText(Vec2f(x + 5, y), Color(0, 0, 0), mapIt->second->getString() + ":- " + std::to_string(data[0][mapIt->second]) + "(" + std::to_string(percent) + "%)", 24 * scale);
+                }
+                break; 
+            }
+            mapIt++;
+            highlightText = nullptr;
+        }
+
         if (MouseDown&_border.MouseInside(x,y))
         {
             float displaceX = x - Listener::x ;
