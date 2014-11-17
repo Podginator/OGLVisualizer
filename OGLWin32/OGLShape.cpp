@@ -66,6 +66,7 @@ void OGLShape::Render()
         RenderVertexs();
     glEnd();
 }
+
 void OGLShape::RenderVertexs()
 {
     glColor3f(rgb.red, rgb.green, rgb.blue);

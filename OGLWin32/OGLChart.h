@@ -22,7 +22,6 @@ protected:
     std::vector<DataColumn> data;
     Vec2f _relativePos = Vec2f(0, 0);
     void InitElements();
-    size_t elemSize;
     size_t textSize;
    
     bool MouseInside(int x, int y){ return true; }
@@ -48,7 +47,7 @@ public:
                 if (mapIt->second != nullptr)
                 {
                     float percent = ((data[0][mapIt->second]) / float(data[0].size)) * 100;
-                    highlightText = new OGLText(Vec2f(x + 5, y), Color(0, 0, 0), mapIt->second->getString() + ":- " + std::to_string(data[0][mapIt->second]) + "(" + std::to_string(percent) + "%)", 24 * scale);
+                    highlightText = new OGLText(Vec2f(x + 5, y), Color(0, 0, 0), mapIt->second->getString() + ":- " + std::to_string(data[0][mapIt->second]) + "(" + std::to_string(percent) + "%)", "arial.glf",16);
                 }
                 break; 
             }

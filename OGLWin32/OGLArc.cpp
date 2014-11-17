@@ -58,7 +58,6 @@ bool OGLArc::MouseInside(int x, int y)
         //Then we can return true of false
         if (angle >= _startTheta && angle <= (_endTheta))
         {
-            printf("%f SF:%f EF:%f\n", angle,_startTheta, _endTheta);
             return true;
         }
     }

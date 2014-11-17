@@ -26,9 +26,19 @@ void OGLPieChart::InitElements()
     //Get Distribution
     
     
-    if (elemSize > 0)
+    if (dataDist.size() > 0)
     {
         delete[] text;
+
+        std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
+        while (mapIt != dataDist.end())
+        {
+            //delete mapIt->first;
+            //delete mapIt->second;
+            mapIt++;
+        }
+
+        //dataDist.clear();
     }
 
     //Set up Malloc for shapes (Arcs + Rectangles)
@@ -59,7 +69,7 @@ void OGLPieChart::InitElements()
         dataDist[index] = nullptr;
         text[textSize] = OGLText(Vec2f(rectXPos + 17, rectYPos + 15), Color(0, 0, 0), mapIt->first->getString(), "arial.glf", 10);
         
-
+        colors[colIndex].Shade(-10.f);
         colIndex = colIndex == 8 ? 0 : colIndex + 1;
         //Set the rectangle to be 35 + Necessary Text Distance away.
         rectXPos += 15 + text[textSize]._width + 20;

@@ -18,6 +18,8 @@ struct Color
         green = copy.green;
     }
 
+    ~Color(){}
+
     Color& operator=(const Color& copy)
     {
         if (this != &copy)
