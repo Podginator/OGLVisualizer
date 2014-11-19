@@ -12,12 +12,11 @@
 //It cannot be instantiated without being inherited by a concrete class
 class Renderable
 {
-    public:
-
-        //this is a pure virtual function
-        virtual void Render() = 0;
-        virtual void CenterRotate(float deg) = 0;
-        virtual void Rotate(float deg) = 0;
-        virtual void Scale(float scale) = 0;
-        virtual void Move(float x, float y) = 0;
+public:
+    virtual void Render() = 0;
+    virtual void CenterRotate(float deg) = 0;
+    virtual void Rotate(float deg) = 0;
+    virtual void Scale(float scale) = 0;
+    virtual void Move(float x, float y) = 0;
+    virtual void SetOpacity(float n) = 0;
 };

@@ -5,6 +5,13 @@
 Color::Color(std::string const& str)
 {
     convString(str);
+    alpha = 1.0f;
+}
+
+Color::Color(std::string const& str, float _alpha)
+{
+    convString(str);
+    alpha = _alpha;
 }
 
 Color& Color::operator<<(unsigned int shift)

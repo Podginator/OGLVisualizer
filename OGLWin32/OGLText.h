@@ -55,4 +55,5 @@ public:
     void Rotate(float deg);
     void Scale(float scale);
     void Move(float x, float y);
+    void SetOpacity(float n){ _color.alpha = n; }
 };

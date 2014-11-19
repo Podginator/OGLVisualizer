@@ -111,6 +111,7 @@ public:
     virtual void Rotate(float deg);
     virtual void CenterRotate(float deg);
     virtual void Scale(float deg);
+    void SetOpacity(float n){ rgb.alpha = n; }
     void Move(float x, float y);
     bool MouseInside(int x, int y);
 

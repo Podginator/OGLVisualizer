@@ -121,7 +121,7 @@ void GLFontBase::Begin ()
 void GLFontBase::End ()
 {
     //glActiveTextureARB(GL_TEXTURE0);
-    glDisable(GL_BLEND);
+    //glDisable(GL_BLEND);
     glDisable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, 0);
 }

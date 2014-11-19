@@ -62,6 +62,7 @@ void OGLShape::Render()
 
     //GLBegin basically just takes a Unsigned int Macro
     //So can pass it in as a variable
+    //glDisable(GL_MULTISAMPLE);
     glBegin(_renderType);
         RenderVertexs();
     glEnd();
@@ -69,12 +70,13 @@ void OGLShape::Render()
 
 void OGLShape::RenderVertexs()
 {
-    glColor3f(rgb.red, rgb.green, rgb.blue);
+    glPushMatrix();
+    glColor4f(rgb.red, rgb.green, rgb.blue, rgb.alpha);
     for (size_t i = 0; i < _size; i++)
     {
         glVertex2f(vertexs[i].X(), vertexs[i].Y());
     }
-    glPopMatrix();
+   glPopMatrix();
 }
 
 

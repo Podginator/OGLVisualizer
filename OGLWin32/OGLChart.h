@@ -35,6 +35,7 @@ public:
     void Rotate(float deg);
     void Scale(float scale);
     void Move(float x, float y);
+    void SetOpacity(float n);
 
     bool MouseMove(int x, int y)
     {
@@ -91,6 +92,8 @@ public:
             Scale(0.9f);
             scale *= 0.9f;
         }
+
+
         return true;
     }
 

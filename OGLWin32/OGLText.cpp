@@ -15,7 +15,7 @@ void OGLText::Render()
     glScalef(_size, _size, 1);
     glRotatef(_rot, 0, 0, 1);
 
-    glColor3f(_color.red, _color.green, _color.blue);
+    glColor4f(_color.red, _color.green, _color.blue, _color.alpha);
     m_font->Begin();
     m_font->TextOut(m_text.c_str(), 0, 0, 1);
     m_font->End();

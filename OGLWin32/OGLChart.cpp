@@ -9,10 +9,10 @@ OGLChart::OGLChart() : _border(OGLRectangle(Vec2f(-375, -250), Color(1.0, 1.0, 1
 
 void OGLChart::Render()
 {
+
     _border.Render();
 
     std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
-
     while (mapIt != dataDist.end())
     {
         mapIt->first->Render();
@@ -28,6 +28,7 @@ void OGLChart::Render()
     {
         highlightText->Render();
     }
+
 
 }
 
@@ -49,6 +50,26 @@ void OGLChart::Scale(float scale)
         text[k].Scale(scale);
     }
 }
+
+void OGLChart::SetOpacity(float n)
+{
+
+
+    _border.SetOpacity(n);
+
+    std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
+
+    while (mapIt != dataDist.end())
+    {
+        mapIt->first->SetOpacity(n);
+        mapIt++;
+    }
+    for (size_t k = 0; k < textSize; k++)
+    {
+        text[k].SetOpacity(n);
+    }
+}
+
 
 void OGLChart::Move(float x, float y)
 {
