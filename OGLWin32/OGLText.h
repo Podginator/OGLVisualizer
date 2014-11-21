@@ -20,6 +20,7 @@ private:
         m_font = new GLFont;
         m_font->Create(copy._fontLoc);
         _position = copy._position;
+        _fontLoc = copy._fontLoc;
         m_text = copy.m_text;
         _color = copy._color;
         _size = copy._size;
@@ -39,7 +40,14 @@ public:
     {
         if (&copy != this)
         {
-            Copy(copy);
+            m_font = new GLFont;
+            m_font->Create(copy._fontLoc);
+            _position = copy._position;
+            m_text = copy.m_text;
+            _color = copy._color;
+            _size = copy._size;
+            _width = copy._width;
+            _fontLoc = copy._fontLoc;
         }
 
         return *this;

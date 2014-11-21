@@ -20,3 +20,4 @@ void Debug(Args&&... args) {
     _DebugInner(ss, std::forward<Args>(args)...);
     std::cout << ss.rdbuf();
 }
+

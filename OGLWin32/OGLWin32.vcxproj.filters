@@ -67,6 +67,9 @@
     <Filter Include="Header Files\OGLCharts">
       <UniqueIdentifier>{c160e36a-9f5b-4268-a27b-2882b4654f68}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Misc">
+      <UniqueIdentifier>{8d9d6dda-2b9a-432e-a8f1-da9f5aaf86ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -174,6 +177,9 @@
     <ClInclude Include="DataCell.h">
       <Filter>Header Files\Parser</Filter>
     </ClInclude>
+    <ClInclude Include="InputBox.h">
+      <Filter>Header Files\OpenGL Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OGLApplication.cpp">
@@ -226,6 +232,15 @@
     </ClCompile>
     <ClCompile Include="DataTable.cpp">
       <Filter>Source Files\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardHelper.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Listener.cpp">
+      <Filter>Source Files\OpenGL Primitives\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="InputBox.cpp">
+      <Filter>Source Files\OpenGL Window</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

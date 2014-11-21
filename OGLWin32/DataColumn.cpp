@@ -34,6 +34,7 @@ void DataColumn::AddElement(DataCell& cell)
     dataDist[new DataCell(cell)] = 1; 
 }
 
+
 void DataColumn::Add(std::string cell)
 {
     char * line;

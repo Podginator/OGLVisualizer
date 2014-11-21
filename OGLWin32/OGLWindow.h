@@ -19,8 +19,7 @@ class OGLWindow
         HDC m_hdc;                //handle to a device context
         HGLRC m_hglrc;            //handle to a gl rendering context
 
-        int m_width;
-        int m_height;
+        
      
 protected:
 
@@ -30,6 +29,8 @@ protected:
         void SetClientSize();
 
 public:
+        int m_width;
+        int m_height;
         OGLWindow();
         OGLWindow(HINSTANCE hInstance, int width, int height);
         ~OGLWindow();

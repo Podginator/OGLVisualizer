@@ -20,7 +20,7 @@ void OGLPieChart::AddDataSource(DataColumn col)
 
 void OGLPieChart::InitElements()
 {
-    //Reset Everything
+    //Reset Colors
     colors = { Color("#4D4D4D"), Color("#5DA5DA"), Color("#FAA43A"), Color("#60BD68"), Color("#F17CB0"), Color("#B2912F"), Color("#B276B2"), Color("#DECF3F"), Color("#F15854") };
 
     //Get Distribution
@@ -29,16 +29,15 @@ void OGLPieChart::InitElements()
     if (dataDist.size() > 0)
     {
         delete[] text;
-
+        textSize = 0;
         std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
         while (mapIt != dataDist.end())
         {
-            //delete mapIt->first;
+            delete mapIt->first;
             //delete mapIt->second;
             mapIt++;
         }
-
-        //dataDist.clear();
+        dataDist.clear();
     }
 
     //Set up Malloc for shapes (Arcs + Rectangles)

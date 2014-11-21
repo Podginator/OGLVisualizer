@@ -7,8 +7,6 @@ public:
     OGLPieChart(DataColumn col);
     OGLPieChart();
     void AddDataSource(DataColumn col);
-    void InitElements();
-
-protected:
-    std::array<Color, 9> colors;
+    virtual void InitElements();
+    
 };

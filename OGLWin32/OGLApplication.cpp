@@ -4,10 +4,13 @@
 #include <Windowsx.h>
 #include "CSVParser.h"
 #include "DataTable.h"
+#include "InputBox.h"
 #include <thread>
 
 
 OGLApplication* OGLApplication::s_oglapp = NULL;
+
+HINSTANCE OGLApplication::m_hInst = NULL;
 
 OGLApplication::OGLApplication()
 {
@@ -136,10 +139,10 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
 
         popmenu = CreatePopupMenu();
         ChartMenu = UINT(popmenu);
+        AppendMenu(popmenu, MF_STRING, ID_PIECHART, L"Pie Chart View");
         AppendMenu(popmenu, MF_STRING, ID_BARCHART, L"BarChart View");
         AppendMenu(popmenu, MF_STRING, ID_SCATTERPLOT2D, L"Scatterplot 2d View");
         AppendMenu(popmenu, MF_STRING, ID_SCATTERPLOT3D, L"Scatterplot 3d View");
-        AppendMenu(popmenu, MF_STRING, ID_PIECHART, L"Pie Chart View");
         AppendMenu(menu, MF_STRING | MF_POPUP, ChartMenu, L"&Chart Views");
         SetMenu(hwnd, menu);
         MENUINFO mi;
@@ -198,13 +201,16 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
 
         case WM_SIZE:
             s_oglapp->GetApplicationWindow()->Resize(LOWORD(lparam), HIWORD(lparam));
-            
             break;
-
         case WM_CLOSE:
             s_oglapp->GetApplicationWindow()->DestroyOGLWindow();
             break;
-
+        case WM_KEYDOWN:
+            Listener::keys[wparam] = true;
+            break;
+        case WM_KEYUP:
+            Listener::keys[wparam] = false;
+            break;
         case WM_MOUSEMOVE:
             //inform the cursor position to OGLWindow
             s_oglapp->GetApplicationWindow()->MouseMove( GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam) );
@@ -215,7 +221,25 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
         case WM_LBUTTONUP:
             s_oglapp->GetApplicationWindow()->MouseLBUp( GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam) );
             break;
-
+        case WM_RBUTTONDOWN:
+        {
+            int x = GET_X_LPARAM(lparam) - (s_oglapp->GetApplicationWindow()->m_width >> 1);
+            int y = -GET_Y_LPARAM(lparam) - -(s_oglapp->GetApplicationWindow()->m_height >> 1);
+            std::tuple<bool, DataCell*, DataColumn*> col = s_oglapp->GetApplicationWindow()->charts[s_oglapp->GetApplicationWindow()->charts.size() - 1]->MouseRB(x,y);
+            
+            if (std::get<0>(col))
+            {
+                if (std::get<1>(col) != nullptr)
+                {
+                    InputBox(std::get<1>(col), std::get<2>(col));
+                    s_oglapp->GetApplicationWindow()->charts[s_oglapp->GetApplicationWindow()->charts.size() - 1]->InitElements();
+                }
+                
+            }
+            
+            printf("Hello!");
+        }
+            break;
         case WM_LBUTTONDOWN:
             s_oglapp->GetApplicationWindow()->MouseLBDown( GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam) );
             break;

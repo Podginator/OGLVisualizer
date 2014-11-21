@@ -10,7 +10,6 @@ OGLWindow::OGLWindow()
 OGLWindow::~OGLWindow()
 {
     DestroyOGLWindow();
-    //delete m_chart;
 }
 
 OGLWindow::OGLWindow(HINSTANCE hInstance, int width, int height)

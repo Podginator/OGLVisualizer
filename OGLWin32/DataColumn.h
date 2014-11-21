@@ -11,6 +11,22 @@ public:
     std::string Name() const;
     void Name(std::string name);
     void Add(std::string cell);
+    void ChangeValues(DataCell* cell, size_t _size)
+    {
+        size_t prevSize = dataDist[cell];
+        if (_size == 0)
+        {
+            std::map<DataCell*, size_t>::iterator it = dataDist.find(cell);
+            dataDist.erase(it);
+            delete cell;
+            size -= prevSize;
+            return;
+        }
+
+        dataDist[cell] = _size;
+        size += _size > prevSize ? -(prevSize-_size) : (_size-prevSize);
+        printf("%d\n", size);
+    }
     template<class Type> void AddElement(DataCell& cell);
     std::map<std::string, float> GetDistribution();
     std::map<DataCell*, size_t> dataDist;

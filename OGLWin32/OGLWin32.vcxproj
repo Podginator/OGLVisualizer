@@ -95,6 +95,7 @@
     <ClInclude Include="DataTable.h" />
     <ClInclude Include="GLFont.h" />
     <ClInclude Include="DataColumn.h" />
+    <ClInclude Include="InputBox.h" />
     <ClInclude Include="OGLBarChart.h" />
     <ClInclude Include="OGLChart.h" />
     <ClInclude Include="OGLCircle.h" />
@@ -126,6 +127,9 @@
     <ClCompile Include="DataTable.cpp" />
     <ClCompile Include="FileOpen.cpp" />
     <ClCompile Include="GLFont.cpp" />
+    <ClCompile Include="InputBox.cpp" />
+    <ClCompile Include="KeyboardHelper.cpp" />
+    <ClCompile Include="Listener.cpp" />
     <ClCompile Include="MathHelper.cpp" />
     <ClCompile Include="OGLApplication.cpp" />
     <ClCompile Include="OGLArc.cpp" />
