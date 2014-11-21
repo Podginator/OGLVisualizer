@@ -8,6 +8,8 @@
 #include "OGLLine.h"
 #include "OGLCircle.h"
 #include "DataColumn.h"
+#include <sstream>
+#include <iomanip>
 #include <vector>
 #include <tuple>
 #include <array>
@@ -40,8 +42,29 @@ protected:
         return nullptr;
     }
 
+    void Clear()
+    {
+        //Reset Colors
+        colors = { Color("#4D4D4D"), Color("#5DA5DA"), Color("#FAA43A"), Color("#60BD68"), Color("#F17CB0"), Color("#B2912F"), Color("#B276B2"), Color("#DECF3F"), Color("#F15854") };
+
+        if (dataDist.size() > 0)
+        {
+            delete[] text;
+            //delete[] text;
+            textSize = 0;
+            std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
+            while (mapIt != dataDist.end())
+            {
+                delete mapIt->first;
+                //delete mapIt->second;
+                mapIt++;
+            }
+            dataDist.clear();
+        }
+    }
+
    
-    bool MouseInside(int x, int y){ return true; }
+    virtual bool MouseInside(int x, int y){ return true; }
 
 public:
     OGLChart();
@@ -88,8 +111,9 @@ public:
                 {
                     float percent = ((FindDataCol(mapIt->second)->operator[](mapIt->second) / float(data[0].size)) * 100);
                     highlightText = new OGLText(Vec2f(x + 5, y), Color(0, 0, 0), mapIt->second->getString() + ":- " + std::to_string(data[0][mapIt->second]) + "(" + std::to_string(percent) + "%)", "arial.glf",16);
+                    break;
                 }
-                break; 
+                 
             }
             mapIt++;
             highlightText = nullptr;

@@ -194,7 +194,11 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
                 {
                 case 0:
                     s_oglapp->GetApplicationWindow()->charts.push_back(new OGLPieChart());
+                    break;
+                case 1:
+                    s_oglapp->GetApplicationWindow()->charts.push_back(new OGLBarChart());
                 }
+
             }
 
         break;
@@ -237,7 +241,7 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
                 
             }
             
-            printf("Hello!");
+            //printf("Hello!");
         }
             break;
         case WM_LBUTTONDOWN:

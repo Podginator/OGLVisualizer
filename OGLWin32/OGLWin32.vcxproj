@@ -133,6 +133,7 @@
     <ClCompile Include="MathHelper.cpp" />
     <ClCompile Include="OGLApplication.cpp" />
     <ClCompile Include="OGLArc.cpp" />
+    <ClCompile Include="OGLBarChart.cpp" />
     <ClCompile Include="OGLChart.cpp" />
     <ClCompile Include="OGLLine.cpp" />
     <ClCompile Include="OGLPieChart.cpp" />

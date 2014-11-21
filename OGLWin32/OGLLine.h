@@ -10,6 +10,7 @@ public:
     OGLLine(const Vec2f& position, const Color& color, const Vec2f& endPos);
     ~OGLLine();
 
+    bool            MouseInside(int x, int y);
     bool            MouseMove(int x, int y);
     bool            MouseLBUp(int x, int y);
     bool            MouseLBDown(int x, int y);

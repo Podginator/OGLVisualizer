@@ -16,6 +16,32 @@ DataColumn::DataColumn(size_t _size) :size(_size), index(0)
     data = std::vector<DataCell>(_size);
 }
 
+
+void DataColumn::GetStats()
+{
+    Min = Max = 0;
+
+    std::map<DataCell*, size_t>::iterator mapIt = dataDist.begin();
+
+    while (mapIt != dataDist.end())
+    {
+        if (Min == 0)
+        {
+            Min = mapIt->second;
+        }
+        if (mapIt->second > Max)
+        {
+            Max = mapIt->second;
+        }
+        if (mapIt->second < Min)
+        {
+            Min = mapIt->second;
+        }
+
+        mapIt++;
+    }
+}
+
 template<class Type> 
 void DataColumn::AddElement(DataCell& cell)
 {
@@ -31,7 +57,7 @@ void DataColumn::AddElement(DataCell& cell)
         mapIt++;
     }
 
-    dataDist[new DataCell(cell)] = 1; 
+    dataDist[new DataCell(cell)] = 1;
 }
 
 
@@ -60,44 +86,6 @@ void DataColumn::Add(std::string cell)
             AddElement<float>(DataCell((float(convL))));
         }
     }
+
+    GetStats();
 }
-
-std::map<std::string, float> DataColumn::GetDistribution()
-{
-    std::map<std::string, float> res;
-    std::string identifier;
-    for (size_t i = 0; i < size; i++)
-    {
-        if (data[i].isNull()){ break; }
-
-        if ((data[i].isA<std::string>()))
-        {
-            identifier = data[i].asA<std::string>();
-        }
-        else if (data[i].isA<float>())
-        {
-            identifier = std::to_string(data[i].asA<float>());
-        }
-        else{
-            identifier = std::to_string(data[i].asA<int>());
-        }
-        if (res.count(identifier) == 1)
-        {
-            res[identifier]++;
-        }
-        else
-        {
-            res[identifier] = 1;
-        }
-    }
-
-    std::map<std::string, float>::iterator mapIt = res.begin();
-    while (mapIt != res.end())
-    {
-        mapIt->second /= size;
-        mapIt++;
-    }
-
-    return res;
-}
-

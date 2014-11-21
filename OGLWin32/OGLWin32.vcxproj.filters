@@ -242,6 +242,9 @@
     <ClCompile Include="InputBox.cpp">
       <Filter>Source Files\OpenGL Window</Filter>
     </ClCompile>
+    <ClCompile Include="OGLBarChart.cpp">
+      <Filter>Source Files\OGLChart</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OGLWin32.rc">

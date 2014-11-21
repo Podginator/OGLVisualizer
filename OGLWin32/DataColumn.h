@@ -11,6 +11,8 @@ public:
     std::string Name() const;
     void Name(std::string name);
     void Add(std::string cell);
+    int Max;
+    int Min;
     void ChangeValues(DataCell* cell, size_t _size)
     {
         size_t prevSize = dataDist[cell];
@@ -25,8 +27,12 @@ public:
 
         dataDist[cell] = _size;
         size += _size > prevSize ? -(prevSize-_size) : (_size-prevSize);
+
+        GetStats();
+
         printf("%d\n", size);
     }
+
     template<class Type> void AddElement(DataCell& cell);
     std::map<std::string, float> GetDistribution();
     std::map<DataCell*, size_t> dataDist;
@@ -35,6 +41,7 @@ public:
     DataColumn(size_t size);
     ~DataColumn(){};
 protected:
+    void GetStats();
     std::string header;
     std::size_t index;
     std::vector<DataCell> data;

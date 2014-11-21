@@ -11,6 +11,7 @@
 #include "CSVParser.h"
 #include "OGLChart.h"
 #include "OGLPieChart.h"
+#include "OGLBarChart.h"
 
 class OGLWindow
 {

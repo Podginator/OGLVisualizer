@@ -35,8 +35,6 @@ void OGLChart::Render()
 
 void OGLChart::Scale(float scale)
 {
-
-
     _border.Scale(scale);
     
     std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
@@ -54,12 +52,9 @@ void OGLChart::Scale(float scale)
 
 void OGLChart::SetOpacity(float n)
 {
-
-
     _border.SetOpacity(n);
 
     std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
-
     while (mapIt != dataDist.end())
     {
         mapIt->first->SetOpacity(n);
@@ -76,15 +71,12 @@ void OGLChart::Move(float x, float y)
 {
     _border.Move(x, y);
 
-
     std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
-
     while (mapIt != dataDist.end())
     {
         mapIt->first->Move(x, y);
         mapIt++;
     }
-
 
     for (size_t k = 0; k < textSize; k++)
     {
