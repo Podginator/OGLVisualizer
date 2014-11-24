@@ -141,6 +141,7 @@
     <ClCompile Include="OGLPieChart.cpp" />
     <ClCompile Include="OGLRectangle.cpp" />
     <ClCompile Include="OGLShape.cpp" />
+    <ClCompile Include="OGLSpiderChart.cpp" />
     <ClCompile Include="OGLText.cpp" />
     <ClCompile Include="OGLWin32.cpp" />
     <ClCompile Include="OGLWindow.cpp" />

@@ -10,5 +10,5 @@ public:
     void InitElements();
 
 protected: 
-    Vec2f* CreateSpiderVert();
+    std::vector<Vec2f> CreateSpiderVert();
 };

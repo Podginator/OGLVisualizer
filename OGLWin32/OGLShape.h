@@ -4,6 +4,7 @@
 #include "Listener.h"
 #include "MathHelper.h"
 #include <math.h>
+#include <vector>
 #include "Color.h"
 
 class OGLShape : public Renderable, public Listener
@@ -80,6 +81,21 @@ public:
         for (size_t i = 1; i < size; i++)
         {
             vertexs[i] = positions[i - 1];
+        }
+
+        GetBoundingBox();
+    }
+
+    OGLShape(const Vec2f& position, const Color& color, size_t size, unsigned int renderType, std::vector<Vec2f> positions) : _position(position), _size(size), rgb(color), _renderType(renderType)
+    {
+        vertexs = new Vec2f[size];
+        //vertexs[0] = position;
+        xBot = xBot = _position.X();
+        yBot = yTop = _position.Y();
+
+        for (size_t i = 0; i < size; i++)
+        {
+            vertexs[i] = positions[i];
         }
 
         GetBoundingBox();

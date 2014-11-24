@@ -197,6 +197,8 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
                     break;
                 case 1:
                     s_oglapp->GetApplicationWindow()->charts.push_back(new OGLBarChart());
+                case 2:
+                    s_oglapp->GetApplicationWindow()->charts.push_back(new OGLSpiderChart());
                 }
 
             }
