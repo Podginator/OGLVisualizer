@@ -29,6 +29,7 @@ void OGLSpiderChart::InitElements()
         float size = float(mapIt->second)/data[0].Max;
         printf("%f\n", size);
         VertPos[index] = VertPos[index] * size;
+        dataDist[new OGLCircle(VertPos[index], Color(0, 0, 0), 5)] = mapIt->first;
         mapIt++;
         index++;
     }
