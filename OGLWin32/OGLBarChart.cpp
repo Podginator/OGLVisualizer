@@ -10,15 +10,12 @@ void OGLBarChart::AddDataSource(DataColumn col)
 
 OGLBarChart::OGLBarChart()
 {
-    //InitElements();
 }
 
 void OGLBarChart::InitElements()
 {
     //Clear everything
     Clear();
-
-    printf("MAX:: %d  MIN:: %d", data[0].Max, data[0].Min);
 
     _border = OGLRectangle(Vec2f(-375, -250), Color(1.0, 1.0, 1.0), 500, 750);
     dataDist[new OGLLine(Vec2f(-300, -150), Color(0.0, 0.0, 0.0), Vec2f(-300, 200))] = nullptr;
@@ -35,8 +32,6 @@ void OGLBarChart::InitElements()
     float rectYPos = -200;
     text = new OGLText[data[0].dataDist.size()+11];
 
-
-    printf("%d", data[0].Max);
 
     for (int i = 0; i <= 10; i++)
     {

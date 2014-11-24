@@ -11,9 +11,26 @@ void DataColumn::Name(std::string name)
     header = name;
 }
 
-DataColumn::DataColumn(size_t _size) :size(_size), index(0)
+DataColumn::DataColumn(size_t _size) :size(_size), index(0){}
+
+void DataColumn::ChangeValues(DataCell* cell, size_t _size)
 {
-    data = std::vector<DataCell>(_size);
+    size_t prevSize = dataDist[cell];
+    if (_size == 0)
+    {
+        std::map<DataCell*, size_t>::iterator it = dataDist.find(cell);
+        dataDist.erase(it);
+        //delete cell;
+        size -= prevSize;
+        return;
+    }
+
+    dataDist[cell] = _size;
+    size += _size > prevSize ? -(prevSize - _size) : (_size - prevSize);
+
+    GetStats();
+
+    printf("%d\n", size);
 }
 
 
@@ -68,7 +85,6 @@ void DataColumn::Add(std::string cell)
 
     if (*line)
     {
-        data[index++] = DataCell(cell);
         AddElement<std::string>(DataCell(cell));
 
     }
@@ -76,13 +92,11 @@ void DataColumn::Add(std::string cell)
     {
         if (float(int(convL)) == convL)
         {
-            data[index++] = DataCell((int(convL)));
             AddElement<int>(DataCell((int(convL))));
 
         }
         else
         {
-            data[index++] = DataCell((float(convL)));
             AddElement<float>(DataCell((float(convL))));
         }
     }

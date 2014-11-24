@@ -105,8 +105,11 @@
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="OGLArc.h" />
     <ClInclude Include="OGLLine.h" />
+    <ClInclude Include="OGLLineChart.h" />
     <ClInclude Include="OGLPieChart.h" />
+    <ClInclude Include="OGLScatterplot.h" />
     <ClInclude Include="OGLShape.h" />
+    <ClInclude Include="OGLSpiderChart.h" />
     <ClInclude Include="OGLText.h" />
     <ClInclude Include="Listener.h" />
     <ClInclude Include="Matrix.h" />
@@ -128,7 +131,6 @@
     <ClCompile Include="FileOpen.cpp" />
     <ClCompile Include="GLFont.cpp" />
     <ClCompile Include="InputBox.cpp" />
-    <ClCompile Include="KeyboardHelper.cpp" />
     <ClCompile Include="Listener.cpp" />
     <ClCompile Include="MathHelper.cpp" />
     <ClCompile Include="OGLApplication.cpp" />

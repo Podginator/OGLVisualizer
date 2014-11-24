@@ -12,7 +12,6 @@ using StorageType = typename std::decay<typename std::remove_reference<T>::type>
 
 struct DataCell
 {
-
     bool isNull() const
     {
         return !ptr;
@@ -21,7 +20,7 @@ struct DataCell
     template<class Type>
     bool equals(const DataCell& cell) const
     {
-        if (!(cell.isA<Type>())){ return false; }
+        if (!(cell.isA<Type>()) || !(this->isA<Type>())){ return false; }
 
         auto derived = dynamic_cast<Derived<StorageType<Type>>*> (ptr);
         auto comp = dynamic_cast<Derived<StorageType<Type>>*> (cell.ptr);

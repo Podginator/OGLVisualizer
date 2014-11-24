@@ -180,6 +180,15 @@
     <ClInclude Include="InputBox.h">
       <Filter>Header Files\OpenGL Window</Filter>
     </ClInclude>
+    <ClInclude Include="OGLScatterplot.h">
+      <Filter>Header Files\OGLCharts</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLLineChart.h">
+      <Filter>Header Files\OGLCharts</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLSpiderChart.h">
+      <Filter>Header Files\OGLCharts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OGLApplication.cpp">
@@ -232,9 +241,6 @@
     </ClCompile>
     <ClCompile Include="DataTable.cpp">
       <Filter>Source Files\Parser</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyboardHelper.cpp">
-      <Filter>Source Files\Misc</Filter>
     </ClCompile>
     <ClCompile Include="Listener.cpp">
       <Filter>Source Files\OpenGL Primitives\Interfaces</Filter>

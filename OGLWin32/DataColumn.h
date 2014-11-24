@@ -13,25 +13,7 @@ public:
     void Add(std::string cell);
     int Max;
     int Min;
-    void ChangeValues(DataCell* cell, size_t _size)
-    {
-        size_t prevSize = dataDist[cell];
-        if (_size == 0)
-        {
-            std::map<DataCell*, size_t>::iterator it = dataDist.find(cell);
-            dataDist.erase(it);
-            delete cell;
-            size -= prevSize;
-            return;
-        }
-
-        dataDist[cell] = _size;
-        size += _size > prevSize ? -(prevSize-_size) : (_size-prevSize);
-
-        GetStats();
-
-        printf("%d\n", size);
-    }
+    void ChangeValues(DataCell* cell, size_t _size);
 
     template<class Type> void AddElement(DataCell& cell);
     std::map<std::string, float> GetDistribution();
@@ -44,6 +26,4 @@ protected:
     void GetStats();
     std::string header;
     std::size_t index;
-    std::vector<DataCell> data;
-    
 };

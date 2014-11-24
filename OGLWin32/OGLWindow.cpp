@@ -112,8 +112,6 @@ BOOL OGLWindow::InitWindow(HINSTANCE hInstance, int width, int height)
     m_width = clientRect.right;
     m_height = clientRect.bottom;
 
-    charts.push_back(new OGLPieChart());
-
     return TRUE;
 }
 
@@ -194,23 +192,33 @@ BOOL OGLWindow::MouseLBDown ( int x, int y )
 
 BOOL OGLWindow::MouseLBUp ( int x, int y )
 {
-    Listener *plistener = static_cast<Listener*>(charts[charts.size() - 1]);
-    plistener->MouseLBUp(x - (m_width >> 1), (-y) - (-m_height >> 1));
+    if (charts.size() > 0)
+    {
+        Listener *plistener = static_cast<Listener*>(charts[charts.size() - 1]);
+        plistener->MouseLBUp(x - (m_width >> 1), (-y) - (-m_height >> 1));
+    }
 
     return TRUE;
 }
 
 BOOL OGLWindow::MouseMove ( int x, int y )
 {
-    Listener *plistener = static_cast<Listener*>(charts[charts.size()-1]);
-    plistener->MouseMove(x - (m_width >> 1), (-y) - (-m_height >> 1));
+    if (charts.size() > 0)
+    {
+        Listener *plistener = static_cast<Listener*>(charts[charts.size() - 1]);
+        plistener->MouseMove(x - (m_width >> 1), (-y) - (-m_height >> 1));
+    }
+    
     return TRUE;
 }
 
 BOOL OGLWindow::MouseWheel(float delta)
 {
-    Listener *plistener = static_cast<Listener*>(charts[charts.size() - 1]);
-    int scale = delta > 120.f ? -1 : 1;
-    plistener->MouseWheel(scale);
+    if (charts.size() > 0)
+    {
+        Listener *plistener = static_cast<Listener*>(charts[charts.size() - 1]);
+        int scale = delta > 120.f ? -1 : 1;
+        plistener->MouseWheel(scale);
+    }
     return TRUE;
 }

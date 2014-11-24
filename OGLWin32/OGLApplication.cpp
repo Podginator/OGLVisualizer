@@ -143,7 +143,7 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
         AppendMenu(popmenu, MF_STRING, ID_BARCHART, L"BarChart View");
         AppendMenu(popmenu, MF_STRING, ID_SCATTERPLOT2D, L"Scatterplot 2d View");
         AppendMenu(popmenu, MF_STRING, ID_SCATTERPLOT3D, L"Scatterplot 3d View");
-        AppendMenu(menu, MF_STRING | MF_POPUP, ChartMenu, L"&Chart Views");
+        AppendMenu(menu, MF_STRING | MF_POPUP, ChartMenu, L"&Add Charts");
         SetMenu(hwnd, menu);
         MENUINFO mi;
         memset(&mi, 0, sizeof(mi));
@@ -229,16 +229,19 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
         {
             int x = GET_X_LPARAM(lparam) - (s_oglapp->GetApplicationWindow()->m_width >> 1);
             int y = -GET_Y_LPARAM(lparam) - -(s_oglapp->GetApplicationWindow()->m_height >> 1);
-            std::tuple<bool, DataCell*, DataColumn*> col = s_oglapp->GetApplicationWindow()->charts[s_oglapp->GetApplicationWindow()->charts.size() - 1]->MouseRB(x,y);
-            
-            if (std::get<0>(col))
+            if (s_oglapp->GetApplicationWindow()->charts.size() > 0)
             {
-                if (std::get<1>(col) != nullptr)
+                std::tuple<bool, DataCell*, DataColumn*> col = s_oglapp->GetApplicationWindow()->charts[s_oglapp->GetApplicationWindow()->charts.size() - 1]->MouseRB(x, y);
+
+                if (std::get<0>(col))
                 {
-                    InputBox(std::get<1>(col), std::get<2>(col));
-                    s_oglapp->GetApplicationWindow()->charts[s_oglapp->GetApplicationWindow()->charts.size() - 1]->InitElements();
+                    if (std::get<1>(col) != nullptr)
+                    {
+                        InputBox(std::get<1>(col), std::get<2>(col));
+                        s_oglapp->GetApplicationWindow()->charts[s_oglapp->GetApplicationWindow()->charts.size() - 1]->InitElements();
+                    }
+
                 }
-                
             }
             
             //printf("Hello!");
