@@ -13,6 +13,7 @@
 #include "OGLPieChart.h"
 #include "OGLBarChart.h"
 #include "OGLSpiderChart.h"
+#include "OGLScatterplot.h"
 
 class OGLWindow
 {

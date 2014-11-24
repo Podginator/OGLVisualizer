@@ -8,7 +8,9 @@ OGLPieChart::OGLPieChart(DataColumn col)
 
 OGLPieChart::OGLPieChart()
 {
-
+    textSize = 1;
+    text = new OGLText[1];
+    text[0] = OGLText(Vec2f(-300, 0), Color(0, 0, 0), "PieChart, add a Data Columns (Categorical) to start", "arial.glf", 18);
 }
 
 void OGLPieChart::AddDataSource(DataColumn col)

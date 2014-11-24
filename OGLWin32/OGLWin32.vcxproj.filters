@@ -254,6 +254,9 @@
     <ClCompile Include="OGLSpiderChart.cpp">
       <Filter>Source Files\OGLChart</Filter>
     </ClCompile>
+    <ClCompile Include="OGLScatterplot.cpp">
+      <Filter>Source Files\OGLChart</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OGLWin32.rc">

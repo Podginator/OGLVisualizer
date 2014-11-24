@@ -140,6 +140,7 @@
     <ClCompile Include="OGLLine.cpp" />
     <ClCompile Include="OGLPieChart.cpp" />
     <ClCompile Include="OGLRectangle.cpp" />
+    <ClCompile Include="OGLScatterplot.cpp" />
     <ClCompile Include="OGLShape.cpp" />
     <ClCompile Include="OGLSpiderChart.cpp" />
     <ClCompile Include="OGLText.cpp" />

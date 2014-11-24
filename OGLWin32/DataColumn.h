@@ -18,12 +18,14 @@ public:
     template<class Type> void AddElement(DataCell& cell);
     std::map<std::string, float> GetDistribution();
     std::map<DataCell*, size_t> dataDist;
+    std::vector<DataCell> rawData;
     size_t operator[](DataCell* rhs){ return dataDist[rhs]; }
     DataColumn(){};
     DataColumn(size_t size);
     ~DataColumn(){};
 protected:
     void GetStats();
+    
     std::string header;
     std::size_t index;
 };

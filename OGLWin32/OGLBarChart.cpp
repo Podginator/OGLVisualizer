@@ -10,6 +10,7 @@ void OGLBarChart::AddDataSource(DataColumn col)
 
 OGLBarChart::OGLBarChart()
 {
+    
 }
 
 void OGLBarChart::InitElements()

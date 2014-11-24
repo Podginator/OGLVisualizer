@@ -8,7 +8,8 @@ public:
     OGLSpiderChart();
     void AddDataSource(DataColumn col);
     void InitElements();
-
+    bool MouseMove(int x, int y);
 protected: 
-    std::vector<Vec2f> CreateSpiderVert();
+    void Clear();
+    std::vector<Vec2f> CreateSpiderVert(int size);
 };

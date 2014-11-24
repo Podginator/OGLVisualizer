@@ -11,7 +11,10 @@ void DataColumn::Name(std::string name)
     header = name;
 }
 
-DataColumn::DataColumn(size_t _size) :size(_size), index(0){}
+DataColumn::DataColumn(size_t _size) :size(_size), index(0)
+{
+    rawData = std::vector<DataCell>(_size);
+}
 
 void DataColumn::ChangeValues(DataCell* cell, size_t _size)
 {
@@ -83,8 +86,9 @@ void DataColumn::Add(std::string cell)
     char * line;
     float convL = std::strtof(cell.c_str(), &line);
 
-    if (*line)
+     if (*line)
     {
+        rawData[index++] = DataCell(cell);
         AddElement<std::string>(DataCell(cell));
 
     }
@@ -92,11 +96,13 @@ void DataColumn::Add(std::string cell)
     {
         if (float(int(convL)) == convL)
         {
+            rawData[index++] = DataCell((int(convL)));
             AddElement<int>(DataCell((int(convL))));
 
         }
         else
         {
+            rawData[index++] = DataCell((float(convL)));
             AddElement<float>(DataCell((float(convL))));
         }
     }

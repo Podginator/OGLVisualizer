@@ -141,6 +141,7 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
         ChartMenu = UINT(popmenu);
         AppendMenu(popmenu, MF_STRING, ID_PIECHART, L"Pie Chart View");
         AppendMenu(popmenu, MF_STRING, ID_BARCHART, L"BarChart View");
+        AppendMenu(popmenu, MF_STRING, ID_BARCHART, L"SpiderChart View");
         AppendMenu(popmenu, MF_STRING, ID_SCATTERPLOT2D, L"Scatterplot 2d View");
         AppendMenu(popmenu, MF_STRING, ID_SCATTERPLOT3D, L"Scatterplot 3d View");
         AppendMenu(menu, MF_STRING | MF_POPUP, ChartMenu, L"&Add Charts");
@@ -197,8 +198,13 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
                     break;
                 case 1:
                     s_oglapp->GetApplicationWindow()->charts.push_back(new OGLBarChart());
+                    break;
                 case 2:
                     s_oglapp->GetApplicationWindow()->charts.push_back(new OGLSpiderChart());
+                    break;
+                case 3: 
+                    s_oglapp->GetApplicationWindow()->charts.push_back(new OGLScatterPlot2D());
+                    break;
                 }
 
             }
