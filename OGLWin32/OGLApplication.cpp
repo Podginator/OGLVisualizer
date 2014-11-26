@@ -205,6 +205,8 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
                 case 3: 
                     s_oglapp->GetApplicationWindow()->charts.push_back(new OGLScatterPlot2D());
                     break;
+                case 4: 
+                    s_oglapp->GetApplicationWindow()->charts.push_back(new OGLLineChart());
                 }
 
             }

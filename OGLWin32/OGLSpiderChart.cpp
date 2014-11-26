@@ -3,6 +3,7 @@
 
 void OGLSpiderChart::AddDataSource(DataColumn col)
 {
+    if (col.Stores() == DataColumn::Storage::Categorical){ return; }
     data.push_back(col);
     InitElements(); 
 }
@@ -17,33 +18,8 @@ OGLSpiderChart::OGLSpiderChart()
 
 bool OGLSpiderChart::MouseMove(int x, int y)
 {
-    if (highlightText){ delete highlightText; }
-    std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
-    while (mapIt != dataDist.end())
-    {
-        if (mapIt->first->MouseInside(x, y))
-        {
-            if (mapIt->second != nullptr)
-            {
-                highlightText = new OGLText(Vec2f(x + 5, y), Color(0.25f, 0.25f, 0.25f), mapIt->second->getString(), "arial.glf", 16);
-                break;
-            }
-
-        }
-        mapIt++;
-        highlightText = nullptr;
-    }
-
-    if (MouseDown&_border.MouseInside(x, y))
-    {
-        float displaceX = x - Listener::x;
-        float displaceY = y - Listener::y;
-        _relativePos -= Vec2f(displaceX, displaceY);
-        Move(displaceX, displaceY);
-    }
-    Listener::x = float(x);
-    Listener::y = float(y);
-    return true;
+    OGLChart::GetHighlight(x, y);
+    return OGLChart::MouseMove(x, y);
 }
 
 void OGLSpiderChart::Clear()
@@ -94,18 +70,7 @@ void OGLSpiderChart::InitElements()
     //Get Max.
     for (int i = 0; i < 3; i++)
     {
-        for (int k = 0; k < data.size(); k++)
-        {
-            if (data[k].rawData[i].isA<float>())
-            {
-                max = data[k].rawData[i].asA<float>() > max ? data[k].rawData[i].asA<float>() : max;
-            }
-            else if (data[k].rawData[i].isA<int>())
-            {
-                max = data[k].rawData[i].asA<int>() > max ? data[k].rawData[i].asA<int>() : max;
-            }
-            
-        }
+        max = data[i].Max>max ? data[i].Max : max;
     }
 
     for (int i = 0; i < 3; i++)
@@ -140,14 +105,11 @@ void OGLSpiderChart::InitElements()
 std::vector<Vec2f> OGLSpiderChart::CreateSpiderVert(int size)
 {
     std::vector<Vec2f> res;
-
     for (int i = 0; i < size; i++)
     {
         float theta = 2.0f * 3.1415926f * float(i) / float(size);
-
         float x = 200 * cosf(theta);
         float y = 200 * sinf(theta);
-        
         res.push_back(Vec2f(x, y));
     }
 

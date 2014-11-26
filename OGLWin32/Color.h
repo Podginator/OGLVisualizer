@@ -22,7 +22,6 @@ struct Color
 
     Color(float _red, float _green, float _blue, float _alpha) : red(_red), blue(_blue), green(_green), alpha(_alpha)
     {
-        printf("DidYouActivate?");
     };
     Color(std::string const& str, float _alpha);
 

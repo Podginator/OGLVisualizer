@@ -41,8 +41,16 @@ DataTable CSVParser::GetCols(std::ifstream& stream)
         {
             hasHeader = true;
         }
-        
-        cols.Add(DataColumn(size));
+
+        if (*line)
+        {
+            cols.Add(DataColumn(size, DataColumn::Storage::Categorical));
+
+        }
+        else
+        {
+             cols.Add(DataColumn(size, DataColumn::Storage::Numerical));
+        }
     }
 
     for (size_t i = 0; i < header.size(); i++)

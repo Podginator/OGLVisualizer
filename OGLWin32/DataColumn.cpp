@@ -16,6 +16,11 @@ DataColumn::DataColumn(size_t _size) :size(_size), index(0)
     rawData = std::vector<DataCell>(_size);
 }
 
+DataColumn::DataColumn(size_t _size, Storage store) : size(_size), index(0), type(store)
+{
+    rawData = std::vector<DataCell>(_size);
+}
+
 void DataColumn::ChangeValues(DataCell* cell, size_t _size)
 {
     size_t prevSize = dataDist[cell];
@@ -39,10 +44,10 @@ void DataColumn::ChangeValues(DataCell* cell, size_t _size)
 
 void DataColumn::GetStats()
 {
-    Min = Max = 0;
+    Min = Max = MaxDist = 0;
+    
 
     std::map<DataCell*, size_t>::iterator mapIt = dataDist.begin();
-
     while (mapIt != dataDist.end())
     {
         if (Min == 0)
@@ -51,7 +56,7 @@ void DataColumn::GetStats()
         }
         if (mapIt->second > Max)
         {
-            Max = mapIt->second;
+            MaxDist = mapIt->second;
         }
         if (mapIt->second < Min)
         {
@@ -60,6 +65,21 @@ void DataColumn::GetStats()
 
         mapIt++;
     }
+    if (type == Numerical)
+    {
+        for (int i = 0; i < rawData.size(); i++)
+        {
+            if (rawData[i].isA<float>())
+            {
+                Max = rawData[i].asA<float>() > Max ? rawData[i].asA<float>() : Max;
+            }
+            else if (rawData[i].isA<int>())
+            {
+                Max = rawData[i].asA<int>() > Max ? rawData[i].asA<int>() : Max;
+            }
+        }
+    }
+    
 }
 
 template<class Type> 

@@ -1,7 +1,7 @@
 #pragma once
-#include "OGLScatterplot.h"
+#include "OGLLineChart.h"
 
-void OGLScatterPlot2D::AddDataSource(DataColumn col)
+void OGLLineChart::AddDataSource(DataColumn col)
 {
     if (col.Stores() == DataColumn::Storage::Categorical){ return; }
     if (data.size() == 2)
@@ -12,14 +12,16 @@ void OGLScatterPlot2D::AddDataSource(DataColumn col)
     InitElements();
 }
 
-OGLScatterPlot2D::OGLScatterPlot2D()
+OGLLineChart::OGLLineChart()
 {
     textSize = 1;
     text = new OGLText[1];
-    text[0] = OGLText(Vec2f(-300, 0), Color(0, 0, 0), "Scatterplot, add 2 Data Columns (Numerical) to start", "arial.glf", 18);
+    text[0] = OGLText(Vec2f(-300, 0), Color(0, 0, 0), "LineChart, add 2 Data Columns (Numerical) to start", "arial.glf", 18);
 }
 
-void OGLScatterPlot2D::InitElements()
+bool vecSort(Vec2f vec1, Vec2f vec2){ return vec1.X() > vec2.X(); }
+
+void OGLLineChart::InitElements()
 {
     //Clear everything
     Clear();
@@ -28,7 +30,7 @@ void OGLScatterPlot2D::InitElements()
     {
         textSize = 1;
         text = new OGLText[1];
-        text[0] = OGLText(Vec2f(-300, 0), Color(0, 0, 0), "Scatterplot, add " + std::to_string(2 - data.size()) + " Data Columns(Numerical) to start", "arial.glf", 18);
+        text[0] = OGLText(Vec2f(-300, 0), Color(0, 0, 0), "Linechart, add " + std::to_string(2 - data.size()) + " Data Columns(Numerical) to start", "arial.glf", 18);
 
         return;
     }
@@ -41,7 +43,7 @@ void OGLScatterPlot2D::InitElements()
     text = new OGLText[24];
     float maxX = data[0].Max;
     float maxY = data[1].Max;
-  
+
     for (int i = 0; i <= 10; i++)
     {
         float height = (-150) + (350 / (10))*i;
@@ -60,6 +62,7 @@ void OGLScatterPlot2D::InitElements()
         textSize++;
     }
 
+    std::vector<Vec2f> res;
 
     for (int i = 0; i < data[0].size; i++)
     {
@@ -73,7 +76,7 @@ void OGLScatterPlot2D::InitElements()
         }
         else if (data[0].rawData[i].isA<int>())
         {
-            x = (600 * (float(data[0].rawData[i].asA<int>())/maxX)) - 300;
+            x = (600 * (float(data[0].rawData[i].asA<int>()) / maxX)) - 300;
         }
 
         if (data[1].rawData[i].isA<float>())
@@ -82,16 +85,23 @@ void OGLScatterPlot2D::InitElements()
         }
         else if (data[1].rawData[i].isA<int>())
         {
-            y = (350 * (float(data[1].rawData[i].asA<int>())/maxY)) - 150;
+            y = (350 * (float(data[1].rawData[i].asA<int>()) / maxY)) - 150;
         }
 
-
-        index = new OGLRectangle(Vec2f(x, y), Color(0.f, 0.f, 0.f, 0.5f), 3,3);
-        index->CenterRotate(45.0f);
-
-        dataDist[index] = new DataCell(std::string(data[0].Name() + " " + data[0].rawData[i].getString() + ":: " + data[1].Name()+ " " + data[1].rawData[i].getString()));
+        res.push_back(Vec2f(x, y));
     }
-    textSize+=2;
+
+    std::sort(res.begin(), res.end(),vecSort);
+
+    for (int i = 0; i < res.size(); i++)
+    {
+        if (i + 1 > res.size() - 1){ break; }
+        OGLShape* index = new OGLLine(res[i], Color(0.f, 0.f, 0.f, 1.f), res[i+1]);
+        dataDist[index] = nullptr;
+    }
+
+
+    textSize += 2;
     text[22] = OGLText(Vec2f(-350, 230), Color(0, 0, 0), data[1].Name(), "arial.glf", 12);
     text[23] = OGLText(Vec2f(0, -170), Color(0, 0, 0), data[0].Name(), "arial.glf", 12);
 

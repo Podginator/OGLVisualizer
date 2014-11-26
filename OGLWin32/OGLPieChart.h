@@ -8,5 +8,10 @@ public:
     OGLPieChart();
     void AddDataSource(DataColumn col);
     virtual void InitElements();
+    bool MouseMove(int x, int y)
+    {
+        OGLChart::GetDistHighlight(x, y);
+        return OGLChart::MouseMove(x, y);
+    }
     
 };

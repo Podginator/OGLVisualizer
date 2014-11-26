@@ -25,7 +25,7 @@ void OGLChart::Clear()
 {
     colors = { Color("#4D4D4D"), Color("#5DA5DA"), Color("#FAA43A"), Color("#60BD68"), Color("#F17CB0"), Color("#B2912F"), Color("#B276B2"), Color("#DECF3F"), Color("#F15854") };
 
-    if (dataDist.size() > 0)
+    if (dataDist.size() > 0 || textSize>0)
     {
         delete[] text;
         //delete[] text;
@@ -155,7 +155,7 @@ std::tuple<bool, DataCell*, DataColumn*> OGLChart::MouseRB(int x, int y)
     return std::make_tuple(true, nullptr, nullptr);
 }
 
-bool OGLChart::MouseMove(int x, int y)
+void OGLChart::GetDistHighlight(int x, int y)
 {
     if (highlightText){ delete highlightText; }
     std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
@@ -174,6 +174,32 @@ bool OGLChart::MouseMove(int x, int y)
         mapIt++;
         highlightText = nullptr;
     }
+}
+void OGLChart::GetHighlight(int x, int y)
+{
+    if (highlightText){ delete highlightText; }
+    std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
+    while (mapIt != dataDist.end())
+    {
+        if (mapIt->first->MouseInside(x, y))
+        {
+            if (mapIt->second != nullptr)
+            {
+                highlightText = new OGLText(Vec2f(x + 5, y), Color(0.25f, 0.25f, 0.25f), mapIt->second->getString(), "arial.glf", 16);
+                break;
+            }
+
+        }
+        mapIt++;
+        highlightText = nullptr;
+    }
+
+}
+
+
+bool OGLChart::MouseMove(int x, int y)
+{
+    
 
     if (MouseDown&_border.MouseInside(x, y))
     {

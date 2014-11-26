@@ -9,6 +9,7 @@
 #include <sstream>
 #include <iomanip>
 #include <vector>
+#include <algorithm>
 #include <tuple>
 #include <array>
 
@@ -30,6 +31,9 @@ protected:
     DataColumn* FindDataCol(DataCell* cell);
     void Clear();
     virtual bool MouseInside(int x, int y){ return true; }
+    void GetDistHighlight(int x, int y);
+    void GetHighlight(int x, int y);
+
 
 public:
     OGLChart();

@@ -25,7 +25,7 @@ void OGLBarChart::InitElements()
     //Get BarWidth
     float barWidth = 600 / data[0].dataDist.size();
     float maxHeight = 350;
-    float dataSize = data[0].Max;
+    float dataSize = data[0].MaxDist;
     float xLoc = -300;
     int colIndex = 0;
 
@@ -40,7 +40,7 @@ void OGLBarChart::InitElements()
         dataDist[new OGLLine(Vec2f(-310, height), colors[colIndex], Vec2f(-300, height))] = nullptr;
 
         std::stringstream ss;
-        ss << std::fixed << std::setprecision(1) << (float(data[0].Max)/10)*i;
+        ss << std::fixed << std::setprecision(1) << (float(data[0].MaxDist)/10)*i;
 
         text[textSize] = OGLText(Vec2f(-350, height+6), Color(0, 0, 0), ss.str(), 12);
         textSize++;
