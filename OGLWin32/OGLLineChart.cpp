@@ -107,6 +107,6 @@ void OGLLineChart::InitElements()
 
     Scale(scale);
     Move(-_relativePos.X(), -_relativePos.Y());
-    printf("Done");
+    printf("Done\n");
 
 }

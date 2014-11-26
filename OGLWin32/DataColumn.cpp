@@ -54,7 +54,7 @@ void DataColumn::GetStats()
         {
             Min = mapIt->second;
         }
-        if (mapIt->second > Max)
+		if (mapIt->second > MaxDist)
         {
             MaxDist = mapIt->second;
         }

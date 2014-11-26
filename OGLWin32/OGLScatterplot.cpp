@@ -8,7 +8,7 @@ void OGLScatterPlot2D::AddDataSource(DataColumn col)
     {
         data.pop_back();
     }
-    data.push_back(col);
+    data.insert(data.begin(), col);
     InitElements();
 }
 
@@ -88,7 +88,7 @@ void OGLScatterPlot2D::InitElements()
 
         index = new OGLRectangle(Vec2f(x, y), Color(0.f, 0.f, 0.f, 0.5f), 3,3);
         index->CenterRotate(45.0f);
-
+		//index = new OGLCircle(Vec2f(x, y), Color(0, 0, 0), 5);
         dataDist[index] = new DataCell(std::string(data[0].Name() + " " + data[0].rawData[i].getString() + ":: " + data[1].Name()+ " " + data[1].rawData[i].getString()));
     }
     textSize+=2;
