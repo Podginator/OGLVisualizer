@@ -44,7 +44,6 @@ void OGLChart::Clear()
 
 void OGLChart::Render()
 {
-
     _border.Render();
 
     std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
