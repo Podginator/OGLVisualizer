@@ -1,8 +1,8 @@
 #pragma once
 
-#include "OGLShape.h"
+#include "OGLShape2D.h"
 
-class OGLArc : public OGLShape
+class OGLArc : public OGLShape2D
 {
 public:
     OGLArc(const Vec2f& position, const Color& color, float startTheta, float endTheta, float radius);

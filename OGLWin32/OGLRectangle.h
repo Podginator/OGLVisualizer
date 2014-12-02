@@ -1,6 +1,6 @@
 #pragma once
-#include "OGLShape.h"
-class OGLRectangle : public OGLShape
+#include "OGLShape2D.h"
+class OGLRectangle : public OGLShape2D
 {
     private:
         float _width;

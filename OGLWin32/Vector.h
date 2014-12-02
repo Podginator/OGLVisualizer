@@ -221,7 +221,7 @@ public:
     }
     void X(T x)
     {
-        VectBase::data[0] = x
+        VectBase::data[0] = x;
     }
     float Y() const
     {
@@ -229,7 +229,7 @@ public:
     }
     void Y(T y)
     {
-        VectBase::data[1] = y
+        VectBase::data[1] = y;
     }
     float Z() const
     {
@@ -237,7 +237,7 @@ public:
     }
     void Z(T z)
     {
-        VectBase::data[2] = z
+        VectBase::data[2] = z;
     }
 
     Vector<T, 3> CrossProduct(const Vector<T, 3>& right)

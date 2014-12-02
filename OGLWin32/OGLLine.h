@@ -1,8 +1,8 @@
 #pragma once
 
-#include "OGLShape.h"
+#include "OGLShape2D.h"
 
-class OGLLine : public OGLShape
+class OGLLine : public OGLShape2D
 {
 protected:
     Vec2f _endPosition;

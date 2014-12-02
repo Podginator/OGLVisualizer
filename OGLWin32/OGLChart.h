@@ -5,6 +5,7 @@
 #include "OGLArc.h"
 #include "OGLLine.h"
 #include "OGLCircle.h"
+#include "OGLLine3D.h"
 #include "DataColumn.h"
 #include <sstream>
 #include <iomanip>

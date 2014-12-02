@@ -22,6 +22,7 @@ bool OGLSpiderChart::MouseMove(int x, int y)
     return OGLChart::MouseMove(x, y);
 }
 
+
 void OGLSpiderChart::Clear()
 {
     if (dataDist.size() > 0)
@@ -63,7 +64,7 @@ void OGLSpiderChart::InitElements()
         text[i] = OGLText(Vec2f(VertPos[i].X(), VertPos[i].Y()), Color(0, 0, 0), data[i].Name(), "arial.glf", 10);
     }
 
-    dataDist[new OGLShape(Vec2f(0, 0), Color(0.0, 0.0, 0.0), data.size(), GL_LINE_LOOP, VertPos)] = nullptr;
+    dataDist[new OGLShape2D(Vec2f(0, 0), Color(0.0, 0.0, 0.0), data.size(), GL_LINE_LOOP, VertPos)] = nullptr;
 
 	int max = 0;
 	    //Get Max.
@@ -103,7 +104,7 @@ void OGLSpiderChart::InitElements()
             }
             
         }
-        dataDist[new OGLShape(Vec2f(0, 0), colors[i], data.size(), GL_POLYGON, newVert)] = nullptr;
+        dataDist[new OGLShape2D(Vec2f(0, 0), colors[i], data.size(), GL_POLYGON, newVert)] = nullptr;
     }
 
 

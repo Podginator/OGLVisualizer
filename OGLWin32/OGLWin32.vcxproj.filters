@@ -189,6 +189,21 @@
     <ClInclude Include="OGLSpiderChart.h">
       <Filter>Header Files\OGLCharts</Filter>
     </ClInclude>
+    <ClInclude Include="OGLScatterplot3d.h">
+      <Filter>Header Files\OGLCharts</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLShape3D.h">
+      <Filter>Header Files\OpenGL Primitives\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLShape2D.h">
+      <Filter>Header Files\OpenGL Primitives\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLLine3D.h">
+      <Filter>Header Files\OpenGL Primitives\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLRectangle3D.h">
+      <Filter>Header Files\OpenGL Primitives\Shapes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OGLApplication.cpp">
@@ -259,6 +274,21 @@
     </ClCompile>
     <ClCompile Include="OGLLineChart.cpp">
       <Filter>Source Files\OGLChart</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLScatterplot3d.cpp">
+      <Filter>Source Files\OGLChart</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLShape2D.cpp">
+      <Filter>Source Files\OpenGL Primitives\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLShape3D.cpp">
+      <Filter>Source Files\OpenGL Primitives\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLLine3D.cpp">
+      <Filter>Source Files\OpenGL Primitives\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLRectangle3D.cpp">
+      <Filter>Source Files\OpenGL Primitives\Shapes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

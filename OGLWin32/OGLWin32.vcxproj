@@ -105,10 +105,15 @@
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="OGLArc.h" />
     <ClInclude Include="OGLLine.h" />
+    <ClInclude Include="OGLLine3D.h" />
     <ClInclude Include="OGLLineChart.h" />
     <ClInclude Include="OGLPieChart.h" />
+    <ClInclude Include="OGLRectangle3D.h" />
     <ClInclude Include="OGLScatterplot.h" />
+    <ClInclude Include="OGLScatterplot3d.h" />
     <ClInclude Include="OGLShape.h" />
+    <ClInclude Include="OGLShape2D.h" />
+    <ClInclude Include="OGLShape3D.h" />
     <ClInclude Include="OGLSpiderChart.h" />
     <ClInclude Include="OGLText.h" />
     <ClInclude Include="Listener.h" />
@@ -138,15 +143,20 @@
     <ClCompile Include="OGLBarChart.cpp" />
     <ClCompile Include="OGLChart.cpp" />
     <ClCompile Include="OGLLine.cpp" />
+    <ClCompile Include="OGLLine3D.cpp" />
     <ClCompile Include="OGLLineChart.cpp" />
     <ClCompile Include="OGLPieChart.cpp" />
     <ClCompile Include="OGLRectangle.cpp" />
+    <ClCompile Include="OGLRectangle3D.cpp" />
     <ClCompile Include="OGLScatterplot.cpp" />
     <ClCompile Include="OGLShape.cpp" />
+    <ClCompile Include="OGLShape2D.cpp" />
+    <ClCompile Include="OGLShape3D.cpp" />
     <ClCompile Include="OGLSpiderChart.cpp" />
     <ClCompile Include="OGLText.cpp" />
     <ClCompile Include="OGLWin32.cpp" />
     <ClCompile Include="OGLWindow.cpp" />
+    <ClCompile Include="OGLScatterplot3d.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OGLWin32.rc" />

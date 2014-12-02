@@ -1,5 +1,6 @@
 #pragma once
 #include "OGLChart.h"
+#include <typeinfo>
 
 OGLChart::OGLChart() : _border(OGLRectangle(Vec2f(-375, -250), Color(1.0, 1.0, 1.0), 500, 750))
 {
@@ -68,13 +69,25 @@ void OGLChart::Render()
 
 void OGLChart::Scale(float scale)
 {
-    _border.Scale(scale);
+    
+    if (!(Listener::keys[16]))
+    {
+        _border.Scale(scale);
+    }
     
     std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
 
     while (mapIt != dataDist.end())
     {
-        mapIt->first->Scale(scale);
+        OGLShape* shape = mapIt->first;
+        if (dynamic_cast<OGLShape3D*>(shape) && Listener::keys[16])
+        {
+            shape->Scale(scale);
+        }
+        if (!(Listener::keys[16]))
+        {
+            mapIt->first->Scale(scale);
+        }
         mapIt++;
     }
     for (size_t k = 0; k < textSize; k++)
@@ -199,8 +212,6 @@ void OGLChart::GetHighlight(int x, int y)
 
 bool OGLChart::MouseMove(int x, int y)
 {
-    
-
     if (MouseDown&_border.MouseInside(x, y))
     {
         float displaceX = x - Listener::x;

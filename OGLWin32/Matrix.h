@@ -189,7 +189,7 @@ public:
     {
         //Model the Vector as a Matrix (We already deal with these)
         //Column Vector
-        Matrix vec = Matrix(2, 1, 0);
+        Matrix vec = Matrix(3, 1, 0);
         vec(0, 0) = right.X();
         vec(1, 0) = right.Y();
         vec(2, 0) = right.Z();

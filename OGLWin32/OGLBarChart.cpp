@@ -44,6 +44,7 @@ void OGLBarChart::InitElements()
 
         text[textSize] = OGLText(Vec2f(-350, height+6), Color(0, 0, 0), ss.str(), 12);
         textSize++;
+        text[textSize] = OGLText(Vec2f(-350, height + 6), Color(0, 0, 0), ss.str(), 12);
     }
 
 

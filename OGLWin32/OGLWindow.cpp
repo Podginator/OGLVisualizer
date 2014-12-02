@@ -1,6 +1,8 @@
 #include "OGLWindow.h"
 #include "Resource.h"
 #include <gl/GL.h>
+#include <gl/GLU.h>;
+
 
 OGLWindow::OGLWindow()
 {
@@ -157,8 +159,8 @@ void OGLWindow::Resize( int width, int height )
     //glOrtho( 0, width, 0, height, -1.0, 1.0);
     
     //0 is the center point.
-    glOrtho(-0.5*width, 0.5*width, -0.5*height, 0.5*height, -1.0, 1.0);
-
+    glFrustum(-0.5*OGLWindow::m_width, 0.5*OGLWindow::m_width, -0.5*OGLWindow::m_height, 0.5*OGLWindow::m_height, 1.f, 5.1f);
+    //gluPerspective(120, (0.5*m_width) / (0.5*m_height), 1.f, 100.f);
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
 

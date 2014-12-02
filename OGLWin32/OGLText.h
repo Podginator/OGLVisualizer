@@ -10,10 +10,11 @@ private:
     Color _color;
     float _size;
     std::string m_text;
-    Vec2f _position;
+    Vec3f _position;
     const char* _fontLoc;
     GLFont *m_font;
     float _rot;
+    float _x;
 
     void Copy(const OGLText& copy)
     {
@@ -30,7 +31,9 @@ private:
 public:
     OGLText();
     OGLText(const Vec2f& position, const Color& color, const std::string& text, float size);
+    OGLText(const Vec3f& position, const Color& color, const std::string& text, float size);
     OGLText(Vec2f position, const Color& color, const std::string& text, const char* fontLoc, float size);
+    OGLText(Vec3f position, const Color& color, const std::string& text, const char* fontLoc, float size);
     OGLText(const OGLText& copy)
     {
         Copy(copy);
@@ -43,6 +46,7 @@ public:
             m_font = new GLFont;
             m_font->Create(copy._fontLoc);
             _position = copy._position;
+            _position.Z(copy._position.Z());
             m_text = copy.m_text;
             _color = copy._color;
             _size = copy._size;
@@ -63,5 +67,9 @@ public:
     void Rotate(float deg);
     void Scale(float scale);
     void Move(float x, float y);
+    void MoveZ(float z)
+    {
+        _position += Vec3f(0, 0, z);
+    }
     void SetOpacity(float n){ _color.alpha = n; }
 };

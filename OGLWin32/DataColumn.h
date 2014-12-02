@@ -22,7 +22,6 @@ public:
     void ChangeValues(DataCell* cell, size_t _size);
 
     template<class Type> void AddElement(DataCell& cell);
-    std::map<std::string, float> GetDistribution();
     std::map<DataCell*, size_t> dataDist;
     std::vector<DataCell> rawData;
     size_t operator[](DataCell* rhs){ return dataDist[rhs]; }

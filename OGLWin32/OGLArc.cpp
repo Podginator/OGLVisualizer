@@ -4,13 +4,13 @@
 
 
 OGLArc::OGLArc(const Vec2f& position, const Color& color, float startTheta, float endTheta, float radius)
-:OGLShape(position, color, (int)(endTheta-startTheta)+3, GL_TRIANGLE_FAN)
+:OGLShape2D(position, color, (int)(endTheta-startTheta)+3, GL_TRIANGLE_FAN)
 {
     _startTheta = startTheta;
     _endTheta = endTheta;
     _radius = radius;
     CreateArc();
-    GetBoundingBox();
+    OGLShape2D::GetBoundingBox();
 }
 
 
@@ -36,13 +36,13 @@ void OGLArc::CreateArc()
 
 void OGLArc::Scale(float scale)
 {
-    OGLShape::Scale(scale);
+    OGLShape2D::Scale(scale);
     _radius *= scale;
 }
 
 bool OGLArc::MouseInside(int x, int y)
 {
-    if (!OGLShape::InsideBounding(x, y))
+    if (!OGLShape2D::InsideBounding(x, y))
     {
         return false;
     }

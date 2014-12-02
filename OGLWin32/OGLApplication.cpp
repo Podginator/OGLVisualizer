@@ -126,6 +126,7 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
     static UINT FileMenu = 0;
     static UINT ChartMenu = 0;
     static UINT DataMenu = 0;
+    static UINT EditMenu = 0;
 
     switch (msg) {
         //Create Menus.
@@ -143,8 +144,16 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
         AppendMenu(popmenu, MF_STRING, ID_BARCHART, L"BarChart View");
         AppendMenu(popmenu, MF_STRING, ID_BARCHART, L"SpiderChart View");
         AppendMenu(popmenu, MF_STRING, ID_SCATTERPLOT2D, L"Scatterplot 2d View");
+        AppendMenu(popmenu, MF_STRING, ID_SCATTERPLOT3D, L"Line Graph View");
         AppendMenu(popmenu, MF_STRING, ID_SCATTERPLOT3D, L"Scatterplot 3d View");
         AppendMenu(menu, MF_STRING | MF_POPUP, ChartMenu, L"&Add Charts");
+        
+        popmenu = CreatePopupMenu();
+        EditMenu = UINT(popmenu);
+        AppendMenu(popmenu, MF_STRING, ID_REMOVE_CHART, L"Remove Selected Chart");
+        AppendMenu(menu, MF_STRING | MF_POPUP, EditMenu, L"&Charts");
+        EnableMenuItem(menu, EditMenu, MF_GRAYED);
+        
         SetMenu(hwnd, menu);
         MENUINFO mi;
         memset(&mi, 0, sizeof(mi));
@@ -154,6 +163,20 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
         SetMenuInfo(menu, &mi);
         break;
     case WM_MENUCOMMAND:
+        if (lparam == EditMenu)
+        {
+            switch (wparam)
+            {
+            case 0:
+                s_oglapp->GetApplicationWindow()->charts.pop_back();
+                if (s_oglapp->GetApplicationWindow()->charts.size() == 0)
+                {
+                    EnableMenuItem(menu, EditMenu, MF_GRAYED);
+                    EnableMenuItem(menu, DataMenu, MF_GRAYED);
+                }
+                break;
+            }
+        }
             if (lparam == FileMenu)
             {
                 EnableMenuItem(menu, FileMenu, MF_GRAYED);
@@ -166,7 +189,7 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
                     RemoveMenu(menu, DataMenu, MF_BYCOMMAND);
                 }
 
-                FileOpen openfile(std::map < LPWSTR, LPWSTR > {{ L"CSV files", L"*.csv" }, { L"ALL FILES", L"WHAFGs" }});
+                FileOpen openfile(std::map < LPWSTR, LPWSTR > {{ L"CSV files", L"*.csv" }});
                 if (openfile.ShowDialog())
                 {
                     s_oglapp->GetApplicationWindow()->data = CSVParser::Parse(openfile.getFile());
@@ -179,6 +202,10 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
                     }
                 }
                 AppendMenu(menu, MF_STRING | MF_POPUP, DataMenu, L"&Add DataSource");
+                if (s_oglapp->GetApplicationWindow()->charts.size() == 0)
+                {
+                    EnableMenuItem(menu, DataMenu, MF_GRAYED);
+                }
                 EnableMenuItem(menu, FileMenu, MF_ENABLED);
                 EnableMenuItem(menu, ChartMenu, MF_ENABLED);
                 DrawMenuBar(hwnd);
@@ -191,6 +218,8 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
 
             if (lparam == ChartMenu)
             {
+                EnableMenuItem(menu, EditMenu, MF_ENABLED);
+                EnableMenuItem(menu, DataMenu, MF_ENABLED);
                 switch (wparam)
                 {
                 case 0:
@@ -207,6 +236,10 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
                     break;
                 case 4: 
                     s_oglapp->GetApplicationWindow()->charts.push_back(new OGLLineChart());
+                    break;
+                case 5: 
+                    s_oglapp->GetApplicationWindow()->charts.push_back(new OGLScatterplot3D());
+                    break;
                 }
 
             }

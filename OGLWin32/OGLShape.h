@@ -10,102 +10,34 @@
 class OGLShape : public Renderable, public Listener
 {
 protected:
-    Vec2f _position;
     Color rgb;
-    Vec2f* vertexs;
     size_t _size;
     unsigned int _renderType;
     void RenderVertexs(); 
 
-    //Necessary for Bounding Box
-    float xBot;
-    float xTop;
-    float yBot;
-    float yTop;
 
-
-    void Copy(const OGLShape& copy)
+    virtual void Copy(const OGLShape& copy)
     {
-        vertexs = new Vec2f[copy._size];
-        for (size_t i = 0; i < copy._size; i++)
-        {
-            vertexs[i] = copy.vertexs[i];
-        }
-        rgb = copy.rgb;
-        _position = copy._position;
         _renderType = copy._renderType;
         _size = copy._size;
-
-        GetBoundingBox();
     }
 
     bool InsideBounding(int x, int y);
 
-    void GetBoundingBox()
-    {
-        for (size_t i = 0; i < _size; i++)
-        {
-            if (vertexs[i].X() > xTop)
-            {
-                xTop = vertexs[i].X();
-            }
-            if (vertexs[i].X() < xBot)
-            {
-                xBot = vertexs[i].X();
-            }
-            if (vertexs[i].Y() > yTop)
-            {
-                yTop = vertexs[i].Y();
-            }
-            if (vertexs[i].Y() < yBot)
-            {
-                yBot = vertexs[i].Y();
-            }
-        }
-    }
 
     
 public: 
-    OGLShape(const Vec2f& position, const Color& color, size_t size, unsigned int renderType) : _position(position), rgb(color), _size(size), _renderType(renderType)
+    OGLShape(const Color& color, size_t size, unsigned int renderType): rgb(color), _size(size), _renderType(renderType)
     {
-        vertexs = new Vec2f[size];
+        
     };
 
-    OGLShape(const Vec2f& position, const Color& color, size_t size, unsigned int renderType, Vec2f positions[]) : _position(position), _size(size), rgb(color), _renderType(renderType)
-    {
-        vertexs = new Vec2f[size+1];
-        vertexs[0] = position;
-        xBot = xBot = _position.X();
-        yBot = yTop = _position.Y();
 
-        for (size_t i = 1; i < size; i++)
-        {
-            vertexs[i] = positions[i - 1];
-        }
-
-        GetBoundingBox();
-    }
-
-    OGLShape(const Vec2f& position, const Color& color, size_t size, unsigned int renderType, std::vector<Vec2f> positions) : _position(position), _size(size), rgb(color), _renderType(renderType)
-    {
-        vertexs = new Vec2f[size];
-        //vertexs[0] = position;
-        xBot = xBot = _position.X();
-        yBot = yTop = _position.Y();
-
-        for (size_t i = 0; i < size; i++)
-        {
-            vertexs[i] = positions[i];
-        }
-
-        GetBoundingBox();
-    }
-
-    OGLShape() :rgb(Color(1.0, 1.0, 1.0)){ vertexs = new Vec2f[1]; }
+    OGLShape() :rgb(Color(1.0, 1.0, 1.0)){}
 
     ~OGLShape()
     {
-        delete[] vertexs;
+        //delete[] vertexs;
     }
 
     OGLShape(const OGLShape& copy)
@@ -123,13 +55,13 @@ public:
         return *this;
     }
 
-    virtual void Render();
-    virtual void Rotate(float deg);
-    virtual void CenterRotate(float deg);
-    virtual void Scale(float deg);
+    virtual void Render() = 0;
+    virtual void Rotate(float deg) = 0;
+    virtual void CenterRotate(float deg) = 0;
+    virtual void Scale(float deg) = 0;
     void SetOpacity(float n){ rgb.alpha = n; }
-    void Move(float x, float y);
-    bool MouseInside(int x, int y);
+    void Move(float x, float y) = 0;
+    bool MouseInside(int x, int y) = 0;
 
     bool MouseMove(int x, int y)
     {

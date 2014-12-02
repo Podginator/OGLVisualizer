@@ -1,7 +1,7 @@
 #include "OGLRectangle.h"
 
 OGLRectangle::OGLRectangle(const Vec2f& position, const Color& color, float height, float width) : _height(height), _width(width),
-OGLShape(position, color, 4, GL_QUADS)
+OGLShape2D(position, color, 4, GL_QUADS)
 {
     //init the OGLRectangle to a fixed size
     vertexs[0] = Vec2f(position);
@@ -9,7 +9,7 @@ OGLShape(position, color, 4, GL_QUADS)
     vertexs[2] = Vec2f(position.X() + width, position.Y() + height);
     vertexs[3] = Vec2f(position.X(), position.Y() + height);    
 
-    GetBoundingBox();
+    OGLShape2D::GetBoundingBox();
 }
 
 OGLRectangle::~OGLRectangle(){}
@@ -22,7 +22,7 @@ void OGLRectangle::CenterRotate(float deg)
         vertexs[i] -= Vec2f((_width*0.5f), (_height*0.5f));
     }
 
-    OGLShape::CenterRotate(deg);
+    OGLShape2D::CenterRotate(deg);
 
     for (size_t i = 0; i < _size; i++)
     {
@@ -30,7 +30,7 @@ void OGLRectangle::CenterRotate(float deg)
     }
 
     //We've changed the shape, so we have to reget the binding box.
-    GetBoundingBox();
+    OGLShape2D::GetBoundingBox();
 }
 
 void OGLRectangle::Scale(float scale)
@@ -40,7 +40,7 @@ void OGLRectangle::Scale(float scale)
         vertexs[i] -= Vec2f((_width*0.5f), (_height*0.5f));
     }
 
-    OGLShape::Scale(scale);
+    OGLShape2D::Scale(scale);
 
     for (size_t i = 0; i < _size; i++)
     {
