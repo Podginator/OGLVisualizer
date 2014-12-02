@@ -23,7 +23,6 @@ OGLScatterplot3D::OGLScatterplot3D()
     dataDist[new OGLLine(Vec2f(-310, -150), Color(0.0, 0.0, 0.0), Vec2f(310, -150))] = nullptr;
     dataDist[new OGLLine3D(Vec3f(-310, -150, -1), Color(0, 0, 0), Vec3f(-310, -150, -5))] = nullptr;
 
-
     textSize++;
     text[textSize] = OGLText(Vec3f(-350, -150, -1), Color(0, 0, 0), "1", 12);
     textSize++;

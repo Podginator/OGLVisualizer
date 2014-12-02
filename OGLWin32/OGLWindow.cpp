@@ -159,8 +159,7 @@ void OGLWindow::Resize( int width, int height )
     //glOrtho( 0, width, 0, height, -1.0, 1.0);
     
     //0 is the center point.
-    //gluPerspective(75, (GLfloat)m_width/ (GLfloat)m_height, 1, 100.0);
-    glFrustum(-0.5*OGLWindow::m_width, 0.5*OGLWindow::m_width, -0.5*OGLWindow::m_height, 0.5*OGLWindow::m_height, 1.f, 5.0f);
+    glFrustum(-0.5*OGLWindow::m_width, 0.5*OGLWindow::m_width, -0.5*OGLWindow::m_height, 0.5*OGLWindow::m_height, 1.f, 5.1f);
     //gluPerspective(120, (0.5*m_width) / (0.5*m_height), 1.f, 100.f);
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();

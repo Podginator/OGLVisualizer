@@ -16,10 +16,6 @@ void OGLShape3D::Render()
     //GLBegin basically just takes a Unsigned int Macro
     //So can pass it in as a variable
     //glDisable(GL_MULTISAMPLE);
-
-    glMatrixMode(GL_MODELVIEW);
-    glTranslatef(0, 0, 0);
-
     glPushMatrix();
     glBegin(_renderType);
     RenderVertexs();
@@ -41,7 +37,6 @@ void OGLShape3D::RenderVertexs()
 
 void OGLShape3D::Move(float x, float y)
 {
-
     _position += Vec3f(x, y, 0);
 
     for (size_t i = 0; i < _size; i++)
@@ -52,8 +47,6 @@ void OGLShape3D::Move(float x, float y)
 
 void OGLShape3D::MoveZ(float z)
 {
-    
-
     _position += Vec3f(0,0,z);
 
     for (size_t i = 0; i < _size; i++)
