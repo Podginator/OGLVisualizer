@@ -2,7 +2,7 @@
 
 #include "OGLLine3D.h"
 
-OGLLine3D::OGLLine3D(const Vec3f& position, const Color& color, const Vec3f& endPos) :_endPosition(endPos), OGLShape3D(position, color, 2, GL_LINES)
+OGLLine3D::OGLLine3D(const Vec3f& position, const Color& color, const Vec3f& endPos) :_endPosition(endPos), OGLShape3D(position, color,3, GL_LINES)
 {
     vertexs[0] = _position;
     vertexs[1] = _endPosition;

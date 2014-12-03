@@ -37,6 +37,7 @@ void OGLShape3D::RenderVertexs()
 
 void OGLShape3D::Move(float x, float y)
 {
+
     _position += Vec3f(x, y, 0);
 
     for (size_t i = 0; i < _size; i++)

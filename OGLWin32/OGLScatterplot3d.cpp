@@ -19,9 +19,11 @@ OGLScatterplot3D::OGLScatterplot3D()
     text = new OGLText[12];
     _border = OGLRectangle(Vec2f(-375, -250), Color(1.0, 1.0, 1.0), 500, 750);
     
-    dataDist[new OGLLine(Vec2f(-310, -150), Color(0.0, 0.0, 0.0), Vec2f(-310, 200))] = nullptr;
-    dataDist[new OGLLine(Vec2f(-310, -150), Color(0.0, 0.0, 0.0), Vec2f(310, -150))] = nullptr;
-    dataDist[new OGLLine3D(Vec3f(-310, -150, -1), Color(0, 0, 0), Vec3f(-310, -150, -5))] = nullptr;
+    dataDist[new OGLLine(Vec2f(-300, -150), Color(0.0, 0.0, 0.0), Vec2f(-300, 200))] = nullptr;
+    dataDist[new OGLLine(Vec2f(-300, -150), Color(0.0, 0.0, 0.0), Vec2f(300, -150))] = nullptr;
+    dataDist[new OGLLine3D(Vec3f(-300, -150, -1), Color(0, 0, 0), Vec3f(-300, -150, -5))] = nullptr;
+
+
 
     textSize++;
     text[textSize] = OGLText(Vec3f(-350, -150, -1), Color(0, 0, 0), "1", 12);
@@ -66,6 +68,7 @@ void OGLScatterplot3D::InitElements()
     dataDist[new OGLLine(Vec2f(-300, -150), Color(0.0, 0.0, 0.0), Vec2f(-300, 200))] = nullptr;
     dataDist[new OGLLine(Vec2f(-300, -150), Color(0.0, 0.0, 0.0), Vec2f(300, -150))] = nullptr;
     dataDist[new OGLLine3D(Vec3f(-300, -150, -1), Color(0, 0, 0), Vec3f(-300, -150, -5))] = nullptr;
+
     float maxX = data[0].Max;
     float maxY = data[1].Max;
     float maxZ = data[2].Max;
