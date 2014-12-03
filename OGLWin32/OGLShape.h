@@ -29,7 +29,6 @@ protected:
 public: 
     OGLShape(const Color& color, size_t size, unsigned int renderType): rgb(color), _size(size), _renderType(renderType)
     {
-        
     };
 
 
@@ -59,14 +58,13 @@ public:
     virtual void Rotate(float deg) = 0;
     virtual void CenterRotate(float deg) = 0;
     virtual void Scale(float deg) = 0;
-    void SetOpacity(float n){ rgb.alpha = n; }
+    void SetOpacity(float n){ rgb.alpha -= n; }
     void Move(float x, float y) = 0;
     bool MouseInside(int x, int y) = 0;
 
     bool MouseMove(int x, int y)
     {
-        //printf("%d", MouseInside(x,y));
-        //MouseInside(x, y);
+		MouseIn = MouseInside(x, y) ? true : false;
         return true;
     }
 

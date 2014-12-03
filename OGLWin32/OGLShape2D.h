@@ -115,10 +115,18 @@ public:
     virtual void CenterRotate(float deg);
     virtual void Scale(float deg);
     void Move(float x, float y);
-    bool MouseInside(int x, int y);
+    virtual bool MouseInside(int x, int y);
 
     bool MouseMove(int x, int y)
     {
+		if (MouseInside(x, y))
+		{
+			MouseIn = true;
+		}
+		else
+		{
+			MouseIn = false;
+		}
         return true;
     }
 

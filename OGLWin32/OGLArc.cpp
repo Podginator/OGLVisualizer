@@ -65,14 +65,6 @@ bool OGLArc::MouseInside(int x, int y)
     return false;
 }
 
-bool OGLArc::MouseMove(int x, int y)
-{
-    if (MouseInside(x, y))
-    {
-        rgb = Color(0.5, 0.5, 0);
-    }
-    return true;
-}
 bool OGLArc::MouseLBUp(int x, int y)
 {
 

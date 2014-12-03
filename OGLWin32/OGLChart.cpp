@@ -221,6 +221,14 @@ bool OGLChart::MouseMove(int x, int y)
     }
     Listener::x = float(x);
     Listener::y = float(y);
+
+	std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
+	while (mapIt != dataDist.end())
+	{
+		mapIt->first->MouseMove(x, y);
+		mapIt++;
+	}
+
     return true;
 }
 bool OGLChart::MouseLBDown(int x, int y)
@@ -239,16 +247,15 @@ bool OGLChart::MouseWheel(float deg)
 {
     if (Listener::keys[17])
     {
-        static float opacity = 1.f;
         if (deg > 0)
         {
-            opacity = opacity < 1.f ? opacity + 0.1 : 1.f;
+			SetOpacity(0.1);
         }
         else
         {
-            opacity = opacity > 0.1f ? opacity - 0.1 : 0.1f;
+			SetOpacity(-0.1);
         }
-        SetOpacity(opacity);
+        
     }
     else
     {

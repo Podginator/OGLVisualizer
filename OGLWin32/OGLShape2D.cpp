@@ -73,8 +73,13 @@ void OGLShape2D::RenderVertexs()
 {
     glPushMatrix();
 
+	Color temp(rgb);
+	if (MouseIn)
+	{
+		temp.Shade(60);
+	}
 
-    glColor4f(rgb.red, rgb.green, rgb.blue, rgb.alpha);
+    glColor4f(temp.red, temp.green, temp.blue, temp.alpha);
     for (size_t i = 0; i < _size; i++)
     {
         glVertex3f(vertexs[i].X(), vertexs[i].Y(), -1.0f);
@@ -125,5 +130,5 @@ bool OGLShape2D::MouseInside(int x, int y)
         k = i;
     }
 
-    return (edgeHit % 2);
+	return (edgeHit % 2);
 }

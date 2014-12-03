@@ -71,5 +71,5 @@ public:
     {
         _position += Vec3f(0, 0, z);
     }
-    void SetOpacity(float n){ _color.alpha = n; }
+    void SetOpacity(float n){ _color.alpha -= n; }
 };

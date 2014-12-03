@@ -65,8 +65,8 @@ void OGLScatterplot3D::InitElements()
     text = new OGLText[36];
 
 
-    dataDist[new OGLLine(Vec2f(-300, -150), Color(0.0, 0.0, 0.0), Vec2f(-300, 200))] = nullptr;
-    dataDist[new OGLLine(Vec2f(-300, -150), Color(0.0, 0.0, 0.0), Vec2f(300, -150))] = nullptr;
+    dataDist[new OGLLine3D(Vec3f(-300, -150, -1), Color(0.0, 0.0, 0.0), Vec3f(-300, 200, -1))] = nullptr;
+    dataDist[new OGLLine3D(Vec3f(-300, -150, -1), Color(0.0, 0.0, 0.0), Vec3f(300, -150, -1))] = nullptr;
     dataDist[new OGLLine3D(Vec3f(-300, -150, -1), Color(0, 0, 0), Vec3f(-300, -150, -5))] = nullptr;
 
     float maxX = data[0].Max;
