@@ -11,6 +11,48 @@ void DataColumn::Name(std::string name)
     header = name;
 }
 
+
+std::map<DataCell*, size_t> DataColumn::GetDistribution()
+{
+    std::map<DataCell*, size_t> res;
+
+    for (int i = 0; i < rawData.size(); i++)
+    {
+        DataCell cell = rawData[i];
+        bool added = false;
+        std::map<DataCell*, size_t>::iterator mapIt = res.begin();
+        while (mapIt != res.end())
+        {
+            
+            if (mapIt->first->equals<float>(cell))
+            {
+                mapIt->second++;
+                added = true;
+            }
+            else if (mapIt->first->equals<int>(cell))
+            {
+                mapIt->second++;
+                added = true;
+            }
+            if (mapIt->first->equals<std::string>(cell))
+            {
+                mapIt->second++;
+                added = true;
+            }
+            mapIt++;
+        }
+
+        if (!added)
+        {
+            res[new DataCell(cell)] = 1;
+        }
+        
+    }
+
+    printf("%d", res.size());
+    return res;
+}
+
 DataColumn::DataColumn(size_t _size) :size(_size), index(0)
 {
     rawData = std::vector<DataCell>(_size);
@@ -21,50 +63,11 @@ DataColumn::DataColumn(size_t _size, Storage store) : size(_size), index(0), typ
     rawData = std::vector<DataCell>(_size);
 }
 
-void DataColumn::ChangeValues(DataCell* cell, size_t _size)
-{
-    size_t prevSize = dataDist[cell];
-    if (_size == 0)
-    {
-        std::map<DataCell*, size_t>::iterator it = dataDist.find(cell);
-        dataDist.erase(it);
-        //delete cell;
-        size -= prevSize;
-        return;
-    }
-
-    dataDist[cell] = _size;
-    size += _size > prevSize ? -(prevSize - _size) : (_size - prevSize);
-
-    GetStats();
-
-    printf("%d\n", size);
-}
-
 
 void DataColumn::GetStats()
 {
-    Min = Max = MaxDist = 0;
-    
+    Min = Max = 0;
 
-    std::map<DataCell*, size_t>::iterator mapIt = dataDist.begin();
-    while (mapIt != dataDist.end())
-    {
-        if (Min == 0)
-        {
-            Min = mapIt->second;
-        }
-		if (mapIt->second > MaxDist)
-        {
-            MaxDist = mapIt->second;
-        }
-        if (mapIt->second < Min)
-        {
-            Min = mapIt->second;
-        }
-
-        mapIt++;
-    }
     if (type == Numerical)
     {
         for (int i = 0; i < rawData.size(); i++)
@@ -82,24 +85,6 @@ void DataColumn::GetStats()
     
 }
 
-template<class Type> 
-void DataColumn::AddElement(DataCell& cell)
-{
-    std::map<DataCell*, size_t>::iterator mapIt = dataDist.begin();
-
-    while (mapIt != dataDist.end())
-    {
-        if (mapIt->first->equals<Type>(cell))
-        {
-            mapIt->second++;
-            return;
-        }
-        mapIt++;
-    }
-
-    dataDist[new DataCell(cell)] = 1;
-}
-
 
 void DataColumn::Add(std::string cell)
 {
@@ -109,21 +94,16 @@ void DataColumn::Add(std::string cell)
      if (*line)
     {
         rawData[index++] = DataCell(cell);
-        AddElement<std::string>(DataCell(cell));
-
     }
     else
     {
         if (float(int(convL)) == convL)
         {
             rawData[index++] = DataCell((int(convL)));
-            AddElement<int>(DataCell((int(convL))));
-
         }
         else
         {
             rawData[index++] = DataCell((float(convL)));
-            AddElement<float>(DataCell((float(convL))));
         }
     }
 

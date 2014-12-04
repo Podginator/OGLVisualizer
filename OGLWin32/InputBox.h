@@ -8,12 +8,12 @@
 class InputBox
 {
 public:
-    InputBox(DataCell* cell, DataColumn* col);
+    InputBox(DataCell* cell, std::map<DataCell*, size_t>* col);
     InputBox();
     void ShowDialog();
 private:
     static LRESULT CALLBACK DiaProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam);
     static DataCell* _cell;
-    static DataColumn* _col;
+    static std::map<DataCell*, size_t>* _col;
 
 };

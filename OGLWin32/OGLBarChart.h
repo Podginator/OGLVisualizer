@@ -10,8 +10,12 @@ public:
     void InitElements();
     bool MouseMove(int x, int y)
     {
-        OGLChart::GetDistHighlight(x, y);
+        GetHighlight(x, y);
         return OGLChart::MouseMove(x, y);
     }
+    
+protected:
+    size_t MaxDist();
+    void GetHighlight(int x, int y);
 
 };

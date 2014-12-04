@@ -44,6 +44,9 @@ public:
         void Resize( int width, int height );
         void SetVisible( BOOL visible );
         void DestroyOGLWindow();
+        void RemoveCharts();
+        void OrganizeCharts();
+        void ResetCharts();
         //Necessary for Windows 8.
 
         std::vector<OGLChart*> charts;

@@ -17,6 +17,7 @@
 //Initial Base class where Chart will be founded. 
 class OGLChart : public Listener, public Renderable
 {
+    friend class OGLWindow;
 protected:
     std::array<Color, 9> colors;
     //We need to define an entry point for all the charts.
@@ -29,17 +30,17 @@ protected:
     //void InitElements();
     size_t textSize;
 
-    DataColumn* FindDataCol(DataCell* cell);
     void Clear();
     virtual bool MouseInside(int x, int y){ return true; }
-    void GetDistHighlight(int x, int y);
     void GetHighlight(int x, int y);
+    std::map<DataCell*, size_t> dist;
 
 
 public:
     OGLChart();
     virtual void InitElements() = 0;
     virtual void Render();
+    virtual void Destroy();
     virtual void AddDataSource(DataColumn _data){ data.push_back(_data); }
 
     void CenterRotate(float deg);
@@ -47,7 +48,7 @@ public:
     void Scale(float scale);
     void Move(float x, float y);
     void SetOpacity(float n);
-    std::tuple<bool, DataCell*, DataColumn*> MouseRB(int x, int y);
+    std::tuple<bool, DataCell*, std::map<DataCell*, size_t>*> MouseRB(int x, int y);
 
     bool MouseMove(int x, int y);
     bool MouseLBDown(int x, int y);

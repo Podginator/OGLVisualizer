@@ -9,17 +9,25 @@ OGLChart::OGLChart() : _border(OGLRectangle(Vec2f(-375, -250), Color(1.0, 1.0, 1
     colors = { Color("#4D4D4D"), Color("#5DA5DA"), Color("#FAA43A"), Color("#60BD68"), Color("#F17CB0"), Color("#B2912F"), Color("#B276B2"), Color("#DECF3F"), Color("#F15854") };
 }
 
-DataColumn* OGLChart::FindDataCol(DataCell* cell)
+void OGLChart::Destroy()
 {
-    for (size_t i = 0; i < data.size(); i++)
+    std::map<OGLShape*, DataCell*>::iterator ShapeIt = dataDist.begin();
+    while (ShapeIt != dataDist.end())
     {
-        if (data[i].dataDist.count(cell) > 0)
-        {
-            return &data[i];
-        }
+        delete ShapeIt->first;
+        ShapeIt++;
     }
+    dataDist.clear();
 
-    return nullptr;
+    std::map<DataCell*, std::size_t>::iterator mapIt = dist.begin();
+    while (mapIt != dist.end())
+    {
+        delete mapIt->first;
+        mapIt++;
+    }
+    dist.clear();
+
+    
 }
 
 void OGLChart::Clear()
@@ -127,6 +135,8 @@ void OGLChart::Move(float x, float y)
     {
         text[k].Move(x, y);
     }
+
+    _relativePos -= Vec2f(x, y);
 }
 
 void OGLChart::Rotate(float deg)
@@ -148,7 +158,7 @@ void OGLChart::CenterRotate(float deg)
     }
 }
 
-std::tuple<bool, DataCell*, DataColumn*> OGLChart::MouseRB(int x, int y)
+std::tuple<bool, DataCell*, std::map<DataCell*, size_t>*> OGLChart::MouseRB(int x, int y)
 {
     if (!(_border.MouseInside(x, y))){ return std::make_tuple(false, nullptr, nullptr); }
 
@@ -160,7 +170,7 @@ std::tuple<bool, DataCell*, DataColumn*> OGLChart::MouseRB(int x, int y)
             //printf("Yes");
             if (mapIt->second != nullptr)
             {
-                return std::make_tuple(true, mapIt->second, FindDataCol(mapIt->second));
+                return std::make_tuple(true, mapIt->second, &dist);
             }
         }
         mapIt++;
@@ -168,26 +178,6 @@ std::tuple<bool, DataCell*, DataColumn*> OGLChart::MouseRB(int x, int y)
     return std::make_tuple(true, nullptr, nullptr);
 }
 
-void OGLChart::GetDistHighlight(int x, int y)
-{
-    if (highlightText){ delete highlightText; }
-    std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
-    while (mapIt != dataDist.end())
-    {
-        if (mapIt->first->MouseInside(x, y))
-        {
-            if (mapIt->second != nullptr)
-            {
-                float percent = ((FindDataCol(mapIt->second)->operator[](mapIt->second) / float(data[0].size)) * 100);
-                highlightText = new OGLText(Vec2f(x + 5, y), Color(0.25f, 0.25f, 0.25f), mapIt->second->getString() + ":- " + std::to_string(data[0][mapIt->second]) + "(" + std::to_string(percent) + "%)", "arial.glf", 16);
-                break;
-            }
-
-        }
-        mapIt++;
-        highlightText = nullptr;
-    }
-}
 void OGLChart::GetHighlight(int x, int y)
 {
     if (highlightText){ delete highlightText; }
@@ -216,7 +206,7 @@ bool OGLChart::MouseMove(int x, int y)
     {
         float displaceX = x - Listener::x;
         float displaceY = y - Listener::y;
-        _relativePos -= Vec2f(displaceX, displaceY);
+        
         Move(displaceX, displaceY);
     }
     Listener::x = float(x);

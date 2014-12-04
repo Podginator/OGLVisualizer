@@ -67,22 +67,22 @@ void OGLSpiderChart::InitElements()
     dataDist[new OGLShape2D(Vec2f(0, 0), Color(0.0, 0.0, 0.0), data.size(), GL_LINE_LOOP, VertPos)] = nullptr;
 
 	int max = 0;
-	    //Get Max.
-		for (int i = 0; i < 3; i++)
-		{
-		for (int k = 0; k < data.size(); k++)
-			 {
-			if (data[k].rawData[i].isA<float>())
-				 {
-				max = data[k].rawData[i].asA<float>() > max ? data[k].rawData[i].asA<float>() : max;
-				}
-			else if (data[k].rawData[i].isA<int>())
-				 {
-				max = data[k].rawData[i].asA<int>() > max ? data[k].rawData[i].asA<int>() : max;
-				}
+	//Get Max.
+	for (int i = 0; i < 3; i++)
+	{
+	for (int k = 0; k < data.size(); k++)
+			{
+		if (data[k].rawData[i].isA<float>())
+				{
+			max = data[k].rawData[i].asA<float>() > max ? data[k].rawData[i].asA<float>() : max;
+			}
+		else if (data[k].rawData[i].isA<int>())
+				{
+			max = data[k].rawData[i].asA<int>() > max ? data[k].rawData[i].asA<int>() : max;
+			}
 			
-				}
-		}
+			}
+	}
 
 
 

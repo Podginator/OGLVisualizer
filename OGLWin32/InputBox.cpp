@@ -3,9 +3,9 @@
 #include "InputBox.h"
 
 DataCell* InputBox::_cell;
-DataColumn* InputBox::_col;
+std::map<DataCell*, size_t>* InputBox::_col;
 
-InputBox::InputBox(DataCell* cell, DataColumn* col)
+InputBox::InputBox(DataCell* cell, std::map<DataCell*, size_t>* col)
 {
     _cell = cell;
     _col = col;
@@ -46,7 +46,7 @@ LRESULT CALLBACK InputBox::DiaProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lp
         case IDOK:
             EndDialog(hwnd, 1);
             BOOL flag;
-            _col->ChangeValues(_cell, GetDlgItemInt(hwnd, IDC_EDIT1, &flag, FALSE));
+            _col->operator[](_cell) = size_t(GetDlgItemInt(hwnd, IDC_EDIT1, &flag, FALSE));
             DestroyWindow(hwnd);
             return 1;
         case IDCLOSE:

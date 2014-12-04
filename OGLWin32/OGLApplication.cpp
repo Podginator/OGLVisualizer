@@ -151,6 +151,10 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
         popmenu = CreatePopupMenu();
         EditMenu = UINT(popmenu);
         AppendMenu(popmenu, MF_STRING, ID_REMOVE_CHART, L"Remove Selected Chart");
+        AppendMenu(popmenu, MF_STRING, ID_REMOVE_CHART, L"Organise Charts");
+        AppendMenu(popmenu, MF_STRING, ID_REMOVE_CHART, L"Reset Charts");
+        AppendMenu(popmenu, MF_STRING, ID_REMOVE_CHART, L"Remove All Charts");
+        
         AppendMenu(menu, MF_STRING | MF_POPUP, EditMenu, L"&Charts");
         EnableMenuItem(menu, EditMenu, MF_GRAYED);
         
@@ -168,12 +172,27 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
             switch (wparam)
             {
             case 0:
-                s_oglapp->GetApplicationWindow()->charts.pop_back();
-                if (s_oglapp->GetApplicationWindow()->charts.size() == 0)
-                {
-                    EnableMenuItem(menu, EditMenu, MF_GRAYED);
-                    EnableMenuItem(menu, DataMenu, MF_GRAYED);
-                }
+            {
+                      OGLChart* chart = s_oglapp->GetApplicationWindow()->charts[s_oglapp->GetApplicationWindow()->charts.size()-1];
+                      s_oglapp->GetApplicationWindow()->charts.pop_back();
+                      chart->Destroy();
+                      delete chart;
+                      
+                      if (s_oglapp->GetApplicationWindow()->charts.size() == 0)
+                      {
+                          EnableMenuItem(menu, EditMenu, MF_GRAYED);
+                          EnableMenuItem(menu, DataMenu, MF_GRAYED);
+                      }
+            }
+                break;
+            case 1: 
+                s_oglapp->GetApplicationWindow()->OrganizeCharts();
+                break;
+            case 2:
+                s_oglapp->GetApplicationWindow()->ResetCharts();
+                break;
+            case 3: 
+                s_oglapp->GetApplicationWindow()->RemoveCharts();
                 break;
             }
         }
@@ -250,6 +269,7 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
             s_oglapp->GetApplicationWindow()->Resize(LOWORD(lparam), HIWORD(lparam));
             break;
         case WM_CLOSE:
+            s_oglapp->GetApplicationWindow()->RemoveCharts();
             s_oglapp->GetApplicationWindow()->DestroyOGLWindow();
             break;
         case WM_KEYDOWN:
@@ -274,11 +294,11 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
             int y = -GET_Y_LPARAM(lparam) - -(s_oglapp->GetApplicationWindow()->m_height >> 1);
             if (s_oglapp->GetApplicationWindow()->charts.size() > 0)
             {
-                std::tuple<bool, DataCell*, DataColumn*> col = s_oglapp->GetApplicationWindow()->charts[s_oglapp->GetApplicationWindow()->charts.size() - 1]->MouseRB(x, y);
+                std::tuple<bool, DataCell*, std::map<DataCell*, size_t>*> col = s_oglapp->GetApplicationWindow()->charts[s_oglapp->GetApplicationWindow()->charts.size() - 1]->MouseRB(x, y);
 
                 if (std::get<0>(col))
                 {
-                    if (std::get<1>(col) != nullptr)
+                    if (std::get<1>(col) != nullptr && std::get<2>(col)->size() > 0)
                     {
                         InputBox(std::get<1>(col), std::get<2>(col));
                         s_oglapp->GetApplicationWindow()->charts[s_oglapp->GetApplicationWindow()->charts.size() - 1]->InitElements();

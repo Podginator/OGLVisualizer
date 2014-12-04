@@ -69,6 +69,17 @@ HGLRC OGLWindow::CreateOGLContext(HDC hdc)
     return hglrc;
 }
 
+void OGLWindow::RemoveCharts()
+{
+    for (size_t i = 0; i < charts.size(); i++)
+    {
+        charts[i]->Destroy();
+        delete charts[i];
+    }
+
+    charts.clear();
+}
+
 void OGLWindow::DestroyOGLWindow()
 {
     DestroyOGLContext();
@@ -159,7 +170,7 @@ void OGLWindow::Resize( int width, int height )
     //glOrtho( 0, width, 0, height, -1.0, 1.0);
     
     //0 is the center point.
-    glFrustum(-0.5*OGLWindow::m_width, 0.5*OGLWindow::m_width, -0.5*OGLWindow::m_height, 0.5*OGLWindow::m_height, 1.f, 5.1f);
+    glFrustum(-0.5*OGLWindow::m_width, 0.5*OGLWindow::m_width, -0.5*OGLWindow::m_height, 0.5*OGLWindow::m_height, 1.f, 1000.f);
     //gluPerspective(120, (0.5*m_width) / (0.5*m_height), 1.f, 100.f);
     glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
@@ -192,6 +203,54 @@ BOOL OGLWindow::MouseLBDown ( int x, int y )
     return TRUE;
 }
 
+void OGLWindow::ResetCharts()
+{
+    for (int i = 0; i < charts.size(); ++i)
+    {
+        //printf("%f", maxWidth);
+        float backToOne = (700.f / charts[i]->scale) / 700.f;
+        charts[i]->Move(charts[i]->_relativePos.X(), charts[i]->_relativePos.Y());
+        charts[i]->_relativePos = Vec2f(0, 0);
+        charts[i]->scale = 1.0f;
+        charts[i]->Scale(backToOne);
+    }
+}
+
+void OGLWindow::OrganizeCharts()
+{
+    //We want to have 3 per row of window. 
+    //So we have to calculate width and height necessary. 
+
+    //So.. We have a few things we can know. 
+    //A chart, generally speaking, is 700w*500h or 1.4 aspect ratio.
+
+    //I want to limit the amount of charts per row to be three, and have the charts underneath be immediately underneath the ones above.
+    ResetCharts();
+    int size = charts.size() < 3 ? charts.size() : 3;
+    float maxWidth = float(m_width) / (700.f*size);
+
+
+    printf("%f\n", maxWidth);
+    float xOffset = 0;
+    float yOffset = 0;
+    for (int i = 0; i < charts.size(); ++i)
+    {
+        charts[i]->Move(375, -250);
+        charts[i]->Scale(maxWidth);
+        charts[i]->scale = maxWidth;
+        charts[i]->Move((-float(m_width)/2.f)+xOffset, (float(m_height)/2.f)+yOffset);
+        xOffset += (maxWidth * 700);
+        if ((i+1) % 3 == 0 && i != 0)
+        {
+            yOffset += (yOffset) -= 500.f*maxWidth;
+            xOffset = 0;
+        }
+
+        printf("XOFFSET:::%f\n", xOffset);
+
+    }
+}
+
 BOOL OGLWindow::MouseLBUp ( int x, int y )
 {
     if (charts.size() > 0)
@@ -210,6 +269,7 @@ BOOL OGLWindow::MouseMove ( int x, int y )
         Listener *plistener = static_cast<Listener*>(charts[charts.size() - 1]);
         plistener->MouseMove(x - (m_width >> 1), (-y) - (-m_height >> 1));
     }
+    //printf("%d::%d\n", x - (m_width >> 1), (-y) - (-m_height >> 1));
     
     return TRUE;
 }

@@ -17,14 +17,11 @@ public:
     void Stores(Storage _type){ type = _type; }
     void Add(std::string cell);
     int Max;
-    int MaxDist;
     int Min;
     void ChangeValues(DataCell* cell, size_t _size);
+    std::map<DataCell*, size_t> GetDistribution();
 
-    template<class Type> void AddElement(DataCell& cell);
-    std::map<DataCell*, size_t> dataDist;
     std::vector<DataCell> rawData;
-    size_t operator[](DataCell* rhs){ return dataDist[rhs]; }
     DataColumn(){};
     DataColumn(size_t size);
     DataColumn(size_t size, Storage type);
