@@ -70,22 +70,22 @@ void OGLLineChart::InitElements()
         float y = 0;
         float x = 0;
 
-        if (data[0].rawData[i].isA<float>())
+        if (data[0].data[i].isA<float>())
         {
-            x = (600 * (data[0].rawData[i].asA<float>() / maxX)) - 300;
+            x = (600 * (data[0].data[i].asA<float>() / maxX)) - 300;
         }
-        else if (data[0].rawData[i].isA<int>())
+        else if (data[0].data[i].isA<int>())
         {
-            x = (600 * (float(data[0].rawData[i].asA<int>()) / maxX)) - 300;
+            x = (600 * (float(data[0].data[i].asA<int>()) / maxX)) - 300;
         }
 
-        if (data[1].rawData[i].isA<float>())
+        if (data[1].data[i].isA<float>())
         {
-            y = (350 * (data[1].rawData[i].asA<float>() / maxY)) - 150;
+            y = (350 * (data[1].data[i].asA<float>() / maxY)) - 150;
         }
-        else if (data[1].rawData[i].isA<int>())
+        else if (data[1].data[i].isA<int>())
         {
-            y = (350 * (float(data[1].rawData[i].asA<int>()) / maxY)) - 150;
+            y = (350 * (float(data[1].data[i].asA<int>()) / maxY)) - 150;
         }
 
         res.push_back(Vec2f(x, y));

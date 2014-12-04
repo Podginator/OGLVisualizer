@@ -72,13 +72,13 @@ void OGLSpiderChart::InitElements()
 	{
 	for (int k = 0; k < data.size(); k++)
 			{
-		if (data[k].rawData[i].isA<float>())
+		if (data[k].data[i].isA<float>())
 				{
-			max = data[k].rawData[i].asA<float>() > max ? data[k].rawData[i].asA<float>() : max;
+			max = data[k].data[i].asA<float>() > max ? data[k].data[i].asA<float>() : max;
 			}
-		else if (data[k].rawData[i].isA<int>())
+		else if (data[k].data[i].isA<int>())
 				{
-			max = data[k].rawData[i].asA<int>() > max ? data[k].rawData[i].asA<int>() : max;
+			max = data[k].data[i].asA<int>() > max ? data[k].data[i].asA<int>() : max;
 			}
 			
 			}
@@ -91,16 +91,16 @@ void OGLSpiderChart::InitElements()
         std::vector<Vec2f> newVert = std::vector<Vec2f>(VertPos.size());
         for (int k = 0; k < data.size(); k++)
         {
-            if (data[k].rawData[i].isA<float>())
+            if (data[k].data[i].isA<float>())
             {
-                newVert[k] = VertPos[k] * ( data[k].rawData[i].asA<float>() / max);
-                dataDist[new OGLCircle(Vec2f(newVert[k].X(), newVert[k].Y()), Color(0, 0, 0), 2.5)] = new DataCell(std::string("Data " + std::to_string(i) + "::- " + data[k].Name() + " " + std::to_string(data[k].rawData[i].asA<float>())));
+                newVert[k] = VertPos[k] * ( data[k].data[i].asA<float>() / max);
+                dataDist[new OGLCircle(Vec2f(newVert[k].X(), newVert[k].Y()), Color(0, 0, 0), 2.5)] = new DataCell(std::string("Data " + std::to_string(i) + "::- " + data[k].Name() + " " + std::to_string(data[k].data[i].asA<float>())));
 
             }
-            else if (data[k].rawData[i].isA<int>())
+            else if (data[k].data[i].isA<int>())
             {
-                newVert[k] = VertPos[k] * (float(data[k].rawData[i].asA<int>())/max);
-                dataDist[new OGLCircle(Vec2f(newVert[k].X(), newVert[k].Y()), Color(0, 0, 0), 2.5)] = new DataCell(std::string("Data " + std::to_string(i) + "::- " + data[k].Name()+" "+std::to_string(data[k].rawData[i].asA<int>())));
+                newVert[k] = VertPos[k] * (float(data[k].data[i].asA<int>())/max);
+                dataDist[new OGLCircle(Vec2f(newVert[k].X(), newVert[k].Y()), Color(0, 0, 0), 2.5)] = new DataCell(std::string("Data " + std::to_string(i) + "::- " + data[k].Name()+" "+std::to_string(data[k].data[i].asA<int>())));
             }
             
         }

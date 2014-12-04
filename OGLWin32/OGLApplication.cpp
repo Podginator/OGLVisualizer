@@ -193,6 +193,11 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
                 break;
             case 3: 
                 s_oglapp->GetApplicationWindow()->RemoveCharts();
+                if (s_oglapp->GetApplicationWindow()->charts.size() == 0)
+                {
+                    EnableMenuItem(menu, EditMenu, MF_GRAYED);
+                    EnableMenuItem(menu, DataMenu, MF_GRAYED);
+                }
                 break;
             }
         }

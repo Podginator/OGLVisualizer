@@ -67,29 +67,29 @@ void OGLScatterPlot2D::InitElements()
         float y = 0;
         float x = 0;
 
-        if (data[0].rawData[i].isA<float>())
+        if (data[0].data[i].isA<float>())
         {
-            x = (600 * (data[0].rawData[i].asA<float>() / maxX)) - 300;
+            x = (600 * (data[0].data[i].asA<float>() / maxX)) - 300;
         }
-        else if (data[0].rawData[i].isA<int>())
+        else if (data[0].data[i].isA<int>())
         {
-            x = (600 * (float(data[0].rawData[i].asA<int>())/maxX)) - 300;
+            x = (600 * (float(data[0].data[i].asA<int>())/maxX)) - 300;
         }
 
-        if (data[1].rawData[i].isA<float>())
+        if (data[1].data[i].isA<float>())
         {
-            y = (350 * (data[1].rawData[i].asA<float>() / maxY)) - 150;
+            y = (350 * (data[1].data[i].asA<float>() / maxY)) - 150;
         }
-        else if (data[1].rawData[i].isA<int>())
+        else if (data[1].data[i].isA<int>())
         {
-            y = (350 * (float(data[1].rawData[i].asA<int>())/maxY)) - 150;
+            y = (350 * (float(data[1].data[i].asA<int>())/maxY)) - 150;
         }
 
 
         index = new OGLRectangle(Vec2f(x, y), Color(0.f, 0.f, 0.f, 0.5f), 3,3);
         index->CenterRotate(45.0f);
 		//index = new OGLCircle(Vec2f(x, y), Color(0, 0, 0), 5);
-        dataDist[index] = new DataCell(std::string(data[0].Name() + " " + data[0].rawData[i].getString() + ":: " + data[1].Name()+ " " + data[1].rawData[i].getString()));
+        dataDist[index] = new DataCell(std::string(data[0].Name() + " " + data[0].data[i].getString() + ":: " + data[1].Name()+ " " + data[1].data[i].getString()));
     }
     textSize+=2;
     text[22] = OGLText(Vec2f(-350, 230), Color(0, 0, 0), data[1].Name(), "arial.glf", 12);

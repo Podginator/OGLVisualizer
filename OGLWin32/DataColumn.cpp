@@ -16,9 +16,9 @@ std::map<DataCell*, size_t> DataColumn::GetDistribution()
 {
     std::map<DataCell*, size_t> res;
 
-    for (int i = 0; i < rawData.size(); i++)
+    for (int i = 0; i < data.size(); i++)
     {
-        DataCell cell = rawData[i];
+        DataCell cell = data[i];
         bool added = false;
         std::map<DataCell*, size_t>::iterator mapIt = res.begin();
         while (mapIt != res.end())
@@ -55,12 +55,12 @@ std::map<DataCell*, size_t> DataColumn::GetDistribution()
 
 DataColumn::DataColumn(size_t _size) :size(_size), index(0)
 {
-    rawData = std::vector<DataCell>(_size);
+    data = std::vector<DataCell>(_size);
 }
 
 DataColumn::DataColumn(size_t _size, Storage store) : size(_size), index(0), type(store)
 {
-    rawData = std::vector<DataCell>(_size);
+    data = std::vector<DataCell>(_size);
 }
 
 
@@ -70,15 +70,15 @@ void DataColumn::GetStats()
 
     if (type == Numerical)
     {
-        for (int i = 0; i < rawData.size(); i++)
+        for (int i = 0; i < data.size(); i++)
         {
-            if (rawData[i].isA<float>())
+            if (data[i].isA<float>())
             {
-                Max = rawData[i].asA<float>() > Max ? rawData[i].asA<float>() : Max;
+                Max = data[i].asA<float>() > Max ? data[i].asA<float>() : Max;
             }
-            else if (rawData[i].isA<int>())
+            else if (data[i].isA<int>())
             {
-                Max = rawData[i].asA<int>() > Max ? rawData[i].asA<int>() : Max;
+                Max = data[i].asA<int>() > Max ? data[i].asA<int>() : Max;
             }
         }
     }
@@ -93,17 +93,17 @@ void DataColumn::Add(std::string cell)
 
      if (*line)
     {
-        rawData[index++] = DataCell(cell);
+        data[index++] = DataCell(cell);
     }
     else
     {
         if (float(int(convL)) == convL)
         {
-            rawData[index++] = DataCell((int(convL)));
+            data[index++] = DataCell((int(convL)));
         }
         else
         {
-            rawData[index++] = DataCell((float(convL)));
+            data[index++] = DataCell((float(convL)));
         }
     }
 

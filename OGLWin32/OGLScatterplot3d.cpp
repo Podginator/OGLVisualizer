@@ -107,31 +107,31 @@ void OGLScatterplot3D::InitElements()
         float x = 0;
         float z = -1;
 
-        if (data[0].rawData[i].isA<float>())
+        if (data[0].data[i].isA<float>())
         {
-            x = (600 * (data[0].rawData[i].asA<float>() / maxX)) - 300;
+            x = (600 * (data[0].data[i].asA<float>() / maxX)) - 300;
         }
-        else if (data[0].rawData[i].isA<int>())
+        else if (data[0].data[i].isA<int>())
         {
-            x = (600 * (float(data[0].rawData[i].asA<int>()) / maxX)) - 300;
-        }
-
-        if (data[1].rawData[i].isA<float>())
-        {
-            y = (350 * (data[1].rawData[i].asA<float>() / maxY)) - 150;
-        }
-        else if (data[1].rawData[i].isA<int>())
-        {
-            y = (350 * (float(data[1].rawData[i].asA<int>()) / maxY)) - 150;
+            x = (600 * (float(data[0].data[i].asA<int>()) / maxX)) - 300;
         }
 
-        if (data[2].rawData[i].isA<float>())
+        if (data[1].data[i].isA<float>())
         {
-            z = -(5 * (data[2].rawData[i].asA<float>() / maxZ)) -1;
+            y = (350 * (data[1].data[i].asA<float>() / maxY)) - 150;
         }
-        else if (data[2].rawData[i].isA<int>())
+        else if (data[1].data[i].isA<int>())
         {
-            z = -(5* (float(data[2].rawData[i].asA<int>()) / maxZ)) - 1;
+            y = (350 * (float(data[1].data[i].asA<int>()) / maxY)) - 150;
+        }
+
+        if (data[2].data[i].isA<float>())
+        {
+            z = -(5 * (data[2].data[i].asA<float>() / maxZ)) -1;
+        }
+        else if (data[2].data[i].isA<int>())
+        {
+            z = -(5* (float(data[2].data[i].asA<int>()) / maxZ)) - 1;
         }
 
         printf("z::::%f Y:::%f, X::::%f\n", z, y, x);
@@ -139,7 +139,7 @@ void OGLScatterplot3D::InitElements()
         index = new OGLRectangle3D(Vec3f(x, y, z), Color(0.f, 0.f, 0.f, 0.5f), 3, 3);
         index->CenterRotate(45.0f);
         //index = new OGLCircle(Vec2f(x, y), Color(0, 0, 0), 5);
-        dataDist[index] = new DataCell(std::string(data[0].Name() + " " + data[0].rawData[i].getString() + ":: " + data[1].Name() + " " + data[1].rawData[i].getString() + " " + data[2].Name() + " " + data[2].rawData[i].getString()));
+        dataDist[index] = new DataCell(std::string(data[0].Name() + " " + data[0].data[i].getString() + ":: " + data[1].Name() + " " + data[1].data[i].getString() + " " + data[2].Name() + " " + data[2].data[i].getString()));
     }
     textSize += 2;
     text[22] = OGLText(Vec2f(-350, 230), Color(0, 0, 0), data[1].Name(), "arial.glf", 12);

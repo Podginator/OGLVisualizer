@@ -18,10 +18,9 @@ public:
     void Add(std::string cell);
     int Max;
     int Min;
-    void ChangeValues(DataCell* cell, size_t _size);
     std::map<DataCell*, size_t> GetDistribution();
 
-    std::vector<DataCell> rawData;
+    std::vector<DataCell> data;
     DataColumn(){};
     DataColumn(size_t size);
     DataColumn(size_t size, Storage type);

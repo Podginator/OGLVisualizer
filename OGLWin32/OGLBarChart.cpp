@@ -11,7 +11,9 @@ void OGLBarChart::AddDataSource(DataColumn col)
 
 OGLBarChart::OGLBarChart()
 {
-    
+    textSize = 1;
+    text = new OGLText[1];
+    text[0] = OGLText(Vec2f(-300, 0), Color(0, 0, 0), "BarChart, add a Data Columns to start", "arial.glf", 18);
 }
 
 size_t OGLBarChart::MaxDist()
