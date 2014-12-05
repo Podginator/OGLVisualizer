@@ -25,8 +25,9 @@ public:
     DataColumn(size_t size);
     DataColumn(size_t size, Storage type);
     ~DataColumn(){};
-protected:
     void GetStats();
+    
+protected:
     Storage type;
     std::string header;
     std::size_t index;

@@ -8,6 +8,7 @@ public:
     OGLScatterplot3D();
     void AddDataSource(DataColumn col);
     void InitElements();
+    void Move(float x, float y);
     bool MouseMove(int x, int y)
     {
         OGLChart::GetHighlight(x, y);

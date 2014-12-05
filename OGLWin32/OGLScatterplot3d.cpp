@@ -48,6 +48,41 @@ OGLScatterplot3D::OGLScatterplot3D()
 
 }
 
+
+void OGLScatterplot3D::Move(float x, float y)
+{
+    _border.Move(x, y);
+
+    std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
+    while (mapIt != dataDist.end())
+    {
+        OGLShape3D* shape = dynamic_cast<OGLShape3D*>(mapIt->first);
+        if (shape && Listener::keys[16])
+        {
+            shape->MoveRel(x, y);
+            mapIt++;
+            continue;
+        }
+        mapIt->first->Move(x, y);
+        mapIt++;
+    }
+
+    for (size_t k = 0; k < textSize; k++)
+    {
+        if (Listener::keys[16])
+        {
+            text[k].MoveRel(x, y);
+        }
+        else
+        {
+            text[k].Move(x, y);
+        }
+        
+    }
+
+    _relativePos -= Vec2f(x, y);
+}
+
 void OGLScatterplot3D::InitElements()
 {
     //Clear everything
@@ -65,8 +100,8 @@ void OGLScatterplot3D::InitElements()
     text = new OGLText[36];
 
 
-    dataDist[new OGLLine3D(Vec3f(-300, -150, -1), Color(0.0, 0.0, 0.0), Vec3f(-300, 200, -1))] = nullptr;
-    dataDist[new OGLLine3D(Vec3f(-300, -150, -1), Color(0.0, 0.0, 0.0), Vec3f(300, -150, -1))] = nullptr;
+    dataDist[new OGLLine(Vec2f(-300, -150), Color(0.0, 0.0, 0.0), Vec2f(-300, 200))] = nullptr;
+    dataDist[new OGLLine(Vec2f(-300, -150), Color(0.0, 0.0, 0.0), Vec2f(300, -150))] = nullptr;
     dataDist[new OGLLine3D(Vec3f(-300, -150, -1), Color(0, 0, 0), Vec3f(-300, -150, -5))] = nullptr;
 
     float maxX = data[0].Max;
@@ -78,7 +113,6 @@ void OGLScatterplot3D::InitElements()
         float height = (-150) + (350 / (10))*i;
         float width = (-300) + (600 / 10)*i;
         float depth = 1 + (5.f / 10.f)*(10-i);
-        printf("%f\n", depth);
         dataDist[new OGLLine(Vec2f(-310, height), Color(0, 0, 0), Vec2f(-300, height))] = nullptr;
 
         std::stringstream ss;

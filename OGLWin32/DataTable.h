@@ -3,6 +3,7 @@
 
 class DataTable
 {
+    friend class CSVParser;
 public:
     DataTable(size_t _size);
     ~DataTable();

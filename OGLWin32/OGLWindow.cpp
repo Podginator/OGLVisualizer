@@ -3,6 +3,8 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>;
 
+int OGLWindow::m_height;
+int OGLWindow::m_width;
 
 OGLWindow::OGLWindow()
 {
@@ -108,7 +110,7 @@ BOOL OGLWindow::DestroyOGLContext()
 BOOL OGLWindow::InitWindow(HINSTANCE hInstance, int width, int height)
 {
     m_hwnd = CreateWindowEx( WS_EX_APPWINDOW | WS_EX_WINDOWEDGE,
-        L"OGLWindow", L"OGLWindow", WS_OVERLAPPEDWINDOW|WS_CLIPSIBLINGS|WS_CLIPCHILDREN,
+        L"OGLWindow", L"OGL Visualizer", WS_OVERLAPPEDWINDOW|WS_CLIPSIBLINGS|WS_CLIPCHILDREN,
         0, 0, width, height, NULL, NULL, hInstance, NULL);
 
     if ( ! m_hwnd )

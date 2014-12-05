@@ -6,6 +6,8 @@ protected:
     Vec3f _position;
     Vec3f* vertexs;
     void RenderVertexs();
+    int xOff = 0;
+    int yOff = 0;
     void Copy(const OGLShape3D& copy)
     {
         vertexs = new Vec3f[copy._size];
@@ -27,6 +29,7 @@ public:
     virtual void CenterRotate(float deg){}
     virtual void Scale(float deg);
     virtual void MoveZ(float z);
+    virtual void MoveRel(float x, float y);
     void Move(float x, float y);
     bool MouseInside(int x, int y){
         return true;

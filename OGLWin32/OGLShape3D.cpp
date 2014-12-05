@@ -16,10 +16,26 @@ void OGLShape3D::Render()
     //GLBegin basically just takes a Unsigned int Macro
     //So can pass it in as a variable
     //glDisable(GL_MULTISAMPLE);
+
+    glMatrixMode(GL_PROJECTION);
     glPushMatrix();
+    glLoadIdentity();
+    
+    glFrustum((-0.5*OGLWindow::m_width - xOff)/Listener::scale, (0.5*OGLWindow::m_width - (xOff))/Listener::scale, (-0.5 * OGLWindow::m_height - (yOff))/Listener::scale, (0.5 * OGLWindow::m_height - (yOff))
+        /Listener::scale, 1.f, 1000.f);
+    //gluPerspective(120, (0.5*m_width) / (0.5*m_height), 1.f, 100.f);
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+    
+
     glBegin(_renderType);
     RenderVertexs();
     glEnd();    
+
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
     glPopMatrix();
 
 }
@@ -39,7 +55,13 @@ void OGLShape3D::RenderVertexs()
 
 void OGLShape3D::Move(float x, float y)
 {
+    xOff += x;
+    yOff += y;
+    
+}
 
+void OGLShape3D::MoveRel(float x, float y)
+{
     _position += Vec3f(x, y, 0);
 
     for (size_t i = 0; i < _size; i++)
@@ -60,20 +82,21 @@ void OGLShape3D::MoveZ(float z)
 
 void OGLShape3D::Scale(float scale)
 {
+    Listener::scale *= scale;
 
-    float tempZ = _position.Z();
-    _position = _position*scale;
-    _position.Z(tempZ);
+    //float tempZ = _position.Z();
+    //_position = _position*scale;
+    //_position.Z(tempZ);
 
-    for (size_t i = 0; i < _size; i++)
-    {
-        tempZ = vertexs[i].Z();
-        vertexs[i] -= _position;
-        
-        //Then scale.
-        vertexs[i] = vertexs[i] * scale;
-        //Then move back.
-        vertexs[i] += _position * scale;
-        vertexs[i].Z(tempZ);
-    }
+    //for (size_t i = 0; i < _size; i++)
+    //{
+    //    tempZ = vertexs[i].Z();
+    //    vertexs[i] -= _position;
+    //    
+    //    //Then scale.
+    //    vertexs[i] = vertexs[i] * scale;
+    //    //Then move back.
+    //    vertexs[i] += _position * scale;
+    //    vertexs[i].Z(tempZ);
+    //}
 }

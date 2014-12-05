@@ -44,10 +44,23 @@ LRESULT CALLBACK InputBox::DiaProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lp
         switch (wparam)
         {
         case IDOK:
+        {
             EndDialog(hwnd, 1);
             BOOL flag;
-            _col->operator[](_cell) = size_t(GetDlgItemInt(hwnd, IDC_EDIT1, &flag, FALSE));
+            size_t newSize = size_t(GetDlgItemInt(hwnd, IDC_EDIT1, &flag, FALSE));
+            if (newSize == 0)
+            {
+                std::map<DataCell*, size_t>::iterator it;
+                it = _col->find(_cell);
+                _col->erase(it);
+            }
+            else
+            {
+                _col->operator[](_cell) = newSize;
+            }
+
             DestroyWindow(hwnd);
+        }
             return 1;
         case IDCLOSE:
             EndDialog(hwnd, 1);

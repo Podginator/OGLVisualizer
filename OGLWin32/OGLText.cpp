@@ -1,6 +1,7 @@
 #pragma once
 
 #include "OGLText.h"
+#include "OGLWindow.h"
 #include <gl/GLU.h>
 
 void OGLText::SetText(const char* text)
@@ -10,6 +11,16 @@ void OGLText::SetText(const char* text)
 
 void OGLText::Render()
 {
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+
+    glFrustum(-0.5*OGLWindow::m_width - xOff, 0.5*OGLWindow::m_width - xOff, -0.5 * OGLWindow::m_height - yOff, 0.5 * OGLWindow::m_height - yOff, 1.f, 1000.f);
+    //gluPerspective(120, (0.5*m_width) / (0.5*m_height), 1.f, 100.f);
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+
     glPushMatrix();
 
     //printf("%f\n", _position.Z());
@@ -23,6 +34,11 @@ void OGLText::Render()
     m_font->TextOut(m_text.c_str(), 0, 0, _position.Z());
     m_font->End();
 
+    glPopMatrix();
+
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
     glPopMatrix();
 }
 
@@ -91,8 +107,14 @@ void OGLText::Scale(float scale)
 
 void OGLText::Move(float x, float y)
 {
-    _position += Vec3f(x, y, 0);
+    xOff += x;
+    yOff += y;
 
+}
+
+void OGLText::MoveRel(float x, float y)
+{
+    _position += Vec3f(x, y, 0);
 }
 
 void OGLText::Rotate(float deg)

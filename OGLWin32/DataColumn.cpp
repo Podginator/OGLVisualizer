@@ -8,7 +8,8 @@ std::string DataColumn::Name() const
 
 void DataColumn::Name(std::string name)
 {
-    header = name;
+    std::string cat = type == Numerical ? name + " (Numerical)" : name + " (Categorical)";
+    header = cat;
 }
 
 
@@ -21,32 +22,33 @@ std::map<DataCell*, size_t> DataColumn::GetDistribution()
         DataCell cell = data[i];
         bool added = false;
         std::map<DataCell*, size_t>::iterator mapIt = res.begin();
-        while (mapIt != res.end())
+        if (!(data[i].isNull()))
         {
-            
-            if (mapIt->first->equals<float>(cell))
+            while (mapIt != res.end())
             {
-                mapIt->second++;
-                added = true;
+                if (mapIt->first->equals<float>(cell))
+                {
+                    mapIt->second++;
+                    added = true;
+                }
+                else if (mapIt->first->equals<int>(cell))
+                {
+                    mapIt->second++;
+                    added = true;
+                }
+                if (mapIt->first->equals<std::string>(cell))
+                {
+                    mapIt->second++;
+                    added = true;
+                }
+                mapIt++;
             }
-            else if (mapIt->first->equals<int>(cell))
-            {
-                mapIt->second++;
-                added = true;
-            }
-            if (mapIt->first->equals<std::string>(cell))
-            {
-                mapIt->second++;
-                added = true;
-            }
-            mapIt++;
-        }
 
-        if (!added)
-        {
-            res[new DataCell(cell)] = 1;
+            if (!added)
+            {
+                res[new DataCell(cell)] = 1;
+            }
         }
-        
     }
 
     printf("%d", res.size());
@@ -74,15 +76,18 @@ void DataColumn::GetStats()
         {
             if (data[i].isA<float>())
             {
+                if (Min == 0){ Min = data[i].asA<float>(); }
                 Max = data[i].asA<float>() > Max ? data[i].asA<float>() : Max;
+                Min = data[i].asA<float>() < Min ? data[i].asA<float>() : Min;
             }
             else if (data[i].isA<int>())
             {
+                if (Min == 0){ Min = data[i].asA<int>(); }
                 Max = data[i].asA<int>() > Max ? data[i].asA<int>() : Max;
+                Min = data[i].asA<int>() < Min ? data[i].asA<int>() : Min;
             }
         }
     }
-    
 }
 
 
@@ -91,7 +96,7 @@ void DataColumn::Add(std::string cell)
     char * line;
     float convL = std::strtof(cell.c_str(), &line);
 
-     if (*line)
+    if (*line)
     {
         data[index++] = DataCell(cell);
     }
@@ -106,6 +111,4 @@ void DataColumn::Add(std::string cell)
             data[index++] = DataCell((float(convL)));
         }
     }
-
-    GetStats();
 }

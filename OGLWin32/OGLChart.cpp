@@ -133,7 +133,7 @@ void OGLChart::Move(float x, float y)
 
     for (size_t k = 0; k < textSize; k++)
     {
-        text[k].Move(x, y);
+        text[k].MoveRel(x, y);
     }
 
     _relativePos -= Vec2f(x, y);

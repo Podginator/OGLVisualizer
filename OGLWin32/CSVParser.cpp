@@ -84,7 +84,16 @@ DataTable CSVParser::Parse(std::tr2::sys::wpath opened)
     {
         AddToCols(line, cols);
     }
+
+    for (std::size_t i = 0; i < cols.size; i++)
+    {
+        cols[i].GetStats();
+    }
+
     std::cout << "Done" << "\n"; 
+
+   
+
     return cols;
 }
 

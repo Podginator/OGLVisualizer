@@ -15,6 +15,8 @@ private:
     GLFont *m_font;
     float _rot;
     float _x;
+    int xOff = 0;
+    int yOff = 0;
 
     void Copy(const OGLText& copy)
     {
@@ -67,6 +69,7 @@ public:
     void Rotate(float deg);
     void Scale(float scale);
     void Move(float x, float y);
+    void MoveRel(float x, float y);
     void MoveZ(float z)
     {
         _position += Vec3f(0, 0, z);

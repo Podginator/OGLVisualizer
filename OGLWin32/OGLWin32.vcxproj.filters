@@ -204,6 +204,9 @@
     <ClInclude Include="OGLRectangle3D.h">
       <Filter>Header Files\OpenGL Primitives\Shapes</Filter>
     </ClInclude>
+    <ClInclude Include="OGLBoxChart.h">
+      <Filter>Header Files\OGLCharts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OGLApplication.cpp">

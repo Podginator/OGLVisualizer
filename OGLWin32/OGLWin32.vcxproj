@@ -97,6 +97,7 @@
     <ClInclude Include="DataColumn.h" />
     <ClInclude Include="InputBox.h" />
     <ClInclude Include="OGLBarChart.h" />
+    <ClInclude Include="OGLBoxChart.h" />
     <ClInclude Include="OGLChart.h" />
     <ClInclude Include="OGLCircle.h" />
     <ClInclude Include="CSVParser.h" />
