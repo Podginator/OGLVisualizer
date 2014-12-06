@@ -209,7 +209,6 @@ void OGLWindow::ResetCharts()
 {
     for (int i = 0; i < charts.size(); ++i)
     {
-        //printf("%f", maxWidth);
         float backToOne = (700.f / charts[i]->scale) / 700.f;
         charts[i]->Move(charts[i]->_relativePos.X(), charts[i]->_relativePos.Y());
         charts[i]->_relativePos = Vec2f(0, 0);
@@ -231,8 +230,6 @@ void OGLWindow::OrganizeCharts()
     int size = charts.size() < 3 ? charts.size() : 3;
     float maxWidth = float(m_width) / (700.f*size);
 
-
-    printf("%f\n", maxWidth);
     float xOffset = 0;
     float yOffset = 0;
     for (int i = 0; i < charts.size(); ++i)
@@ -248,7 +245,6 @@ void OGLWindow::OrganizeCharts()
             xOffset = 0;
         }
 
-        printf("XOFFSET:::%f\n", xOffset);
 
     }
 }
@@ -271,7 +267,6 @@ BOOL OGLWindow::MouseMove ( int x, int y )
         Listener *plistener = static_cast<Listener*>(charts[charts.size() - 1]);
         plistener->MouseMove(x - (m_width >> 1), (-y) - (-m_height >> 1));
     }
-    //printf("%d::%d\n", x - (m_width >> 1), (-y) - (-m_height >> 1));
     
     return TRUE;
 }

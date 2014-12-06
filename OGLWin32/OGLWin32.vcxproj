@@ -142,6 +142,7 @@
     <ClCompile Include="OGLApplication.cpp" />
     <ClCompile Include="OGLArc.cpp" />
     <ClCompile Include="OGLBarChart.cpp" />
+    <ClCompile Include="OGLBoxChart.cpp" />
     <ClCompile Include="OGLChart.cpp" />
     <ClCompile Include="OGLLine.cpp" />
     <ClCompile Include="OGLLine3D.cpp" />

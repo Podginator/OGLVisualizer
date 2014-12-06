@@ -67,9 +67,6 @@
     <Filter Include="Header Files\OGLCharts">
       <UniqueIdentifier>{c160e36a-9f5b-4268-a27b-2882b4654f68}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Misc">
-      <UniqueIdentifier>{8d9d6dda-2b9a-432e-a8f1-da9f5aaf86ea}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -292,6 +289,9 @@
     </ClCompile>
     <ClCompile Include="OGLRectangle3D.cpp">
       <Filter>Source Files\OpenGL Primitives\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLBoxChart.cpp">
+      <Filter>Source Files\OGLChart</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

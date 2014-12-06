@@ -1,5 +1,7 @@
 #pragma once
 #include "OGLChart.h"
+#include "OGLRectangle3D.h"
+#include "OGLWindow.h"
 
 class OGLScatterplot3D : public OGLChart
 {
@@ -9,12 +11,24 @@ public:
     void AddDataSource(DataColumn col);
     void InitElements();
     void Move(float x, float y);
+    void Render();
     bool MouseMove(int x, int y)
     {
-        OGLChart::GetHighlight(x, y);
-        return OGLChart::MouseMove(x, y);
+        int Mousex = x - xOff;
+        int Mousey = y - yOff;
+        if (MouseDown&_border.MouseInside(Mousex, Mousey))
+        {
+            float displaceX = x - Listener::x;
+            float displaceY = y - Listener::y;
+            Move(displaceX, displaceY);
+        }
+        Listener::x = float(x);
+        Listener::y = float(y);
+        return true;
     }
     bool MouseWheel(float deg);
+    bool MouseLBDown(int x, int y);
 protected:
-    std::vector<Vec3f> store;
+    int xOff = 0;
+    int yOff = 0;
 };

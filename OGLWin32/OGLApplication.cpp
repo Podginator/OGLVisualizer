@@ -145,6 +145,7 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
         AppendMenu(popmenu, MF_STRING, ID_BARCHART, L"SpiderChart View");
         AppendMenu(popmenu, MF_STRING, ID_SCATTERPLOT2D, L"Scatterplot 2d View");
         AppendMenu(popmenu, MF_STRING, ID_SCATTERPLOT3D, L"Line Graph View");
+        AppendMenu(popmenu, MF_STRING, ID_SCATTERPLOT3D, L"Box Plot View");
         AppendMenu(popmenu, MF_STRING, ID_SCATTERPLOT3D, L"Scatterplot 3d View");
         AppendMenu(menu, MF_STRING | MF_POPUP, ChartMenu, L"&Add Charts");
         
@@ -261,7 +262,10 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
                 case 4: 
                     s_oglapp->GetApplicationWindow()->charts.push_back(new OGLLineChart());
                     break;
-                case 5: 
+                case 5:
+                    s_oglapp->GetApplicationWindow()->charts.push_back(new OGLBoxChart());
+                    break;
+                case 6: 
                     s_oglapp->GetApplicationWindow()->charts.push_back(new OGLScatterplot3D());
                     break;
                 }
@@ -312,7 +316,6 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
                 }
             }
             
-            //printf("Hello!");
         }
             break;
         case WM_LBUTTONDOWN:

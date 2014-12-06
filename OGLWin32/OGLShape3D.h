@@ -5,9 +5,7 @@ class OGLShape3D : public OGLShape
 protected:
     Vec3f _position;
     Vec3f* vertexs;
-    void RenderVertexs();
-    int xOff = 0;
-    int yOff = 0;
+    void RenderVertexs(); 
     void Copy(const OGLShape3D& copy)
     {
         vertexs = new Vec3f[copy._size];

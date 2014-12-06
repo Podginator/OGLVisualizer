@@ -14,6 +14,7 @@
 #include "OGLBarChart.h"
 #include "OGLSpiderChart.h"
 #include "OGLScatterplot.h"
+#include "OGLBoxChart.h"
 #include "OGLScatterplot3d.h"
 #include "OGLLineChart.h"
 

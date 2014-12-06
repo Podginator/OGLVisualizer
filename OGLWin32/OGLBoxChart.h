@@ -15,7 +15,6 @@ public:
     }
 
 protected:
-    float GetAverage();
     float GetMedian();
-    float GetStdDev();
+    std::tuple<float, float> GetQuartiles();
 };

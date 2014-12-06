@@ -1,6 +1,6 @@
 #pragma once
 #include "OGLScatterplot3d.h"
-#include "OGLRectangle3D.h"
+
 
 void OGLScatterplot3D::AddDataSource(DataColumn col)
 {
@@ -16,71 +16,33 @@ void OGLScatterplot3D::AddDataSource(DataColumn col)
 OGLScatterplot3D::OGLScatterplot3D()
 {
     textSize = 1;
-    text = new OGLText[12];
-    _border = OGLRectangle(Vec2f(-375, -250), Color(1.0, 1.0, 1.0), 500, 750);
-    
-    dataDist[new OGLLine3D(Vec3f(-300, -150, -1), Color(0.0, 0.0, 0.0), Vec3f(-300, 200, -1))] = nullptr;
-    dataDist[new OGLLine3D(Vec3f(-300, -150, -1), Color(0.0, 0.0, 0.0), Vec3f(300, -150, -1))] = nullptr;
-    dataDist[new OGLLine3D(Vec3f(-300, -150, -1), Color(0, 0, 0), Vec3f(-300, -150, -5))] = nullptr;
+    text = new OGLText[1];
+    text[0] = OGLText(Vec2f(-300, 0), Color(0, 0, 0), "Scatterplot3D, add " + std::to_string(3 - data.size()) + " Data Columns(Numerical) to start", "arial.glf", 18);
 
 
+}
 
-    textSize++;
-    text[textSize] = OGLText(Vec3f(-350, -150, -1), Color(0, 0, 0), "1", 12);
-    textSize++;
-    text[textSize] = OGLText(Vec3f(-350, -150, -1.5), Color(0, 0, 0), "1.5",  12);
-    textSize++;
-    text[textSize] = OGLText(Vec3f(-350, -150, -2), Color(0, 0, 0), "2", 12);
-    textSize++;
-    text[textSize] = OGLText(Vec3f(-350, -150, -2.5), Color(0, 0, 0), "2.5",  12);
-    textSize++;
-    text[textSize] = OGLText(Vec3f(-350, -150, -3), Color(0, 0, 0), "3", 12);
-    textSize++;
-    text[textSize] = OGLText(Vec3f(-350, -150, -3.5), Color(0, 0, 0), "3.5", 12);
-    textSize++;
-    text[textSize] = OGLText(Vec3f(-350, -150, -4), Color(0, 0, 0), "4", 12);
-    textSize++;
-    text[textSize] = OGLText(Vec3f(-350, -150, -4.5), Color(0, 0, 0), "4.5", 12);
-    textSize++;
-    text[textSize] = OGLText(Vec3f(-350, -150, -5), Color(0, 0, 0), "5", 12);
-    textSize++;
+bool OGLScatterplot3D::MouseLBDown(int x, int y)
+{
+    OGLChart::MouseLBDown(x, y);
 
-
+    return _border.MouseInside(x - xOff, y - yOff);
 }
 
 
 void OGLScatterplot3D::Move(float x, float y)
 {
-    _border.Move(x, y);
-
-    std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
-    while (mapIt != dataDist.end())
+    if (Listener::keys[16])
     {
-        OGLShape3D* shape = dynamic_cast<OGLShape3D*>(mapIt->first);
-        if (shape && Listener::keys[16])
-        {
-            shape->MoveRel(x, y);
-            mapIt++;
-            continue;
-        }
-        mapIt->first->Move(x, y);
-        mapIt++;
+        OGLChart::Move(x, y);
+        xOff -= x;
+        yOff -= y;
+        return;
     }
+    xOff += x;
+    yOff += y;
 
-    for (size_t k = 0; k < textSize; k++)
-    {
-        if (Listener::keys[16])
-        {
-            text[k].MoveRel(x, y);
-        }
-        else
-        {
-            text[k].Move(x, y);
-        }
-        
-    }
 
-    _relativePos -= Vec2f(x, y);
 }
 
 void OGLScatterplot3D::InitElements()
@@ -124,6 +86,8 @@ void OGLScatterplot3D::InitElements()
         std::stringstream sf;
         sf << std::fixed << std::setprecision(1) << (maxX / 10)*i;
         text[textSize] = OGLText(Vec2f(width, -155), Color(0, 0, 0), sf.str(), 10);
+        printf(sf.str().c_str());
+        printf(" ");
         textSize++;
 
         dataDist[new OGLLine(Vec2f(width, -150), Color(0, 0, 0), Vec2f(width, -155))] = nullptr;
@@ -168,21 +132,41 @@ void OGLScatterplot3D::InitElements()
             z = -(5* (float(data[2].data[i].asA<int>()) / maxZ)) - 1;
         }
 
-        printf("z::::%f Y:::%f, X::::%f\n", z, y, x);
 
         index = new OGLRectangle3D(Vec3f(x, y, z), Color(0.f, 0.f, 0.f, 0.5f), 3, 3);
         index->CenterRotate(45.0f);
         //index = new OGLCircle(Vec2f(x, y), Color(0, 0, 0), 5);
         dataDist[index] = new DataCell(std::string(data[0].Name() + " " + data[0].data[i].getString() + ":: " + data[1].Name() + " " + data[1].data[i].getString() + " " + data[2].Name() + " " + data[2].data[i].getString()));
     }
-    textSize += 2;
-    text[22] = OGLText(Vec2f(-350, 230), Color(0, 0, 0), data[1].Name(), "arial.glf", 12);
-    text[23] = OGLText(Vec2f(0, -170), Color(0, 0, 0), data[0].Name(), "arial.glf", 12);
+    printf("%d",textSize);
+    textSize += 3;
+    text[33] = OGLText(Vec2f(-350, 230), Color(0, 0, 0), data[1].Name(), "arial.glf", 12);
+    text[34] = OGLText(Vec2f(0, -170), Color(0, 0, 0), data[0].Name(), "arial.glf", 12);
+    text[35] = OGLText(Vec3f(-390, 0, -2), Color(0, 0, 0), data[2].Name(), 12);
 
     Scale(scale);
     Move(-_relativePos.X(), -_relativePos.Y());
     printf("Done");
     
+}
+
+void OGLScatterplot3D::Render()
+{
+    glMatrixMode(GL_PROJECTION);
+    glPushMatrix();
+    glLoadIdentity();
+    
+    glFrustum((-0.5*OGLWindow::m_width - xOff), (0.5*OGLWindow::m_width - (xOff)), (-0.5 * OGLWindow::m_height - (yOff)), (0.5 * OGLWindow::m_height - (yOff)), 1.f, 1000.f);
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glLoadIdentity();
+
+    OGLChart::Render();
+
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
+    glPopMatrix();
 }
 
 bool OGLScatterplot3D::MouseWheel(float deg)
@@ -209,7 +193,6 @@ bool OGLScatterplot3D::MouseWheel(float deg)
 
         for (size_t k = 2; k < 32; k+=3)
         {
-            printf("%d\n", k);
             if (deg > 0)
             {
                 text[k].MoveZ(0.1);

@@ -7,8 +7,9 @@
 #include <string>
 
 
+//Heavily Inspired by the <boost> any class. 
 template<class T>
-using StorageType = typename std::decay<typename std::remove_reference<T>::type>::type;
+using Storage = typename std::decay<typename std::remove_reference<T>::type>::type;
 
 struct DataCell
 {
@@ -22,19 +23,19 @@ struct DataCell
     {
         if (!(cell.isA<Type>()) || !(this->isA<Type>())){ return false; }
 
-        auto derived = dynamic_cast<Derived<StorageType<Type>>*> (ptr);
-        auto comp = dynamic_cast<Derived<StorageType<Type>>*> (cell.ptr);
+        auto derived = dynamic_cast<Derived<Storage<Type>>*> (ptr);
+        auto comp = dynamic_cast<Derived<Storage<Type>>*> (cell.ptr);
         
         return derived->value == comp->value;
     }
 
     template<typename T>
-    DataCell(T&& val) : ptr(new Derived<StorageType<T>>(std::forward<T>(val))){}
+    DataCell(T&& val) : ptr(new Derived<Storage<T>>(std::forward<T>(val))){}
 
     template<class Type>
     bool isA() const
     {
-        auto derived = dynamic_cast<Derived<StorageType<Type>>*> (ptr);
+        auto derived = dynamic_cast<Derived<Storage<Type>>*> (ptr);
         return derived;
     }
 
@@ -59,9 +60,9 @@ struct DataCell
         }
     }
     template<class Type>
-    StorageType<Type>& asA()
+    Storage<Type>& asA()
     {
-        auto derived = dynamic_cast<Derived<StorageType<Type>>*> (ptr);
+        auto derived = dynamic_cast<Derived<Storage<Type>>*> (ptr);
 
         if (!derived)
         {
@@ -74,7 +75,7 @@ struct DataCell
     template<class Type>
     operator Type()
     {
-        return asA<StorageType<Type>>();
+        return asA<Storage<Type>>();
     }
 
     DataCell() :ptr(nullptr){}

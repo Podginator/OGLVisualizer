@@ -62,14 +62,16 @@ void OGLChart::Render()
         mapIt++;
     }
 
-    for (size_t k = 0; k < textSize; k++)
-    {
-        text[k].Render();
-    }
+    
 
     if (highlightText)
     {
         highlightText->Render();
+    }
+
+    for (size_t k = 0; k < textSize; k++)
+    {
+        text[k].Render();
     }
 
 
@@ -167,7 +169,6 @@ std::tuple<bool, DataCell*, std::map<DataCell*, size_t>*> OGLChart::MouseRB(int 
     {
         if (mapIt->first->MouseInside(x, y))
         {
-            //printf("Yes");
             if (mapIt->second != nullptr)
             {
                 return std::make_tuple(true, mapIt->second, &dist);
@@ -239,11 +240,11 @@ bool OGLChart::MouseWheel(float deg)
     {
         if (deg > 0)
         {
-			SetOpacity(0.1);
+			SetOpacity(-0.1);
         }
         else
         {
-			SetOpacity(-0.1);
+			SetOpacity(0.1);
         }
         
     }

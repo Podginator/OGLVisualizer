@@ -15,8 +15,6 @@ private:
     GLFont *m_font;
     float _rot;
     float _x;
-    int xOff = 0;
-    int yOff = 0;
 
     void Copy(const OGLText& copy)
     {

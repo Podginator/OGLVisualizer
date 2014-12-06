@@ -33,13 +33,6 @@ void OGLBarChart::InitElements()
 {
     //Clear everything
     Clear();
-    std::map<DataCell*, std::size_t>::iterator map = dist.begin();
-    while (map != dist.end())
-    {
-        printf(map->first->getString().c_str());
-        printf("%d\n", map->second);
-        map++;
-    }
 
     _border = OGLRectangle(Vec2f(-375, -250), Color(1.0, 1.0, 1.0), 500, 750);
     dataDist[new OGLLine(Vec2f(-300, -150), Color(0.0, 0.0, 0.0), Vec2f(-300, 200))] = nullptr;

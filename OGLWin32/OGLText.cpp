@@ -11,15 +11,6 @@ void OGLText::SetText(const char* text)
 
 void OGLText::Render()
 {
-    glMatrixMode(GL_PROJECTION);
-    glPushMatrix();
-    glLoadIdentity();
-
-    glFrustum(-0.5*OGLWindow::m_width - xOff, 0.5*OGLWindow::m_width - xOff, -0.5 * OGLWindow::m_height - yOff, 0.5 * OGLWindow::m_height - yOff, 1.f, 1000.f);
-    //gluPerspective(120, (0.5*m_width) / (0.5*m_height), 1.f, 100.f);
-    glMatrixMode(GL_MODELVIEW);
-    glPushMatrix();
-    glLoadIdentity();
 
     glPushMatrix();
 
@@ -34,11 +25,6 @@ void OGLText::Render()
     m_font->TextOut(m_text.c_str(), 0, 0, _position.Z());
     m_font->End();
 
-    glPopMatrix();
-
-    glMatrixMode(GL_PROJECTION);
-    glPopMatrix();
-    glMatrixMode(GL_MODELVIEW);
     glPopMatrix();
 }
 
@@ -107,8 +93,7 @@ void OGLText::Scale(float scale)
 
 void OGLText::Move(float x, float y)
 {
-    xOff += x;
-    yOff += y;
+    _position += Vec3f(x, y, 0);
 
 }
 
