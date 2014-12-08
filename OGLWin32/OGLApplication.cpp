@@ -282,6 +282,7 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
             s_oglapp->GetApplicationWindow()->DestroyOGLWindow();
             break;
         case WM_KEYDOWN:
+            printf("%d", wparam);
             Listener::keys[wparam] = true;
             break;
         case WM_KEYUP:

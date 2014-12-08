@@ -168,7 +168,7 @@ void OGLScatterplot3D::Render()
     _border.Render();
 
     glScalef(1.8, 1.8, 1);
-    gluLookAt(0.001, 0.002, 1.0, 0, 0, 0, 0, 1, 0);
+    gluLookAt(xRot, yRot, 1.0, 0, 0, 0, 0, 1, 0);
     std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
     while (mapIt != dataDist.end())
     {
@@ -199,6 +199,34 @@ void OGLScatterplot3D::Render()
 
 bool OGLScatterplot3D::MouseWheel(float deg)
 {
+    if (Listener::keys[90])
+    {
+        if (deg > 0)
+        {
+            xRot += 0.0001;
+        }
+        else
+        {
+            xRot -= 0.0001;
+        }
+
+        return true;
+    }
+
+    if (Listener::keys[88])
+    {
+        if (deg > 0)
+        {
+            yRot += 0.0001;
+        }
+        else
+        {
+            yRot -= 0.0001;
+        }
+
+        return true;
+    }
+
     if (Listener::keys[16])
     {
         std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();

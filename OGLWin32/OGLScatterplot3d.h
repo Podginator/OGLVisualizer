@@ -31,4 +31,6 @@ public:
 protected:
     int xOff = 0;
     int yOff = 0;
+    float xRot = 0.00f;
+    float yRot = 0.f;
 };
