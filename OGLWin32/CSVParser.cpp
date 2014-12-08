@@ -27,7 +27,6 @@ DataTable CSVParser::GetCols(std::ifstream& stream)
     DataTable cols(header.size());
 
     //Here we loop through and determine the types we'll use AND if there's a header.
-    size = hasHeader ? size - 1 : size;
 
     for (size_t i = 0; i < header.size(); i++)
     {
@@ -42,14 +41,16 @@ DataTable CSVParser::GetCols(std::ifstream& stream)
             hasHeader = true;
         }
 
+        size_t newSize = hasHeader ? size - 1 : size;
+
         if (*line)
         {
-            cols.Add(DataColumn(size, DataColumn::Storage::Categorical));
+            cols.Add(DataColumn(newSize, DataColumn::Storage::Categorical));
 
         }
         else
         {
-             cols.Add(DataColumn(size, DataColumn::Storage::Numerical));
+            cols.Add(DataColumn(newSize, DataColumn::Storage::Numerical));
         }
     }
 

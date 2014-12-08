@@ -95,20 +95,27 @@ void DataColumn::Add(std::string cell)
 {
     char * line;
     float convL = std::strtof(cell.c_str(), &line);
+    DataCell _cell;
 
     if (*line)
     {
-        data[index++] = DataCell(cell);
+        _cell = DataCell(cell);
     }
     else
     {
         if (float(int(convL)) == convL)
         {
-            data[index++] = DataCell((int(convL)));
+            _cell = DataCell((int(convL)));
         }
         else
         {
-            data[index++] = DataCell((float(convL)));
+            _cell = DataCell((float(convL)));
         }
     }
+
+    if (!(_cell.isNull()))
+    {
+        data[index++] = _cell;
+    }
+    
 }

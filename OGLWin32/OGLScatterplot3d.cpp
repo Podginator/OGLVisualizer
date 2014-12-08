@@ -1,5 +1,6 @@
 #pragma once
 #include "OGLScatterplot3d.h"
+#include <gl/GLU.h>
 
 
 void OGLScatterplot3D::AddDataSource(DataColumn col)
@@ -156,17 +157,44 @@ void OGLScatterplot3D::Render()
     glPushMatrix();
     glLoadIdentity();
     
-    glFrustum((-0.5*OGLWindow::m_width - xOff), (0.5*OGLWindow::m_width - (xOff)), (-0.5 * OGLWindow::m_height - (yOff)), (0.5 * OGLWindow::m_height - (yOff)), 1.f, 1000.f);
+    glFrustum((-0.5*OGLWindow::m_width - xOff), (0.5*OGLWindow::m_width - (xOff)), (-0.5 * OGLWindow::m_height - (yOff)), (0.5 * OGLWindow::m_height - (yOff)), 1.f, 500.f);
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
 
-    OGLChart::Render();
+    static float a = 0;
+
+
+    _border.Render();
+
+    glScalef(1.8, 1.8, 1);
+    gluLookAt(0.001, 0.002, 1.0, 0, 0, 0, 0, 1, 0);
+    std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
+    while (mapIt != dataDist.end())
+    {
+        mapIt->first->Render();
+        mapIt++;
+    }
+
+
+
+    if (highlightText)
+    {
+        highlightText->Render();
+    }
+
+    for (size_t k = 0; k < textSize; k++)
+    {
+        text[k].Render();
+    }
+
 
     glMatrixMode(GL_PROJECTION);
     glPopMatrix();
     glMatrixMode(GL_MODELVIEW);
     glPopMatrix();
+
+    a = a + 1;
 }
 
 bool OGLScatterplot3D::MouseWheel(float deg)

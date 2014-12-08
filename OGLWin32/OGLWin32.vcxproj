@@ -105,6 +105,7 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="OGLArc.h" />
+    <ClInclude Include="OGLCube3D.h" />
     <ClInclude Include="OGLLine.h" />
     <ClInclude Include="OGLLine3D.h" />
     <ClInclude Include="OGLLineChart.h" />
@@ -144,6 +145,7 @@
     <ClCompile Include="OGLBarChart.cpp" />
     <ClCompile Include="OGLBoxChart.cpp" />
     <ClCompile Include="OGLChart.cpp" />
+    <ClCompile Include="OGLCube3D.cpp" />
     <ClCompile Include="OGLLine.cpp" />
     <ClCompile Include="OGLLine3D.cpp" />
     <ClCompile Include="OGLLineChart.cpp" />

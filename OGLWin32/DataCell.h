@@ -15,7 +15,7 @@ struct DataCell
 {
     bool isNull() const
     {
-        return !ptr;
+        return !pointer;
     }
 
     template<class Type>
@@ -23,19 +23,19 @@ struct DataCell
     {
         if (!(cell.isA<Type>()) || !(this->isA<Type>())){ return false; }
 
-        auto derived = dynamic_cast<Derived<Storage<Type>>*> (ptr);
-        auto comp = dynamic_cast<Derived<Storage<Type>>*> (cell.ptr);
+        auto derived = dynamic_cast<Derived<Storage<Type>>*> (pointer);
+        auto comp = dynamic_cast<Derived<Storage<Type>>*> (cell.pointer);
         
         return derived->value == comp->value;
     }
 
     template<typename T>
-    DataCell(T&& val) : ptr(new Derived<Storage<T>>(std::forward<T>(val))){}
+    DataCell(T&& val) : pointer(new Derived<Storage<T>>(std::forward<T>(val))){}
 
     template<class Type>
     bool isA() const
     {
-        auto derived = dynamic_cast<Derived<Storage<Type>>*> (ptr);
+        auto derived = dynamic_cast<Derived<Storage<Type>>*> (pointer);
         return derived;
     }
 
@@ -62,7 +62,7 @@ struct DataCell
     template<class Type>
     Storage<Type>& asA()
     {
-        auto derived = dynamic_cast<Derived<Storage<Type>>*> (ptr);
+        auto derived = dynamic_cast<Derived<Storage<Type>>*> (pointer);
 
         if (!derived)
         {
@@ -78,45 +78,45 @@ struct DataCell
         return asA<Storage<Type>>();
     }
 
-    DataCell() :ptr(nullptr){}
+    DataCell() :pointer(nullptr){}
 
-    DataCell(const DataCell& copy) : ptr(copy.clone()){}
+    DataCell(const DataCell& copy) : pointer(copy.clone()){}
 
-    DataCell(const DataCell&& move) : ptr(move.clone()){}
+    DataCell(const DataCell&& move) : pointer(move.clone()){}
     
-    DataCell(DataCell& copy) : ptr(copy.clone()){}
+    DataCell(DataCell& copy) : pointer(copy.clone()){}
 
-    DataCell(DataCell&& move) : ptr(move.clone()){}
+    DataCell(DataCell&& move) : pointer(move.clone()){}
 
     DataCell& operator=(const DataCell& a)
     {
-        if (ptr == a.ptr)
+        if (pointer == a.pointer)
         {
             return *this;
         }
-        auto old_ptr = ptr;
-        ptr = a.clone();
-        if (old_ptr){ delete old_ptr; }
+        auto old_pointer = pointer;
+        pointer = a.clone();
+        if (old_pointer){ delete old_pointer; }
         return *this;
     }
 
     DataCell& operator= (DataCell& a)
     {
-        if (ptr == a.ptr)
+        if (pointer == a.pointer)
         {
             return *this;
         }
-        auto old_ptr = ptr;
-        ptr = a.clone();
-        if (old_ptr){ delete old_ptr; }
+        auto old_pointer = pointer;
+        pointer = a.clone();
+        if (old_pointer){ delete old_pointer; }
         return *this;
     }
 
     ~DataCell()
     {
-        if (ptr)
+        if (pointer)
         {
-            delete ptr;
+            delete pointer;
         }
     }
 
@@ -140,12 +140,12 @@ private:
 
     Base* clone() const
     {
-        if (ptr)
-            return ptr->clone();
+        if (pointer)
+            return pointer->clone();
         else
             return nullptr;
     }
 
-    Base* ptr;
+    Base* pointer;
 };
 

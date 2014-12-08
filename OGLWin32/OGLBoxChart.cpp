@@ -27,8 +27,8 @@ void OGLBoxChart::InitElements()
     float MinSize = data[0].Min;
     float MedSize = GetMedian();
     std::tuple<float, float> Quartile = GetQuartiles();
-    float UpperSize = std::get<1>(Quartile);
-    float LowerSize = std::get<0>(Quartile);
+    float LowerSize = std::get<1>(Quartile);
+    float UpperSize= std::get<0>(Quartile);
 
     text = new OGLText[20];
 
@@ -56,7 +56,7 @@ void OGLBoxChart::InitElements()
     dataDist[new OGLLine(Vec2f(MinVal, -70), Color(0, 0, 0), Vec2f(300, -70))] = nullptr;
     dataDist[new OGLRectangle(Vec2f(MinVal, -90), Color(0, 0, 0), 40, 2)] = new DataCell(std::string("MinVal = ") + std::to_string(MinSize));
     dataDist[new OGLRectangle(Vec2f(300, -90), Color(0, 0, 0), 40, 2)] =  new DataCell(std::string("MaxVal = ") + std::to_string(Maxsize));
-    dataDist[new OGLRectangle(Vec2f(LowVal, -90), colors[1], 40, UpVal - LowVal)] = new DataCell(std::string("Quartile = " + std::to_string(LowerSize) + " to " + std::to_string(UpperSize)));
+    dataDist[new OGLRectangle(Vec2f(LowVal, -90), Color(1,0,0,0.5), 40, UpVal - LowVal)] = new DataCell(std::string("Quartile = " + std::to_string(LowerSize) + " to " + std::to_string(UpperSize)));
     dataDist[new OGLRectangle(Vec2f(MedVal, -90), Color(0, 0, 0), 40, 2)] = new DataCell(std::string("MedVal = ") + std::to_string(MedSize));
 }
 
