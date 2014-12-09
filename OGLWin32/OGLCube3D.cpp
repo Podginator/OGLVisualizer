@@ -21,15 +21,15 @@ void OGLCube::InitUnitCube()
 {
     SimpleVertex corners[] =
     {
-        { -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f },// v0
-        { 0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f }, // v1
-        { 0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 0.0f }, // v2
-        { -0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f }, // v3
+        { -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.3f },// v0
+        { 0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.4f }, // v1
+        { 0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.5f }, // v2
+        { -0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.6f }, // v3
 
         { -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 1.0f }, // v4
-        { 0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 1.0f }, // v5
-        { 0.5f, 0.5f, -0.5f, 1.0f, 1.0f, 1.0f }, // v6
-        { -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 1.0f }, // v7
+        { 0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.9f }, // v5
+        { 0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.8f}, // v6
+        { -0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.7f }, // v7
     };
 
     //Use triangles to define the faces, i.e. 2 triangles for one cube face
@@ -67,20 +67,19 @@ void OGLCube::Render()
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
-    glOrtho(-5.0, 5.0, -5.0, 5.0, -100.0, 100.0);
+    glOrtho(-2.0, 2.0, -2.0, 2.0, -1.0, 1.0);
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
     static float a = 0;
-    glRotatef(a, 1, 0, 1);
+    glRotatef(a, a, a, 1);
     glBegin(GL_TRIANGLES);
     for (int i = 0; i < 36; i++)
     {
 
         SimpleVertex* vert = m_corners + m_indices[i];
         glColor3fv(vert->colour);
-        Vec3f vec(vert->position[0], vert->position[1], vert->position[2]);
-        glVertex3f(vec.X(), vec.Y(), -vec.Z());
+        glVertex3fv(vert->position);
     }
     a += 1;
     glEnd();

@@ -157,18 +157,17 @@ void OGLScatterplot3D::Render()
     glPushMatrix();
     glLoadIdentity();
     
-    glFrustum((-0.5*OGLWindow::m_width - xOff), (0.5*OGLWindow::m_width - (xOff)), (-0.5 * OGLWindow::m_height - (yOff)), (0.5 * OGLWindow::m_height - (yOff)), 1.f, 500.f);
+    glFrustum((-0.5*OGLWindow::m_width - xOff), (0.5*OGLWindow::m_width - (xOff)), (-0.5 * OGLWindow::m_height - (yOff)), (0.5 * OGLWindow::m_height - (yOff)), 1.f, 5.f);
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
 
-    static float a = 0;
 
 
     _border.Render();
 
-    glScalef(1.8, 1.8, 1);
-    gluLookAt(xRot, yRot, 1.0, 0, 0, 0, 0, 1, 0);
+
+    gluLookAt(xRot, yRot, 0.01, 0, 0, 0, 0, 1, 0);
     std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
     while (mapIt != dataDist.end())
     {
@@ -194,7 +193,6 @@ void OGLScatterplot3D::Render()
     glMatrixMode(GL_MODELVIEW);
     glPopMatrix();
 
-    a = a + 1;
 }
 
 bool OGLScatterplot3D::MouseWheel(float deg)

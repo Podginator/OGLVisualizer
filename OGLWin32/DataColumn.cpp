@@ -51,7 +51,6 @@ std::map<DataCell*, size_t> DataColumn::GetDistribution()
         }
     }
 
-    printf("%d", res.size());
     return res;
 }
 
@@ -86,6 +85,11 @@ void DataColumn::GetStats()
                 Max = data[i].asA<int>() > Max ? data[i].asA<int>() : Max;
                 Min = data[i].asA<int>() < Min ? data[i].asA<int>() : Min;
             }
+
+            if (data[i].isNull())
+            {
+                size -= 1;
+            }
         }
     }
 }
@@ -115,7 +119,8 @@ void DataColumn::Add(std::string cell)
 
     if (!(_cell.isNull()))
     {
-        data[index++] = _cell;
+        data[index] = _cell;
+        index++;
     }
     
 }

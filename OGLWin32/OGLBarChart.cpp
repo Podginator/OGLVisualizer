@@ -34,7 +34,6 @@ void OGLBarChart::InitElements()
     //Clear everything
     Clear();
 
-    _border = OGLRectangle(Vec2f(-375, -250), Color(1.0, 1.0, 1.0), 500, 750);
     dataDist[new OGLLine(Vec2f(-300, -150), Color(0.0, 0.0, 0.0), Vec2f(-300, 200))] = nullptr;
     dataDist[new OGLLine(Vec2f(-300, -150), Color(0.0, 0.0, 0.0), Vec2f(300, -150))] = nullptr;
 
@@ -98,7 +97,7 @@ void OGLBarChart::InitElements()
 
     Scale(scale);
     Move(-_relativePos.X(), -_relativePos.Y());
-    printf("Done");
+    printf("Done\n");
     
 }
 

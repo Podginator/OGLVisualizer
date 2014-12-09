@@ -30,5 +30,5 @@ public:
 protected:
     Storage type;
     std::string header;
-    std::size_t index;
+    std::size_t index = 0;
 };

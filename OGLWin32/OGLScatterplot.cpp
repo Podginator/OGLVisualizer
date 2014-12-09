@@ -97,6 +97,6 @@ void OGLScatterPlot2D::InitElements()
 
     Scale(scale);
     Move(-_relativePos.X(), -_relativePos.Y());
-    printf("Done");
+    printf("Done\n");
 
 }

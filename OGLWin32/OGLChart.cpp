@@ -48,6 +48,8 @@ void OGLChart::Clear()
         }
         dataDist.clear();
     }
+
+    _border = OGLRectangle(Vec2f(-375, -250), Color(1.0, 1.0, 1.0), 500, 750);
 }
 
 void OGLChart::Render()
@@ -189,9 +191,6 @@ void OGLChart::GetHighlight(int x, int y)
         {
             if (mapIt->second != nullptr)
             {
-
-                printf("%d", mapIt->second->isNull());
-
                 highlightText = new OGLText(Vec2f(x + 5, y), Color(0.25f, 0.25f, 0.25f), mapIt->second->getString(), "arial.glf", 16);
                 break;
             }

@@ -1,6 +1,4 @@
 // OGLWin32.cpp : Defines the entry point for the application.
-//
-
 #include "OGLWin32.h"
 #include <stdio.h>
 #include <io.h>

@@ -23,7 +23,7 @@ DataTable CSVParser::GetCols(std::ifstream& stream)
     def = SplitLine(second);
 
     bool hasHeader = false;
-
+    
     DataTable cols(header.size());
 
     //Here we loop through and determine the types we'll use AND if there's a header.
@@ -41,7 +41,8 @@ DataTable CSVParser::GetCols(std::ifstream& stream)
             hasHeader = true;
         }
 
-        size_t newSize = hasHeader ? size - 1 : size;
+        size_t newSize = hasHeader ? size : size+1;
+        
 
         if (*line)
         {
