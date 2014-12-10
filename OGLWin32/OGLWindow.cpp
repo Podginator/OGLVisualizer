@@ -138,7 +138,7 @@ void OGLWindow::SetVisible ( BOOL visible )
 void OGLWindow::Render(bool thread)
 {
 
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glLoadIdentity();
 
@@ -146,6 +146,7 @@ void OGLWindow::Render(bool thread)
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glClearColor(0.0, 0.0, 0.0, 1.0);
     
+    cube.Render();
 
     for (size_t i = 0; i < charts.size(); i++)
     {
@@ -185,8 +186,8 @@ void OGLWindow::InitOGLState()
 {
     glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
 
-    glDisable(GL_DEPTH_TEST);
-    glDisable(GL_CULL_FACE);
+    //glDisable(GL_DEPTH_TEST);
+   // glDisable(GL_CULL_FACE);
 }
 
 BOOL OGLWindow::MouseLBDown ( int x, int y )

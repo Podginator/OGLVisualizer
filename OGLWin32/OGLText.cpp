@@ -14,6 +14,7 @@ void OGLText::Render()
 
     glPushMatrix();
 
+
     //printf("%f\n", _position.Z());
     glTranslatef(_position.X(), _position.Y(), 0);
     //glTranslatef(0, 0, 1);

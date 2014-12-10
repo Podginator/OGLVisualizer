@@ -16,9 +16,13 @@ void OGLScatterplot3D::AddDataSource(DataColumn col)
 
 OGLScatterplot3D::OGLScatterplot3D()
 {
-    textSize = 1;
+    /*textSize = 1;
     text = new OGLText[1];
-    text[0] = OGLText(Vec2f(-300, 0), Color(0, 0, 0), "Scatterplot3D, add " + std::to_string(3 - data.size()) + " Data Columns(Numerical) to start", "arial.glf", 18);
+    text[0] = OGLText(Vec2f(-300, 0), Color(0, 0, 0), "Scatterplot3D, add " + std::to_string(3 - data.size()) + " Data Columns(Numerical) to start", "arial.glf", 18);*/
+
+    dataDist[new OGLLine3D(Vec3f(-1.0f, -1.0f, 1.0f), Color(0.0, 0.0, 0.0), Vec3f(1.0f, -1.0f, 1.0f))] = nullptr;
+    dataDist[new OGLLine3D(Vec3f(-1.0f, -1.0f, 1.0f), Color(0.0, 0.0, 0.0), Vec3f(-1.0f, 1.0f, 1.0f))] = nullptr;
+    dataDist[new OGLLine3D(Vec3f(-1.0, -1.0f, 1.0f), Color(0, 0, 0), Vec3f(-1.0f, -1.0f, -1.0f))] = nullptr;
 
 
 }
@@ -56,7 +60,7 @@ void OGLScatterplot3D::InitElements()
     {
         textSize = 1;
         text = new OGLText[1];
-        text[0] = OGLText(Vec2f(-300, 0), Color(0, 0, 0), "Scatterplot3D, add " + std::to_string(3 - data.size()) + " Data Columns(Numerical) to start", "arial.glf", 18);
+        text[0] = OGLText(Vec2f(-1, 0), Color(0, 0, 0), "Scatterplot3D, add " + std::to_string(3 - data.size()) + " Data Columns(Numerical) to start", "arial.glf", 18);
         return;
     }
 
@@ -157,17 +161,36 @@ void OGLScatterplot3D::Render()
     glPushMatrix();
     glLoadIdentity();
     
-    glFrustum((-0.5*OGLWindow::m_width - xOff), (0.5*OGLWindow::m_width - (xOff)), (-0.5 * OGLWindow::m_height - (yOff)), (0.5 * OGLWindow::m_height - (yOff)), 1.f, 5.f);
+    glFrustum((-0.5*OGLWindow::m_width - xOff), (0.5*OGLWindow::m_width - (xOff)), (-0.5 * OGLWindow::m_height - (yOff)), (0.5 * OGLWindow::m_height - (yOff)), 1.f, 100.f);
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
 
-
+    static float rotqube = 0;
 
     _border.Render();
 
 
-    gluLookAt(xRot, yRot, 0.01, 0, 0, 0, 0, 1, 0);
+    //So we could do it on a scale of 1 - -1. Then scale. Not sure why that works better.
+    glScalef(600, 350, 1);
+    glTranslatef(0.0f, 0.0f, -3.0f);	// Translate Into The Screen 7.0 Units
+    glRotatef(rotqube, 0.0f, 1.0f, 0.0f);	// Rotate The cube around the Y axis
+    //glRotatef(0, 1.0f, 1.0f, 1.0f);
+    //glBegin(GL_LINES);		// Draw The Cube Using quads
+    //glColor3f(0.0f, 0.0f, 0.0f);	// Color Blue
+    //glVertex3f(-1.0f, -1.0f, 1.0f);	// Bottom Left Of The Quad (Top)
+    //glVertex3f(1.0f, -1.0f, 1.0f);	// Bottom Right Of The Quad (Top)
+
+    //glVertex3f(-1.0f, -1.0f, 1.0f);	// Bottom Left Of The Quad (Top)
+    //glVertex3f(-1.0f, 1.0f, 1.0f);
+
+    //glVertex3f(-1.0, -1.0f, 1.0f);
+    //glVertex3f(-1.0f, -1.0f, -1.0f);
+    //glEnd();			// End Drawing The Cube
+
+
+
+    rotqube += 0.9;
     std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
     while (mapIt != dataDist.end())
     {

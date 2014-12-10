@@ -71,7 +71,7 @@ void OGLShape2D::Render()
 
 void OGLShape2D::RenderVertexs()
 {
-    glPushMatrix();
+    //glPushMatrix();
 
 	Color temp(rgb);
 	if (MouseIn)
@@ -84,7 +84,7 @@ void OGLShape2D::RenderVertexs()
     {
         glVertex3f(vertexs[i].X(), vertexs[i].Y(), -1.0f);
     }
-    glPopMatrix();
+    //glPopMatrix();
 }
 
 

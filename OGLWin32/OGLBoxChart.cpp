@@ -73,16 +73,16 @@ bool sortDataCell(DataCell& i, DataCell& j)
     }
     else if (i.isA<int>())
     {
-        val1 = i.asA<int>();
+        val1 = float(i.asA<int>());
     }
 
     if (j.isA<float>())
     {
         val2 = j.asA<float>();
     }
-    else if (i.isA<int>())
+    else if (j.isA<int>())
     {
-        val2 = j.asA<int>();
+        val2 = float(j.asA<int>());
     }
     return val1 > val2;
 }
@@ -90,7 +90,7 @@ bool sortDataCell(DataCell& i, DataCell& j)
 float OGLBoxChart::GetMedian()
 {
     float res;
-    std::sort(data[0].data.begin(), data[0].data.end(), sortDataCell);
+    std::sort(data[0].data.begin(), data[0].data.begin()+ data[0].size, sortDataCell);
 
     int index = data[0].data.size()/2;
 

@@ -64,24 +64,41 @@ void OGLCube::InitUnitCube()
 
 void OGLCube::Render()
 {
+    glEnable(GL_DEPTH_TEST);
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
-    glOrtho(-2.0, 2.0, -2.0, 2.0, -1.0, 1.0);
+    glOrtho(2, -2, 2, -2, -1, 1);
+    glFrustum(1, -1, 1, -1, 1,100);
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glLoadIdentity();
-    static float a = 0;
-    glRotatef(a, a, a, 1);
-    glBegin(GL_TRIANGLES);
-    for (int i = 0; i < 36; i++)
-    {
 
-        SimpleVertex* vert = m_corners + m_indices[i];
-        glColor3fv(vert->colour);
-        glVertex3fv(vert->position);
-    }
-    a += 1;
-    glEnd();
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    // Reset The Current Modelview Matrix
+    glLoadIdentity();
+
+    //NEW//////////////////NEW//////////////////NEW//////////////////NEW/////////////
+    static float rotqube = 0;
+    //glScalef(512, 512, 1);
+    glTranslatef(0.0f, 0.0f, -6.0f);	// Translate Into The Screen 7.0 Units
+    //glRotatef(rotqube, 0.0f, 1.0f, 0.0f);	// Rotate The cube around the Y axis
+    //glRotatef(rotqube, 1.0f, 1.0f, 1.0f);
+    glBegin(GL_QUADS);		// Draw The Cube Using quads
+    glColor3f(0.0f, 1.0f, 0.0f);	// Color Blue
+    glVertex3f(2.0f, 2.0f, -2.0f);	// Top Right Of The Quad (Top)
+    glVertex3f(-2.0f, 2.0f, -2.0f);	// Top Left Of The Quad (Top)
+    glVertex3f(-2.0f, 2.0f, 2.0f);	// Bottom Left Of The Quad (Top)
+    glVertex3f(2.0f, 2.0f,  2.0f);	// Bottom Right Of The Quad (Top)
+    glEnd();			// End Drawing The Cube
+
+    rotqube += 0.9;
+    glDisable(GL_DEPTH_TEST);
+
+    glMatrixMode(GL_PROJECTION);
+    glPopMatrix();
+
+    glMatrixMode(GL_MODELVIEW);
+    glPopMatrix();
 
 }
