@@ -27,8 +27,6 @@ void InputBox::ShowDialog()
     MSG n_msg;
     while (GetMessage(&n_msg, iwhnd, 0, 0) > 0)
     {
-        //printf("Yessssssss\n");
-
         if (!IsDialogMessage(iwhnd, &n_msg))    // This is important!
         {
             TranslateMessage(&n_msg);
@@ -68,7 +66,6 @@ LRESULT CALLBACK InputBox::DiaProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lp
         default:
             break;
         }
-        //printf('\n%d', lparam == IDOK);
         break;
     default:
         break;

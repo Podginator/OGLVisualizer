@@ -1,9 +1,9 @@
 #pragma once
-#include "OGLScatterplot3d.h"
+#include "OGLScatterplotV2.h"
 #include <gl/GLU.h>
 
 
-void OGLScatterplot3D::AddDataSource(DataColumn col)
+void OGLScatterplot3DV2::AddDataSource(DataColumn col)
 {
 	if (col.Stores() == DataColumn::Storage::Categorical){ return; }
 	if (data.size() == 3)
@@ -14,16 +14,15 @@ void OGLScatterplot3D::AddDataSource(DataColumn col)
 	InitElements();
 }
 
-OGLScatterplot3D::OGLScatterplot3D()
+OGLScatterplot3DV2::OGLScatterplot3DV2()
 {
 	textSize = 1;
 	text = new OGLText[1];
-	text[0] = OGLText(Vec2f(-300, 0), Color(0, 0, 0), "Scatterplot3D, add " + std::to_string(3 - data.size()) + " Data Columns(Numerical) to start", "arial.glf", 18);
-
+	text[0] = OGLText(Vec2f(-1.5, -0), Color(0, 0, 0), "Scatterplot3D, add " + std::to_string(3 - data.size()) + " Data Columns(Numerical) to start", "arial.glf", 0.09);
 
 }
 
-bool OGLScatterplot3D::MouseLBDown(int x, int y)
+bool OGLScatterplot3DV2::MouseLBDown(int x, int y)
 {
 	OGLChart::MouseLBDown(x, y);
 
@@ -31,7 +30,7 @@ bool OGLScatterplot3D::MouseLBDown(int x, int y)
 }
 
 
-void OGLScatterplot3D::Move(float x, float y)
+void OGLScatterplot3DV2::Move(float x, float y)
 {
 	if (Listener::keys[16])
 	{
@@ -46,7 +45,7 @@ void OGLScatterplot3D::Move(float x, float y)
 
 }
 
-void OGLScatterplot3D::InitElements()
+void OGLScatterplot3DV2::InitElements()
 {
 	//Clear everything
 
@@ -56,16 +55,17 @@ void OGLScatterplot3D::InitElements()
 	{
 		textSize = 1;
 		text = new OGLText[1];
-		text[0] = OGLText(Vec2f(-300, 0), Color(0, 0, 0), "Scatterplot3D, add " + std::to_string(3 - data.size()) + " Data Columns(Numerical) to start", "arial.glf", 18);
+		text[0] = OGLText(Vec2f(-1.5, 0), Color(0, 0, 0), "Scatterplot3D, add " + std::to_string(3 - data.size()) + " Data Columns(Numerical) to start", "arial.glf", 0.09);
 		return;
 	}
 
 	text = new OGLText[36];
 
 
-	dataDist[new OGLLine(Vec2f(-300, -150), Color(0.0, 0.0, 0.0), Vec2f(-300, 200))] = nullptr;
-	dataDist[new OGLLine(Vec2f(-300, -150), Color(0.0, 0.0, 0.0), Vec2f(300, -150))] = nullptr;
-	dataDist[new OGLLine3D(Vec3f(-300, -150, -1), Color(0, 0, 0), Vec3f(-300, -150, -5))] = nullptr;
+	dataDist[new OGLLine3D(Vec3f(-1.0f, -1.0f, 1.0f), Color(0.0, 0.0, 0.0), Vec3f(1.0f, -1.0f, 1.0f))] = nullptr;
+	dataDist[new OGLLine3D(Vec3f(-1.0f, -1.0f, 1.0f), Color(0.0, 0.0, 0.0), Vec3f(-1.0f, 1.0f, 1.0f))] = nullptr;
+	dataDist[new OGLLine3D(Vec3f(-1.0, -1.0f, 1.0f), Color(0, 0, 0), Vec3f(-1.0f, -1.0f, -1.0f))] = nullptr;
+
 
 	float maxX = data[0].Max;
 	float maxY = data[1].Max;
@@ -73,28 +73,28 @@ void OGLScatterplot3D::InitElements()
 
 	for (int i = 0; i <= 10; i++)
 	{
-		float height = (-150) + (350 / (10))*i;
-		float width = (-300) + (600 / 10)*i;
-		float depth = 1 + (5.f / 10.f)*(10 - i);
-		dataDist[new OGLLine(Vec2f(-310, height), Color(0, 0, 0), Vec2f(-300, height))] = nullptr;
+		float height = -1.f + (2.f*(1.f / (10.f)))*i;
+		float width = -1.f + (2.f * (1.f / (10.f)))*i;
+		float depth = -1.f + 2 * (1.f / 10.f)*(10 - i);
+
+
+		printf("Height:%f, Width: %f, Depth: %f", height, width, depth);
 
 		std::stringstream ss;
 		ss << std::fixed << std::setprecision(1) << (maxY / 10)*i;
-		text[textSize] = OGLText(Vec2f(-350, height + 6), Color(0, 0, 0), ss.str(), 10);
+		text[textSize] = OGLText(Vec3f(-1.15, height, 1), Color(0, 0, 0), ss.str(), 0.03);
 		textSize++;
 
-		dataDist[new OGLLine(Vec2f(width, -150), Color(0, 0, 0), Vec2f(width, -155))] = nullptr;
 		std::stringstream sf;
 		sf << std::fixed << std::setprecision(1) << (maxX / 10)*i;
-		text[textSize] = OGLText(Vec2f(width, -155), Color(0, 0, 0), sf.str(), 10);
+		text[textSize] = OGLText(Vec3f(width, -1.f, 1), Color(0, 0, 0), sf.str(), 0.03);
 		printf(sf.str().c_str());
 		printf(" ");
 		textSize++;
 
-		dataDist[new OGLLine(Vec2f(width, -150), Color(0, 0, 0), Vec2f(width, -155))] = nullptr;
 		std::stringstream sg;
 		sg << std::fixed << std::setprecision(1) << (maxZ / 10)*(10 - i);
-		text[textSize] = OGLText(Vec3f(-340, -150, -(depth)), Color(0, 0, 0), sg.str(), 10);
+		text[textSize] = OGLText(Vec3f(-1.0, -1.0, -(depth)), Color(0, 0, 0), sg.str(), 0.03);
 		textSize++;
 	}
 
@@ -108,75 +108,83 @@ void OGLScatterplot3D::InitElements()
 
 		if (data[0].data[i].isA<float>())
 		{
-			x = (600 * (data[0].data[i].asA<float>() / maxX)) - 300;
+			x = -1 + (2 * (data[0].data[i].asA<float>() / maxX));
+			//Have to get these values between 1 and -1. 
+			//Ho
 		}
 		else if (data[0].data[i].isA<int>())
 		{
-			x = (600 * (float(data[0].data[i].asA<int>()) / maxX)) - 300;
+			x = -1 + (2 * (data[0].data[i].asA<int>() / maxX));
 		}
 
 		if (data[1].data[i].isA<float>())
 		{
-			y = (350 * (data[1].data[i].asA<float>() / maxY)) - 150;
+			y = -1 + (2 * (data[1].data[i].asA<float>() / maxY));
 		}
 		else if (data[1].data[i].isA<int>())
 		{
-			y = (350 * (float(data[1].data[i].asA<int>()) / maxY)) - 150;
+			y = -1 + (2 * (data[1].data[i].asA<int>() / maxY));
 		}
 
 		if (data[2].data[i].isA<float>())
 		{
-			z = -(5 * (data[2].data[i].asA<float>() / maxZ)) - 1;
+			z = 1 - (2 * (data[2].data[i].asA<float>() / maxZ));
 		}
 		else if (data[2].data[i].isA<int>())
 		{
-			z = -(5 * (float(data[2].data[i].asA<int>()) / maxZ)) - 1;
+			z = 1 - (2 * (data[2].data[i].asA<int>() / maxZ));
 		}
 
 
-		index = new OGLRectangle3D(Vec3f(x, y, z), Color(0.f, 0.f, 0.f, 0.5f), 3, 3);
+		index = new OGLRectangle3D(Vec3f(x, y, z), Color(0.f, 0.f, 0.f, 0.5f), 0.03f, 0.03f);
 		index->CenterRotate(45.0f);
 		//index = new OGLCircle(Vec2f(x, y), Color(0, 0, 0), 5);
 		dataDist[index] = new DataCell(std::string(data[0].Name() + " " + data[0].data[i].getString() + ":: " + data[1].Name() + " " + data[1].data[i].getString() + " " + data[2].Name() + " " + data[2].data[i].getString()));
 	}
 	printf("%d", textSize);
 	textSize += 3;
-	text[33] = OGLText(Vec2f(-350, 230), Color(0, 0, 0), data[1].Name(), "arial.glf", 12);
-	text[34] = OGLText(Vec2f(0, -170), Color(0, 0, 0), data[0].Name(), "arial.glf", 12);
-	text[35] = OGLText(Vec3f(-390, 0, -2), Color(0, 0, 0), data[2].Name(), 12);
+	text[33] = OGLText(Vec3f(-1.0f, 1.1f, 1.0f), Color(0, 0, 0), data[1].Name(), "arial.glf", 0.03);
+	text[34] = OGLText(Vec3f(0, -1.1f, 1.0f), Color(0, 0, 0), data[0].Name(), "arial.glf", 0.03);
+	text[35] = OGLText(Vec3f(-1.0f, -1.0f, -1.1f), Color(0, 0, 0), data[2].Name(), 0.03);
 
 	Scale(scale);
 	Move(-_relativePos.X(), -_relativePos.Y());
-	printf("Done");
+	printf("Done\n");
 
 }
 
-void OGLScatterplot3D::Render()
+void OGLScatterplot3DV2::Render()
 {
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
 
-	glFrustum((-0.5*OGLWindow::m_width - xOff), (0.5*OGLWindow::m_width - (xOff)), (-0.5 * OGLWindow::m_height - (yOff)), (0.5 * OGLWindow::m_height - (yOff)), 1.f, 500.f);
+	glFrustum((-0.5*OGLWindow::m_width - xOff), (0.5*OGLWindow::m_width - (xOff)), (-0.5 * OGLWindow::m_height - (yOff)), (0.5 * OGLWindow::m_height - (yOff)), 1.f, 100.f);
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glLoadIdentity();
 
-	static float a = 0;
-
+	static float rotqube = 0;
 
 	_border.Render();
 
-	glScalef(1.8, 1.8, 1);
-	gluLookAt(xRot, yRot, 1.0, 0, 0, 0, 0, 1, 0);
+
+
+	//So we could do it on a scale of 1 - -1. Then scale. Not sure why that works better.
+	glScalef(600, 350, 1);
+	glTranslatef(0.0f, 0.0f, -3.0f);
+
+	if (xRot != 0)
+		glMultMatrixf(MathHelper::Matrix4DtransformY(xRot).data);
+	if (yRot != 0)
+		glMultMatrixf(MathHelper::Matrix4DtransformX(yRot).data);
+
 	std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
 	while (mapIt != dataDist.end())
 	{
 		mapIt->first->Render();
 		mapIt++;
 	}
-
-
 
 	if (highlightText)
 	{
@@ -194,20 +202,19 @@ void OGLScatterplot3D::Render()
 	glMatrixMode(GL_MODELVIEW);
 	glPopMatrix();
 
-	a = a + 1;
 }
 
-bool OGLScatterplot3D::MouseWheel(float deg)
+bool OGLScatterplot3DV2::MouseWheel(float deg)
 {
 	if (Listener::keys[90])
 	{
 		if (deg > 0)
 		{
-			xRot += 0.0001;
+			xRot += 0.3;
 		}
 		else
 		{
-			xRot -= 0.0001;
+			xRot -= 0.3;
 		}
 
 		return true;
@@ -217,11 +224,11 @@ bool OGLScatterplot3D::MouseWheel(float deg)
 	{
 		if (deg > 0)
 		{
-			yRot += 0.0001;
+			yRot += 0.3;
 		}
 		else
 		{
-			yRot -= 0.0001;
+			yRot -= 0.3;
 		}
 
 		return true;

@@ -14,7 +14,7 @@ private:
     //use 1D array for performance (mild, barely noticeable, cast as the same)
     //Can perform 1 for loop for simple operations
     //Can hard copy and initialize easier. 
-    Type* data;
+    
 
     void HardCopy(const Matrix& copy)
     {
@@ -39,6 +39,9 @@ private:
 
 
 public:
+
+	Type* data;
+
     //Assume matrix is more than 2x2, for now. 
     Matrix<Type>(size_t rows, size_t cols, const Type& init)
     {

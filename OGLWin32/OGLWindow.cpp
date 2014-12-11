@@ -145,8 +145,6 @@ void OGLWindow::Render(bool thread)
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glClearColor(0.0, 0.0, 0.0, 1.0);
-    
-    cube.Render();
 
     for (size_t i = 0; i < charts.size(); i++)
     {
@@ -185,9 +183,6 @@ void OGLWindow::Resize( int width, int height )
 void OGLWindow::InitOGLState()
 {
     glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
-
-    //glDisable(GL_DEPTH_TEST);
-   // glDisable(GL_CULL_FACE);
 }
 
 BOOL OGLWindow::MouseLBDown ( int x, int y )

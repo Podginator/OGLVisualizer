@@ -146,7 +146,8 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
         AppendMenu(popmenu, MF_STRING, ID_SCATTERPLOT2D, L"Scatterplot 2d View");
         AppendMenu(popmenu, MF_STRING, ID_SCATTERPLOT3D, L"Line Graph View");
         AppendMenu(popmenu, MF_STRING, ID_SCATTERPLOT3D, L"Box Plot View");
-        AppendMenu(popmenu, MF_STRING, ID_SCATTERPLOT3D, L"Scatterplot 3d View");
+        AppendMenu(popmenu, MF_STRING, ID_SCATTERPLOT3D, L"Scatterplot 3d View(2D-Esque V1)");
+		AppendMenu(popmenu, MF_STRING, 1000, L"Scatterplot 3d View(3D V2)");
         AppendMenu(menu, MF_STRING | MF_POPUP, ChartMenu, L"&Add Charts");
         
         popmenu = CreatePopupMenu();
@@ -268,12 +269,12 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
                 case 6: 
                     s_oglapp->GetApplicationWindow()->charts.push_back(new OGLScatterplot3D());
                     break;
+				case 7:
+					s_oglapp->GetApplicationWindow()->charts.push_back(new OGLScatterplot3DV2());
+					break;
                 }
-
             }
-
         break;
-
         case WM_SIZE:
             s_oglapp->GetApplicationWindow()->Resize(LOWORD(lparam), HIWORD(lparam));
             break;
@@ -282,7 +283,6 @@ LRESULT CALLBACK OGLApplication::WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPA
             s_oglapp->GetApplicationWindow()->DestroyOGLWindow();
             break;
         case WM_KEYDOWN:
-            printf("%d", wparam);
             Listener::keys[wparam] = true;
             break;
         case WM_KEYUP:

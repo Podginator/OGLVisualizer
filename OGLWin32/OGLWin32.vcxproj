@@ -105,7 +105,6 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="MathHelper.h" />
     <ClInclude Include="OGLArc.h" />
-    <ClInclude Include="OGLCube3D.h" />
     <ClInclude Include="OGLLine.h" />
     <ClInclude Include="OGLLine3D.h" />
     <ClInclude Include="OGLLineChart.h" />
@@ -113,6 +112,7 @@
     <ClInclude Include="OGLRectangle3D.h" />
     <ClInclude Include="OGLScatterplot.h" />
     <ClInclude Include="OGLScatterplot3d.h" />
+    <ClInclude Include="OGLScatterplotV2.h" />
     <ClInclude Include="OGLShape.h" />
     <ClInclude Include="OGLShape2D.h" />
     <ClInclude Include="OGLShape3D.h" />
@@ -145,7 +145,6 @@
     <ClCompile Include="OGLBarChart.cpp" />
     <ClCompile Include="OGLBoxChart.cpp" />
     <ClCompile Include="OGLChart.cpp" />
-    <ClCompile Include="OGLCube3D.cpp" />
     <ClCompile Include="OGLLine.cpp" />
     <ClCompile Include="OGLLine3D.cpp" />
     <ClCompile Include="OGLLineChart.cpp" />
@@ -153,6 +152,7 @@
     <ClCompile Include="OGLRectangle.cpp" />
     <ClCompile Include="OGLRectangle3D.cpp" />
     <ClCompile Include="OGLScatterplot.cpp" />
+    <ClCompile Include="OGLScatterplotV2.cpp" />
     <ClCompile Include="OGLShape.cpp" />
     <ClCompile Include="OGLShape2D.cpp" />
     <ClCompile Include="OGLShape3D.cpp" />

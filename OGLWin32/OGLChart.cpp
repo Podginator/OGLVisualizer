@@ -36,7 +36,8 @@ void OGLChart::Clear()
 
     if (dataDist.size() > 0 || textSize>0)
     {
-        delete[] text;
+		if (textSize>0)
+			delete[] text;
         //delete[] text;
         textSize = 0;
         std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();

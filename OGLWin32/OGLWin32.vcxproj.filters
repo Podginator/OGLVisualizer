@@ -204,8 +204,8 @@
     <ClInclude Include="OGLBoxChart.h">
       <Filter>Header Files\OGLCharts</Filter>
     </ClInclude>
-    <ClInclude Include="OGLCube3D.h">
-      <Filter>Header Files\OpenGL Primitives\Shapes</Filter>
+    <ClInclude Include="OGLScatterplotV2.h">
+      <Filter>Header Files\OGLCharts</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -296,8 +296,8 @@
     <ClCompile Include="OGLBoxChart.cpp">
       <Filter>Source Files\OGLChart</Filter>
     </ClCompile>
-    <ClCompile Include="OGLCube3D.cpp">
-      <Filter>Source Files\OpenGL Primitives\Shapes</Filter>
+    <ClCompile Include="OGLScatterplotV2.cpp">
+      <Filter>Source Files\OGLChart</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

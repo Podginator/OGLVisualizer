@@ -16,8 +16,8 @@
 #include "OGLScatterplot.h"
 #include "OGLBoxChart.h"
 #include "OGLScatterplot3d.h"
+#include "OGLScatterplotV2.h"
 #include "OGLLineChart.h"
-#include "OGLCube3D.h"
 
 class OGLWindow
 {
@@ -52,7 +52,6 @@ public:
         //Necessary for Windows 8.
 
         std::vector<OGLChart*> charts;
-        OGLCube cube;
         DataTable data;
 
         BOOL InitWindow(HINSTANCE hInstance, int width, int height);
