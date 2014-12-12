@@ -80,7 +80,6 @@ OGLText::OGLText(Vec3f position, const Color& color, const std::string& text, co
 
 OGLText::~OGLText()
 {
-    //printf("Destructor called\n");
     delete[] m_font;
 }
 

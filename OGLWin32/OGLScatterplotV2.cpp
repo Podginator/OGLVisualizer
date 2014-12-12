@@ -77,9 +77,6 @@ void OGLScatterplot3DV2::InitElements()
 		float width = -1.f + (2.f * (1.f / (10.f)))*i;
 		float depth = -1.f + 2 * (1.f / 10.f)*(10 - i);
 
-
-		printf("Height:%f, Width: %f, Depth: %f", height, width, depth);
-
 		std::stringstream ss;
 		ss << std::fixed << std::setprecision(1) << (maxY / 10)*i;
 		text[textSize] = OGLText(Vec3f(-1.15, height, 1), Color(0, 0, 0), ss.str(), 0.03);

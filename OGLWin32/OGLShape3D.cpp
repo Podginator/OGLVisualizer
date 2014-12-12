@@ -28,8 +28,6 @@ void OGLShape3D::RenderVertexs()
     glColor4f(rgb.red, rgb.green, rgb.blue, rgb.alpha);
     for (size_t i = 0; i < _size; i++)
     {
-     
-        //printf("%f::%f::%f\n", vertexs[i].X(), vertexs[i].Y(), vertexs[i].Z()); 
         glVertex3f(vertexs[i].X(), vertexs[i].Y(), vertexs[i].Z());
     }
 

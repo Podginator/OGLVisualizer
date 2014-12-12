@@ -87,8 +87,6 @@ void OGLScatterplot3D::InitElements()
 		std::stringstream sf;
 		sf << std::fixed << std::setprecision(1) << (maxX / 10)*i;
 		text[textSize] = OGLText(Vec2f(width, -155), Color(0, 0, 0), sf.str(), 10);
-		printf(sf.str().c_str());
-		printf(" ");
 		textSize++;
 
 		dataDist[new OGLLine(Vec2f(width, -150), Color(0, 0, 0), Vec2f(width, -155))] = nullptr;
@@ -139,7 +137,6 @@ void OGLScatterplot3D::InitElements()
 		//index = new OGLCircle(Vec2f(x, y), Color(0, 0, 0), 5);
 		dataDist[index] = new DataCell(std::string(data[0].Name() + " " + data[0].data[i].getString() + ":: " + data[1].Name() + " " + data[1].data[i].getString() + " " + data[2].Name() + " " + data[2].data[i].getString()));
 	}
-	printf("%d", textSize);
 	textSize += 3;
 	text[33] = OGLText(Vec2f(-350, 230), Color(0, 0, 0), data[1].Name(), "arial.glf", 12);
 	text[34] = OGLText(Vec2f(0, -170), Color(0, 0, 0), data[0].Name(), "arial.glf", 12);
@@ -161,8 +158,6 @@ void OGLScatterplot3D::Render()
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glLoadIdentity();
-
-	static float a = 0;
 
 
 	_border.Render();
@@ -193,8 +188,6 @@ void OGLScatterplot3D::Render()
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
 	glPopMatrix();
-
-	a = a + 1;
 }
 
 bool OGLScatterplot3D::MouseWheel(float deg)

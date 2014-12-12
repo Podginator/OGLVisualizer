@@ -75,8 +75,8 @@ DataTable CSVParser::GetCols(std::ifstream& stream)
 DataTable CSVParser::Parse(std::tr2::sys::wpath opened)
 {
     std::cout << "Parsing..." << std::endl;
-    std::ifstream stream(opened);
-        
+    std::ifstream stream(opened.string().c_str());
+    
     
     DataTable cols = GetCols(stream);
     

@@ -58,6 +58,10 @@ bool FileOpen::ShowDialog() {
         Item->GetDisplayName(SIGDN_FILESYSPATH, &FileCString);
         std::wstring FileWString{ FileCString };
         openedFile = { FileWString.begin(), FileWString.end() };
+
+		
+		wprintf(openedFile.string().c_str());
+
         return true;
     }
     case (ERROR_CANCELLED & 0x0000FFFF) | (FACILITY_WIN32 << 16) | 0x80000000:
