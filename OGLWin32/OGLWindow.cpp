@@ -3,9 +3,6 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>;
 
-int OGLWindow::m_height;
-int OGLWindow::m_width;
-
 OGLWindow::OGLWindow()
 {
     
@@ -162,8 +159,9 @@ void OGLWindow::Resize( int width, int height )
 
     RECT clientRec;
     GetClientRect(m_hwnd, &clientRec);
-    m_height = clientRec.bottom;
-    m_width = clientRec.right;
+    Renderable::RenderY = m_height = clientRec.bottom;
+    Renderable::RenderX = m_width = clientRec.right;
+    
 
     glViewport(0, 0, m_width, m_height);
     

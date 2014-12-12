@@ -139,7 +139,7 @@
     <ClCompile Include="GLFont.cpp" />
     <ClCompile Include="InputBox.cpp" />
     <ClCompile Include="Listener.cpp" />
-    <ClCompile Include="MathHelper.cpp" />
+    <ClCompile Include="MathsHelper.cpp" />
     <ClCompile Include="OGLApplication.cpp" />
     <ClCompile Include="OGLArc.cpp" />
     <ClCompile Include="OGLBarChart.cpp" />
@@ -161,6 +161,7 @@
     <ClCompile Include="OGLWin32.cpp" />
     <ClCompile Include="OGLWindow.cpp" />
     <ClCompile Include="OGLScatterplot3d.cpp" />
+    <ClCompile Include="Renderable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OGLWin32.rc" />

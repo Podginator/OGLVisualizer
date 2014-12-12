@@ -36,8 +36,8 @@ protected:
         void SetClientSize();
 
 public:
-        static int m_width;
-        static int m_height;
+        int m_width;
+        int m_height;
         OGLWindow();
         OGLWindow(HINSTANCE hInstance, int width, int height);
         ~OGLWindow();

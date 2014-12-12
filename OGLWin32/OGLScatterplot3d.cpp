@@ -154,7 +154,8 @@ void OGLScatterplot3D::Render()
 	glPushMatrix();
 	glLoadIdentity();
 
-	glFrustum((-0.5*OGLWindow::m_width - xOff), (0.5*OGLWindow::m_width - (xOff)), (-0.5 * OGLWindow::m_height - (yOff)), (0.5 * OGLWindow::m_height - (yOff)), 1.f, 500.f);
+    //gluLookAt(0, 0, 1.0, 0, 0, 0, 0, 1, 0);
+	glFrustum((-0.5*Renderable::RenderX- xOff), (0.5*Renderable::RenderX- (xOff)), (-0.5 * Renderable::RenderY- (yOff)), (0.5 * Renderable::RenderY- (yOff)), 1.f, 500.f);
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glLoadIdentity();

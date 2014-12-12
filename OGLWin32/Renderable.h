@@ -19,4 +19,7 @@ public:
     virtual void Scale(float scale) = 0;
     virtual void Move(float x, float y) = 0;
     virtual void SetOpacity(float n) = 0;
+
+    static int RenderX;
+    static int RenderY;
 };

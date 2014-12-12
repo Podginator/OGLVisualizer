@@ -152,8 +152,7 @@ void OGLScatterplot3DV2::Render()
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
-
-	glFrustum((-0.5*OGLWindow::m_width - xOff), (0.5*OGLWindow::m_width - (xOff)), (-0.5 * OGLWindow::m_height - (yOff)), (0.5 * OGLWindow::m_height - (yOff)), 1.f, 100.f);
+    glFrustum((-0.5*Renderable::RenderX - xOff), (0.5*Renderable::RenderX - (xOff)), (-0.5 * Renderable::RenderY - (yOff)), (0.5 * Renderable::RenderY - (yOff)), 1.f, 500.f);
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glLoadIdentity();
@@ -164,7 +163,7 @@ void OGLScatterplot3DV2::Render()
 
 
 
-	//So we could do it on a scale of 1 - -1. Then scale. Not sure why that works better.
+	//So we could do it on a scale of 1 - -1. Then scale. It does though, for rotational purposes.
 	glScalef(600, 350, 1);
 	glTranslatef(0.0f, 0.0f, -3.0f);
 

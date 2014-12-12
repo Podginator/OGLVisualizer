@@ -224,9 +224,6 @@
     <ClCompile Include="FileOpen.cpp">
       <Filter>Source Files\OpenGL Window</Filter>
     </ClCompile>
-    <ClCompile Include="MathHelper.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
     <ClCompile Include="OGLArc.cpp">
       <Filter>Source Files\OpenGL Primitives\Shapes</Filter>
     </ClCompile>
@@ -298,6 +295,12 @@
     </ClCompile>
     <ClCompile Include="OGLScatterplotV2.cpp">
       <Filter>Source Files\OGLChart</Filter>
+    </ClCompile>
+    <ClCompile Include="MathsHelper.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderable.cpp">
+      <Filter>Source Files\OpenGL Primitives\Interfaces</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
