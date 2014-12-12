@@ -17,7 +17,7 @@ std::map<DataCell*, size_t> DataColumn::GetDistribution()
 {
     std::map<DataCell*, size_t> res;
 
-    for (int i = 0; i < data.size(); i++)
+    for (size_t i = 0; i < data.size(); i++)
     {
         DataCell cell = data[i];
         bool added = false;
@@ -71,7 +71,7 @@ void DataColumn::GetStats()
 
     if (type == Numerical)
     {
-        for (int i = 0; i < data.size(); i++)
+        for (size_t i = 0; i < data.size(); i++)
         {
             if (data[i].isA<float>())
             {

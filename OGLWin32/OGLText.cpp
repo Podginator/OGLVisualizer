@@ -14,12 +14,12 @@ void OGLText::Render()
 
     glPushMatrix();
 
-
-    //printf("%f\n", _position.Z());
     glTranslatef(_position.X(), _position.Y(), 0);
-    //glTranslatef(0, 0, 1);
     glScalef(_size, _size, 1);
-    glRotatef(_rot, 0, 0, 1);
+	
+	if (_rot!=0)
+		glMultMatrixf(MathHelper::Matrix4DtransformZ(_rot).data);
+
 
     glColor4f(_color.red, _color.green, _color.blue, _color.alpha);
     m_font->Begin();

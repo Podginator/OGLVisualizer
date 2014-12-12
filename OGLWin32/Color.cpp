@@ -16,11 +16,11 @@ Color::Color(std::string const& str, float _alpha)
 
 Color& Color::operator<<(unsigned int shift)
 {
-    red = ((int)(red * 255) << shift);
+    red = float(((int)(red * 255) << shift));
     red /= 255;
-    green = ((int)(red * 255) << shift);
+    green = float(((int)(red * 255) << shift));
     green /= 255;
-    blue = ((int)(red * 255) << shift);
+    blue = float(((int)(red * 255) << shift));
     blue /= 255;
     return *this;
 }

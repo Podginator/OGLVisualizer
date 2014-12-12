@@ -73,7 +73,7 @@ void OGLScatterplot3D::InitElements()
 
 	for (int i = 0; i <= 10; i++)
 	{
-		float height = (-150) + (350 / (10))*i;
+		float height = (-150.f) + (350.f / (10.f))*i;
 		float width = (-300) + (600 / 10)*i;
 		float depth = 1 + (5.f / 10.f)*(10 - i);
 		dataDist[new OGLLine(Vec2f(-310, height), Color(0, 0, 0), Vec2f(-300, height))] = nullptr;
@@ -97,7 +97,7 @@ void OGLScatterplot3D::InitElements()
 	}
 
 
-	for (int i = 0; i < data[0].size; i++)
+	for (size_t i = 0; i < data[0].size; i++)
 	{
 		OGLShape* index;
 		float y = 0;
@@ -162,7 +162,7 @@ void OGLScatterplot3D::Render()
 
 	_border.Render();
 
-	glScalef(1.8, 1.8, 1);
+	glScalef(1.8f, 1.8f, 1.f);
 	gluLookAt(xRot, yRot, 1.0, 0, 0, 0, 0, 1, 0);
 	std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
 	while (mapIt != dataDist.end())
@@ -196,11 +196,11 @@ bool OGLScatterplot3D::MouseWheel(float deg)
 	{
 		if (deg > 0)
 		{
-			xRot += 0.0001;
+			xRot += 0.0001f;
 		}
 		else
 		{
-			xRot -= 0.0001;
+			xRot -= 0.0001f;
 		}
 
 		return true;
@@ -210,11 +210,11 @@ bool OGLScatterplot3D::MouseWheel(float deg)
 	{
 		if (deg > 0)
 		{
-			yRot += 0.0001;
+			yRot += 0.0001f;
 		}
 		else
 		{
-			yRot -= 0.0001;
+			yRot -= 0.0001f;
 		}
 
 		return true;
@@ -230,11 +230,11 @@ bool OGLScatterplot3D::MouseWheel(float deg)
 			{
 				if (deg > 0)
 				{
-					shape->MoveZ(0.1);
+					shape->MoveZ(0.1f);
 				}
 				else
 				{
-					shape->MoveZ(-0.1);
+					shape->MoveZ(-0.1f);
 				}
 			}
 			mapIt++;

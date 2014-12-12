@@ -85,8 +85,6 @@ void OGLScatterplot3DV2::InitElements()
 		std::stringstream sf;
 		sf << std::fixed << std::setprecision(1) << (maxX / 10)*i;
 		text[textSize] = OGLText(Vec3f(width, -1.f, 1), Color(0, 0, 0), sf.str(), 0.03);
-		printf(sf.str().c_str());
-		printf(" ");
 		textSize++;
 
 		std::stringstream sg;
@@ -138,7 +136,6 @@ void OGLScatterplot3DV2::InitElements()
 		//index = new OGLCircle(Vec2f(x, y), Color(0, 0, 0), 5);
 		dataDist[index] = new DataCell(std::string(data[0].Name() + " " + data[0].data[i].getString() + ":: " + data[1].Name() + " " + data[1].data[i].getString() + " " + data[2].Name() + " " + data[2].data[i].getString()));
 	}
-	printf("%d", textSize);
 	textSize += 3;
 	text[33] = OGLText(Vec3f(-1.0f, 1.1f, 1.0f), Color(0, 0, 0), data[1].Name(), "arial.glf", 0.03);
 	text[34] = OGLText(Vec3f(0, -1.1f, 1.0f), Color(0, 0, 0), data[0].Name(), "arial.glf", 0.03);
