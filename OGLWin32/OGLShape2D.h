@@ -4,7 +4,7 @@
 class OGLShape2D : public OGLShape
 {
 protected:
-    Vec2f _position;
+    
     Vec2f* vertexs;
     void RenderVertexs();
     void Copy(const OGLShape2D& copy)
@@ -53,6 +53,9 @@ protected:
     }
 
 public:
+
+    Vec2f _position;
+
     OGLShape2D(const Vec2f& position, const Color& color, size_t size, unsigned int renderType) :_position(position), OGLShape(color, size, renderType)
     {
         vertexs = new Vec2f[size];

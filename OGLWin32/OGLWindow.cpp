@@ -205,10 +205,11 @@ void OGLWindow::ResetCharts()
     for (int i = 0; i < charts.size(); ++i)
     {
         float backToOne = (700.f / charts[i]->scale) / 700.f;
-        charts[i]->Move(charts[i]->_relativePos.X(), charts[i]->_relativePos.Y());
-        charts[i]->_relativePos = Vec2f(0, 0);
-        charts[i]->scale = 1.0f;
         charts[i]->Scale(backToOne);
+        charts[i]->scale = 1.0f;
+        charts[i]->Move(-375 - charts[i]->_border._position.X(), -250 - charts[i]->_border._position.Y());
+        charts[i]->_relativePos = Vec2f(0, 0);
+        
     }
 }
 
@@ -232,11 +233,11 @@ void OGLWindow::OrganizeCharts()
         charts[i]->Move(375, -250);
         charts[i]->Scale(maxWidth);
         charts[i]->scale = maxWidth;
-        charts[i]->Move((-float(m_width)/2.f)+xOffset, (float(m_height)/2.f)+yOffset);
+        charts[i]->Move((-float(m_width)/2.f)+xOffset, (float(m_height)/2.f)-yOffset);
         xOffset += (maxWidth * 700);
         if ((i+1) % 3 == 0 && i != 0)
         {
-            yOffset += (yOffset) -= 500.f*maxWidth;
+            yOffset += (maxWidth*500.f);
             xOffset = 0;
         }
 
@@ -261,6 +262,9 @@ BOOL OGLWindow::MouseMove ( int x, int y )
     {
         Listener *plistener = static_cast<Listener*>(charts[charts.size() - 1]);
         plistener->MouseMove(x - (m_width >> 1), (-y) - (-m_height >> 1));
+
+
+       
     }
     
     return TRUE;
