@@ -1,7 +1,6 @@
 #pragma once
 #include "OGLChart.h"
 #include "OGLRectangle3D.h"
-#include "OGLWindow.h"
 
 class OGLScatterplot3D : public OGLChart
 {

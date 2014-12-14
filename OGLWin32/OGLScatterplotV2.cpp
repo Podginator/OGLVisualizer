@@ -29,7 +29,6 @@ bool OGLScatterplot3DV2::MouseLBDown(int x, int y)
 	return _border.MouseInside(x - xOff, y - yOff);
 }
 
-
 void OGLScatterplot3DV2::Move(float x, float y)
 {
 	if (Listener::keys[16])
@@ -131,7 +130,7 @@ void OGLScatterplot3DV2::InitElements()
 		}
 
 
-		index = new OGLRectangle3D(Vec3f(x, y, z), Color(0.f, 0.f, 0.f, 0.5f), 0.03f, 0.03f);
+		index = new OGLRectangle3D(Vec3f(x, y, z), Color(0.f, 0.f, 0.f, 0.5f), 0.015f, 0.015f);
 		index->CenterRotate(45.0f);
 		//index = new OGLCircle(Vec2f(x, y), Color(0, 0, 0), 5);
 		dataDist[index] = new DataCell(std::string(data[0].Name() + " " + data[0].data[i].getString() + ":: " + data[1].Name() + " " + data[1].data[i].getString() + " " + data[2].Name() + " " + data[2].data[i].getString()));
@@ -157,11 +156,7 @@ void OGLScatterplot3DV2::Render()
 	glPushMatrix();
 	glLoadIdentity();
 
-	static float rotqube = 0;
-
 	_border.Render();
-
-
 
 	//So we could do it on a scale of 1 - -1. Then scale. It does though, for rotational purposes.
 	glScalef(600, 350, 1);
@@ -194,7 +189,6 @@ void OGLScatterplot3DV2::Render()
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
 	glPopMatrix();
-
 }
 
 bool OGLScatterplot3DV2::MouseWheel(float deg)
@@ -203,11 +197,11 @@ bool OGLScatterplot3DV2::MouseWheel(float deg)
 	{
 		if (deg > 0)
 		{
-			xRot += 0.3;
+			xRot += 0.5;
 		}
 		else
 		{
-			xRot -= 0.3;
+			xRot -= 0.5;
 		}
 
 		return true;
@@ -217,54 +211,16 @@ bool OGLScatterplot3DV2::MouseWheel(float deg)
 	{
 		if (deg > 0)
 		{
-			yRot += 0.3;
+			yRot += 0.5;
 		}
 		else
 		{
-			yRot -= 0.3;
+			yRot -= 0.5;
 		}
 
 		return true;
 	}
 
-	if (Listener::keys[16])
-	{
-		std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
-		while (mapIt != dataDist.end())
-		{
-			OGLShape3D* shape = dynamic_cast<OGLShape3D*>(mapIt->first);
-			if (shape && Listener::keys[16])
-			{
-				if (deg > 0)
-				{
-					shape->MoveZ(0.1);
-				}
-				else
-				{
-					shape->MoveZ(-0.1);
-				}
-			}
-			mapIt++;
-		}
-
-		for (size_t k = 2; k < 32; k += 3)
-		{
-			if (deg > 0)
-			{
-				text[k].MoveZ(0.1);
-			}
-			else
-			{
-				text[k].MoveZ(-0.1);
-			}
-		}
-
-		return true;
-	}
-	else
-	{
-		OGLChart::MouseWheel(deg);
-	}
-
+	OGLChart::MouseWheel(deg);
 	return true;
 }

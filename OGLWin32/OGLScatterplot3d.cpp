@@ -154,36 +154,12 @@ void OGLScatterplot3D::Render()
 	glPushMatrix();
 	glLoadIdentity();
 
-    //gluLookAt(0, 0, 1.0, 0, 0, 0, 0, 1, 0);
 	glFrustum((-0.5*Renderable::RenderX- xOff), (0.5*Renderable::RenderX- (xOff)), (-0.5 * Renderable::RenderY- (yOff)), (0.5 * Renderable::RenderY- (yOff)), 1.f, 500.f);
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glLoadIdentity();
 
-
-	_border.Render();
-
-	glScalef(1.8f, 1.8f, 1.f);
-	gluLookAt(xRot, yRot, 1.0, 0, 0, 0, 0, 1, 0);
-	std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
-	while (mapIt != dataDist.end())
-	{
-		mapIt->first->Render();
-		mapIt++;
-	}
-
-
-
-	if (highlightText)
-	{
-		highlightText->Render();
-	}
-
-	for (size_t k = 0; k < textSize; k++)
-	{
-		text[k].Render();
-	}
-
+    OGLChart::Render();
 
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();
