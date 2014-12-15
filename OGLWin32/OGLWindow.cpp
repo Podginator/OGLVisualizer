@@ -263,6 +263,7 @@ BOOL OGLWindow::MouseMove ( int x, int y )
         Listener *plistener = static_cast<Listener*>(charts[charts.size() - 1]);
         plistener->MouseMove(x - (m_width >> 1), (-y) - (-m_height >> 1));
     }
+
     
     return TRUE;
 }
