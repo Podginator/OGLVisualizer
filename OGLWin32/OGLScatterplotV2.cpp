@@ -104,7 +104,6 @@ void OGLScatterplot3DV2::InitElements()
 		{
 			x = -1 + (2 * (data[0].data[i].asA<float>() / maxX));
 			//Have to get these values between 1 and -1. 
-			//Ho
 		}
 		else if (data[0].data[i].isA<int>())
 		{

@@ -11,7 +11,7 @@ void OGLText::SetText(const char* text)
 
 void OGLText::Render()
 {
-
+	//Puts the current GL_ModelMatrix onto the stack.
     glPushMatrix();
 
     glTranslatef(_position.X(), _position.Y(), 0);
@@ -26,6 +26,7 @@ void OGLText::Render()
     m_font->TextOut(m_text.c_str(), 0, 0, _position.Z());
     m_font->End();
 
+	//Puts it back.
     glPopMatrix();
 }
 
