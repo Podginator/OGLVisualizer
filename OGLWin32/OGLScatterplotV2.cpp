@@ -26,12 +26,71 @@ bool OGLScatterplot3DV2::MouseLBDown(int x, int y)
 {
 	OGLChart::MouseLBDown(x, y);
 
+	struct{ GLubyte red, green, blue; } pixel;
+	glReadPixels(x, y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &pixel);
+	printf("\nFirst::%d", pixel.red);
+
+	SetUpMatrices();
+
+	glScalef(600, 350, 1);
+	glTranslatef(0.0f, 0.0f, -3.0f);
+
+	if (xRot != 0)
+		glMultMatrixf(MathHelper::Matrix4DtransformY(xRot).data);
+	if (yRot != 0)
+		glMultMatrixf(MathHelper::Matrix4DtransformX(yRot).data);
+
+	std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
+	while (mapIt != dataDist.end())
+	{
+		GLint hits;
+		GLint viewport[4];
+		glGetIntegerv(GL_VIEWPORT, viewport);
+
+
+		printf("GLViewPort: %d,%d,%d,%d", viewport[0], viewport[1], viewport[2], viewport[3]);
+
+		(void) glRenderMode(GL_SELECT);
+
+		glMatrixMode(GL_PROJECTION);
+		glPushMatrix();
+		glLoadIdentity(); 
+
+		gluPickMatrix((GLdouble)x, (GLdouble)(viewport[3] - y), 1.0f, 1.0f, viewport);
+		glFrustum((-0.5*viewport[2] - xOff), (0.5*viewport[2] - (xOff)), (-0.5 * viewport[3] - (yOff)), (0.5 * viewport[3] - (yOff)), 1.f, 500.f);
+
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		mapIt->first->Render();
+		
+		glMatrixMode(GL_PROJECTION); 
+		glPopMatrix(); 
+		glMatrixMode(GL_MODELVIEW); 
+		hits = glRenderMode(GL_RENDER);
+
+		if (hits != 0)
+		{
+			if (!(mapIt->second->isNull()))
+			{
+				if (highlightText != nullptr)
+				{
+					delete highlightText;
+				}
+				highlightText = new OGLText(Vec2f(x - (viewport[2] >> 1) + 5, (-y) - (-viewport[3] >> 1)), Color(0.25f, 0.25f, 0.25f), mapIt->second->getString(), "arial.glf", 8);
+			}
+		}
+
+
+		mapIt++;
+	}
+
+	RestoreMatrices();
+
 	return _border.MouseInside(x - xOff, y - yOff);
 }
 
 void OGLScatterplot3DV2::Move(float x, float y)
 {
-	if (Listener::keys[16])
+	/*if (Listener::keys[16])
 	{
 		OGLChart::Move(x, y);
 		xOff -= x;
@@ -39,7 +98,7 @@ void OGLScatterplot3DV2::Move(float x, float y)
 		return;
 	}
 	xOff += x;
-	yOff += y;
+	yOff += y;*/
 
 
 }
@@ -129,7 +188,7 @@ void OGLScatterplot3DV2::InitElements()
 		}
 
 
-		index = new OGLRectangle3D(Vec3f(x, y, z), Color(0.f, 0.f, 0.f, 0.5f), 0.015f, 0.015f);
+		index = new OGLRectangle3D(Vec3f(x, y, z), Color(0.f, 0.f, 0.f, 0.5f), 0.025f, 0.025f);
 		index->CenterRotate(45.0f);
 		//index = new OGLCircle(Vec2f(x, y), Color(0, 0, 0), 5);
 		dataDist[index] = new DataCell(std::string(data[0].Name() + " " + data[0].data[i].getString() + ":: " + data[1].Name() + " " + data[1].data[i].getString() + " " + data[2].Name() + " " + data[2].data[i].getString()));
@@ -147,13 +206,7 @@ void OGLScatterplot3DV2::InitElements()
 
 void OGLScatterplot3DV2::Render()
 {
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-	glLoadIdentity();
-    glFrustum((-0.5*Renderable::RenderX - xOff), (0.5*Renderable::RenderX - (xOff)), (-0.5 * Renderable::RenderY - (yOff)), (0.5 * Renderable::RenderY - (yOff)), 1.f, 500.f);
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glLoadIdentity();
+	SetUpMatrices();
 
 	_border.Render();
 
@@ -173,10 +226,6 @@ void OGLScatterplot3DV2::Render()
 		mapIt++;
 	}
 
-	if (highlightText)
-	{
-		highlightText->Render();
-	}
 
 	for (size_t k = 0; k < textSize; k++)
 	{
@@ -184,10 +233,12 @@ void OGLScatterplot3DV2::Render()
 	}
 
 
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-	glMatrixMode(GL_MODELVIEW);
-	glPopMatrix();
+	RestoreMatrices();
+
+	if (highlightText)
+	{
+		highlightText->Render();
+	}
 }
 
 bool OGLScatterplot3DV2::MouseWheel(float deg)
@@ -223,3 +274,5 @@ bool OGLScatterplot3DV2::MouseWheel(float deg)
 	OGLChart::MouseWheel(deg);
 	return true;
 }
+
+

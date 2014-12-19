@@ -159,8 +159,8 @@ void OGLWindow::Resize( int width, int height )
 
     RECT clientRec;
     GetClientRect(m_hwnd, &clientRec);
-    Renderable::RenderY = m_height = clientRec.bottom;
-    Renderable::RenderX = m_width = clientRec.right;
+    m_height = clientRec.bottom;
+    m_width = clientRec.right;
     
 
     glViewport(0, 0, m_width, m_height);
@@ -186,7 +186,8 @@ void OGLWindow::InitOGLState()
 BOOL OGLWindow::MouseLBDown ( int x, int y )
 {
 
-    for (int i = charts.size()-1; i>=0; --i)
+	charts[charts.size() - 1]->MouseLBDown(x, y);
+  /*  for (int i = charts.size()-1; i>=0; --i)
     {
         if (charts[i]->MouseLBDown(x - (m_width >> 1), (-y) - (-m_height >> 1)))
         {
@@ -196,7 +197,7 @@ BOOL OGLWindow::MouseLBDown ( int x, int y )
             }
             break;
         }
-    }
+    }*/
     return TRUE;
 }
 
@@ -277,4 +278,46 @@ BOOL OGLWindow::MouseWheel(float delta)
         plistener->MouseWheel(scale);
     }
     return TRUE;
+}
+
+void OGLWindow::AboutChart()
+{
+
+	LPCWSTR defStr = L"MouseWheel: Scroll to resize\nClick and Drag to move\nCtrl+Mousewheel: Alter Opacity\n";
+	std::wstring altStr;
+	if (dynamic_cast<OGLPieChart*>(charts[charts.size() - 1]) != NULL)
+	{
+		altStr = std::wstring(defStr) + L"Mouse Right Click over Data Point : Alter Data";
+		MessageBox(HWND_DESKTOP, altStr.c_str(), L"About Chart", MB_ICONQUESTION);
+	}
+	else if (dynamic_cast<OGLBarChart*>(charts[charts.size() - 1]) != NULL)
+	{
+		altStr = std::wstring(defStr) + L"Mouse Right Click over Data Point : Alter Data";
+		MessageBox(HWND_DESKTOP, altStr.c_str(), L"About Chart", MB_ICONQUESTION);
+	}
+	else if (dynamic_cast<OGLSpiderChart*>(charts[charts.size() - 1]) != NULL)
+	{
+		altStr = std::wstring(defStr);
+		MessageBox(HWND_DESKTOP, altStr.c_str(), L"About Chart", MB_ICONQUESTION);
+	}
+	else if (dynamic_cast<OGLScatterPlot2D*>(charts[charts.size() - 1]) != NULL)
+	{
+		altStr = std::wstring(defStr);
+		MessageBox(HWND_DESKTOP, altStr.c_str(), L"About Chart", MB_ICONQUESTION);
+	}
+	else if (dynamic_cast<OGLScatterplot3DV2*>(charts[charts.size() - 1]) != NULL)
+	{
+		altStr = std::wstring(defStr) + L"Z+Scroll: Alter Y Matrix\nX+Scroll: Alter X Matrix\nLeft Click Data Point = View Information! (Took a lot of messing around to get that to work.)";
+		MessageBox(HWND_DESKTOP, altStr.c_str(), L"About Chart", MB_ICONQUESTION);
+	}
+	else if (dynamic_cast<OGLScatterplot3D*>(charts[charts.size() - 1]) != NULL)
+	{
+		altStr = std::wstring(defStr) + L"Shift+Mouse Move: Alter Z Axis\nShift+Scroll: Scrub along the Z Axis";
+		MessageBox(HWND_DESKTOP, altStr.c_str(), L"About Chart", MB_ICONQUESTION);
+	}
+	else if (dynamic_cast<OGLLineChart*>(charts[charts.size() - 1]) != NULL)
+	{
+		altStr = std::wstring(defStr);
+		MessageBox(HWND_DESKTOP, altStr.c_str(), L"About Chart", MB_ICONQUESTION);
+	}
 }

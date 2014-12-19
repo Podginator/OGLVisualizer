@@ -26,11 +26,33 @@ public:
 		}
 		Listener::x = float(x);
 		Listener::y = float(y);
+
 		return true;
 	}
 	bool MouseWheel(float deg);
 	bool MouseLBDown(int x, int y);
 protected:
+
+	void SetUpMatrices()
+	{
+
+		int GLViewPort[4];
+		glGetIntegerv(GL_VIEWPORT, GLViewPort);
+
+		glMatrixMode(GL_PROJECTION);
+		glPushMatrix();
+		glLoadIdentity();
+		glFrustum((-0.5*GLViewPort[2] - xOff), (0.5*GLViewPort[2] - (xOff)), (-0.5 * GLViewPort[3] - (yOff)), (0.5 * GLViewPort[3] - (yOff)), 1.f, 500.f);
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+		glLoadIdentity();
+	}
+
+	void RestoreMatrices()
+	{
+
+	}
+
 	int xOff = 0;
 	int yOff = 0;
 	float xRot = 0.0f;

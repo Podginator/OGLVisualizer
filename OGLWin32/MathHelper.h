@@ -9,20 +9,20 @@
 class MathHelper
 {
 public:
-    MathHelper();
-    //Rotations
+	MathHelper();
+	//Rotations
 
-    static float Pi(){ return 3.1415926535897932384626433832795f; }
-    
-    static Matrix<float>Matrix2Dtransform(float degree);
-    //3D
-    static Matrix<float>Matrix3DtransformX(float degree);
-    static Matrix<float>Matrix3DtransformY(float degree);
-    static Matrix<float>Matrix3DtransformZ(float degree);
-    //4D
-    static Matrix<float>Matrix4DtransformX(float degree);
-    static Matrix<float>Matrix4DtransformY(float degree);
-    static Matrix<float>Matrix4DtransformZ(float degree);
+	static float Pi(){ return 3.1415926535897932384626433832795f; }
 
-
+	static Matrix<float>Matrix2Dtransform(float degree);
+	//3D
+	static Matrix<float>Matrix3DtransformX(float degree);
+	static Matrix<float>Matrix3DtransformY(float degree);
+	static Matrix<float>Matrix3DtransformZ(float degree);
+	//4D
+	static Matrix<float>Matrix4DtransformX(float degree);
+	static Matrix<float>Matrix4DtransformY(float degree);
+	static Matrix<float>Matrix4DtransformZ(float degree);
+	static Matrix<float>Matrix4Dtranslate(float x, float y, float z);
+	static Matrix<float> Matrix4Dscale(float x, float y, float z);
 };

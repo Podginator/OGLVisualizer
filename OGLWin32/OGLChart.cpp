@@ -203,7 +203,6 @@ void OGLChart::GetHighlight(int x, int y)
 
 }
 
-
 bool OGLChart::MouseMove(int x, int y)
 {
     if (MouseDown&_border.MouseInside(x, y))
@@ -225,6 +224,7 @@ bool OGLChart::MouseMove(int x, int y)
 
     return true;
 }
+
 bool OGLChart::MouseLBDown(int x, int y)
 {
     MouseDown = true;
@@ -232,11 +232,13 @@ bool OGLChart::MouseLBDown(int x, int y)
     Listener::y = float(y);
     return _border.MouseInside(x, y);
 }
+
 bool OGLChart::MouseLBUp(int x, int y)
 {
     MouseDown = false;
     return true;
 }
+
 bool OGLChart::MouseWheel(float deg)
 {
     if (Listener::keys[17])

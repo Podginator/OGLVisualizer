@@ -49,6 +49,7 @@ public:
         void RemoveCharts();
         void OrganizeCharts();
         void ResetCharts();
+		void AboutChart();
         //Necessary for Windows 8.
 
         std::vector<OGLChart*> charts;
