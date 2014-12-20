@@ -29,8 +29,15 @@ bool OGLScatterplot3DV2::MouseLBDown(int x, int y)
 	int newX = x - (viewport[2] >> 1);
 	int newY = (-y) - (-viewport[3] >> 1);
 
-	OGLChart::MouseLBDown(newX, newY);
+	OGLChart::MouseLBDown(x, y);
 
+	GetHighlightAtPoint(x, y, viewport);
+
+	return _border.MouseInside(newX - xOff, newY - yOff);
+}
+
+void OGLScatterplot3DV2::GetHighlightAtPoint(int x, int y, GLint* viewport)
+{
 	SetUpMatrices();
 
 	glMultMatrixf(MathHelper::Matrix4Dscale(600, 350, 1).data);
@@ -45,20 +52,20 @@ bool OGLScatterplot3DV2::MouseLBDown(int x, int y)
 	while (mapIt != dataDist.end())
 	{
 		GLint hits;
-		
-		(void) glRenderMode(GL_SELECT);
+
+		(void)glRenderMode(GL_SELECT);
 
 		glMatrixMode(GL_PROJECTION);
 		glPushMatrix();
-		glLoadIdentity(); 
+		glLoadIdentity();
 
 		gluPickMatrix((GLdouble)x, (GLdouble)(viewport[3] - y), 1.0f, 1.0f, viewport);
 		glFrustum((-0.5*viewport[2] - xOff), (0.5*viewport[2] - (xOff)), (-0.5 * viewport[3] - (yOff)), (0.5 * viewport[3] - (yOff)), 1.f, 500.f);
 
 		mapIt->first->Render();
-		glMatrixMode(GL_PROJECTION); 
-		glPopMatrix(); 
-		glMatrixMode(GL_MODELVIEW); 
+		glMatrixMode(GL_PROJECTION);
+		glPopMatrix();
+		glMatrixMode(GL_MODELVIEW);
 		hits = glRenderMode(GL_RENDER);
 
 		if (hits != 0)
@@ -78,8 +85,6 @@ bool OGLScatterplot3DV2::MouseLBDown(int x, int y)
 	}
 
 	RestoreMatrices();
-
-	return _border.MouseInside(newX - xOff, newY - yOff);
 }
 
 void OGLScatterplot3DV2::Move(float x, float y)
@@ -229,10 +234,13 @@ void OGLScatterplot3DV2::Render()
 
 	RestoreMatrices();
 
+
 	if (highlightText)
 	{
 		highlightText->Render();
 	}
+
+
 }
 
 bool OGLScatterplot3DV2::MouseWheel(float deg)
