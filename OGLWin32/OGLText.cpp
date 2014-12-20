@@ -15,7 +15,7 @@ void OGLText::Render()
     glPushMatrix();
 
     glTranslatef(_position.X(), _position.Y(), 0);
-    glScalef(_size, _size, 1);
+	glMultMatrixf(MathHelper::Matrix4Dscale(_size, _size, 1).data);
 	
 	if (_rot!=0)
 		glMultMatrixf(MathHelper::Matrix4DtransformZ(_rot).data);

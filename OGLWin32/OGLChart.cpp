@@ -227,10 +227,14 @@ bool OGLChart::MouseMove(int x, int y)
 
 bool OGLChart::MouseLBDown(int x, int y)
 {
+	GLint viewport[4];
+	glGetIntegerv(GL_VIEWPORT, viewport);
+	int newX = x - (viewport[2] >> 1);
+	int newY = (-y) - (-viewport[3] >> 1);
     MouseDown = true;
-    Listener::x = float(x);
-    Listener::y = float(y);
-    return _border.MouseInside(x, y);
+    Listener::x = float(newX);
+    Listener::y = float(newY);
+    return _border.MouseInside(newX, newY);
 }
 
 bool OGLChart::MouseLBUp(int x, int y)

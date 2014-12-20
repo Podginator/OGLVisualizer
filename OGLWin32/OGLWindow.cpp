@@ -186,10 +186,10 @@ void OGLWindow::InitOGLState()
 BOOL OGLWindow::MouseLBDown ( int x, int y )
 {
 
-	charts[charts.size() - 1]->MouseLBDown(x, y);
-  /*  for (int i = charts.size()-1; i>=0; --i)
+	//charts[charts.size() - 1]->MouseLBDown(x, y);
+    for (int i = charts.size()-1; i>=0; --i)
     {
-        if (charts[i]->MouseLBDown(x - (m_width >> 1), (-y) - (-m_height >> 1)))
+        if (charts[i]->MouseLBDown(x,y))
         {
             if (i != charts.size()-1)
             {
@@ -197,7 +197,7 @@ BOOL OGLWindow::MouseLBDown ( int x, int y )
             }
             break;
         }
-    }*/
+    }
     return TRUE;
 }
 

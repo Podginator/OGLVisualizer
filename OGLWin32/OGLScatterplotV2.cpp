@@ -24,15 +24,16 @@ OGLScatterplot3DV2::OGLScatterplot3DV2()
 
 bool OGLScatterplot3DV2::MouseLBDown(int x, int y)
 {
-	OGLChart::MouseLBDown(x, y);
+	GLint viewport[4];
+	glGetIntegerv(GL_VIEWPORT, viewport);
+	int newX = x - (viewport[2] >> 1);
+	int newY = (-y) - (-viewport[3] >> 1);
 
-	struct{ GLubyte red, green, blue; } pixel;
-	glReadPixels(x, y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, &pixel);
-	printf("\nFirst::%d", pixel.red);
+	OGLChart::MouseLBDown(newX, newY);
 
 	SetUpMatrices();
 
-	glScalef(600, 350, 1);
+	glMultMatrixf(MathHelper::Matrix4Dscale(600, 350, 1).data);
 	glTranslatef(0.0f, 0.0f, -3.0f);
 
 	if (xRot != 0)
@@ -44,12 +45,7 @@ bool OGLScatterplot3DV2::MouseLBDown(int x, int y)
 	while (mapIt != dataDist.end())
 	{
 		GLint hits;
-		GLint viewport[4];
-		glGetIntegerv(GL_VIEWPORT, viewport);
-
-
-		printf("GLViewPort: %d,%d,%d,%d", viewport[0], viewport[1], viewport[2], viewport[3]);
-
+		
 		(void) glRenderMode(GL_SELECT);
 
 		glMatrixMode(GL_PROJECTION);
@@ -59,9 +55,7 @@ bool OGLScatterplot3DV2::MouseLBDown(int x, int y)
 		gluPickMatrix((GLdouble)x, (GLdouble)(viewport[3] - y), 1.0f, 1.0f, viewport);
 		glFrustum((-0.5*viewport[2] - xOff), (0.5*viewport[2] - (xOff)), (-0.5 * viewport[3] - (yOff)), (0.5 * viewport[3] - (yOff)), 1.f, 500.f);
 
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		mapIt->first->Render();
-		
 		glMatrixMode(GL_PROJECTION); 
 		glPopMatrix(); 
 		glMatrixMode(GL_MODELVIEW); 
@@ -85,12 +79,12 @@ bool OGLScatterplot3DV2::MouseLBDown(int x, int y)
 
 	RestoreMatrices();
 
-	return _border.MouseInside(x - xOff, y - yOff);
+	return _border.MouseInside(newX - xOff, newY - yOff);
 }
 
 void OGLScatterplot3DV2::Move(float x, float y)
 {
-	/*if (Listener::keys[16])
+	if (Listener::keys[16])
 	{
 		OGLChart::Move(x, y);
 		xOff -= x;
@@ -98,7 +92,7 @@ void OGLScatterplot3DV2::Move(float x, float y)
 		return;
 	}
 	xOff += x;
-	yOff += y;*/
+	yOff += y;
 
 
 }
@@ -211,7 +205,7 @@ void OGLScatterplot3DV2::Render()
 	_border.Render();
 
 	//So we could do it on a scale of 1 - -1. Then scale. It does though, for rotational purposes.
-	glScalef(600, 350, 1);
+	glMultMatrixf(MathHelper::Matrix4Dscale(600, 350, 1).data);
 	glTranslatef(0.0f, 0.0f, -3.0f);
 
 	if (xRot != 0)
