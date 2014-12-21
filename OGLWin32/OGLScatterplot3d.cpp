@@ -23,9 +23,62 @@ OGLScatterplot3D::OGLScatterplot3D()
 
 }
 
+void OGLScatterplot3D::GetHighlightAtPoint(int x, int y, GLint* viewport)
+{
+	SetUpMatrices();
+	ShapeMap(x,y,viewport);
+	RestoreMatrices();
+}
+
+void OGLScatterplot3D::ShapeMap(int x, int y, GLint* viewport)
+{
+	std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
+	while (mapIt != dataDist.end())
+	{
+		GLint hits;
+
+		(void)glRenderMode(GL_SELECT);
+
+		glMatrixMode(GL_PROJECTION);
+		glPushMatrix();
+		glLoadIdentity();
+
+		gluPickMatrix((GLdouble)x, (GLdouble)(viewport[3] - y), 1.0f, 1.0f, viewport);
+		glFrustum((-0.5*viewport[2] - xOff), (0.5*viewport[2] - (xOff)), (-0.5 * viewport[3] - (yOff)), (0.5 * viewport[3] - (yOff)), 1.f, 500.f);
+
+		mapIt->first->Render();
+		glMatrixMode(GL_PROJECTION);
+		glPopMatrix();
+		glMatrixMode(GL_MODELVIEW);
+		hits = glRenderMode(GL_RENDER);
+
+		if (hits != 0)
+		{
+			if (!(mapIt->second->isNull()))
+			{
+				if (highlightText != nullptr)
+				{
+					delete highlightText;
+				}
+				highlightText = new OGLText(Vec2f(x - (viewport[2] >> 1) + 5, (-y) - (-viewport[3] >> 1)), Color(0.25f, 0.25f, 0.25f), mapIt->second->getString(), "arial.glf", 8);
+			}
+		}
+
+
+		mapIt++;
+	}
+}
+
 bool OGLScatterplot3D::MouseLBDown(int x, int y)
 {
+	GLint viewport[4];
+	glGetIntegerv(GL_VIEWPORT, viewport);
+	int newX = x - (viewport[2] >> 1);
+	int newY = (-y) - (-viewport[3] >> 1);
+
 	OGLChart::MouseLBDown(x, y);
+	
+	GetHighlightAtPoint(x, y, viewport);
 
 	return _border.MouseInside(x - xOff, y - yOff);
 }
@@ -158,34 +211,6 @@ void OGLScatterplot3D::Render()
 
 bool OGLScatterplot3D::MouseWheel(float deg)
 {
-	if (Listener::keys[90])
-	{
-		if (deg > 0)
-		{
-			xRot += 0.0001f;
-		}
-		else
-		{
-			xRot -= 0.0001f;
-		}
-
-		return true;
-	}
-
-	if (Listener::keys[88])
-	{
-		if (deg > 0)
-		{
-			yRot += 0.0001f;
-		}
-		else
-		{
-			yRot -= 0.0001f;
-		}
-
-		return true;
-	}
-
 	if (Listener::keys[16])
 	{
 		std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();

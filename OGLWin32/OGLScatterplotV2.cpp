@@ -36,57 +36,6 @@ bool OGLScatterplot3DV2::MouseLBDown(int x, int y)
 	return _border.MouseInside(newX - xOff, newY - yOff);
 }
 
-void OGLScatterplot3DV2::GetHighlightAtPoint(int x, int y, GLint* viewport)
-{
-	SetUpMatrices();
-
-	glMultMatrixf(MathHelper::Matrix4Dscale(600, 350, 1).data);
-	glTranslatef(0.0f, 0.0f, -3.0f);
-
-	if (xRot != 0)
-		glMultMatrixf(MathHelper::Matrix4DtransformY(xRot).data);
-	if (yRot != 0)
-		glMultMatrixf(MathHelper::Matrix4DtransformX(yRot).data);
-
-	std::map<OGLShape*, DataCell*>::iterator mapIt = dataDist.begin();
-	while (mapIt != dataDist.end())
-	{
-		GLint hits;
-
-		(void)glRenderMode(GL_SELECT);
-
-		glMatrixMode(GL_PROJECTION);
-		glPushMatrix();
-		glLoadIdentity();
-
-		gluPickMatrix((GLdouble)x, (GLdouble)(viewport[3] - y), 1.0f, 1.0f, viewport);
-		glFrustum((-0.5*viewport[2] - xOff), (0.5*viewport[2] - (xOff)), (-0.5 * viewport[3] - (yOff)), (0.5 * viewport[3] - (yOff)), 1.f, 500.f);
-
-		mapIt->first->Render();
-		glMatrixMode(GL_PROJECTION);
-		glPopMatrix();
-		glMatrixMode(GL_MODELVIEW);
-		hits = glRenderMode(GL_RENDER);
-
-		if (hits != 0)
-		{
-			if (!(mapIt->second->isNull()))
-			{
-				if (highlightText != nullptr)
-				{
-					delete highlightText;
-				}
-				highlightText = new OGLText(Vec2f(x - (viewport[2] >> 1) + 5, (-y) - (-viewport[3] >> 1)), Color(0.25f, 0.25f, 0.25f), mapIt->second->getString(), "arial.glf", 8);
-			}
-		}
-
-
-		mapIt++;
-	}
-
-	RestoreMatrices();
-}
-
 void OGLScatterplot3DV2::Move(float x, float y)
 {
 	if (Listener::keys[16])
@@ -276,3 +225,21 @@ bool OGLScatterplot3DV2::MouseWheel(float deg)
 	OGLChart::MouseWheel(deg);
 	return true;
 }
+
+void OGLScatterplot3DV2::GetHighlightAtPoint(int x, int y, GLint* viewport)
+{
+	SetUpMatrices();
+
+	glMultMatrixf(MathHelper::Matrix4Dscale(600, 350, 1).data);
+	glTranslatef(0.0f, 0.0f, -3.0f);
+
+	if (xRot != 0)
+		glMultMatrixf(MathHelper::Matrix4DtransformY(xRot).data);
+	if (yRot != 0)
+		glMultMatrixf(MathHelper::Matrix4DtransformX(yRot).data);
+
+	ShapeMap(x,y,viewport);
+
+	RestoreMatrices();
+}
+

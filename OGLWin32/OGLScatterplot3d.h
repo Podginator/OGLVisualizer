@@ -52,8 +52,10 @@ protected:
 		glPopMatrix();
 	}
 
+
+	void ShapeMap(int x, int y, GLint* viewport);
+	
+
 	int xOff = 0;
 	int yOff = 0;
-	float xRot = 0.00f;
-	float yRot = 0.f;
 };
