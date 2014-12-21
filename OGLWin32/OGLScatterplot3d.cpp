@@ -36,22 +36,30 @@ void OGLScatterplot3D::ShapeMap(int x, int y, GLint* viewport)
 	while (mapIt != dataDist.end())
 	{
 		GLint hits;
-
+		//Don't render out. 
 		(void)glRenderMode(GL_SELECT);
 
+		//Set the correct Matrix
 		glMatrixMode(GL_PROJECTION);
 		glPushMatrix();
 		glLoadIdentity();
 
+		//Then zoom in quite close
+		//and set the normal fustrum
+
 		gluPickMatrix((GLdouble)x, (GLdouble)(viewport[3] - y), 1.0f, 1.0f, viewport);
 		glFrustum((-0.5*viewport[2] - xOff), (0.5*viewport[2] - (xOff)), (-0.5 * viewport[3] - (yOff)), (0.5 * viewport[3] - (yOff)), 1.f, 500.f);
 
+		//Then render ONE object out.
 		mapIt->first->Render();
 		glMatrixMode(GL_PROJECTION);
 		glPopMatrix();
 		glMatrixMode(GL_MODELVIEW);
 		hits = glRenderMode(GL_RENDER);
 
+
+		//Because we've only rendered one object out we'll check if hits is one, if it is then we've hit the correct thing. Therefore we can assume that it's the object we've hit
+		//And change the highlight text.
 		if (hits != 0)
 		{
 			if (!(mapIt->second->isNull()))
