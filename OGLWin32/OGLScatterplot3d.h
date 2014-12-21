@@ -28,6 +28,30 @@ public:
 	bool MouseWheel(float deg);
 	bool MouseLBDown(int x, int y);
 protected:
+
+	void SetUpMatrices()
+	{
+		glMatrixMode(GL_PROJECTION);
+		glPushMatrix();
+		glLoadIdentity();
+		int GLViewPort[4];
+		glGetIntegerv(GL_VIEWPORT, GLViewPort);
+		glFrustum((-0.5*GLViewPort[2] - xOff), (0.5*GLViewPort[2] - (xOff)), (-0.5 * GLViewPort[3] - (yOff)), (0.5 * GLViewPort[3] - (yOff)), 1.f, 500.f);
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+		glLoadIdentity();
+	}
+
+	void GetHighlightAtPoint(int x, int y, GLint* viewport);
+
+	void RestoreMatrices()
+	{
+		glMatrixMode(GL_PROJECTION);
+		glPopMatrix();
+		glMatrixMode(GL_MODELVIEW);
+		glPopMatrix();
+	}
+
 	int xOff = 0;
 	int yOff = 0;
 	float xRot = 0.00f;

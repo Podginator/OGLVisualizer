@@ -276,5 +276,3 @@ bool OGLScatterplot3DV2::MouseWheel(float deg)
 	OGLChart::MouseWheel(deg);
 	return true;
 }
-
-

@@ -30,7 +30,6 @@ bool OGLScatterplot3D::MouseLBDown(int x, int y)
 	return _border.MouseInside(x - xOff, y - yOff);
 }
 
-
 void OGLScatterplot3D::Move(float x, float y)
 {
 	if (Listener::keys[16])
@@ -150,22 +149,11 @@ void OGLScatterplot3D::InitElements()
 
 void OGLScatterplot3D::Render()
 {
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-	glLoadIdentity();
-	int GLViewPort[4];
-	glGetIntegerv(GL_VIEWPORT, GLViewPort);
-	glFrustum((-0.5*GLViewPort[2] - xOff), (0.5*GLViewPort[2] - (xOff)), (-0.5 * GLViewPort[3] - (yOff)), (0.5 * GLViewPort[3] - (yOff)), 1.f, 500.f);
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glLoadIdentity();
+	SetUpMatrices();
 
     OGLChart::Render();
 
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-	glMatrixMode(GL_MODELVIEW);
-	glPopMatrix();
+	RestoreMatrices();
 }
 
 bool OGLScatterplot3D::MouseWheel(float deg)
