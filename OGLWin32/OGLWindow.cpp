@@ -191,6 +191,7 @@ BOOL OGLWindow::MouseLBDown ( int x, int y )
     {
         if (charts[i]->MouseLBDown(x,y))
         {
+			printf("%d", i);
             if (i != charts.size()-1)
             {
                 std::swap(charts[charts.size() - 1], charts[i]);

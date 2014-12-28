@@ -22,34 +22,6 @@ OGLScatterplot3DV2::OGLScatterplot3DV2()
 
 }
 
-bool OGLScatterplot3DV2::MouseLBDown(int x, int y)
-{
-	GLint viewport[4];
-	glGetIntegerv(GL_VIEWPORT, viewport);
-	int newX = x - (viewport[2] >> 1);
-	int newY = (-y) - (-viewport[3] >> 1);
-
-	OGLChart::MouseLBDown(x, y);
-
-	GetHighlightAtPoint(x, y, viewport);
-
-	return _border.MouseInside(newX - xOff, newY - yOff);
-}
-
-void OGLScatterplot3DV2::Move(float x, float y)
-{
-	if (Listener::keys[16])
-	{
-		OGLChart::Move(x, y);
-		xOff -= x;
-		yOff -= y;
-		return;
-	}
-	xOff += x;
-	yOff += y;
-
-
-}
 
 void OGLScatterplot3DV2::InitElements()
 {

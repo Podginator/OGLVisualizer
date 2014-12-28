@@ -88,7 +88,7 @@ bool OGLScatterplot3D::MouseLBDown(int x, int y)
 	
 	GetHighlightAtPoint(x, y, viewport);
 
-	return _border.MouseInside(x - xOff, y - yOff);
+	return _border.MouseInside(newX - xOff, newY - yOff);
 }
 
 void OGLScatterplot3D::Move(float x, float y)

@@ -13,10 +13,8 @@ public:
 	OGLScatterplot3DV2();
 	void AddDataSource(DataColumn col);
 	void InitElements();
-	void Move(float x, float y);
 	void Render();
 	bool MouseWheel(float deg);
-	bool MouseLBDown(int x, int y);
 protected:
 	int xOff = 0;
 	int yOff = 0;
